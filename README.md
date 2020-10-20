@@ -29,9 +29,10 @@ $ npm i -g create-react-app
 ```
 ### install bootstrap package
 ```console
-$ npm i bootstrap@4.1.1
+$ npm i bootstrap
 ```
 ### Run app
 ```console
+$ cd ./Front
 $ npm start
 ```
