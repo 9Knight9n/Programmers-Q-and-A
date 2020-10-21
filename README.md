@@ -31,6 +31,10 @@ $ npm i -g create-react-app
 ```console
 $ npm i bootstrap
 ```
+### install react-router-dom
+```console
+$ npm install react-router-dom
+```
 ### Run app
 ```console
 $ cd ./Front
