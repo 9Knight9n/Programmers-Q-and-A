@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 // import { BrowserRouter as router, Route, Link } from "react-router-dom";
-// import Homepage from './components/homepage';
+import Homepage from './components/homepage';
+
+
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Homepage /> */}
+    <Homepage />
   </React.StrictMode>,
   document.getElementById('root')
 );
