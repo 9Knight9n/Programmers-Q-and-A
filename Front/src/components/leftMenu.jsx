@@ -2,9 +2,7 @@
 //expremental solution is used for passing (this) to functions
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './CSS/leftMenu.css';
-import Chatroom from "./chatroom";
 
 class LeftMenu extends Component {
     state = {  
@@ -23,15 +21,17 @@ class LeftMenu extends Component {
                 <div className="nav flex-column nav-pills left-menu">
                     <div id="profile">
                         <div className="container-fluid bottom-border">
-                            <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" className="online" alt="" />
-                            <div className="username">Username</div>
+                            <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" />
+                            <div className="text-next-to-img">Username</div>
                         </div>
                     </div>
-                    {this.state.options.map(sOption => <a 
-                        key={sOption.id} 
-                        className={"nav-link o-left-menu ".concat(this.state.activeTab===sOption.id? "active":"")} 
+                    {this.state.options.map(sOption => 
+                    <a key={sOption.id} 
+                        className={"nav-link left-menu-tab ".concat(this.state.activeTab===sOption.id? "active":"")} 
                         onClick={()=> this.handleTabClick(sOption.id)} 
-                        href="#" >{sOption.ButtonName}</a>)}
+                        href="#" ><img id="chatroom-img" src={sOption.img} /> 
+                        <div className="text-next-to-img">{sOption.ButtonName}</div>
+                    </a>)}
                     <div className="container-fluid align-bottom">
                         <button className="btn btn-primary col-lg-6">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-door-open-fill m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

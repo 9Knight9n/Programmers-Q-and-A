@@ -19,7 +19,9 @@
     border-radius: 0px;
     padding-right: 0px;
 }
-.o-left-menu{
+.left-menu-tab{
+    height: 7vh;
+    /* display: inline-block; */
     color: white;
     padding-right: 0px;
     /* background-color: #dbfaff; */
@@ -40,7 +42,15 @@
     border-radius: 60%;
     border: 2px solid #e74c3c;
     margin-left: 10%;
+    /* display: inline-block; */
+}
+#chatroom-img{
+    width: 30px;
+    border-radius: 60%;
+    /* border: 2px solid #e74c3c; */
+    /* margin-left: 10%; */
     display: inline-block;
+    /* margin-left: 5%; */
 }
 /* #profile img {
     margin-left: 10%;
@@ -58,7 +68,7 @@
     margin-left: 0;
     margin-right: 0;
 }
-.username{
+.text-next-to-img{
     display: inline-block;
     padding-left: 7%;
     color: white;    

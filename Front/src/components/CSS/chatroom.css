@@ -3,6 +3,7 @@
   bottom:0;
 }
 .align-right{
+  margin-right: 3%;
   position:absolute;                  
   right:0;
 }
@@ -11,14 +12,19 @@
   padding-right: 0;
 }
 .chatbox{
-
-  padding-bottom: 52%;
-  height: 88vh;
-  /* min-height: 94%; */
-  /* border-radius: 20px; */
-  /* border: solid black 1px; */
-
-  background-color: #4b63b7;
+  
+  border: solid 2px #545f91fc;
+    border-radius: 10px;
+    /* margin-top: 2%; */
+    /* margin-right: 2%; */
+    margin: 2% 2% 0% 2%;
+    /* padding-bottom: 52%; */
+    height: 84.8vh;
+    /* min-height: 94%; */
+    /* border-radius: 20px; */
+    /* border: solid black 1px; */
+    background-color: #4b63b7;
+    /* transition: height 2s; */
 }
 .btn{
   border: solid 2px rgba(9, 156, 167, 0.432) ;

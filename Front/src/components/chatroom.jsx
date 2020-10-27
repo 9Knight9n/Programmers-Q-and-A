@@ -5,7 +5,7 @@ class Chatroom extends Component {
     state = {  }
     render() { 
         return (  
-            <div >
+            <div>
                 <div className="chatbox">
                     chat
                 </div>

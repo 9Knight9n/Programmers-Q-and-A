@@ -5,6 +5,8 @@ import LeftMenu from './leftMenu';
 import Navbar from './navbar';
 import Chatroom from './chatroom';
 import './CSS/homepage.css';
+import j_logo from "../img/java-logo.png";
+import p_logo from "../img/python-logo.png";
 
 class Homepage extends Component {
 
@@ -14,10 +16,13 @@ class Homepage extends Component {
             {
                 id:1,
                 ButtonName:'Chat Room 1',
+                img:j_logo
             },
             {
                 id:2,
                 ButtonName:'Chat Room 2',
+                img:p_logo
+    
             }
         ]
     }
