@@ -1,33 +1,46 @@
-.align-bottom{
+
+/* .align-bottom{
   position:absolute;                  
   bottom:0;
-}
-.align-right{
+} */
+/* .align-right{
   margin-right: 3%;
   position:absolute;                  
   right:0;
-}
+} */
 .full-box{
   height: 100%;
   padding-right: 0;
 }
 .chatbox{
-  
-  border: solid 2px #545f91fc;
+	/* display:table; */
+	overflow-y: auto;
+	/* padding: 0px; */
+	border: solid 2px #545f91fc;
     border-radius: 10px;
     /* margin-top: 2%; */
     /* margin-right: 2%; */
     margin: 2% 2% 0% 2%;
     /* padding-bottom: 52%; */
-    height: 84.8vh;
+    height: 83vh;
     /* min-height: 94%; */
     /* border-radius: 20px; */
     /* border: solid black 1px; */
     background-color: #4b63b7;
     /* transition: height 2s; */
 }
+/* .chatbox .fill{
+	display :table-row;
+}
+.bottom{
+	display :table-row;
+    height: 5vh;
+} */
 .btn{
-  border: solid 2px rgba(9, 156, 167, 0.432) ;
+  border-top: solid .25vh rgba(9, 156, 167, 0.432) ;
+  border-right: solid .25vh rgba(9, 156, 167, 0.432) ;
+  border-left: solid .25vh rgba(9, 156, 167, 0.432) ;
+  border-bottom: none;
   background-color: #545f91fc;
   height: 5vh;
   padding-left: 5px;
@@ -35,4 +48,48 @@
 }
 body{
   color: white;
+}
+
+
+body{
+	font: 1em/1.5em "HELVETICA NEUE" , Arial, Helvetica, Geneva, sans-serif;
+	color: #222;
+	background-color: #eaeaea;
+}
+
+div.container {
+	width:800px;
+	margin: 5em auto;
+}
+
+ul, li {
+	list-style: none;
+}
+
+em {
+	font-size:0.75em;
+}
+
+ul.simple-nested li {
+	margin-left: 3em;
+}
+
+div.comment {
+	background: #141d48;
+	border: 1px solid #999;
+	padding: 1em;
+	margin-bottom: 1em;
+}
+
+ul.simple-nested li ul {
+	border-left: 3px solid #141d48;
+	position: relative;
+}
+
+ul.simple-nested li ul::before{
+	content: '';
+	border-bottom: 3px solid #141d48;
+	position: absolute;
+	width: 2em;
+	top: 2em;
 }
