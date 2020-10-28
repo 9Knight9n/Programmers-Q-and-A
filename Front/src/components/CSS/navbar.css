@@ -1,12 +1,13 @@
 .navbar{
-    color: white;
-    height: 7vh;
+    /* color: white !important; */
+    height: 9vh;
     background-color: #141d48 !important;
     /* color: white !important; */
 }
-.navbar-brand{
-    color: white;
+.navbar-nav{
+    flex-direction: row;
 }
-.bg-light {
-    background-color: #4b63b7 ;
+.navbar-nav .active{
+    background-color: #545f91fc;
+    border-radius: 20px;
 }
