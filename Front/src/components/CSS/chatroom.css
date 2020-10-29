@@ -14,21 +14,30 @@
 }
 .chatbox{
 	/* display:table; */
-	overflow-y: auto;
+
 	/* padding: 0px; */
 	border: solid 2px #545f91fc;
-    border-radius: 10px;
-    /* margin-top: 2%; */
-    /* margin-right: 2%; */
-    margin: 2% 2% 0% 2%;
-    /* padding-bottom: 52%; */
-    height: 83vh;
-    /* min-height: 94%; */
-    /* border-radius: 20px; */
-    /* border: solid black 1px; */
-    background-color: #4b63b7;
-    /* transition: height 2s; */
+  border-radius: 10px;
+  /* margin-top: 2%; */
+  /* margin-right: 2%; */
+  /* margin: 2% 2% 0% 2%; */
+  /* padding-bottom: 52%; */
+
+  /* min-height: 94%; */
+  /* border-radius: 20px; */
+  /* border: solid black 1px; */
+  background-color: #4b63b7;
+  /* transition: height 2s; */
 }
+.add-scroll{
+  overflow-y: auto;
+  height: calc(86vh - 45px);
+}
+.add-scroll-active{
+  overflow-y: auto;
+  height: calc(78vh - 45px);
+}
+
 /* .chatbox .fill{
 	display :table-row;
 }
