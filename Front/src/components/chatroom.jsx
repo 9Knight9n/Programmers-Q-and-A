@@ -28,9 +28,31 @@ class Chatroom extends Component {
                 content:"this is second reply comment..",
             },
             {
+                id:7,
+                type:3,
+                by:"reza",
+                time:"Feb 23rd",
+                content:"this is second reply comment..",
+            },
+            {
+                id:8,
+                type:7,
+                by:"reza",
+                time:"Feb 23rd",
+                content:"this is second reply comment..",
+            },
+            {
+                id:9,
+                type:8,
+                by:"reza",
+                time:"Feb 23rd",
+                content:"this is second reply comment..",
+            },
+            {
                 id:6,
                 type:2,
                 by:"reza",
+                time:"Feb 23rd",
                 content:"new comment"
             },
             {
