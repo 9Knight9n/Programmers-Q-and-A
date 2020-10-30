@@ -11,7 +11,7 @@ def login(request):
     return render(request , "register.html")
 
 @csrf_exempt
-def wellcome(request):
+def homepage(request):
     # we need check that data is in database
     if request.method == 'POST':
         response_data = User.objects.all()
