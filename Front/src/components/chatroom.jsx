@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/chatroom.css';
 import SubmitField from './submitField';
+import ChatBox from './chatBox';
 
 class Chatroom extends Component {
     state = {
@@ -88,12 +89,7 @@ class Chatroom extends Component {
                 subContent =  
                 <React.Fragment>
                     <li>
-                        <div className="comment">
-                            <p><a href="">{chat.by}</a></p>
-                            <em>{chat.time}</em>
-                            <p>{chat.content}</p>
-                            <p><a onClick={() => this.state.refToChatroom.current.clicked(chat.id)} href="#">reply</a></p>
-                        </div> 
+                        <ChatBox chat={chat} refToChatroom={this.state.refToChatroom}/>
                         {this.handleSubContent(this.state.chats[index].id)}
                     </li>
                 </React.Fragment>;
