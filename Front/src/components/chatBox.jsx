@@ -7,7 +7,8 @@ class ChatBox extends Component {
         return (
                 <div className="comment d-flex flex-column">
                     <div className="d-flex flex-row">
-                        <div className="d-flex align-items-center mr-2"><img  id="profile-img-in-chat" src="http://emilcarlsson.se/assets/mikeross.png" /></div>
+                        <div className="d-flex align-items-center mr-2"><img  id="profile-img-in-chat" 
+                            src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"/></div>
                         <h1 className="d-flex align-items-center"><p><a href="">{this.props.chat.by}</a></p></h1>
                     </div>
                     <div className="m-3"><p>{this.props.chat.content}</p></div>

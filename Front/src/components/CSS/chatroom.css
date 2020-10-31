@@ -29,11 +29,7 @@
   background-color: #7b94f075;
   /* transition: height 2s; */
 }
-.add-scroll{
-  overflow-y: auto;
-  height: calc(86vh - 55px);
-  
-}
+
 .chatbox ::-webkit-scrollbar-track {
   background: #7b94f0;
 }
@@ -44,6 +40,11 @@
 /* Handle on hover */
 .chatbox ::-webkit-scrollbar-thumb:hover {
   background: #0a0e24;
+}
+.add-scroll{
+  overflow-y: auto;
+  height: calc(86vh - 55px);
+  
 }
 .add-scroll-active{
   overflow-y: auto;
@@ -79,39 +80,3 @@ body{
     background-color: #050035;
 }
 
-div.container {
-    width:800px;
-    margin: 5em auto;
-}
-
-ul, li {
-    list-style: none;
-}
-
-em {
-    font-size:0.75em;
-}
-
-ul.simple-nested li {
-    margin-left: 3em;
-}
-
-div.comment {
-    background: #09186b99;
-    border: 3px solid #2363b8fc;
-    padding: .5% 2% .5% 2%;
-    margin-bottom: 1em;
-}
-
-ul.simple-nested li ul {
-    border-left: 3px solid #141d48;
-    position: relative;
-}
-
-ul.simple-nested li ul::before{
-    content: '';
-    border-bottom: 3px solid #141d48;
-    position: absolute;
-    width: 2.80em;
-    top: 2em;
-}

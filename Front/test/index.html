@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="post-editor" class="post-editor js-post-editor">
+
+
+        <div class="ps-relative">
+            <div class="wmd-container mb8">
+                <div id="wmd-button-bar" class="wmd-button-bar btr-sm"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong <strong> Ctrl+B"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis <em> Ctrl+I"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink <a> Ctrl+L" style="margin-top: 0px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote <blockquote> Ctrl+Q"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample <pre><code> Ctrl+K"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image <img> Ctrl+G" style="margin-top: 0px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" id="wmd-snippet-button" title="JavaScript/HTML/CSS snippet Ctrl-M"><span></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List <ol> Ctrl+O"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List <ul> Ctrl+U"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading <h1>/<h2> Ctrl+H"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule <hr> Ctrl+R"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y"><span style="background-position: -220px -20px;"></span></li><li class="wmd-spacer wmd-spacer-max"></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li></ul></div><div id="mdhelp" class="mdhelp" style="">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" href="..." class="js-gps-track" data-gps-track="mdhelp.click({ help_type: 0 })" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-gps-track="mdhelp.click({ help_type: 1 })" data-buttons="image" class="">Images</li>
+        <li data-tab="mdhelp-styles" data-gps-track="mdhelp.click({ help_type: 2 })" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-gps-track="mdhelp.click({ help_type: 3 })" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-gps-track="mdhelp.click({ help_type: 4 })" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-gps-track="mdhelp.click({ help_type: 5 })" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html" data-gps-track="mdhelp.click({ help_type: 6 })"> HTML </li>
+        <li class="float-right"><a href="/editing-help" data-gps-track="mdhelp.click({ help_type: 7 })" target="_blank">Advanced help</a></li>
+    </ul>
+
+    <div class="mdhelp-tab" id="mdhelp-links" style="display: none;">
+        <div class="mdhelp-tab--content">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit https://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;https://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+            <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: https://notfound.stackexchange.com/
+ [question]: https://english.stackexchange.com/questions/11481
+</pre>
+            <p>You can add tooltips to links:</p>
+<pre>Click [here](https://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")!
+This works with [reference links][blog] as well.
+
+ [blog]: https://stackoverflow.blog/<span class="spaces">&nbsp;</span>"click here for updates"
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images" style="display: none;">
+        <div class="mdhelp-tab--content">
+            <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+            <pre>![a busy cat](https://cdn.sstatic.net/Sites/stackoverflow/Img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: https://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+            <p>
+                The word in square brackets is the alt text, which gets displayed if the browser
+                can't show the image. Be sure to include meaningful alt text for screen-reading
+                software.
+            </p>
+
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-styles" style="">
+        <div class="mdhelp-tab--content">
+            <div class="col1">
+                <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+
+            </div>
+            <div class="col2">
+                <p>
+                    To break your text into sections, you can use headers:
+                </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+                <p>
+                    Use hash marks if you need several levels of headers:
+                </p>
+                <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-lists" style="">
+        <div class="mdhelp-tab--content">
+            <p>Both bulleted and numbered lists are possible:</p>
+            <div class="col1">
+<pre>-<span class="spaces">&nbsp;</span>Use a minus sign for a bullet
++<span class="spaces">&nbsp;</span>Or plus sign
+*<span class="spaces">&nbsp;</span>Or an asterisk
+
+1.<span class="spaces">&nbsp;</span>Numbered lists are easy
+2.<span class="spaces">&nbsp;</span>Markdown keeps track of
+   the numbers for you
+7.<span class="spaces">&nbsp;</span>So this will be item 3.
+</pre>
+            </div>
+            <div class="col2">
+<pre>1.<span class="spaces">&nbsp;</span>Lists in a list item:
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again.
+2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items.
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent.
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes" style="">
+        <div class="mdhelp-tab--content">
+            <div class="col1">
+                <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+            </div>
+            <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code" style="">
+        <div class="mdhelp-tab--content">
+            <p>
+                To create code blocks or other preformatted text, indent by four spaces or surround with groups of backticks:
+            </p>
+            <pre><span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved.
+
+```
+Markdown and HTML are turned off in code blocks:
+&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](https://example.com)
+```</pre>
+            <p>
+                To create not a block, but an inline code span, use backticks:
+            </p>
+            <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+            <p>
+                If you want to have a preformatted block within a list, indent by eight spaces:
+            </p>
+            <pre>1. This is normal text.
+2. So is this, but now follows a code block:
+<span class="spaces">&nbsp;</span>
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces.
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list
+<span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html" style="">
+        <div class="mdhelp-tab--content">
+            <p>
+                If you need to do something that Markdown can't handle, use HTML. Note that <a href="https://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+            </p>
+            <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+            <p>
+                Markdown is smart enough not to mangle your span-level HTML:
+            </p>
+            <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+            <p>
+                Block-level HTML elements have a few restrictions:
+            </p>
+            <ol>
+                <li>They must be separated from surrounding text by blank lines.</li>
+                <li>The begin and end tags of the outermost block element must not be indented.</li>
+                <li>Markdown can't be used within HTML blocks.</li>
+            </ol>
+            <br>
+            <pre>&lt;pre&gt;
+    You can &lt;em&gt;not&lt;/em&gt; use Markdown in here.
+&lt;/pre&gt;
+</pre>
+        </div>
+    </div>
+
+    <div class="cbt"></div>
+</div>
+                    <div class="new-contributor-indicator fc-black py12 ta-center bl br bc-black-200">
+                        <svg aria-hidden="true" class="svg-icon iconWave" width="18" height="18" viewBox="0 0 18 18"><path d="M10.7 17c-2.3 0-3.9-2.05-5.07-3.54l-.49-.6c-.67-.8-1.59-1.63-2.4-2.36A10.91 10.91 0 011.1 8.87a.79.79 0 01-.09-.56c.04-.19.14-.34.27-.4.14-.07.29-.1.45-.1.35 0 .67.18.87.34l3.5 2.75c.04.03.1.03.13 0a.09.09 0 00.02-.13l-.02-.02c-.57-.8-3.42-4.77-3.71-5.15-.21-.27-.3-.58-.24-.84.05-.2.2-.37.4-.48.18-.09.35-.13.52-.13.44 0 .76.28.96.51l3.6 4.42c.04.04.07.06.14.02.05-.02.06-.07.03-.12L4.41 2.96a.94.94 0 01-.1-.73.92.92 0 01.47-.57 1.06 1.06 0 011.4.39l3.8 6.14c.03.04.07.07.14.04.04-.03.06-.07.04-.13A153.8 153.8 0 008.1 2.54c-.31-.68-.2-1.14.36-1.42.52-.27 1.14-.07 1.47.48l3.69 8.3c.02.04.05.05.1.06a.1.1 0 00.09-.07l.66-2.28c.1-.3.31-.56.62-.72.3-.15.65-.18.98-.1.7.2 1.09.87.89 1.52-.1.37-.46 1.73-.99 3.43l-.1.33c-.58 1.86-1.03 3.33-3.11 4.4-.7.35-1.38.53-2.05.53z" fill="#FFC166"></path><path d="M14 .37a.5.5 0 00-.88.45l1.96 3.9a.5.5 0 00.9-.45L14 .37zm-1.17 2.17a.5.5 0 00-.91.42l.84 1.87a.5.5 0 10.91-.41l-.84-1.88zm-10.6 9.74a.5.5 0 01.7-.02l1.7 1.6a.5.5 0 01-.7.72l-1.68-1.6a.5.5 0 01-.02-.7zm-1.39.98a.5.5 0 10-.68.73l3.03 2.84a.5.5 0 00.68-.73L.84 13.26z" opacity=".4"></path></svg>
+                        <a href="/users/10796331/j-a-programmer">J.A Programmer</a> is a new contributor. Be nice, and check out our <a href="/conduct">Code of Conduct</a>.
+                    </div>
+                <div class="js-stacks-validation">
+                    <div class="ps-relative">
+                        <textarea id="wmd-input" name="post-text" class="wmd-input s-input bar0 js-post-body-field processed" data-post-type-id="2" cols="92" rows="15" tabindex="101" data-min-length="" style="height: 200px;"></textarea>
+                    <div class="grippie bbr-sm" style="margin-right: 0px;"></div></div>
+                    <div class="s-input-message mt4 d-none js-stacks-validation-message"></div>
+                </div>
+            </div>
+        </div>
+
+    <aside class="grid ai-start jc-space-between js-answer-help s-notice s-notice__warning pb0 pr4 pt4 mb8" role="status" aria-hidden="false">
+    <div class="grid--cell pt8">
+        <p>Thanks for contributing an answer to Stack Overflow!</p><ul><li>Please be sure to <em>answer the question</em>. Provide details and share your research!</li></ul><p>But <em>avoid</em> …</p><ul><li>Asking for help, clarification, or responding to other answers.</li><li>Making statements based on opinion; back them up with references or personal experience.</li></ul><p>To learn more, see our <a href="/help/how-to-answer">tips on writing great answers</a>.</p>
+    </div>
+    <button class="grid--cell js-answer-help-close-btn s-btn s-btn__muted fc-dark">
+        <svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg>
+    </button>
+</aside>
+
+        <aside class="grid ai-start jc-space-between js-answer-ban s-notice s-notice__danger pb0 pr4 pt4 mb8 d-none" role="status" aria-hidden="true">
+    <div class="grid--cell pt8">
+        <p>Some of your past answers have not been well-received, and you're in danger of being <a href="/help/answer-bans">blocked from answering</a>.</p><p>Please pay close attention to the following guidance:</p><ul><li>Please be sure to <em>answer the question</em>. Provide details and share your research!</li></ul><p>But <em>avoid</em> …</p><ul><li>Asking for help, clarification, or responding to other answers.</li><li>Making statements based on opinion; back them up with references or personal experience.</li></ul><p>To learn more, see our <a href="/help/how-to-answer">tips on writing great answers</a>.</p>
+    </div>
+    <button class="grid--cell js-answer-ban-close-btn s-btn s-btn__muted fc-dark">
+        <svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewBox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg>
+    </button>
+</aside>
+
+
+
+    <div>
+        <div id="draft-saved" class="fc-success h24" style="display:none;">Draft saved</div>
+        <div id="draft-discarded" class="fc-error h24" style="display:none;">Draft discarded</div>
+    </div>
+
+
+            <div id="wmd-preview" class="s-prose mb16 wmd-preview js-wmd-preview"></div>
+            <div></div>
+
+        <div class="edit-block">
+            <input id="fkey" name="fkey" type="hidden" value="6d2e78576674bc642e0c398252c864c2baa0ae71855d46dd2211f165d0803abf">
+            <input id="author" name="author" type="text">
+        </div>
+
+</div>
+<textarea cols="92" rows="15"></textarea>
+</body>
+</html>

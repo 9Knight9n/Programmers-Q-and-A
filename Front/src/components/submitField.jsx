@@ -14,10 +14,14 @@ class SubmitField extends Component {
     render() { 
         return ( 
             <div className="d-flex flex-row justify-content-center mt-2">
-                <input className={"submit-input form-control ".concat(this.state.isClicked ? "submit-input-active":"")} type="search" placeholder="type here!" aria-label="Search"/>
+                <textarea cols="92"
+                    rows="4"
+                    className={"submit-input form-control ".concat(this.state.isClicked ? "submit-input-active":"")}
+                    placeholder="type here!"></textarea>
+                {/* <input className={"submit-input form-control ".concat(this.state.isClicked ? "submit-input-active":"")} type="search" placeholder="type here!" aria-label="Search"/> */}
                 <button 
                     onClick={() => this.clicked(-1)}
-                    className={"flex-row justify-content-center btn btn-primary submit-button ".concat(this.state.isClicked ? "Submit-button-active":"")}>
+                    className={"flex-row justify-content-center align-self-end btn btn-primary submit-button ".concat(this.state.isClicked ? "Submit-button-active":"")}>
                     {this.state.isClicked?"Send":"Submit Question"}
                 </button>
             </div>
