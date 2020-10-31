@@ -1,0 +1,7 @@
+.bottom{
+    display: inline-block;
+}
+#profile-img-in-chat{
+    width: 5vh;
+    border-radius: 60%;
+}

@@ -30,83 +30,7 @@ class Homepage extends Component {
                 img:p_logo
     
             },
-            {
-                id:3,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:4,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:5,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:6,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:7,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:8,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:9,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:10,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:11,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:12,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:13,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:14,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            },
-            {
-                id:15,
-                ButtonName:'Chat Room 1',
-                img:j_logo
-            },
-            {
-                id:16,
-                ButtonName:'Chat Room 2',
-                img:p_logo
-    
-            }
+            
         ]
     }
 
@@ -128,7 +52,7 @@ class Homepage extends Component {
 
     render() { 
         return (
-            <React.Fragment>
+            <div className="bg">
                 <div className="LeftColumn">
                     <LeftMenu chatrooms={this.state.chatrooms} chatroomClicked={this.chatroomClicked}/>
                 </div>
@@ -138,7 +62,7 @@ class Homepage extends Component {
                 </div>
                     
                     
-            </React.Fragment>
+            </div>
         );
     }
 }
