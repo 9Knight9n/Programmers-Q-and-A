@@ -57,6 +57,8 @@
     height: 9vh;
 }
 .align-bottom{
+    position: absolute;
+    bottom: 0;
     display :table-row;
     height: 5vh;
 }
@@ -86,5 +88,5 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgba(8, 120, 128, 0.432);
 }
