@@ -37,14 +37,22 @@ class SignUpForm extends Component{
             <Router>
                     <div className="mainBox">
                       <div className="fields">
-                        
-                        <input name="emailSignUp" value={this.state.email} onChange={this.handleChange} placeholder="Enter your email address" type="email" />
-                        <h4>Password :</h4>
-                        <input name="passwordSignUp" value={this.state.email} onChange={this.handleChange} placeholder="Enter your password" type="password" />
-                        <h4>Confirm password :</h4>
-                        <input name="confirmPassword" value={this.state.email} onChange={this.handleChange} placeholder="Enter your password again" type="password" />
-                        <h4>Verify code :</h4>
-                        <input name="verifyCode" value={this.state.email} onChange={this.handleChange} placeholder="Enter verification code" type="code" type="text" />
+                        <div className="emailFieldSignUp">
+                          <h4>Email :</h4>
+                          <input name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
+                        </div>
+                        <div className="passFieldSignUp">
+                          <h4>Password :</h4>
+                          <input name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
+                        </div>
+                        <div className="confirmPassField">
+                          <h4>Confirm password :</h4>
+                          <input name="confirmPassword" value={this.state.email} onChange={this.handleChange}  type="password" />
+                        </div>
+                        <div className="verifyField">
+                          <h4>Verify code :</h4>
+                          <input name="verifyCode" value={this.state.email} onChange={this.handleChange}  type="code" type="text" />
+                        </div>
                       </div>
                       <div className="signUpTrasfer2">
                         <button name= "signUpButton" type="button" onClick={this.handleSubmit}>Sign Up</button>
@@ -53,7 +61,7 @@ class SignUpForm extends Component{
                       </div>
                       <div className="signInTransfer2">
                         <p className="signText">Already a member ?</p>
-                        <button className= "signInButton2" name= "signInButton" type="button"><Link to="/signInForm">Sign In</Link></button>
+                        <Link to="/signInForm"><button className= "signInButton2" name= "signInButton" type="button">Sign In</button></Link>
                       </div>
                     </div>
                     <Route path="/signInForm" component={SignInForm}></Route>

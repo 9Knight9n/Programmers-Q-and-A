@@ -6,21 +6,36 @@ import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png';
 import passImg from '../img/password.png';
 
-
 class SignInForm extends Component{ 
+  static displayName = 'RememberMe'
 
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
-      
+      isChecked: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
+  componentDidMount() {
+    if (localStorage.checkbox && localStorage.email !== "") {
+        this.setState({
+            isChecked: true,
+            email: localStorage.username,
+            password: localStorage.password
+        })
+    }
+  }
+
+onChangeCheckbox = event => {
+  this.setState({
+      isChecked: event.target.checked
+    })
+  }
 
   handleChange(e) {
     let target = e.target;
@@ -32,6 +47,13 @@ class SignInForm extends Component{
   }
 
   handleSubmit(event) {
+    const { email, password, isChecked } = this.state
+        if (isChecked && email !== "") {
+          localStorage.username = email
+          localStorage.password = password
+          localStorage.checkbox = isChecked
+        }
+        // here call the API to signup/login
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
@@ -42,16 +64,16 @@ class SignInForm extends Component{
               <div className="mainBox">
                 <div className="fields">
                   <div className="emailField">
-                    <img className="emailImg" src={emailImg}/>
-                    <input name="email" value={this.state.email} onChange={this.handleChange} className="emailField" placeholder="Enter your email address" type="email" />
+                    <h4>Email :</h4>
+                    <input name="email" value={this.state.email} onChange={this.handleChange} className="emailField" type="email" />
                   </div>
                   <div className="passField">
-                    <img className="passImg" src={passImg}/>
-                    <input name="password" className="passField" placeholder="Enter your password" type="password" />
+                    <h4>Password :</h4>
+                    <input name="password" className="passField" type="password" />
                   </div>
                   {/* <input className="checkBox2" type="checkbox" onclick="myFunction()" /><h5>Show password</h5> */}
                   <div className="rememberMe">                
-                    <input className="checkBox" type="checkbox" />
+                    <input className="checkBox" type="checkbox" checked={isChecked} name="lsRememberMe" onChange={this.onChangeCheckbox} />
                     <h5>Remember Me</h5>
                   </div>
                 </div>
