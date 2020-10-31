@@ -26,7 +26,7 @@
   /* min-height: 94%; */
   /* border-radius: 20px; */
   /* border: solid black 1px; */
-  background-color: #7b94f0;
+  background-color: #7b94f075;
   /* transition: height 2s; */
 }
 .add-scroll{
@@ -97,7 +97,7 @@ ul.simple-nested li {
 }
 
 div.comment {
-    background: #09186b;
+    background: #09186b99;
     border: 3px solid #2363b8fc;
     padding: .5% 2% .5% 2%;
     margin-bottom: 1em;
