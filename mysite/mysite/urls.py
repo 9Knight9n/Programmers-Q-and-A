@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include("registeration.urls")),
     path('', include('django.contrib.auth.urls')),
+    path('' , include("submittext.urls"))
     #path('auth/login/', jwt_views.TokenObtainPairView.as_view(), name='login'),
     #path('api/token/' , jwt_views.TokenObtainPairView.as_view()),
     #path('api/token/reflesh/' , jwt_views.TokenRefreshView.as_view()),
