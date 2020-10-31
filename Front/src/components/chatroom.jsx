@@ -1,80 +1,37 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './CSS/chatroom.css';
 import SubmitField from './submitField';
 import ChatBox from './chatBox';
 
 class Chatroom extends Component {
     state = {
-        chats:[
-            {
-                id:1,
-                type:0,
-                by:"Ali",
-                time:"Feb 23rd",
-                content:"this is general comment.",
-            }
-            ,
-            {
-                id:2,
-                type:1,
-                by:"Zahra",
-                time:"Feb 23rd",
-                content:"this is first reply comment.",
-            },
-            {
-                id:3,
-                type:2,
-                by:"reza",
-                time:"Feb 23rd",
-                content:"this is second reply comment..",
-            },
-            {
-                id:7,
-                type:3,
-                by:"reza",
-                time:"Feb 23rd",
-                content:"this is second reply comment..",
-            },
-            {
-                id:8,
-                type:7,
-                by:"reza",
-                time:"Feb 23rd",
-                content:"this is second reply comment..",
-            },
-            {
-                id:9,
-                type:8,
-                by:"reza",
-                time:"Feb 23rd",
-                content:"this is second reply comment..",
-            },
-            {
-                id:6,
-                type:2,
-                by:"reza",
-                time:"Feb 23rd",
-                content:"new comment"
-            },
-            {
-                id:4,
-                type:1,
-                by:"Ali",
-                time:"Feb 23rd",
-                content:"this is a reply to initial comment.",
-            },
-            {
-                id:5,
-                type:0,
-                by:"maryam",
-                time:"Feb 23rd",
-                content:"this is forth reply comment..",
-            }
-        ],
         isClicked:false,
         QOrR:-2,
         refToChatroom:React.createRef()
     }
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = { chats:this.loadChat() };
+    //     console.log(this.state);
+    //   }
+    async loadChat(){
+        let url = "https://run.mocky.io/v3/5e0b398a-0bae-4a57-b1fd-c2be3ac2957a";
+        const response =
+          await axios.get(url)
+        // console.log(response);
+        console.log("data found (test): ",response.data);
+        console.log(response)
+        this.setState({chats:response.data.chats});
+        console.log(this.state.chats)
+    }
+
+    componentDidMount(){
+        console.log("mounted");
+        this.loadChat();
+    }
+    
 
     handleSubContent = (id) =>{
         let counter= 0;
@@ -99,7 +56,6 @@ class Chatroom extends Component {
         if (counter===0)
             return <React.Fragment></React.Fragment>;
         return <ul>{content}</ul>;
-
     }
 
     handleContent = () =>{
@@ -111,26 +67,35 @@ class Chatroom extends Component {
         return <ul className="simple-nested">{this.handleSubContent(0)}</ul>;
     }
 
-    handleClick = (QOrR) =>{
+    handleClick = (QOrR,content) =>{
         let isClicked = !this.state.isClicked;
         this.setState({QOrR:QOrR});
         this.setState({isClicked:isClicked});
+        this.loadChat();
     }
+
+    
+
+    
+
     render() { 
-        return (  
-            <React.Fragment>
-                <div>
-                    <div className="m-3 chatbox">
-                        <div className={"add-scroll ".concat(this.state.isClicked ? "add-scroll-active":"")}>
-                            <div className="mr-5 mt-2">
-                                {this.handleContent()}
+        if (this.state.chats)
+            return (  
+                <React.Fragment>
+                    <div>
+                        <div className="m-3 chatbox">
+                            <div className={"add-scroll ".concat(this.state.isClicked ? "add-scroll-active":"")}>
+                                <div className="mr-5 mt-2">
+                                    {this.handleContent()}
+                                </div>
                             </div>
+                            <SubmitField ref={this.state.refToChatroom} handleClick={this.handleClick} isClicked={this.isClicked}/>
                         </div>
-                        <SubmitField ref={this.state.refToChatroom} handleClick={this.handleClick} isClicked={this.isClicked}/>
                     </div>
-                </div>
-            </React.Fragment>
-        );
+                </React.Fragment>
+            );
+        else
+            return(<React.Fragment></React.Fragment>);
     }
 }
  
