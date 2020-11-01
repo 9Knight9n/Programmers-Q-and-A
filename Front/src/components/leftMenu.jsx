@@ -39,7 +39,7 @@ class LeftMenu extends Component {
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
                                 onClick={()=> this.handleTabClick(chatroom.id)} 
                                 href="#" >
-                                <div className="d-flex flex-row justify-content-center">
+                                <div className="d-flex flex-row ">
                                     <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.img} />
                                     <div className="d-flex align-items-center pr-5">{chatroom.ButtonName}</div>
                                 </div>
