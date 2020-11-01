@@ -2,15 +2,21 @@
   box-sizing: border-box;
 }
 
-h4 {
+body,
+html {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+/* h4 {
   margin-left: 3%;
   margin-top: 7%;
-}
+} */
 
 h5 {
   text-align: center;
-  margin-top: 33.5%;
-  margin-left: 35%;
+  margin-top: -6.5%;
+  margin-left: 15%;
   position: absolute;
 }
 
@@ -21,15 +27,14 @@ p {
 }
 
 input {
-  width: 45%;
+  width: 20%;
   height: 4%;
-  border-radius: 0px;
-  border-color: #bed4d3;
+  border-radius: 1px;
+  border-color: #9a79ea;
   outline: none;
   text-indent: 10%;
-  border-width: 0px;
+  border-width: 1px;
   position: absolute;
-  margin: -7% 30%;
 }
 
 button {
@@ -45,8 +50,8 @@ a {
 }
 
 .logo {
-  position: absolute;
-  height: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .mainBox {
@@ -62,66 +67,63 @@ a {
 }
 
 .emailImg {
-  width: 4%;
+  width: 1.5%;
   position: absolute;
-  margin-top: 15.5%;
-  margin-left: 6%;
+  margin-top: -22.75%;
+  margin-left: 15.5%;
+
   z-index: 1;
 }
 
 .passImg {
-  width: 4%;
+  width: 1.5%;
   position: absolute;
-  margin-top: 25.5%;
-  margin-left: 6%;
+  margin-top: -18.75%;
+  margin-left: 15.5%;
   z-index: 1;
 }
 
-.fields {
-  margin-top: 19%;
+.confirmImg {
+  width: 1.2%;
+  position: absolute;
+  margin-top: -14.75%;
+  margin-left: 15.5%;
+  z-index: 1;
 }
 
 .emailField {
-  margin-top: 16.5%;
-  margin-left: 15%;
-  padding-left: 2%;
-}
-
-.emailField h4 {
-  position: absolute;
-  margin-top: 17%;
-  margin-left: -13%;
-}
-
-.passField h4 {
-  position: absolute;
-  margin-top: 26%;
-  margin-left: -13%;
+  margin-top: -23%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
 }
 
 .passField {
-  margin-top: 26%;
-  margin-left: 15%;
-  padding-left: 2%;
+  margin-top: -19%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
 }
 
 .emailFieldSignUp {
-  margin-top: -14%;
-}
-
-.emailFieldSignUp h4 {
+  margin-top: -23%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
 }
 
 .passFieldSignUp {
-}
-
-.passFieldSignUp h4 {
+  margin-top: -19%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
 }
 
 .confirmPassField {
-}
-
-.verifyField {
+  margin-top: -15%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
 }
 
 .signUpLink {
@@ -138,7 +140,11 @@ a {
 }
 
 .signInTransfer {
-  margin-top: 0%;
+  padding-top: 0%;
+  margin-top: -13%;
+  margin-left: 13%;
+  position: absolute;
+  width: 10%;
 }
 
 .signInTransfer a {
@@ -150,16 +156,17 @@ a {
 
 .signInTransfer Button {
   position: relative;
-  padding: 1% 8%;
-  margin-left: 32%;
-  margin-top: 48%;
+  padding: 4% 14%;
+  margin-top: -14%;
+  margin-left: 17%;
   background: #c3eab3;
+  border-radius: 18px;
 }
 
 .signUpTransfer {
-  padding-top: 17%;
-  margin-top: 14%;
-  margin-left: 37%;
+  padding-top: 6%;
+  margin-top: -13%;
+  margin-left: 18%;
   position: absolute;
 }
 
@@ -169,12 +176,13 @@ a {
   margin-left: 22%;
   margin-top: 2%;
   margin-top: 1%;
+  border-radius: 18px;
 }
 /*2 for signUp*/
 .signInTransfer2 {
-  padding-top: 14%;
-  margin-top: 13%;
-  margin-left: 37%;
+  padding-top: 6%;
+  margin-top: -13%;
+  margin-left: 18%;
   position: absolute;
 }
 
@@ -184,21 +192,31 @@ a {
   margin-left: 24%;
   margin-top: 2%;
   margin-top: 1%;
+  border-radius: 18px;
 }
 
-.signUpTrasfer2 button {
+.signUpTransfer2 {
+  padding-top: 0%;
+  margin-top: -9%;
+  margin-left: 13%;
+  position: absolute;
+  width: 10%;
+}
+
+.signUpTransfer2 button {
   position: relative;
-  padding: 1% 8%;
-  margin-left: 30%;
-  margin-top: 9%;
+  padding: 4% 14%;
+  margin-top: -14%;
+  margin-left: 17%;
   background: #c3eab3;
+  border-radius: 18px;
 }
 /*remember me*/
 .checkBox {
-  margin-top: 34%;
+  margin-top: -6.5%;
   height: 2%;
   position: absolute;
-  margin-left: 10%;
+  margin-left: 4%;
 }
 
 .rememberMe {

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SignInForm from './SignInForm';
 import emailImg from '../img/email.png';
 import passImg from '../img/password.png';
+import confirmImg from '../img/confirm.png';
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -10,8 +11,7 @@ class SignUpForm extends Component{
     this.state = {
       emailSignUp: '',
       passwordSignUp: '',
-      confirmPassWord:'',
-      verifyCode:'',
+      confirmPassword:'',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,39 +33,32 @@ class SignUpForm extends Component{
     event.preventDefault();
   }
     render() {
+      console.log("entered2");
         return (
-            <Router>
-                    <div className="mainBox">
-                      <div className="fields">
-                        <div className="emailFieldSignUp">
-                          <h4>Email :</h4>
-                          <input name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
-                        </div>
-                        <div className="passFieldSignUp">
-                          <h4>Password :</h4>
-                          <input name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
-                        </div>
-                        <div className="confirmPassField">
-                          <h4>Confirm password :</h4>
-                          <input name="confirmPassword" value={this.state.email} onChange={this.handleChange}  type="password" />
-                        </div>
-                        <div className="verifyField">
-                          <h4>Verify code :</h4>
-                          <input name="verifyCode" value={this.state.email} onChange={this.handleChange}  type="code" type="text" />
-                        </div>
-                      </div>
-                      <div className="signUpTrasfer2">
-                        <button name= "signUpButton" type="button" onClick={this.handleSubmit}>Sign Up</button>
-                        <br />
-                        <br />
-                      </div>
-                      <div className="signInTransfer2">
-                        <p className="signText">Already a member ?</p>
-                        <Link to="/signInForm"><button className= "signInButton2" name= "signInButton" type="button">Sign In</button></Link>
-                      </div>
+                    <div>
+                    <img className="emailImg" src={emailImg} />
+                    <div className="emailFieldSignUp">
+                      <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
                     </div>
-                    <Route path="/signInForm" component={SignInForm}></Route>
-            </Router>
+                    <img className="passImg" src={passImg} />
+                    <div className="passFieldSignUp">
+                      <input placeholder="Enter your password" value={this.state.passwordSignUp} onChange={this.handleChange} name="passwordSignUP" className="passFieldSignUp" type="password" />
+                    </div>
+                    <img className="confirmImg" src={confirmImg} />
+                    <div className="confirmPassField">
+                      <input placeholder="Enter your password again" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
+                    </div>
+                  <div className="signUpTransfer2">
+                    <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
+                    <br />
+                  </div>
+                  <br />
+                  <br />
+                  <div className="signInTransfer2">
+                    <p>Don't have an account ?</p> 
+                    <button name= "signInButton2" type="button">Sign In</button>
+                  </div> 
+                </div>
         );
     }
 

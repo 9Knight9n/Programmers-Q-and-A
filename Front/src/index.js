@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import SignInForm from './pages/SignInForm';
-import logo from './img/logo.jpg';
+import logo from './img/bg.jpg';
 import SignInToSignUp from './pages/SignInToSignUp';
 
 ReactDOM.render(
   <React.StrictMode>
     
     <img className="logo" src={logo} alt="Logo" />
-    <SignInForm /> 
+    <App /> 
     
   </React.StrictMode>,
   document.getElementById('root')
