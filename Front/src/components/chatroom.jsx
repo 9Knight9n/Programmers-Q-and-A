@@ -6,6 +6,8 @@ import ChatBox from './chatBox';
 
 class Chatroom extends Component {
     state = {
+        show: false,
+        submit: -2,
         isClicked:false,
         QOrR:-2,
         refToChatroom:React.createRef()
@@ -17,13 +19,13 @@ class Chatroom extends Component {
     //     console.log(this.state);
     //   }
     async loadChat(){
-        let url = "https://run.mocky.io/v3/5e0b398a-0bae-4a57-b1fd-c2be3ac2957a";
+        let url = "http://localhost:3004/chats";
         const response =
           await axios.get(url)
         // console.log(response);
         console.log("data found (test): ",response.data);
         console.log(response)
-        this.setState({chats:response.data.chats});
+        this.setState({ chats: response.data });
         console.log(this.state.chats)
     }
 
@@ -46,8 +48,8 @@ class Chatroom extends Component {
                 subContent =  
                 <React.Fragment>
                     <li>
-                        <ChatBox chat={chat} refToChatroom={this.state.refToChatroom}/>
-                        {this.handleSubContent(this.state.chats[index].id)}
+                        <ChatBox chat={chat} showModal={this.showModal} refToChatroom={this.state.refToChatroom} />
+                        {this.handleSubContent(this.state.chats[index].id, "")}
                     </li>
                 </React.Fragment>;
                 content = <React.Fragment>{content}{subContent}</React.Fragment>;
@@ -68,13 +70,26 @@ class Chatroom extends Component {
     }
 
     handleClick = (QOrR,content) =>{
-        let isClicked = !this.state.isClicked;
-        this.setState({QOrR:QOrR});
-        this.setState({isClicked:isClicked});
-        this.loadChat();
+        let isClicked = this.state.isClicked;
+        if (QOrR === -2) {
+            isClicked = !this.state.isClicked;
+            // this.loadChat();
+        }
+        this.setState({ isClicked: isClicked });
+        this.setState({ QOrR: QOrR });
     }
 
-    
+    showModal = (submit) => {
+        this.setState({ submit: submit });
+        this.setState({ show: true });
+        // console.log(this.state.submit)
+
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+        this.setState({ submit: -2 });
+    };
 
     
 
@@ -82,6 +97,7 @@ class Chatroom extends Component {
         if (this.state.chats)
             return (  
                 <React.Fragment>
+                    <SubmitField ref={this.state.refToChatroom} hideModal={this.hideModal} show={this.state.show} submit={this.state.submit} />
                     <div>
                         <div className="m-3 chatbox">
                             <div className={"add-scroll ".concat(this.state.isClicked ? "add-scroll-active":"")}>
@@ -89,7 +105,9 @@ class Chatroom extends Component {
                                     {this.handleContent()}
                                 </div>
                             </div>
-                            <SubmitField ref={this.state.refToChatroom} handleClick={this.handleClick} isClicked={this.isClicked}/>
+                            <button onClick={() => this.showModal(-1)} className="flex-row justify-content-center align-self-end btn btn-primary submit-button" type="button">
+                                Submit a Question
+                            </button>
                         </div>
                     </div>
                 </React.Fragment>

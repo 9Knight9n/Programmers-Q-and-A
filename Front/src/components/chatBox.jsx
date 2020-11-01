@@ -18,7 +18,7 @@ class ChatBox extends Component {
                         </div>
                         <div className="col-lg-6 d-flex justify-content-end">
                             <p>
-                                <a onClick={() => this.props.refToChatroom.current.clicked(this.props.chat.id)} href="#">
+                            <a onClick={() => this.props.showModal(this.props.chat.id)} href="#">
                                     reply
                                 </a>
                             </p>
