@@ -16,18 +16,26 @@ class SubmitField extends Component {
         return false;
     }
 
-    async submitChat() {
+    async submitChat(props) {
+        let content = document.getElementById("SubmitField-input").value;
+        if (console=="")
+            return;
+        console.log(content)
         let url = "http://localhost:3004/chats";
+        let date = new Date().toLocaleString();
+        let chat = {"id": 0,"type": this.props.submit ,"by": window.$username,"time": date,"content": content};
         const response = await axios.post(
             url,
-            { example: 'data' },
+            chat,
             { headers: { 'Content-Type': 'application/json' } }
         )
+        document.getElementById("SubmitField-input").value="";
         // console.log(response);
         console.log("data found (test): ", response.data);
         console.log(response)
-        this.setState({ chats: response.data });
-        console.log(this.state.chats)
+        props.hideModal();
+        // this.setState({ chats: response.data });
+        // console.log(this.state.chats)
     }
 
     render() { 
@@ -43,12 +51,12 @@ class SubmitField extends Component {
                         </div>
                         <div className="modal-body">
                             <div className="d-flex flex-row justify-content-center mt-2">
-                            <textarea cols="92"
+                            <textarea id="SubmitField-input" cols="92"
                                 rows="4"
-                                    className={"submit-input form-control submit-input-active"}
-                                placeholder="type here!"></textarea>
+                                    className="form-control submit-input-active"
+                                placeholder="type here!">
+                            </textarea>
                             </div>
-
                         </div>
                         <div className="modal-footer">
                             <div className="row">
@@ -59,7 +67,8 @@ class SubmitField extends Component {
                             </button>
                                 </div>
                                 <div className="col-lg-6 d-flex justify-content-end">
-                                    <button type="button" className="btn btn-primary">
+                                    <button onClick={() => this.submitChat(this.props)} 
+                                        type="button" className="btn btn-primary">
                                         {this.props.submit === -1 ? "Submit Question" : "Submit Reply"}
                                     </button>
                                 </div>

@@ -66,18 +66,9 @@ class Chatroom extends Component {
         if (this.state.chats.length===0)
             return finalResult;
         // finalResult = <React.Fragment></React.Fragment>;
-        return <ul className="simple-nested">{this.handleSubContent(0)}</ul>;
+        return <ul className="simple-nested">{this.handleSubContent(-1)}</ul>;
     }
 
-    handleClick = (QOrR,content) =>{
-        let isClicked = this.state.isClicked;
-        if (QOrR === -2) {
-            isClicked = !this.state.isClicked;
-            // this.loadChat();
-        }
-        this.setState({ isClicked: isClicked });
-        this.setState({ QOrR: QOrR });
-    }
 
     showModal = (submit) => {
         this.setState({ submit: submit });
@@ -89,6 +80,7 @@ class Chatroom extends Component {
     hideModal = () => {
         this.setState({ show: false });
         this.setState({ submit: -2 });
+        this.loadChat();
     };
 
     

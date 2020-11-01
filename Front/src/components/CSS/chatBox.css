@@ -45,3 +45,6 @@ ul.simple-nested li ul::before{
     color: #9acbff;
     text-decoration: none;
 }
+.handle-enter{
+    white-space: pre-wrap
+}

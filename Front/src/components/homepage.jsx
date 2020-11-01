@@ -11,6 +11,8 @@ import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
 
+window.$username = "Sajad";
+
 class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
@@ -33,6 +35,7 @@ class Homepage extends Component {
             
         ]
     }
+    
 
 
     chatroomClicked = (id) =>{

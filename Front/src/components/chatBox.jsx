@@ -11,7 +11,7 @@ class ChatBox extends Component {
                             src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"/></div>
                         <h1 className="d-flex align-items-center"><p><a href="">{this.props.chat.by}</a></p></h1>
                     </div>
-                    <div className="m-3"><p>{this.props.chat.content}</p></div>
+                    <div className="m-3 handle-enter"><p>{this.props.chat.content}</p></div>
                     <div className="row">
                         <div className="col-lg-6 d-flex justify-content-start">
                             <em>{this.props.chat.time}</em>
