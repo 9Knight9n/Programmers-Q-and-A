@@ -24,6 +24,7 @@ p {
   text-align: center;
   margin-top: 9%;
   margin-bottom: 0%;
+  color: #289ecb;
 }
 
 input {
@@ -39,7 +40,7 @@ input {
 
 button {
   border-radius: 0px;
-  background: #8bacd3;
+  background: #a47af5;
   cursor: pointer;
   border-width: 0px;
 }
@@ -70,12 +71,27 @@ a {
   width: 1.5%;
   position: absolute;
   margin-top: -22.75%;
-  margin-left: 15.5%;
-
+  margin-left: 7.5%;
   z-index: 1;
 }
 
 .passImg {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -18.75%;
+  margin-left: 7.5%;
+  z-index: 1;
+}
+
+.emailImgSignUp {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -22.75%;
+  margin-left: 15.5%;
+  z-index: 1;
+}
+
+.passImgSignUp {
   width: 1.5%;
   position: absolute;
   margin-top: -18.75%;
@@ -159,7 +175,7 @@ a {
   padding: 4% 14%;
   margin-top: -14%;
   margin-left: 17%;
-  background: #c3eab3;
+  background: #5bd4e0;
   border-radius: 18px;
 }
 
@@ -208,7 +224,7 @@ a {
   padding: 4% 14%;
   margin-top: -14%;
   margin-left: 17%;
-  background: #c3eab3;
+  background: #8dcfe2;
   border-radius: 18px;
 }
 /*remember me*/

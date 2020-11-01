@@ -41,16 +41,15 @@ class SignUpForm extends Component{
 
 
     render() {
-      console.log("entered2");
         return (
                     <div>
-                    <img className="emailImg" src={emailImg} />
+                    <img className="emailImgSignUp" src={emailImg} />
                     <div className="emailFieldSignUp">
                       <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
                     </div>
-                    <img className="passImg" src={passImg} />
+                    <img className="passImgSignUp" src={passImg} />
                     <div className="passFieldSignUp">
-                      <input placeholder="Enter your password" value={this.state.passwordSignUp} onChange={this.handleChange} name="passwordSignUP" className="passFieldSignUp" type="password" />
+                      <input className="passFieldSignUp" placeholder="Enter your password " name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
                     </div>
                     <img className="confirmImg" src={confirmImg} />
                     <div className="confirmPassField">

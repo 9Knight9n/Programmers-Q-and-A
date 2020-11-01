@@ -12,7 +12,6 @@ class SignInForm extends Component{
     this.state = {
       email: '',
       password: '',
-      clicked: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,20 +39,16 @@ class SignInForm extends Component{
   }
 
     render() {
-      // if (this.state.clicked === true) {
-      //   return(
-      //     <Redirect to={{path:"/signUpForm"}} />
-      //   );
-      // }else{
         return (
           <div>
-            <img className="emailImg" src={emailImg} />
+            
             <div className="emailField">
+              <img className="emailImg" src={emailImg} />
               <input placeholder="Enter your email address" name="email" value={this.state.email} onChange={this.handleChange} className="emailField" type="email" />
             </div>
-            <img className="passImg" src={passImg} />
             <div className="passField">
-              <input placeholder="Enter your email address" value={this.state.password} onChange={this.handleChange} name="password" className="passField" type="password" />
+              <img className="passImg" src={passImg} />
+              <input placeholder="Enter your password" value={this.state.password} onChange={this.handleChange} name="password" className="passField" type="password" />
             </div>
             <div className="signInTransfer">
               <button name= "signInButton" type="button" onClick={this.handleSubmit} >Sign In</button>
