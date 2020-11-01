@@ -18,9 +18,9 @@ class SubmitField extends Component {
 
     async submitChat(props) {
         let content = document.getElementById("SubmitField-input").value;
-        if (console=="")
+        if (content==="")
             return;
-        console.log(content)
+        console.log("content is:",content)
         let url = "http://localhost:3004/chats";
         let date = new Date().toLocaleString();
         let chat = {"id": 0,"type": this.props.submit ,"by": window.$username,"time": date,"content": content};

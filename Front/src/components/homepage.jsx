@@ -17,18 +17,18 @@ class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
         activeChatroom : 
-            <div className="black-text my-auto">
+            <div className="d-flex justify-content-center black-text my-auto">
                     Select a Chatroom
             </div>,
         chatrooms:[
             {
                 id:1,
-                ButtonName:'Chat Room 1',
+                ButtonName:'Java',
                 img:j_logo
             },
             {
                 id:2,
-                ButtonName:'Chat Room 2',
+                ButtonName:'Python',
                 img:p_logo
     
             },
