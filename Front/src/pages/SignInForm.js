@@ -3,6 +3,7 @@ import '../App.css';
 import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png'
 import passImg from '../img/password.png'
+import axios from 'axios';
 
 class SignInForm extends Component{ 
   static displayName = 'RememberMe'
@@ -29,13 +30,23 @@ class SignInForm extends Component{
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    //alert('A name was submitted: ' + this.state.value);
+    if (!this.emailValidation()) {
+      return(alert("Email is not valid"));
+    }else {
+      //request
+    }
     event.preventDefault();
   }
 
   handleClick = () => {
     this.props.refToSelectComponent(1);
-    console.log("Props:",this.props);
+  }
+
+  emailValidation = () => {
+    var validator = require("email-validator");
+     // true
+    return (validator.validate(this.state.email));
   }
 
     render() {
@@ -65,43 +76,5 @@ class SignInForm extends Component{
       }
 
 }
-
-
-// function signUpForm() {
-//       return(
-//         <div>
-//           <div className="emailField">
-//             <input placeholder="Enter your email address" name="email" value={this.state.email} onChange={this.handleChange} className="emailField" type="email" />
-//           </div>
-                    
-//           <div className="passField">
-//             <input placeholder="Enter your password" name="password" className="passField" type="password" />
-//           </div>
-//           <div className="confirmPassField">
-//             <input placeholder="Enter your password again" name="confirmPassword" className="confirmPassField" type="password" />
-//           </div>
-//           <div className="signInTransfer">
-//             <button name= "signInButton" type="button" onClick={this.handleSubmit} >Sign In</button>
-//             <br />
-//           </div>
-//           <br />
-//           <br />
-//           <div className="signUpTransfer">
-//             <p>Don't have an account ?</p> 
-//             <Link to= "/signInForm"><button className="aa" name= "signUpButton" type="button">Sign In</button></Link>
-//           </div> 
-//         </div>
-//       );
-// }
-
-
-// function myFunction() {
-//   var x = document.getElementsByClassName("passField");
-//   if (x.type === "password") {
-//     x.type = "text";
-//   } else {
-//     x.type = "password";
-//   }
-// }
 
 export default SignInForm;
