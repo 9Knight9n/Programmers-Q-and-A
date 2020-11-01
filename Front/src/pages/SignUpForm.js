@@ -32,6 +32,14 @@ class SignUpForm extends Component{
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
+
+
+  handleClick = () => {
+    this.props.refToSelectComponent(0);
+    console.log("Props:",this.props);
+  }
+
+
     render() {
       console.log("entered2");
         return (
@@ -56,7 +64,7 @@ class SignUpForm extends Component{
                   <br />
                   <div className="signInTransfer2">
                     <p>Don't have an account ?</p> 
-                    <button name= "signInButton2" type="button">Sign In</button>
+                    <button onClick={this.handleClick} name= "signInButton2" type="button">Sign In</button>
                   </div> 
                 </div>
         );

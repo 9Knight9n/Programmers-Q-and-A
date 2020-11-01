@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
+// import Homepage from './components/homepage';
 class App extends Component {
-  render(){
-    console.log("entered1");
-    return (
-      <Router>
-        <div className="App">
-           <Switch> 
-              {/* Render the login component alone if we're on /login */}
-              <Route exact path="/signUpForm" component={SignUpForm} />
+  state={
+    currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>
+  }
 
-              {/* Otherwise, render the Landing component */}
-              <Route exact path="/signInForm" component={SignInForm} />
-            </Switch>
-        </div>
-      </Router>
+  selectComponent(index){
+    if(index===0)
+      this.setState({currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>})
+    if(index===1)
+    this.setState({currentComponent:<SignUpForm refToSelectComponent={this.selectComponent.bind(this)}/>})
+    // if(this.selectComponent===2)
+    //   return <Homepage/>
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        {this.state.currentComponent}
+      </React.Fragment>
     ); 
   }
 }

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import SignInForm from './pages/SignInForm';
+// import SignInForm from './pages/SignInForm';
 import logo from './img/bg.jpg';
-import SignInToSignUp from './pages/SignInToSignUp';
+// import SignInToSignUp from './pages/SignInToSignUp';
 
 ReactDOM.render(
   <React.StrictMode>

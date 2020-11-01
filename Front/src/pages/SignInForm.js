@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../App.css';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png'
 import passImg from '../img/password.png'
@@ -18,7 +17,7 @@ class SignInForm extends Component{
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(e) {
@@ -35,19 +34,17 @@ class SignInForm extends Component{
     event.preventDefault();
   }
 
-  handleClick() {
-    this.setState({
-      
-      clicked: true,
-    });
+  handleClick = () => {
+    this.props.refToSelectComponent(1);
+    console.log("Props:",this.props);
   }
 
     render() {
-      if (this.state.clicked === true) {
-        return(
-          <Redirect to={{path:"/signUpForm"}} />
-        );
-      }else{
+      // if (this.state.clicked === true) {
+      //   return(
+      //     <Redirect to={{path:"/signUpForm"}} />
+      //   );
+      // }else{
         return (
           <div>
             <img className="emailImg" src={emailImg} />
@@ -71,8 +68,6 @@ class SignInForm extends Component{
           </div>
           ); 
       }
-        
-    }
 
 }
 
