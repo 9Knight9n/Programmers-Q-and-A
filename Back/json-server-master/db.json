@@ -1,0 +1,63 @@
+{
+  "chats": [
+    {
+      "id": 1,
+      "type": -1,
+      "by": "Sajad",
+      "time": "11/1/2020, 2:57:48 PM",
+      "content": "This is first question!"
+    },
+    {
+      "id": 2,
+      "type": -1,
+      "by": "Sajad",
+      "time": "11/1/2020, 2:58:02 PM",
+      "content": "Second question here!"
+    },
+    {
+      "id": 3,
+      "type": 1,
+      "by": "Sajad",
+      "time": "11/1/2020, 2:58:11 PM",
+      "content": "First reply !"
+    },
+    {
+      "id": 4,
+      "type": 1,
+      "by": "Sajad",
+      "time": "11/1/2020, 2:58:59 PM",
+      "content": "let's make it two!\ndouble line maybe!"
+    },
+    {
+      "id": 5,
+      "type": 2,
+      "by": "Sajad",
+      "time": "11/1/2020, 3:20:21 PM",
+      "content": "rthtrhtrh"
+    },
+    {
+      "id": 13,
+      "type": 3,
+      "by": "Sajad",
+      "time": "11/1/2020, 4:51:24 PM",
+      "content": "hello"
+    },
+    {
+      "email": "Sajad@hi2.in",
+      "password": "12345677",
+      "id": 14
+    },
+    {
+      "email": "Sajad@hi2.in",
+      "password": "12345677",
+      "id": 15
+    },
+    {
+      "id": 16,
+      "type": 3,
+      "by": "Sajad",
+      "time": "11/1/2020, 11:24:22 PM",
+      "content": "Here there!"
+    }
+  ]
+}
