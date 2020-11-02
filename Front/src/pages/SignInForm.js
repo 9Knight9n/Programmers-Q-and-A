@@ -29,14 +29,52 @@ class SignInForm extends Component{
     });
   }
 
-  handleSubmit(event) {
-    //alert('A name was submitted: ' + this.state.value);
-    if (!this.emailValidation()) {
-      return(alert("Email is not valid"));
-    }else {
-      //request
-    }
-    event.preventDefault();
+  async handleSubmit() {
+    if (!this.emailValidation())
+        return(alert("Email is not valid"));
+      const form = new FormData()
+      form.set('email', this.state.email);
+      form.set('password', this.state.password)
+      const response =
+      await axios.post('http://localhost:8000', form, {
+        headers: { 'Content-Type': 'multipart/form-data'
+        },
+      })
+
+      console.log(response)
+      if(response.data.error)
+        return(alert(response.data.error))
+
+
+
+    // event.preventDefault();
+
+    // var axios = require('axios');
+    // var FormData = require('form-data');
+    // var data = new FormData();
+    // data.append('email', 'jhadha@jkk.jiw');
+    // data.append('password', 'mjdkwdwdkw');
+
+    // var config = {
+    //   method: 'post',
+    //   url: 'http://127.0.0.1:8000/',
+    //   headers: { 
+    //     'Cookie': 'csrftoken=G82oeX0c0JgfXD76kiWRP495S1rGXMfamWpleY39f5iwI2hOKFvF2SGwv2xVi7hP',
+    //     'Content-Length':'<calculated when request is sent>',
+    //     'Content-Type':'multipart/form-data; boundary=<calculated when request is sent>'
+    //   },
+    //   data : data
+    // };
+
+    // axios(config)
+    // .then(function (response) {
+    //   console.log(JSON.stringify(response.data));
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+
   }
 
   handleClick = () => {

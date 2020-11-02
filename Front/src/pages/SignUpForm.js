@@ -61,7 +61,7 @@ class SignUpForm extends Component{
     let password1 = this.state.passwordSignUp;
     let password2 = this.state.confirmPassword;
     // If password not entered 
-    if (password1 == '') 
+    if (password1 === '') 
     {
       alert ("Please enter Password"); 
 
@@ -69,7 +69,7 @@ class SignUpForm extends Component{
     }
 
     // If confirm password not entered 
-    else if (password2 == '') 
+    else if (password2 === '') 
     {
       alert ("Please enter confirm password"); 
 
@@ -77,7 +77,7 @@ class SignUpForm extends Component{
     }
 
     // If Not same return False.
-    else if (password1 != password2) { 
+    else if (password1 !== password2) { 
         alert ("\nPassword did not match: Please try again...") ;
         return false; 
     } 
