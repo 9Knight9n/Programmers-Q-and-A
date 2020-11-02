@@ -20,7 +20,10 @@ def homepage(request):
         if len(check_user) == 0:
             return JsonResponse({"error":"this email not exist"})
         else:
-            return JsonResponse({"error":"wellcome"})
+            if check_user[0].check_password(post_data['password'][0]):
+                return JsonResponse({"error":"wellcome"})
+            else:
+                return JsonResponse({"error": "password or email is not correct"})
 
 
 @csrf_exempt
