@@ -11,7 +11,6 @@ import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
 
-window.$username = "Sajad";
 
 class Homepage extends Component {
 //chatrooms id must be non negetive
@@ -57,7 +56,7 @@ class Homepage extends Component {
         return (
             <div className="bg">
                 <div className="LeftColumn">
-                    <LeftMenu chatrooms={this.state.chatrooms} chatroomClicked={this.chatroomClicked}/>
+                    <LeftMenu refToSelectComponent={this.props.refToSelectComponent} chatrooms={this.state.chatrooms} chatroomClicked={this.chatroomClicked}/>
                 </div>
                 <div className="RightColumn">
                     <Navbar />

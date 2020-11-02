@@ -5,6 +5,7 @@ import emailImg from '../img/email.png';
 import passImg from '../img/password.png';
 import confirmImg from '../img/confirm.png';
 import axios from 'axios';
+import logo from '../img/backgr.jpg';
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -53,8 +54,9 @@ class SignUpForm extends Component{
       return(alert(response.data.error))
     else
     {
-      return(alert("Sign up Compeleted!"))
-
+      alert("Sign up Compeleted!")
+      window.$username = this.state.emailSignUp.split("@")[0];
+      return this.handleClick(2);
     }
       
   
@@ -160,7 +162,8 @@ class SignUpForm extends Component{
 
     render() {
         return (
-                    <div>
+                    <div className="Abed-css">
+                      <img className="logo" src={logo} alt="Logo" />
                     <img className="emailImgSignUp" src={emailImg} />
                     <div className="emailFieldSignUp">
                       <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />

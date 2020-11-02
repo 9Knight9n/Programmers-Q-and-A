@@ -17,6 +17,10 @@ class LeftMenu extends Component {
         this.setState({activeChatroom:id})
     }
 
+    handleLogOutClick = () =>{
+        window.$username = "";
+        this.props.refToSelectComponent(0);
+    }
 
     render() { 
         return (
@@ -27,7 +31,7 @@ class LeftMenu extends Component {
                     <div className="d-flex flex-row justify-content-center align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                             src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg" /></div>
-                        <h1 className="d-flex align-items-center pr-4">Long Username</h1>
+                        <h1 className="d-flex align-items-center pr-4">{window.$username}</h1>
                     </div>
 
 
@@ -50,7 +54,7 @@ class LeftMenu extends Component {
 
 
                     <div className="d-flex flex-row container-fluid align-bottom">
-                        <button className="d-flex align-items-center justify-content-center btn btn-primary col-lg-6">
+                        <button onClick={() => this.handleLogOutClick()} className="d-flex align-items-center justify-content-center btn btn-primary col-lg-6">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-door-open-fill m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2v13h1V2.5a.5.5 0 0 0-.5-.5H11zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                             </svg>Logout

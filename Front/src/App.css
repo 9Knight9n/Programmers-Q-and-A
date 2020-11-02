@@ -1,4 +1,4 @@
-* {
+.Abed-css * {
   box-sizing: border-box;
 }
 
@@ -13,21 +13,21 @@ html {
   margin-top: 7%;
 } */
 
-h5 {
+.Abed-css h5 {
   text-align: center;
   margin-top: -6.5%;
   margin-left: 15%;
   position: absolute;
 }
 
-p {
+.Abed-css p {
   text-align: center;
   margin-top: 9%;
   margin-bottom: 0%;
   color: #289ecb;
 }
 
-input {
+.Abed-css input {
   width: 20%;
   height: 4%;
   border-radius: 1px;
@@ -38,24 +38,24 @@ input {
   position: absolute;
 }
 
-button {
+.Abed-css button {
   border-radius: 0px;
   background: #a47af5;
   cursor: pointer;
   border-width: 0px;
 }
 
-a {
+.Abed-css a {
   text-decoration: none;
   color: black;
 }
 
-.logo {
+.Abed-css .logo {
   position: relative;
   width: 100%;
 }
 
-.mainBox {
+.Abed-css .mainBox {
   width: 40%;
   height: 100%;
   background: #b5c2ef;
@@ -67,7 +67,7 @@ a {
   padding-top: 140px;
 }
 
-.emailImg {
+.Abed-css .emailImg {
   width: 1.5%;
   position: absolute;
   margin-top: -22.75%;
@@ -75,7 +75,7 @@ a {
   z-index: 1;
 }
 
-.passImg {
+.Abed-css .passImg {
   width: 1.5%;
   position: absolute;
   margin-top: -18.75%;
@@ -83,7 +83,7 @@ a {
   z-index: 1;
 }
 
-.emailImgSignUp {
+.Abed-css .emailImgSignUp {
   width: 1.5%;
   position: absolute;
   margin-top: -22.75%;
@@ -91,7 +91,7 @@ a {
   z-index: 1;
 }
 
-.passImgSignUp {
+.Abed-css .passImgSignUp {
   width: 1.5%;
   position: absolute;
   margin-top: -18.75%;
@@ -99,7 +99,7 @@ a {
   z-index: 1;
 }
 
-.confirmImg {
+.Abed-css .confirmImg {
   width: 1.2%;
   position: absolute;
   margin-top: -14.75%;
@@ -107,55 +107,55 @@ a {
   z-index: 1;
 }
 
-.emailField {
+.Abed-css .emailField {
   margin-top: -23%;
   margin-left: 7%;
   padding-left: 1%;
   border-radius: 8px;
 }
 
-.passField {
+.Abed-css .passField {
   margin-top: -19%;
   margin-left: 7%;
   padding-left: 1%;
   border-radius: 8px;
 }
 
-.emailFieldSignUp {
+.Abed-css .emailFieldSignUp {
   margin-top: -23%;
   margin-left: 7%;
   padding-left: 1%;
   border-radius: 8px;
 }
 
-.passFieldSignUp {
+.Abed-css .passFieldSignUp {
   margin-top: -19%;
   margin-left: 7%;
   padding-left: 1%;
   border-radius: 8px;
 }
 
-.confirmPassField {
+.Abed-css .confirmPassField {
   margin-top: -15%;
   margin-left: 7%;
   padding-left: 1%;
   border-radius: 8px;
 }
 
-.signUpLink {
+.Abed-css .signUpLink {
   padding: 0px;
 }
 
-.codeButton {
+.Abed-css .codeButton {
   position: absolute;
 }
 
-.checkBox2 {
+.Abed-css .checkBox2 {
   width: 2.5%;
   margin-top: 1%;
 }
 
-.signInTransfer {
+.Abed-css .signInTransfer {
   padding-top: 0%;
   margin-top: -13%;
   margin-left: 13%;
@@ -163,14 +163,14 @@ a {
   width: 10%;
 }
 
-.signInTransfer a {
+.Abed-css .signInTransfer a {
   margin-left: 35%;
   font-size: 80%;
   margin-top: 1%;
   color: #967c7c;
 }
 
-.signInTransfer Button {
+.Abed-css .signInTransfer Button {
   position: relative;
   padding: 4% 14%;
   margin-top: -14%;
@@ -179,14 +179,14 @@ a {
   border-radius: 18px;
 }
 
-.signUpTransfer {
+.Abed-css .signUpTransfer {
   padding-top: 6%;
   margin-top: -13%;
   margin-left: 18%;
   position: absolute;
 }
 
-.signUpTransfer button {
+.Abed-css .signUpTransfer button {
   position: relative;
   padding: 4% 14%;
   margin-left: 22%;
@@ -195,14 +195,14 @@ a {
   border-radius: 18px;
 }
 /*2 for signUp*/
-.signInTransfer2 {
+.Abed-css .signInTransfer2 {
   padding-top: 6%;
   margin-top: -13%;
   margin-left: 18%;
   position: absolute;
 }
 
-.signInTransfer2 button {
+.Abed-css .signInTransfer2 button {
   position: relative;
   padding: 4% 16%;
   margin-left: 24%;
@@ -211,7 +211,7 @@ a {
   border-radius: 18px;
 }
 
-.signUpTransfer2 {
+.Abed-css .signUpTransfer2 {
   padding-top: 0%;
   margin-top: -9%;
   margin-left: 13%;
@@ -219,7 +219,7 @@ a {
   width: 10%;
 }
 
-.signUpTransfer2 button {
+.Abed-css .signUpTransfer2 button {
   position: relative;
   padding: 4% 14%;
   margin-top: -14%;
@@ -228,14 +228,14 @@ a {
   border-radius: 18px;
 }
 /*remember me*/
-.checkBox {
+.Abed-css .checkBox {
   margin-top: -6.5%;
   height: 2%;
   position: absolute;
   margin-left: 4%;
 }
 
-.rememberMe {
+.Abed-css .rememberMe {
   margin-top: -33%;
   margin-left: 1%;
 }

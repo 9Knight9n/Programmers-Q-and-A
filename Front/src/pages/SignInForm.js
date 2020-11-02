@@ -4,6 +4,7 @@ import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png'
 import passImg from '../img/password.png'
 import axios from 'axios';
+import logo from '../img/backgr.jpg';
 
 class SignInForm extends Component{ 
   static displayName = 'RememberMe'
@@ -37,7 +38,7 @@ class SignInForm extends Component{
     if (this.state.password.length<8)
       return(alert("Password must be longer!"));
     const form = new FormData()
-    form.set('email', this.state.emailtoLowerCase());
+    form.set('email', this.state.email.toLowerCase());
     form.set('password', this.state.password)
     const response =
     await axios.post('http://localhost:8000', form, {
@@ -46,10 +47,15 @@ class SignInForm extends Component{
     })
 
     console.log(response)
-    if(response.data.error)
-      return(alert(response.data.error))
+    alert(response.data.error)
+    if(response.data.error==="wellcome")
+    {
+      window.$username = this.state.email.split("@")[0];
+      return this.handleClick(2);
 
+    }
 
+    return;
 
 
     // event.preventDefault();
@@ -82,8 +88,8 @@ class SignInForm extends Component{
 
   }
 
-  handleClick = () => {
-    this.props.refToSelectComponent(1);
+  handleClick = (index) => {
+    this.props.refToSelectComponent(index);
   }
 
   emailValidation = () => {
@@ -94,8 +100,8 @@ class SignInForm extends Component{
 
     render() {
         return (
-          <div>
-            
+          <div className="Abed-css">
+            <img className="logo" src={logo} alt="Logo" />
             <div className="emailField">
               <img className="emailImg" src={emailImg} />
               <input placeholder="Enter your email address" name="email" value={this.state.email} onChange={this.handleChange} className="emailField" type="email" />
@@ -112,7 +118,7 @@ class SignInForm extends Component{
             <br />
               <div className="signUpTransfer">
                 <p>Don't have an account ?</p> 
-                <button onClick={this.handleClick} name= "signUpButton" type="button">Sign Up</button>
+                <button onClick={()=>this.handleClick(1)} name= "signUpButton" type="button">Sign Up</button>
               </div>
           </div>
           ); 
