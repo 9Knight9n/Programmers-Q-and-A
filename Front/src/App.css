@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+/* h4 {
+  margin-left: 3%;
+  margin-top: 7%;
+} */
+
+h5 {
+  text-align: center;
+  margin-top: -6.5%;
+  margin-left: 15%;
+  position: absolute;
+}
+
+p {
+  text-align: center;
+  margin-top: 9%;
+  margin-bottom: 0%;
+  color: #289ecb;
+}
+
+input {
+  width: 20%;
+  height: 4%;
+  border-radius: 1px;
+  border-color: #9a79ea;
+  outline: none;
+  text-indent: 10%;
+  border-width: 1px;
+  position: absolute;
+}
+
+button {
+  border-radius: 0px;
+  background: #a47af5;
+  cursor: pointer;
+  border-width: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  position: relative;
+  width: 100%;
+}
+
+.mainBox {
+  width: 40%;
+  height: 100%;
+  background: #b5c2ef;
+  border: 0px solid #bed4d3;
+  border-radius: 0px;
+  position: absolute;
+  margin-top: 0px;
+  margin-left: 60%;
+  padding-top: 140px;
+}
+
+.emailImg {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -22.75%;
+  margin-left: 7.5%;
+  z-index: 1;
+}
+
+.passImg {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -18.75%;
+  margin-left: 7.5%;
+  z-index: 1;
+}
+
+.emailImgSignUp {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -22.75%;
+  margin-left: 15.5%;
+  z-index: 1;
+}
+
+.passImgSignUp {
+  width: 1.5%;
+  position: absolute;
+  margin-top: -18.75%;
+  margin-left: 15.5%;
+  z-index: 1;
+}
+
+.confirmImg {
+  width: 1.2%;
+  position: absolute;
+  margin-top: -14.75%;
+  margin-left: 15.5%;
+  z-index: 1;
+}
+
+.emailField {
+  margin-top: -23%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
+}
+
+.passField {
+  margin-top: -19%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
+}
+
+.emailFieldSignUp {
+  margin-top: -23%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
+}
+
+.passFieldSignUp {
+  margin-top: -19%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
+}
+
+.confirmPassField {
+  margin-top: -15%;
+  margin-left: 7%;
+  padding-left: 1%;
+  border-radius: 8px;
+}
+
+.signUpLink {
+  padding: 0px;
+}
+
+.codeButton {
+  position: absolute;
+}
+
+.checkBox2 {
+  width: 2.5%;
+  margin-top: 1%;
+}
+
+.signInTransfer {
+  padding-top: 0%;
+  margin-top: -13%;
+  margin-left: 13%;
+  position: absolute;
+  width: 10%;
+}
+
+.signInTransfer a {
+  margin-left: 35%;
+  font-size: 80%;
+  margin-top: 1%;
+  color: #967c7c;
+}
+
+.signInTransfer Button {
+  position: relative;
+  padding: 4% 14%;
+  margin-top: -14%;
+  margin-left: 17%;
+  background: #5bd4e0;
+  border-radius: 18px;
+}
+
+.signUpTransfer {
+  padding-top: 6%;
+  margin-top: -13%;
+  margin-left: 18%;
+  position: absolute;
+}
+
+.signUpTransfer button {
+  position: relative;
+  padding: 4% 14%;
+  margin-left: 22%;
+  margin-top: 2%;
+  margin-top: 1%;
+  border-radius: 18px;
+}
+/*2 for signUp*/
+.signInTransfer2 {
+  padding-top: 6%;
+  margin-top: -13%;
+  margin-left: 18%;
+  position: absolute;
+}
+
+.signInTransfer2 button {
+  position: relative;
+  padding: 4% 16%;
+  margin-left: 24%;
+  margin-top: 2%;
+  margin-top: 1%;
+  border-radius: 18px;
+}
+
+.signUpTransfer2 {
+  padding-top: 0%;
+  margin-top: -9%;
+  margin-left: 13%;
+  position: absolute;
+  width: 10%;
+}
+
+.signUpTransfer2 button {
+  position: relative;
+  padding: 4% 14%;
+  margin-top: -14%;
+  margin-left: 17%;
+  background: #8dcfe2;
+  border-radius: 18px;
+}
+/*remember me*/
+.checkBox {
+  margin-top: -6.5%;
+  height: 2%;
+  position: absolute;
+  margin-left: 4%;
+}
+
+.rememberMe {
+  margin-top: -33%;
+  margin-left: 1%;
+}
+
+/* Full-width input fields 
+  input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+ Set a style for all buttons 
+button {
+  background-color: #4CAF50;
+  color: yellow;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+ Extra styles for the cancel button 
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+ Float cancel and signup buttons and add an equal width 
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+ Clear floats 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+ Change styles for cancel button and signup button on extra small screens 
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+} */
