@@ -164,16 +164,19 @@ class SignUpForm extends Component{
         return (
                     <div className="Abed-css">
                       <img className="logo" src={logo} alt="Logo" />
-                    <img className="emailImgSignUp" src={emailImg} />
+                    
                     <div className="emailFieldSignUp">
+                      <img className="emailImgSignUp" src={emailImg} /> 
                       <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
                     </div>
-                    <img className="passImgSignUp" src={passImg} />
+                    
                     <div className="passFieldSignUp">
+                      <img className="passImgSignUp" src={passImg} />
                       <input className="passFieldSignUp" placeholder="Enter your password " name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
                     </div>
-                    <img className="confirmImg" src={confirmImg} />
+                   
                     <div className="confirmPassField">
+                      <img className="confirmImg" src={confirmImg} />
                       <input placeholder="Enter your password again" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
                   <div className="signUpTransfer2">
