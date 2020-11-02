@@ -23,20 +23,12 @@ Analysis and design of systems Project Fall99
 
 
 ## initializing 
-### istall create-react-app package
+### first open Project folder and then:
 ```console
-$ npm i -g create-react-app
-```
-### install bootstrap package
-```console
-$ npm i bootstrap
-```
-### install react-router-dom
-```console
-$ npm install react-router-dom
+$ cd ./Front
+$ npm install
 ```
 ### Run app
 ```console
-$ cd ./Front
 $ npm start
 ```
