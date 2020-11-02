@@ -29,21 +29,37 @@ class SignUpForm extends Component{
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit() {
 
-    if (!this.emailValidation()) {
+    if (!this.emailValidation())
       return(alert("Email is not valid"));
-    }
-
-    if (!this.validatePassword()){
+    if (!this.checkPassword()) 
       return;
-    }
+    if (!this.validatePassword())
+      return;
+    
+    const form = new FormData()
+    form.set('email', this.state.emailSignUp.toLowerCase());
+    console.log(this.state.emailSignUp.toLowerCase())
+    form.set('password', this.state.passwordSignUp)
+    const response =
+    await axios.post('http://localhost:8000/signup', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
 
-    if (this.checkPassword()) {
+    console.log(response)
+    if(response.data.error)
+      return(alert(response.data.error))
+    else
+    {
+      return(alert("Sign up Compeleted!"))
 
     }
+      
+  
+    
    // alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
   }
 
 

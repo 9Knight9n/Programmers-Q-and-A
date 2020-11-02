@@ -31,19 +31,24 @@ class SignInForm extends Component{
 
   async handleSubmit() {
     if (!this.emailValidation())
-        return(alert("Email is not valid"));
-      const form = new FormData()
-      form.set('email', this.state.email);
-      form.set('password', this.state.password)
-      const response =
-      await axios.post('http://localhost:8000', form, {
-        headers: { 'Content-Type': 'multipart/form-data'
-        },
-      })
+      return(alert("Email is not valid"));
+    if (this.state.password.length===0)
+      return(alert("Enter your password"));
+    if (this.state.password.length<8)
+      return(alert("Password must be longer!"));
+    const form = new FormData()
+    form.set('email', this.state.emailtoLowerCase());
+    form.set('password', this.state.password)
+    const response =
+    await axios.post('http://localhost:8000', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
 
-      console.log(response)
-      if(response.data.error)
-        return(alert(response.data.error))
+    console.log(response)
+    if(response.data.error)
+      return(alert(response.data.error))
+
 
 
 

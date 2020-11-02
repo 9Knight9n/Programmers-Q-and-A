@@ -18,7 +18,7 @@ def homepage(request):
         post_data = dict(request.POST)
         check_user = User.objects.filter(email=post_data['email'][0])
         if len(check_user) == 0:
-            return JsonResponse({"error":"this email not exist"})
+            return JsonResponse({"error":"this email does not exist!"})
         else:
             if check_user[0].check_password(post_data['password'][0]):
                 return JsonResponse({"error":"wellcome"})
@@ -42,4 +42,4 @@ def signup(request):
             user.save()
             return JsonResponse(post_data)
         else:
-            return JsonResponse({"error":"this email exist"})
+            return JsonResponse({"error":"Email already registerd!"})
