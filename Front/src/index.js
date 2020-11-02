@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import SignInForm from './pages/SignInForm';
-import logo from './img/logo.jpg';
-import SignInToSignUp from './pages/SignInToSignUp';
+// import SignInForm from './pages/SignInForm';
+import logo from './img/backgr.jpg';
+// import SignInToSignUp from './pages/SignInToSignUp';
 
 ReactDOM.render(
   <React.StrictMode>
     
     <img className="logo" src={logo} alt="Logo" />
-    <SignInForm /> 
+    <App /> 
     
   </React.StrictMode>,
   document.getElementById('root')
