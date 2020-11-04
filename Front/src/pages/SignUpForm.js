@@ -177,7 +177,7 @@ class SignUpForm extends Component{
                    
                     <div className="confirmPassField">
                       <img className="confirmImg" src={confirmImg} />
-                      <input placeholder="Enter your password again" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
+                      <input placeholder="Confirm your password" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
                   <div className="signUpTransfer2">
                     <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
@@ -186,7 +186,7 @@ class SignUpForm extends Component{
                   <br />
                   <br />
                   <div className="signInTransfer2">
-                    <p>Don't have an account ?</p> 
+                    <p>Already have account ?</p> 
                     <button onClick={() => this.handleClick(0)} name= "signInButton2" type="button">Sign In</button>
                   </div> 
                 </div>
