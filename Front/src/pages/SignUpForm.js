@@ -155,15 +155,12 @@ class SignUpForm extends Component{
         return (
                     <div className="Abed-css">
                       <img className="logo" src={logo} alt="Logo" />
-                      <div className="error">
-                      {this.state.signUpCheckMassage.active ? this.state.signUpCheckMassage.massage:""}
-                      </div>
                     <div className="emailFieldSignUp">
                       <img className="emailImgSignUp" src={emailImg} /> 
                       <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
                     </div>
                     
-                    <div className="error">
+                    <div className="validEmadilSignUp error">
                       {this.state.emailCheckMassage.active ? this.state.emailCheckMassage.massage:""}
                     </div>
 
@@ -172,8 +169,8 @@ class SignUpForm extends Component{
                       <input className="passFieldSignUp" placeholder="Enter your password " name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
                     </div>
 
-                    <div className={"".concat(this.state.error?" error":"")}>
-                    {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
+                    <div className={"passValidSignUp".concat(this.state.error?" error":"")}>
+                      {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
                     </div>
                    
                     <div className="confirmPassField">
@@ -181,7 +178,7 @@ class SignUpForm extends Component{
                       <input placeholder="Confirm your password" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
 
-                    <div className="">
+                    <div className="confirmPassConflict">
                       {this.state.confirmPassword.active ? this.state.confirmPassword.massage:""}
                     </div>
 
@@ -190,6 +187,9 @@ class SignUpForm extends Component{
                     <br />
                   </div>
                   <br />
+                  <div className="validFieldSignUp error">
+                    {this.state.signUpCheckMassage.active ? this.state.signUpCheckMassage.massage:""}
+                  </div>
                   <br />
                   <div className="signInTransfer2">
                     <p>Already have account ?</p> 

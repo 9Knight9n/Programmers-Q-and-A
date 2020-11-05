@@ -108,25 +108,18 @@ class SignInForm extends Component{
         return (
           <div className="Abed-css">
             <img className="logo" src={logo} alt="Logo" />
-
-
-            <div className="error">
-            {this.state.loginCheckMassage.active ? this.state.loginCheckMassage.massage:""}
-            </div>
-            
-
             <div className="emailField">
               <img className="emailImg" src={emailImg} />
               <input placeholder="Enter your email address" name="email" value={this.state.email} onChange={this.handleChange} className="emailField" type="email" />
             </div>
-            <div className="error">
+            <div className="validEmailSignIn error">
               {this.state.emailCheckMassage.active ? this.state.emailCheckMassage.massage:""}
             </div>
             <div className="passField">
               <img className="passImg" src={passImg} />
               <input placeholder="Enter your password" value={this.state.password} onChange={this.handleChange} name="password" className="passField" type="password" />
             </div>
-            <div className="error">
+            <div className="validpassSignIn error">
               {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
             </div>
             <div className="signInTransfer">
@@ -134,6 +127,9 @@ class SignInForm extends Component{
               <br />
             </div>
             <br />
+            <div className="validFieldsSignIn error">
+              {this.state.loginCheckMassage.active ? this.state.loginCheckMassage.massage:""}
+            </div>
             <br />
               <div className="signUpTransfer">
                 <p>Don't have an account ?</p> 
