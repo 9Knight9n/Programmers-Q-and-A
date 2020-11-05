@@ -240,6 +240,10 @@ html {
   margin-left: 1%;
 }
 
+.Abed-css .error{
+  color: red;
+}
+
 /* Full-width input fields 
   input[type=text], input[type=password] {
   width: 100%;
