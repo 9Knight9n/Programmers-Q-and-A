@@ -18,6 +18,20 @@ select {
   background: #b5b5d3;
 }
 
+button {
+  background-color: #94d2ea;
+  border: 0px;
+  border-radius: 10px;
+  height: 9%;
+  width: 20%;
+}
+
+input:focus,
+textarea:focus,
+select:focus button:focus {
+  outline: none;
+}
+
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #844444;
@@ -34,11 +48,11 @@ select {
   margin: auto;
   margin-top: 12%;
   width: 50%;
-  height: 50%;
-  background: #5a7480;
+  height: 50vh;
+  background: #93b4c3;
   overflow: auto;
-  border: 5px solid #9a79ea;
-  border-radius: 31px;
+  border: 6px solid #9a79ea;
+  border-radius: 60px;
 }
 
 .chatroomAvatar {
@@ -92,10 +106,65 @@ select {
 
 .chatroomContext label {
   margin-left: 7%;
-  color: black;
 }
 
 .chatroomContext select {
   margin-left: 1.5%;
   margin-top: 11%;
+}
+
+.description textarea {
+  margin-top: -2%;
+  background-image: -webkit-linear-gradient(left, white 10px, transparent 10px),
+    -webkit-linear-gradient(right, white 10px, transparent 10px),
+    -webkit-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  background-image: -moz-linear-gradient(left, white 10px, transparent 10px),
+    -moz-linear-gradient(right, white 10px, transparent 10px),
+    -moz-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  background-image: -ms-linear-gradient(left, white 10px, transparent 10px),
+    -ms-linear-gradient(right, white 10px, transparent 10px),
+    -ms-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  background-image: -o-linear-gradient(left, white 10px, transparent 10px),
+    -o-linear-gradient(right, white 10px, transparent 10px),
+    -o-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  background-image: linear-gradient(left, white 10px, transparent 10px),
+    linear-gradient(right, white 10px, transparent 10px),
+    linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  background-size: 100% 100%, 100% 100%, 100% 31px;
+  line-height: 31px;
+  font-family: Arial, Helvetica, Sans-serif;
+  padding-left: 8%;
+  padding-right: 8%;
+  height: 41%;
+  border: 3px solid #e50dff;
+  border-radius: 60px;
+}
+
+.description h3 {
+  margin-top: 8%;
+  margin-left: 10%;
+  font-size: 16px;
+}
+
+.description:focus {
+  outline: none;
+}
+
+.osKinds {
+  margin-top: 15%;
+  margin-left: 10%;
+}
+
+.createButton {
+  margin-left: 117%;
+}
+
+.backButton {
+  margin-left: -173%;
+  margin-top: 17%;
+}
+
+.nextButton {
+  margin-left: 117%;
+  margin-top: 25%;
 }

@@ -6,7 +6,7 @@ class ChatroomCreation extends Component {
     state = {  }
     render() { 
         return ( 
-            <div class="main-box">
+            <div className="main-box">
                 <div className="elements">
                     <div className="chatroomAvatar">
                         <a href="#"><img src={ChatroomCreationAvatar} alt="chatroomPic" /></a>
@@ -20,11 +20,12 @@ class ChatroomCreation extends Component {
                             <label for="context">Choose a context:</label>
                             <select className="context">
                                 <option value="operatingSystem">Operating system</option>
-                                <option className="op2" value="programmingLang">Programming language</option>
-                                <option className="op3" value="application">Application</option>
+                                <option value="programmingLang">Programming language</option>
+                                <option value="application">Application</option>
                             </select>
                         </div>
                     </div>
+                    <button className="nextButton" type="button">Next</button>
                 </div>
             </div>
          );
