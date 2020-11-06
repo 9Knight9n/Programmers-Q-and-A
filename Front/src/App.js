@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
+import Profile from './components/profile';
 import './index.css';
 
 
 
 class App extends Component {
   state={
-    currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<div className="w-70"> <Profile refToSelectComponent={this.selectComponent.bind(this)}/></div>
   }
 
   selectComponent(index){
