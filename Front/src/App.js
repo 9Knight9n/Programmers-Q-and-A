@@ -3,6 +3,8 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import ChatroomCreation from './components/ChatroomCreation';
+import ChatroomCreationApp from './components/ChatroomCreationApp';
+import ChatroomCreationOs from './components/ChatroomCreationOs';
 import './index.css';
 
 

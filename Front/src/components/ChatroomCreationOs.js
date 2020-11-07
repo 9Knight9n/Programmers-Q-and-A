@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
+import windowsImg from '../img/windows.png';
+import linuxImg from '../img/linux.png';
+import macImg from '../img/apple.png';
 
 class ChatroomCreationOs extends Component {
     state = {  }
@@ -7,23 +10,33 @@ class ChatroomCreationOs extends Component {
         return ( 
             <div class="main-box">
                 <div class="elements">
-                    <div class="inputs">
-                        <div class="osKinds">
-                            <label for="opKinds">Choose an operating system:</label>
-                            <select class="os">
-                                <option value="operatingSystem">Windows</option>
-                                <option value="programmingLang">Linux</option>
-                                <option value="application">Mac</option>
-                            </select>
-                        </div>
-                        <div class="description">
-                            <h3>description :</h3>
-                            <textarea class="textarea" maxlength="170" rows="4" cols="50">
-                            </textarea>
+                    <div class="osKinds">
+                        <label for="osKinds">Which os:</label>
+                        <div className="osLogo">
+                            <div className="windows">
+                                <input className="winCheck" type="checkbox" name="windows" />
+                                <img src={windowsImg} /> 
+                                <label for="winCheck">Windows</label>  
+                            </div>
+                            <div className="linux">
+                                <input className="linuxCheck" type="checkbox" name="mac" />
+                                <img src={linuxImg} /> 
+                                <label for="winCheck">Linux</label>  
+                            </div>
+                            <div className="mac">
+                                <input className="macCheck" type="checkbox" name="mac" />
+                                <img src={macImg} /> 
+                                <label for="winCheck">Mac</label>  
+                            </div>
                         </div>
                     </div>
-                        <button class="createButton" type="button">Create</button>
-                        <button class="backButton" type="button">Back</button>
+                    <div class="description descriptionOs">
+                        <h3>description :</h3>
+                        <textarea class="textarea" maxlength="170" rows="4" cols="50">
+                        </textarea>
+                    </div>
+                    <button class="createButton" type="button">Next</button>
+                    <button class="backButton" type="button">Back</button>
                 </div>
             </div>
          );

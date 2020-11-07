@@ -41,7 +41,7 @@ select:focus button:focus {
 
 .elements {
   margin: auto;
-  width: 50%;
+  width: 72%;
 }
 
 .main-box {
@@ -80,7 +80,7 @@ select:focus button:focus {
   margin-top: -4%;
 }
 
-.inputs input {
+.nameField input {
   width: 74%;
   height: 4%;
   border-color: #9a79ea;
@@ -91,13 +91,11 @@ select:focus button:focus {
   text-indent: 2%;
   border-bottom: 2px solid #9a79ea;
   margin-left: 7%;
-  margin-top: 9%;
   padding-bottom: 3%;
   padding-top: 3%;
-}
-
-.nameField input {
   background: transparent;
+  margin-top: 19%;
+  margin-left: 11%;
 }
 
 .chatroomContext {
@@ -114,22 +112,17 @@ select:focus button:focus {
 }
 
 .description textarea {
-  margin-top: -2%;
-  background-image: -webkit-linear-gradient(left, white 10px, transparent 10px),
-    -webkit-linear-gradient(right, white 10px, transparent 10px),
-    -webkit-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
-  background-image: -moz-linear-gradient(left, white 10px, transparent 10px),
-    -moz-linear-gradient(right, white 10px, transparent 10px),
-    -moz-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
-  background-image: -ms-linear-gradient(left, white 10px, transparent 10px),
-    -ms-linear-gradient(right, white 10px, transparent 10px),
-    -ms-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
-  background-image: -o-linear-gradient(left, white 10px, transparent 10px),
-    -o-linear-gradient(right, white 10px, transparent 10px),
-    -o-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
-  background-image: linear-gradient(left, white 10px, transparent 10px),
-    linear-gradient(right, white 10px, transparent 10px),
-    linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+  margin-top: 0%;
+  background-attachment: local;
+  background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+      white,
+      white 30px,
+      #ccc 30px,
+      #ccc 31px,
+      white 31px
+    );
   background-size: 100% 100%, 100% 100%, 100% 31px;
   line-height: 31px;
   font-family: Arial, Helvetica, Sans-serif;
@@ -140,31 +133,119 @@ select:focus button:focus {
   border-radius: 60px;
 }
 
-.description h3 {
-  margin-top: 8%;
-  margin-left: 10%;
-  font-size: 16px;
-}
-
 .description:focus {
   outline: none;
 }
 
+/*OS*/
+
 .osKinds {
-  margin-top: 15%;
-  margin-left: 10%;
+  margin-top: 6%;
+  margin-left: 0%;
 }
 
-.createButton {
-  margin-left: 117%;
+.windows {
+  margin-left: 15%;
+  margin-top: -6%;
+}
+
+.windows img {
+  width: 6%;
+  margin-left: 1%;
+}
+
+.windows label {
+  margin-left: 2%;
+}
+
+.linux {
+  margin-left: 48%;
+  margin-top: -7%;
+}
+
+.linux label {
+  margin-left: 2%;
+}
+
+.linux img {
+  width: 12%;
+  margin-left: 1%;
+}
+
+.mac {
+  margin-left: 79%;
+  margin-top: -7%;
+}
+
+.mac img {
+  width: 29%;
+}
+
+.mac label {
+  margin-left: 2%;
 }
 
 .backButton {
-  margin-left: -173%;
-  margin-top: 17%;
+  margin-left: -120%;
+  margin-top: 12%;
 }
 
 .nextButton {
   margin-left: 117%;
-  margin-top: 25%;
+  margin-top: 29%;
+}
+
+.createButton {
+  margin-left: 90%;
+}
+
+.descriptionOs {
+  margin-top: 8%;
+}
+
+/*app*/
+
+.createButtonApp {
+  margin-left: 90%;
+}
+
+.backButtonApp {
+  margin-left: -120%;
+  margin-top: 4%;
+}
+
+.descriptionApp textarea {
+  margin-top: 0%;
+  margin-left: 2%;
+}
+
+.descriptionApp {
+  margin-top: 4%;
+}
+
+.descriptionApp h3 {
+  margin-left: 10%;
+}
+
+.linkFieldApp input {
+  width: 74%;
+  height: 4%;
+  border-color: #9a79ea;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  outline: none;
+  text-indent: 2%;
+  border-bottom: 2px solid #9a79ea;
+  margin-left: 7%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  background: transparent;
+  margin-top: 3%;
+  margin-left: 10%;
+}
+
+.linkFieldApp label {
+  margin-top: 10%;
+  margin-left: 16%;
 }
