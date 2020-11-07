@@ -1,0 +1,17 @@
+.box{
+    position: relative;
+}
+#preview{
+    background-position: center center;
+    background-size: cover
+}
+#preview:hover {
+    opacity: 0.25;
+}
+.select-btn{
+    margin-top: 10%;
+    margin-left: 7.85%;
+    position: absolute;
+    /* background-color: none; */
+    top: 0%;
+}
