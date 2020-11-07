@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from registeration.models import User , UserManager
 from django.http import JsonResponse
 import json
+from rest_framework import status
 from django.http import StreamingHttpResponse
 from django.core import serializers
 
@@ -18,12 +19,12 @@ def homepage(request):
         post_data = dict(request.POST)
         check_user = User.objects.filter(email=post_data['email'][0])
         if len(check_user) == 0:
-            return JsonResponse({"error":"this email does not exist!"})
+            return JsonResponse({"token":"this email does not exist!"} , status=status.HTTP_404_NOT_FOUND)
         else:
             if check_user[0].check_password(post_data['password'][0]):
-                return JsonResponse({"error":"wellcome"})
+                return JsonResponse({"error":"wellcome"} , status=status.HTTP_202_ACCEPTED)
             else:
-                return JsonResponse({"error": "password or email is not correct"})
+                return JsonResponse({"error": "password or email is not correct"} , status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
 @csrf_exempt
@@ -40,6 +41,6 @@ def signup(request):
             password = post_data['password'][0]
             user.set_password(password)
             user.save()
-            return JsonResponse(post_data)
+            return JsonResponse(post_data , status=status.HTTP_201_CREATED)
         else:
-            return JsonResponse({"error":"Email already registerd!"})
+            return JsonResponse({"error":"Email already registerd!"} , status=status.HTTP_302_FOUND)
