@@ -1,6 +1,6 @@
 from django.urls import path
-from submittext import views
+from . import views
 
 urlpatterns = [
-    path("submit", views.submit_text, name="submit"),
+    path("submit", views.send_all_text, name="submit"),
 ]
