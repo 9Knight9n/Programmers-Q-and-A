@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import ChatText
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ChatTextSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatText
-        fields = ['id', 'name', 'user']
+        fields = ['id' , 'user', 'parent_text', 'text' , 'time']
