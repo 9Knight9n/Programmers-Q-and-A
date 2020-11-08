@@ -7,6 +7,7 @@ from .models import ChatText
 
 @api_view(['GET' , ])
 def send_all_text(request):
+    #start commit on correct way
     if request.method == 'GET':
         chattext = ChatText.objects.all()
         serializer = ChatTextSerializer(chattext)
