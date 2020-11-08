@@ -5,6 +5,7 @@ import Homepage from './components/homepage';
 import ChatroomCreationLast from './components/ChatroomCreationLast';
 import ChatroomCreationApp from './components/ChatroomCreationApp';
 import ChatroomCreationOs from './components/ChatroomCreationOs';
+import ChatroomCreationFirst from './components/ChatroomCreationFirst';
 import './index.css';
 
 
@@ -12,7 +13,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<ChatroomCreationLast refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<ChatroomCreationFirst refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){

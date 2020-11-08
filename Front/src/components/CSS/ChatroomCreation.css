@@ -141,6 +141,82 @@ select:focus button:focus {
 .description:focus {
   outline: none;
 }
+/*Last*/
+.contextKinds label {
+  margin-top: 7%;
+  margin-left: 22%;
+}
+
+.osBox :hover {
+  background-color: #b6c3ca;
+}
+
+.os {
+  width: 32%;
+  height: 11vh;
+  padding-left: 5%;
+  margin-top: 16%;
+  /* margin-top: 15%;
+  margin-left: 7%; */
+}
+
+.os img {
+  width: 36%;
+  margin-left: 27%;
+  /* margin-left: 7%; */
+}
+
+.os h3 {
+  color: black;
+}
+
+.application {
+  width: 24%;
+  height: 11vh;
+  padding-left: 5%;
+  margin-left: 37%;
+  margin-top: -15%;
+  /* margin-left: 45%;
+  margin-top: -18%; */
+}
+
+.appBox :hover {
+  background-color: #b6c3ca;
+}
+
+.application img {
+  width: 50%;
+  margin-left: 13%;
+  /* margin-left: 2%; */
+}
+
+.application h3 {
+  color: black;
+}
+
+.prlang {
+  width: 27%;
+  height: 14vh;
+  padding-left: 5%;
+  margin-left: 68%;
+  margin-top: -17%;
+  /* margin-left: 78%;
+  margin-top: -18%; */
+}
+
+.prLangBox :hover {
+  background-color: #b6c3ca;
+}
+
+.prlang img {
+  width: 43%;
+  margin-left: 15%;
+  /* margin-left: 13%; */
+}
+
+.prlang h3 {
+  color: black;
+}
 
 /*OS*/
 
