@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 *{
@@ -23,29 +25,37 @@ body{
     padding: 0 20PX;
 }
 .content-form{
-    max-width: 550px;
-    margin: 0 auto;
+    max-width: 45%;
+    height: 100%;
+    margin: 100 auto;
     background: rgba(70, 10, 46, 0.8);
-    padding: 30px;
-    border-radius: 30px;
+    padding: 1%;
+    padding-top: 30%;
+    padding-bottom: 55%;
+    border-radius: 2%;
     display:flex ;
     box-shadow: 0 0 10px rgba(1, 3, 0, 0.13);
 }
 .INPUT-FORM{
     display: flex;
     flex-direction: column;
-    margin-right: 4% ;
+    margin-right: 10% ;
+    margin-top: 90%;
+    
 
 }
 .INPUT-FORM,
 .msg textarea{
-margin: 10px 0;
+margin: 1% 0;
 background: transparent;
-border: 0;
-border-bottom: 2px solid #C5ECFD;
-padding: 10px;
+border: 90%;
+
+padding: 3%;
 color: #C5ECFD;
-width: 100%;
+width: 90%;
+
+
+
 }
 .msg textarea{
     height: 212px;
@@ -53,9 +63,11 @@ width: 100%;
 
 ::-webkit-input-placeholder{
     color: #C5ECFD;
+    
 }
 ::-moz-input-placeholder{
     color: #C5ECFD;
+    
 }
 ::-ms-input-placeholder{
     color: #C5ECFD;
@@ -68,6 +80,7 @@ width: 100%;
     color: #fff;
     cursor: pointer;
     text-transform: uppercase;
+    line-height: 0;
 }
 
 @media screen and (max-width:600px){
@@ -81,5 +94,12 @@ width: 100%;
     .INPUT-FORM,
     .msg{
         width: 100%;
+        
     }
 }
+
+
+
+
+
+
