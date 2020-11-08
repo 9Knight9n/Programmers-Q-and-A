@@ -56,13 +56,13 @@ select:focus button:focus {
 }
 
 .chatroomAvatar {
-  margin-left: 6%;
+  margin-left: 12%;
   margin-top: -14%;
 }
 
 .chatroomAvatar h3 {
   color: #f4dd58;
-  margin-left: 26.5%;
+  margin-left: 29.5%;
   margin-top: 0.5%;
   font-size: 15px;
 }
@@ -94,7 +94,7 @@ select:focus button:focus {
   padding-bottom: 3%;
   padding-top: 3%;
   background: transparent;
-  margin-top: 19%;
+  margin-top: 3%;
   margin-left: 11%;
 }
 
@@ -109,6 +109,11 @@ select:focus button:focus {
 .chatroomContext select {
   margin-left: 1.5%;
   margin-top: 11%;
+}
+
+.createButtonLast {
+  margin-left: 90%;
+  margin-top: 20%;
 }
 
 .description textarea {
@@ -185,24 +190,24 @@ select:focus button:focus {
   margin-left: 2%;
 }
 
-.backButton {
+.backButtonOs {
   margin-left: -120%;
   margin-top: 12%;
 }
 
-.nextButton {
-  margin-left: 117%;
-  margin-top: 29%;
-}
-
-.createButton {
-  margin-left: 90%;
+.nextButtonOs {
+  margin-left: 92%;
+  margin-top: 6%;
 }
 
 .descriptionOs {
   margin-top: 8%;
 }
 
+.descriptionOs h3 {
+  margin-top: 8%;
+  margin-left: 8%;
+}
 /*app*/
 
 .createButtonApp {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
-import ChatroomCreation from './components/ChatroomCreation';
+import ChatroomCreationLast from './components/ChatroomCreationLast';
 import ChatroomCreationApp from './components/ChatroomCreationApp';
 import ChatroomCreationOs from './components/ChatroomCreationOs';
 import './index.css';
@@ -12,7 +12,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<ChatroomCreation refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<ChatroomCreationLast refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){

@@ -23,7 +23,7 @@ class ChatroomCreation extends Component {
                             <option value="application">Application</option>
                         </select>
                     </div> */}
-                    <button className="nextButton" type="button">Create</button>
+                    <button className="createButtonLast" type="button">Create</button>
                 </div>
             </div>
          );

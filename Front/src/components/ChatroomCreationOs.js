@@ -11,7 +11,7 @@ class ChatroomCreationOs extends Component {
             <div class="main-box">
                 <div class="elements">
                     <div class="osKinds">
-                        <label for="osKinds">Which os:</label>
+                        <label for="osKinds">Choose os:</label>
                         <div className="osLogo">
                             <div className="windows">
                                 <input className="winCheck" type="checkbox" name="windows" />
@@ -35,8 +35,8 @@ class ChatroomCreationOs extends Component {
                         <textarea class="textarea" maxlength="170" rows="4" cols="50">
                         </textarea>
                     </div>
-                    <button class="createButton" type="button">Next</button>
-                    <button class="backButton" type="button">Back</button>
+                    <button class="nextButtonOs" type="button">Next</button>
+                    <button class="backButtonOs" type="button">Back</button>
                 </div>
             </div>
          );
