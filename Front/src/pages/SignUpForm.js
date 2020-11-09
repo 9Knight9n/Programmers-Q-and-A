@@ -88,7 +88,8 @@ class SignUpForm extends Component{
     if (!this.validatePassword())
     {
       this.setState({error:true})
-      this.setState({signUpCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
+      this.setState({passwordCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
+      return;
     }
     
     const form = new FormData()
@@ -150,7 +151,7 @@ class SignUpForm extends Component{
     // If Not same return False.
     else if (password1 !== password2) { 
 
-      this.setState({signUpCheckMassage:{massage:"Password did not match: Please try again...",active:true}});
+      this.setState({ConfirmPasswordCheckMassage:{massage:"Password did not match: Please try again...",active:true}});
       return false;
     } 
     else{
