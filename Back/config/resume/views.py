@@ -47,7 +47,7 @@ def resumeView(request):
     academics = Academics.objects.all()[:5]
     areaOfInterest = AreaOfInterest.objects.all()
 
-    return render('resume/resume_view.html', {
+    return render(request, '', {
         'site_name': site_name,
         'person': person,
         'education': education,
