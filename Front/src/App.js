@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
-// import Homepage from './components/homepage';
+import Homepage from './components/homepage';
+import './index.css';
+
+
+
 class App extends Component {
   state={
     currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>
@@ -12,9 +15,9 @@ class App extends Component {
     if(index===0)
       this.setState({currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>})
     if(index===1)
-    this.setState({currentComponent:<SignUpForm refToSelectComponent={this.selectComponent.bind(this)}/>})
-    // if(this.selectComponent===2)
-    //   return <Homepage/>
+      this.setState({currentComponent:<SignUpForm refToSelectComponent={this.selectComponent.bind(this)}/>})
+    if(index===2)
+      this.setState({currentComponent:<Homepage refToSelectComponent={this.selectComponent.bind(this)}/>})
   }
 
   render(){

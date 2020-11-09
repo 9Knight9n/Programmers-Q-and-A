@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import SignInForm from './pages/SignInForm';
-import logo from './img/backgr.jpg';
+
 // import SignInToSignUp from './pages/SignInToSignUp';
 
 ReactDOM.render(
   <React.StrictMode>
     
-    <img className="logo" src={logo} alt="Logo" />
     <App /> 
     
   </React.StrictMode>,

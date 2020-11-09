@@ -5,6 +5,7 @@ import emailImg from '../img/email.png';
 import passImg from '../img/password.png';
 import confirmImg from '../img/confirm.png';
 import axios from 'axios';
+import logo from '../img/backgr.jpg';
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -53,8 +54,9 @@ class SignUpForm extends Component{
       return(alert(response.data.error))
     else
     {
-      return(alert("Sign up Compeleted!"))
-
+      alert("Sign up Compeleted!")
+      window.$username = this.state.emailSignUp.split("@")[0];
+      return this.handleClick(2);
     }
       
   
@@ -63,8 +65,8 @@ class SignUpForm extends Component{
   }
 
 
-  handleClick = () => {
-    this.props.refToSelectComponent(0);
+  handleClick = (index) => {
+    this.props.refToSelectComponent(index);
   }
 
   emailValidation = () => {
@@ -160,18 +162,22 @@ class SignUpForm extends Component{
 
     render() {
         return (
-                    <div>
-                    <img className="emailImgSignUp" src={emailImg} />
+                    <div className="Abed-css">
+                      <img className="logo" src={logo} alt="Logo" />
+                    
                     <div className="emailFieldSignUp">
+                      <img className="emailImgSignUp" src={emailImg} /> 
                       <input className="emailFieldSignUp" placeholder="Enter your email address" name="emailSignUp" value={this.state.email} onChange={this.handleChange}  type="email" />
                     </div>
-                    <img className="passImgSignUp" src={passImg} />
+                    
                     <div className="passFieldSignUp">
+                      <img className="passImgSignUp" src={passImg} />
                       <input className="passFieldSignUp" placeholder="Enter your password " name="passwordSignUp" value={this.state.email} onChange={this.handleChange}  type="password" />
                     </div>
-                    <img className="confirmImg" src={confirmImg} />
+                   
                     <div className="confirmPassField">
-                      <input placeholder="Enter your password again" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
+                      <img className="confirmImg" src={confirmImg} />
+                      <input placeholder="Confirm your password" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
                   <div className="signUpTransfer2">
                     <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
@@ -180,8 +186,8 @@ class SignUpForm extends Component{
                   <br />
                   <br />
                   <div className="signInTransfer2">
-                    <p>Don't have an account ?</p> 
-                    <button onClick={this.handleClick} name= "signInButton2" type="button">Sign In</button>
+                    <p>Already have account ?</p> 
+                    <button onClick={() => this.handleClick(0)} name= "signInButton2" type="button">Sign In</button>
                   </div> 
                 </div>
         );
