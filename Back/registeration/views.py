@@ -15,7 +15,7 @@ def signup(request):
 
 
 @api_view(['GET'])
-def profile(request):
+def signin(request):
     serializer = UserProfileSerializer(request.user)
     print(serializer.data)
     return Response({'user': serializer.data}, status=status.HTTP_200_OK)
