@@ -1,0 +1,46 @@
+{
+  "chats": [
+    {
+      "id": 1,
+      "type": -1,
+      "by": "Sajad",
+      "time": "11/2/2020, 3:12:52 PM",
+      "content": "Hi first Question here!"
+    },
+    {
+      "id": 2,
+      "type": 1,
+      "by": "Abed",
+      "time": "11/2/2020, 3:35:55 PM",
+      "content": "first reply!\nsecond line!"
+    },
+    {
+      "id": 3,
+      "type": -1,
+      "by": "Sajad",
+      "time": "11/2/2020, 7:23:43 PM",
+      "content": "second question here!"
+    },
+    {
+      "id": 4,
+      "type": 2,
+      "by": "sadegh",
+      "time": "11/2/2020, 8:14:04 PM",
+      "content": "new Question"
+    },
+    {
+      "id": 5,
+      "type": -1,
+      "by": "Alis",
+      "time": "11/2/2020, 10:14:43 PM",
+      "content": "A new Question here!"
+    },
+    {
+      "id": 6,
+      "type": 3,
+      "by": "Alis",
+      "time": "11/2/2020, 10:15:26 PM",
+      "content": "Replying to a question"
+    }
+  ]
+}
