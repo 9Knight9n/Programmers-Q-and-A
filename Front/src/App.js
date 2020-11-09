@@ -3,13 +3,15 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Profile from './components/profile';
+import Activity from './components/activity';
+import Resume from './components/resume';
 import './index.css';
 
 
 
 class App extends Component {
   state={
-    currentComponent:<div className="w-70"> <Profile refToSelectComponent={this.selectComponent.bind(this)}/></div>
+    currentComponent:<div className="w-100"> <Activity refToSelectComponent={this.selectComponent.bind(this)}/></div>
   }
 
   selectComponent(index){
