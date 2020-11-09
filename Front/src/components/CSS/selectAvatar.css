@@ -4,10 +4,6 @@
     background-position: center center;
     background-size: cover
 }
-#preview:hover {
-    background-image: none !important;
-    background-color: #141d48;
-}
 .select-btn{
     /* position: absolute;
     margin-top: 10%; */
@@ -15,4 +11,9 @@
     /* background-color: none; */
     /* top: 0%;
     left: 50%; */
+}
+.save-button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
