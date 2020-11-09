@@ -51,22 +51,26 @@ class SignInForm extends Component{
   }
 
   async handleSubmit() {
+    this.clearErrors()
     if (!this.emailValidation())
     {
       this.setState({email:""})
       this.setState({emailCheckMassage:{massage:"Email is not valid!",active:true}});
       return;
     }
+    
     if (this.state.password.length===0)
     {
       this.setState({password:""})
       return(this.setState({passwordCheckMassage:{massage:"Enter your password",active:true}}));
     }
+
     if (!this.validatePassword())
     {
       this.setState({password:""})
       return(this.setState({passwordCheckMassage:{massage:"Password is incorrect!",active:true}}));
     }
+    
     const form = new FormData()
     form.set('email', this.state.email.toLowerCase());
     form.set('password', this.state.password)
@@ -87,9 +91,13 @@ class SignInForm extends Component{
     this.setState({email:""})
     this.setState({password:""})
     return(this.setState({loginCheckMassage:{massage:response.data.error,active:true}}));
+  }
 
 
-
+  clearErrors(){
+    this.setState({emailCheckMassage:{active:false}});
+    this.setState({passwordCheckMassage:{active:false}})
+    this.setState({loginCheckMassage:{active:false}})
   }
 
   

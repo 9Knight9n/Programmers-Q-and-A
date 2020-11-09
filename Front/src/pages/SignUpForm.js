@@ -25,7 +25,10 @@ class SignUpForm extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleChange(e) {
+    this.setState({error:false})
+    this.clearError()
     let target = e.target;
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
@@ -34,18 +37,32 @@ class SignUpForm extends Component{
       [name]: value,
     });
 
-    if(!this.validatePassword() && (this.state.passwordSignUp.length!==0))
+
+    console.log("pass length",value)
+    if(!this.validatePassword(value) && (value.length!==0) && (name==="passwordSignUp"))
     {
+      this.setState({error:false})
       this.setState({passwordCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
     }
     else
     {
       this.setState({passwordCheckMassage:{massage:"",active:true}});
     }
+    
 
-    if (this.state.passwordSignUp!==this.state.confirmPassword)
+    if(name==="confirmPassword")
     {
-      this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      if (this.state.passwordSignUp!==value)
+      {
+        this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      }
+    }
+    else if(name==="passwordSignUp")
+    {
+      if (this.state.confirmPassword!==value && this.state.confirmPassword.length!==0)
+      {
+        this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      }
     }
     else
     {
@@ -56,15 +73,21 @@ class SignUpForm extends Component{
 
   async handleSubmit() {
 
+    console.log(this.state.passwordSignUp)
+    this.clearError()
+
     if (!this.emailValidation())
     {
       this.setState({emailSignUp:""});
       return(this.setState({emailCheckMassage:{massage:"Email is not valid!",active:true}}));
     }
     if (!this.checkPassword())
+    {
       return;
+    }
     if (!this.validatePassword())
     {
+      this.setState({error:true})
       this.setState({signUpCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
     }
     
@@ -104,8 +127,10 @@ class SignUpForm extends Component{
   }
 //checking confrim and pass
   checkPassword() { 
+    this.setState({error:true})
     let password1 = this.state.passwordSignUp;
     let password2 = this.state.confirmPassword;
+    this.setState({error:true})
     // If password not entered 
     if (password1 === '') 
     {
@@ -116,7 +141,9 @@ class SignUpForm extends Component{
     // If confirm password not entered 
     else if (password2 === '') 
     {
+      console.log("pass not confirmed")
       this.setState({ConfirmPasswordCheckMassage:{massage:"Please enter confirm password",active:true}});
+      console.log("activate?:",this.state.ConfirmPasswordCheckMassage.massage)
       return false;
     }
 
@@ -127,12 +154,13 @@ class SignUpForm extends Component{
       return false;
     } 
     else{
+      this.setState({error:false})
         return true;
 
     }
   }
 
-  validatePassword() {
+  validatePassword(pass) {
     var passwordValidator = require('password-validator');
  
     // Create a schema
@@ -147,8 +175,16 @@ class SignUpForm extends Component{
     .has().lowercase()                              // Must have lowercase letters
     .has().digits(1)                                // Must have at least 2 digits
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
-    return schema.validate(this.state.passwordSignUp);
+    return schema.validate(pass);
 
+  }
+
+
+  clearError(){
+    this.setState({ConfirmPasswordCheckMassage:{active:false}});
+    this.setState({emailCheckMassage:{active:false}});
+    this.setState({signUpCheckMassage:{active:false}});
+    this.setState({ConfirmPasswordCheckMassage:{active:false}});
   }
 
     render() {
@@ -178,8 +214,8 @@ class SignUpForm extends Component{
                       <input placeholder="Confirm your password" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
 
-                    <div className="confirmPassConflict">
-                      {this.state.confirmPassword.active ? this.state.confirmPassword.massage:""}
+                    <div className={"confirmPassConflict".concat(this.state.error?" error":"")}>
+                      {this.state.ConfirmPasswordCheckMassage.active ? this.state.ConfirmPasswordCheckMassage.massage:""}
                     </div>
 
                   <div className="signUpTransfer2">
