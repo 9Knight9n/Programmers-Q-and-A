@@ -15,6 +15,7 @@ def signup(request):
 
 
 @api_view(['GET'])
+@permission_classes([])
 def signin(request):
     serializer = UserProfileSerializer(request.user)
     print(serializer.data)
