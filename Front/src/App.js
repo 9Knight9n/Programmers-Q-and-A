@@ -6,6 +6,7 @@ import ChatroomCreationLast from './components/ChatroomCreationLast';
 import ChatroomCreationApp from './components/ChatroomCreationApp';
 import ChatroomCreationOs from './components/ChatroomCreationOs';
 import ChatroomCreationFirst from './components/ChatroomCreationFirst';
+import ChatroomCreationPl from './components/ChatroomCreationPl';
 import './index.css';
 
 
@@ -13,7 +14,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<ChatroomCreationFirst refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<ChatroomCreationLast refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){

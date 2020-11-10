@@ -19,7 +19,8 @@ select {
 }
 
 button {
-  background-color: #94d2ea;
+  color: white;
+  background-color: #141d48;
   border: 0px;
   border-radius: 10px;
   height: 9%;
@@ -34,7 +35,7 @@ select:focus button:focus {
 
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #844444;
+  color: #d7cdf1;
   opacity: 1; /* Firefox */
   text-align: center;
 }
@@ -48,11 +49,11 @@ select:focus button:focus {
   margin: auto;
   margin-top: 12%;
   width: 50%;
-  height: 50vh;
-  background: #93b4c3;
+  height: 58vh;
+  background: #333b60;
   overflow: auto;
-  border: 6px solid #9a79ea;
-  border-radius: 60px;
+  border: 6px solid rgba(9, 156, 167, 0.432);
+  /* border-radius: 60px; */
 }
 
 .chatroomAvatar {
@@ -61,16 +62,16 @@ select:focus button:focus {
 }
 
 .chatroomAvatar h3 {
-  color: #f4dd58;
+  color: #9bd6f7;
   margin-left: 29.5%;
-  margin-top: 0.5%;
+  margin-top: -1.5%;
   font-size: 15px;
 }
 
 .chatroomAvatar img {
   width: 18%;
   border-radius: 50%;
-  border: 2px solid #9a79ea;
+  border: 2px solid rgba(9, 156, 167, 0.432);
   margin-top: 23%;
   margin-left: 32%;
   background: #9ba5a7;
@@ -94,7 +95,7 @@ select:focus button:focus {
   padding-bottom: 3%;
   padding-top: 3%;
   background: transparent;
-  margin-top: 3%;
+  margin-top: 11%;
   margin-left: 11%;
 }
 
@@ -113,12 +114,13 @@ select:focus button:focus {
 
 .createButtonLast {
   margin-left: 90%;
-  margin-top: 20%;
+  margin-top: 25%;
 }
 
 .description textarea {
+  background-color: #bab9f7;
   margin-top: 0%;
-  background-attachment: local;
+  /* background-attachment: local;
   background-image: linear-gradient(to right, white 10px, transparent 10px),
     linear-gradient(to left, white 10px, transparent 10px),
     repeating-linear-gradient(
@@ -127,15 +129,15 @@ select:focus button:focus {
       #ccc 30px,
       #ccc 31px,
       white 31px
-    );
-  background-size: 100% 100%, 100% 100%, 100% 31px;
+    ); */
+  /* background-size: 100% 100%, 100% 100%, 100% 31px; */
   line-height: 31px;
   font-family: Arial, Helvetica, Sans-serif;
-  padding-left: 8%;
-  padding-right: 8%;
+  padding-left: 3%;
+  padding-right: 3%;
   height: 41%;
-  border: 3px solid #e50dff;
-  border-radius: 60px;
+  border: 3px solid #2d7ec3;
+  /* border-radius: 60px; */
 }
 
 .description:focus {
@@ -145,16 +147,18 @@ select:focus button:focus {
 .contextKinds label {
   margin-top: 7%;
   margin-left: 22%;
+  font-size: 18px;
 }
 
 .osBox :hover {
-  background-color: #b6c3ca;
+  background-color: #42697e;
 }
 
 .os {
   width: 32%;
-  height: 11vh;
-  padding-left: 5%;
+  height: 13vh;
+  padding-top: 2%;
+  padding-left: 4%;
   margin-top: 16%;
   /* margin-top: 15%;
   margin-left: 7%; */
@@ -167,21 +171,22 @@ select:focus button:focus {
 }
 
 .os h3 {
-  color: black;
+  color: #9bd6f7;
 }
 
 .application {
   width: 24%;
-  height: 11vh;
+  height: 13vh;
   padding-left: 5%;
   margin-left: 37%;
-  margin-top: -15%;
+  margin-top: -17%;
+  padding-top: 2%;
   /* margin-left: 45%;
   margin-top: -18%; */
 }
 
 .appBox :hover {
-  background-color: #b6c3ca;
+  background-color: #42697e;
 }
 
 .application img {
@@ -191,40 +196,50 @@ select:focus button:focus {
 }
 
 .application h3 {
-  color: black;
+  color: #9bd6f7;
 }
 
 .prlang {
   width: 27%;
-  height: 14vh;
-  padding-left: 5%;
+  height: 16vh;
+  padding-top: 1%;
+  padding-left: 1%;
   margin-left: 68%;
-  margin-top: -17%;
+  margin-top: -19%;
+
   /* margin-left: 78%;
   margin-top: -18%; */
 }
 
 .prLangBox :hover {
-  background-color: #b6c3ca;
+  background-color: #42697e;
 }
 
 .prlang img {
   width: 43%;
-  margin-left: 15%;
+  margin-left: 26%;
   /* margin-left: 13%; */
 }
 
 .prlang h3 {
-  color: black;
+  color: #9bd6f7;
+  text-align: center;
 }
 
 /*OS*/
 
 .osKinds {
   margin-top: 6%;
-  margin-left: 0%;
+  margin-left: 8%;
 }
 
+.osKinds select {
+  margin-left: 7%;
+  width: 50%;
+  height: 4vh;
+}
+
+/* 
 .windows {
   margin-left: 15%;
   margin-top: -6%;
@@ -264,11 +279,11 @@ select:focus button:focus {
 
 .mac label {
   margin-left: 2%;
-}
+} */
 
 .backButtonOs {
-  margin-left: -120%;
-  margin-top: 12%;
+  margin-left: -122%;
+  margin-top: 17%;
 }
 
 .nextButtonOs {
@@ -277,12 +292,12 @@ select:focus button:focus {
 }
 
 .descriptionOs {
-  margin-top: 8%;
+  margin-top: 19%;
+  margin-left: 8%;
 }
 
 .descriptionOs h3 {
-  margin-top: 8%;
-  margin-left: 8%;
+  margin-top: -5%;
 }
 /*app*/
 
@@ -291,8 +306,8 @@ select:focus button:focus {
 }
 
 .backButtonApp {
-  margin-left: -120%;
-  margin-top: 4%;
+  margin-left: -122%;
+  margin-top: 12%;
 }
 
 .descriptionApp textarea {
@@ -301,23 +316,24 @@ select:focus button:focus {
 }
 
 .descriptionApp {
-  margin-top: 4%;
+  margin-top: 10%;
+  margin-left: 4%;
 }
 
 .descriptionApp h3 {
-  margin-left: 10%;
+  margin-left: 2%;
 }
 
 .linkFieldApp input {
   width: 74%;
   height: 4%;
-  border-color: #9a79ea;
+  border-color: #91bfeb;
   border-top: 0px;
   border-right: 0px;
   border-left: 0px;
   outline: none;
   text-indent: 2%;
-  border-bottom: 2px solid #9a79ea;
+  border-bottom: 2px solid #9db4f52e;
   margin-left: 7%;
   padding-bottom: 3%;
   padding-top: 3%;
@@ -327,6 +343,61 @@ select:focus button:focus {
 }
 
 .linkFieldApp label {
-  margin-top: 10%;
-  margin-left: 16%;
+  margin-top: 8%;
+  margin-left: 10%;
+  font-size: 18px;
+}
+
+/*pl*/
+.plLink input {
+  width: 74%;
+  height: 4%;
+  border-color: #91bfeb;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  outline: none;
+  text-indent: 2%;
+  border-bottom: 2px solid #9db4f52e;
+  margin-left: 7%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  background: transparent;
+  margin-top: 3%;
+  margin-left: 10%;
+}
+
+.plLink label {
+  margin-top: 4%;
+  margin-left: 8%;
+}
+.plKinds {
+  margin-top: 6%;
+  margin-left: 8%;
+}
+
+.plKinds select {
+  margin-left: 1%;
+  width: 50%;
+  height: 4vh;
+  overflow: auto;
+}
+
+.plKinds label {
+  margin-left: -2%;
+}
+
+.backButtonPl {
+  margin-left: -124%;
+  margin-top: 6%;
+}
+
+.nextButtonPl {
+  margin-left: 92%;
+  margin-top: 6%;
+}
+
+.descriptionPl {
+  margin-top: 4%;
+  margin-left: 8%;
 }
