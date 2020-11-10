@@ -14,7 +14,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<ChatroomCreationLast refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<ChatroomCreationPl refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){

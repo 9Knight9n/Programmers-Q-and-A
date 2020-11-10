@@ -14,7 +14,7 @@ class ChatroomCreation extends Component {
                             <input placeholder="Application link" /> 
                         </div>
                         <div class="description descriptionApp">
-                            <h3>description :</h3>
+                            <h3>Description :</h3>
                             <textarea class="textarea" maxlength="175" rows="4" cols="50">
                             </textarea>
                         </div>

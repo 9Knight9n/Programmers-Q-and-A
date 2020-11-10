@@ -11,7 +11,7 @@ class ChatroomCreationOs extends Component {
             <div class="main-box">
                 <div class="elements">
                     <div class="osKinds">
-                        <label for="osKinds">Choose os:</label>
+                        <label for="osKinds">Choose OS:</label>
                         <select>
                             <option value="windows">Windows</option>
                             <option value="linux">Linux</option>
@@ -19,7 +19,7 @@ class ChatroomCreationOs extends Component {
                         </select>
                     </div>
                     <div class="description descriptionOs">
-                        <h3>description :</h3>
+                        <h3>Description :</h3>
                         <textarea class="textarea" maxlength="175" rows="4" cols="50">
                         </textarea>
                     </div>

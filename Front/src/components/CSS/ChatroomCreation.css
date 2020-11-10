@@ -283,7 +283,7 @@ select:focus button:focus {
 
 .backButtonOs {
   margin-left: -122%;
-  margin-top: 17%;
+  margin-top: 15%;
 }
 
 .nextButtonOs {
@@ -307,7 +307,7 @@ select:focus button:focus {
 
 .backButtonApp {
   margin-left: -122%;
-  margin-top: 12%;
+  margin-top: 8%;
 }
 
 .descriptionApp textarea {
@@ -377,6 +377,7 @@ select:focus button:focus {
 }
 
 .plKinds select {
+  font-size: 14px;
   margin-left: 1%;
   width: 50%;
   height: 4vh;
@@ -389,7 +390,7 @@ select:focus button:focus {
 
 .backButtonPl {
   margin-left: -124%;
-  margin-top: 6%;
+  margin-top: 4%;
 }
 
 .nextButtonPl {
