@@ -11,10 +11,10 @@ def signup(request):
     if serializer.is_valid():
         serializer.save()
         return Response({'message': 'New user created'}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 def signin(request):
     serializer = UserProfileSerializer(request.user)
     print(serializer.data)
