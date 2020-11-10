@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
-import './index.css';
-
+import Setting from './components/setting';
+// import './index.css';
 
 
 class App extends Component {
   state={
-    currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<Setting refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){
