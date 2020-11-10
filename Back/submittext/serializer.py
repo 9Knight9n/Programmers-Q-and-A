@@ -7,6 +7,12 @@ class ChatTextSerializer(serializers.ModelSerializer):
         model = ChatText
         fields = ['id' , 'user', 'parent_text', 'text' , 'time']
 
-    def ShowText(self):
-        data = ChatText.objects.all()
-        return data
+class AddChatSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        chat = ChatText(user=validated_data['user'] , parent_text=validated_data['parent_text'] , text=validated_data['text'])
+        chat.save()
+        return chat
+
+    class Meta:
+        model = ChatText
+        fields = ('user', 'parent_text', 'text')
