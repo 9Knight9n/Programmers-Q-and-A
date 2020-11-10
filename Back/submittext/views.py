@@ -6,13 +6,12 @@ from .serializer import ChatTextSerializer
 from .models import ChatText
 
 @api_view(['GET' , ])
-@permission_classes([])
 def send_all_text(request):
     #start commit on correct way
     if request.method == 'GET':
         chattext = ChatText.objects.all()
         #serializer = ChatTextSerializer(chattext)
-        return Response(chattext)
+        return Response({'leho':'asdf'})
 
 def get_text(request):
     pass

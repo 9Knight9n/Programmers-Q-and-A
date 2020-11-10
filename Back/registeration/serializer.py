@@ -18,4 +18,4 @@ class AccountRegistrationSerializer(ModelSerializer):
 class UserProfileSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'date_joined')
+        fields = ('id', 'email')
