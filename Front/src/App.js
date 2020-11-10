@@ -11,7 +11,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<div className="w-100"> <Activity refToSelectComponent={this.selectComponent.bind(this)}/></div>
+    currentComponent:<div className="w-100"> <Resume refToSelectComponent={this.selectComponent.bind(this)}/></div>
   }
 
   selectComponent(index){

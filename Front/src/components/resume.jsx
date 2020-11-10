@@ -7,26 +7,12 @@ class Resume extends Component {
     render() { 
         return ( 
             <React.Fragment>
-        
-               <div class="activity">
-                     
-                    <div class="content-form">
+                 <div class="choosefile">
+                    <input type="file" id="real-file"/>
+                    <button type="button" id="custum-button">Choose file</button>
+                    <spn id="custum-text">No file chosen,yet</spn>
+                    </div>
                     
-                        <div class="INPUT-FORM"> 
-                        
-                            <input type="text" class="input" placeholder="ask questions"/><br></br>
-                            <input type="text" class="input" placeholder="answer questions"/><br></br>
-                            <input type="text" class="input" placeholder="activity time"/><br></br>
-                            <input type="text" class="input" placeholder="user rate"/><br></br>
-                            <div class="btn">Save all details</div>
-            
-                            </div>
-                            
-                            
-                            
-                            </div>
-                    </div> 
-                
                 
             </React.Fragment>
             
