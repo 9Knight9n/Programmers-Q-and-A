@@ -10,12 +10,8 @@ class ChatroomCreationOs extends Component {
         return ( 
             <div class="main-box">
                 <div class="elements">
-                    <div className="plLink">
-                        <label for="plLink">Put a link for more information about programming language:</label>
-                        <input placeholder="Programming language link" /> 
-                    </div>
-                    <div class="plKinds">
-                        <label for="plKinds">Choose a programming language:</label>
+                <div class="plKinds">
+                        <label for="plKinds"><h1>Choose a programming language:</h1></label>
                         <select>
                             <option value="windows">Java</option>
                             <option value="linux">Python</option>
@@ -29,8 +25,13 @@ class ChatroomCreationOs extends Component {
                             <option value="mac">Csharp</option>
                         </select>
                     </div>
+                    <div className="plLink">
+                        <label for="plLink"><h1>Put a link for more information about programming language:</h1></label>
+                        <input placeholder="Programming language link" /> 
+                    </div>
+
                     <div class="description descriptionPl">
-                        <h3>description :</h3>
+                        <h1>Description :</h1>
                         <textarea class="textarea" maxlength="175" rows="4" cols="50">
                         </textarea>
                     </div>

@@ -3,15 +3,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import './CSS/ChatroomCreation.css';
 import osImg from '../img/operating-system.png';
 import appImg from '../img/mobile-app.png';
 import prLangImg from '../img/coding-language.png';
+import chatroomCreationOs from './ChatroomCreationOs';
 
 class ChatroomCreationOs extends Component {
-    state = {  }
+    state = { 
+       
+     }
     render() { 
         return ( 
             <Router>
@@ -49,7 +53,7 @@ class ChatroomCreationOs extends Component {
                     </div>
                     <Switch>
                         <Route path="/chatroomCreationOs">
-                            <ChatroomCreationOs />
+                            <chatroomCreationOs />
                         </Route>
                         <Route path="/chatroomCreationApp">
                             <chatroomCreationApp />
