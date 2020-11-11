@@ -1,0 +1,22 @@
+.avatar-size{
+    height: 20vh;
+    width: 20vh;
+}
+.nav-tabs{
+    border-bottom: none;
+}
+.myAccount-content{
+    border-radius: 5px;
+    height: 70vh;
+    width: 100%;
+    background-color: #7b94f075;
+}
+.nav-item .active{
+    background-color: #7b94f075 !important;
+    color: white !important;
+    border-bottom: none !important;
+}
+.nav-item{
+    border-bottom: none !important;
+    margin-bottom: 0px !important;
+}

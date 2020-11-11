@@ -67,7 +67,7 @@ class Setting extends Component {
             </div>
             
             <div className=" setting-right">
-              <div className="m-5">
+              <div className="mr-5 ml-5 mt-2 mb-2">
               {this.state.options[this.state.activeTab-1].content}
 
               </div>

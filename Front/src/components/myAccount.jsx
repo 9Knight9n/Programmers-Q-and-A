@@ -8,21 +8,23 @@ class MyAccount extends Component {
             <React.Fragment>
                 <nav className="">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
+                        <div className="avatar-size">
+                            Hello
+                        </div>
+                        <li class="nav-item d-flex align-items-end">
                             <a class="nav-link active" href="#">Active</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-flex align-items-end">
                             <a class="nav-link" href="#">Link</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-flex align-items-end">
                             <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
                         </li>
                     </ul>
-
                 </nav>
+                <div className="myAccount-content">
+                    hello
+                </div>
             </React.Fragment>
         );
     }
