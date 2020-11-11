@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import SelectAvatar from './selectAvatar';
+import ProfileOne from './profileOne';
+import ProfileTwo from './profileTwo';
+import ProfileThree from './profileThree';
 import './CSS/myAccount.css';
 
 class MyAccount extends Component {
@@ -7,6 +10,24 @@ class MyAccount extends Component {
         super(props)
         const src = require('../img/default-profile-picture.jpg');
         this.state = {
+            tabs:[
+                {
+                    id:1,
+                    label:"Personal Info",
+                    content:<ProfileOne/>
+                },
+                {
+                    id:2,
+                    label:"Activity",
+                    content:<ProfileTwo/>
+                },
+                {
+                    id:3,
+                    label:"Interests",
+                    content:<ProfileThree/>
+                }
+            ],
+            selectedTab:1,
           src,
           preview:null,
           avatarChanged:false,
@@ -37,6 +58,9 @@ class MyAccount extends Component {
         console.log("changed src:",this.state.src)
       }
 
+      tabSelected=(id)=>{
+          this.setState({selectedTab:id})
+      }
 
     render() { 
         return ( 
@@ -49,19 +73,17 @@ class MyAccount extends Component {
                                 onClose={this.onClose}
                                 onSave={this.onSave} side="20" />
                         </div>
-                        <li class="nav-item d-flex align-items-end">
-                            <a class="nav-link active" href="#">Active</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-end">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-end">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
+                        {this.state.tabs.map(tab =>
+                            <li class="nav-item d-flex align-items-end">
+                                <a key={tab.id}
+                                onClick={()=>this.tabSelected(tab.id)}
+                                class={"nav-link".concat(this.state.selectedTab===tab.id?" active":"")} href="#">{tab.label}</a>
+                            </li>
+                        )}
                     </ul>
                 </nav>
                 <div className="myAccount-content">
-                    hello
+                    {this.state.tabs[this.state.selectedTab-1].content}
                 </div>
             </React.Fragment>
         );

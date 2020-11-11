@@ -10,12 +10,7 @@ class profileThree extends Component {
                  <div class="choosefile">
                     <input type="file" id="real-file"/>
                 
-                    </div>
-                    
-                  
-
-                    
-                
+                    </div>     
             </React.Fragment>
             
          );

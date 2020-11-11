@@ -8,8 +8,7 @@ class ProfileOne extends Component {
         return ( 
             <React.Fragment>
         
-               <div class="profile">
-                     <h2>parisa zafari</h2>  
+
                     <div class="content-form">
                     
                         <div class="INPUT-FORM"> 
@@ -20,12 +19,11 @@ class ProfileOne extends Component {
                             <input type="text" class="input" placeholder="Email"/><br></br>
                             <div class="btn">Save all details</div>
             
-                            </div>
+                        </div>
                             
                             
                             
-                            </div>
-                    </div> 
+                    </div>
                 
                 
             </React.Fragment>
