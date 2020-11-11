@@ -9,12 +9,6 @@ outline: none;
 font-family: 'Roboto',sans-serif;
 }
 
-body{
-    background: url('../../img/bgg.jpg') no-repeat top center;
-    background-size: cover;
-    height: 100vh;
-}
-
 .profile{
     position: absolute;
     top: 80%;
@@ -26,7 +20,7 @@ body{
     max-width: 105%;
     height: 100%;
     margin: 100 auto;
-    background: rgba(70, 10, 46, 0.8);
+    
     padding: 1%;
     padding-top: 30%;
     padding-bottom: 55%;

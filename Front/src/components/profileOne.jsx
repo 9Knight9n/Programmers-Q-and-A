@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import './CSS/activity.css';
+import './CSS/profileOne.css';
 
 
-class Activity extends Component {
+class ProfileOne extends Component {
     state = {  }
     render() { 
         return ( 
             <React.Fragment>
         
-               <div class="activity">
-                     
+               <div class="profile">
+                     <h2>parisa zafari</h2>  
                     <div class="content-form">
                     
                         <div class="INPUT-FORM"> 
                         
-                            <input type="text" class="input" placeholder="ask questions"/><br></br>
-                            <input type="text" class="input" placeholder="answer questions"/><br></br>
-                            <input type="text" class="input" placeholder="activity time"/><br></br>
-                            <input type="text" class="input" placeholder="user rate"/><br></br>
+                            <input type="text" class="input" placeholder="First name"/><br></br>
+                            <input type="text" class="input" placeholder="Last name"/><br></br>
+                            <input type="text" class="input" placeholder="User name"/><br></br>
+                            <input type="text" class="input" placeholder="Email"/><br></br>
                             <div class="btn">Save all details</div>
             
                             </div>
@@ -34,4 +34,4 @@ class Activity extends Component {
     }
 }
  
-export default Activity;
+export default ProfileOne;
