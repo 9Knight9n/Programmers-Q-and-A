@@ -1,6 +1,7 @@
 from django.urls import path
-from submittext import views
+from . import views
 
 urlpatterns = [
-    path("submit", views.submit_text, name="submit"),
+    path("showchats", views.send_all_text, name="showchats"),
+    path("submitchat", views.get_text, name="submitchat"),
 ]
