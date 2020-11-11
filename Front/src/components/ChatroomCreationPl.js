@@ -13,6 +13,7 @@ class ChatroomCreationOs extends Component {
                 <div class="plKinds">
                         <label for="plKinds"><h1>Choose a programming language:</h1></label>
                         <select>
+                            <option value=" ">Select a programming language </option>
                             <option value="windows">Java</option>
                             <option value="linux">Python</option>
                             <option value="mac">Php</option>

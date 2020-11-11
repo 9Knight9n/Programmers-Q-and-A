@@ -22,10 +22,10 @@ class ChatroomCreationOs extends Component {
                         name: "Windows",
                         subOs: [
                             {name: "Select a distro", link: ""},
-                            {name: "Windows-XP", link: "https://www.microsoft.com/en-us/software-download/windows10"},
-                            {name: "Windows-7", link:"#"},
-                            {name: "Windows-8", link:"#"},
-                            {name: "Windows-10", link:"#"},
+                            {name: "Windows-XP", link: "https://github.com/ShizukuIchi/winXP"},
+                            {name: "Windows-7", link:"https://github.com/B00merang-Project/Windows-7"},
+                            {name: "Windows-8", link:"https://github.com/owncloudarchive/windows8"},
+                            {name: "Windows-10", link:"https://github.com/Disassembler0/Win10-Initial-Setup-Script"},
                         ]
                     },
                     {
@@ -33,10 +33,10 @@ class ChatroomCreationOs extends Component {
                         name: "Mac",
                         subOs: [
                             {name: "Select a distro", link: ""},
-                            {name: "MacOS-Catalina", link: "#"},
-                            {name: "MacOS-Mojave" , link: "#"},
-                            {name: "MacOS-High-Sierra", link: "#"},
-                            {name: "MacOS-Sierra", link: "#"},
+                            {name: "MacOS-Catalina", link: "https://www.apple.com/macos/big-sur/"},
+                            {name: "MacOS-Mojave" , link: "https://www.apple.com/newsroom/2018/06/apple-introduces-macos-mojave/"},
+                            {name: "MacOS-High-Sierra", link: "https://support.apple.com/en-us/HT208969"},
+                            {name: "MacOS-Sierra", link: "https://support.apple.com/en-us/HT208202"},
                         ]
                     },
                     {
@@ -44,18 +44,18 @@ class ChatroomCreationOs extends Component {
                         name: "Linux",
                         subOs: [
                             {name: "Select a distro", link: ""},
-                            {name: "Ubuntu", link:"#"},
-                            {name: "Debian", link:"#"},
-                            {name: "ElementaryOS", link:"#"},
-                            {name: "Mint", link:"#"},
-                            {name: "MX-linux", link:"#"},
-                            {name: "Arch-Linux", link:"#"},
-                            {name: "Manjaro", link:"#"},
-                            {name: "Kali", link:"#"},
-                            {name: "Red", link:"#"},
-                            {name: "Hat", link:"#"},
-                            {name: "CentOS", link:"#"},
-                            {name: "Fedora", link:"#"},
+                            {name: "Ubuntu", link:"https://github.com/ubports/ubuntu-touch"},
+                            {name: "Debian", link:"https://github.com/mate-desktop/debian-packages"},
+                            {name: "ElementaryOS", link:"https://github.com/elementary/os"},
+                            {name: "Mint", link:"https://github.com/yonaskolb/Mint"},
+                            {name: "MX-linux", link:"https://github.com/MX-Linux/mx-snapshot"},
+                            {name: "Arch-Linux", link:"https://github.com/helmuthdu/aui"},
+                            {name: "Manjaro", link:"https://github.com/manjaro/packages-core"},
+                            {name: "Kali", link:"https://github.com/LionSec/katoolin"},
+                            {name: "Red", link:"https://github.com/ras0219/ReDOS"},
+                            {name: "Hat", link:"https://github.com/qiuqiangkong/Hat"},
+                            {name: "CentOS", link:"https://github.com/CentOS/Community-Kickstarts"},
+                            {name: "Fedora", link:"https://github.com/coreos/fedora-coreos-tracker"},
                         ]
                     },
                     {
@@ -63,18 +63,12 @@ class ChatroomCreationOs extends Component {
                         name: "BSD",
                         subOs: [
                             {name: "Select a distro", link: ""},
-                            {name: "FreeBSD", link: "href"},
-                            {name: "OpenBSD", link: "href"},
-                            {name: "NetBSD", link: "href"},
-                            {name: "DragonFlyBSD", link: "href"},
-                            {name: "PC", link: "href"},
-                            {name: "BSD", link: "href"},
-                            {name: "Manjaro", link: "href"},
-                            {name: "Kali", link: "href"},
-                            {name: "Red", link: "href"},
-                            {name: "Hat", link: "href"},
-                            {name: "CentOS", link: "href"},
-                            {name: "Fedora", link: "href"},
+                            {name: "FreeBSD", link: "https://github.com/freebsd/freebsd"},
+                            {name: "OpenBSD", link: "https://github.com/job/openbsd-src"},
+                            {name: "NetBSD", link: "https://github.com/NetBSD/src"},
+                            {name: "DragonFlyBSD", link: "https://github.com/DragonFlyBSD/DragonFlyBSD"},
+                            {name: "PC", link: "https://github.com/trueos/pcbsd"},
+                            {name: "BSD", link: "https://github.com/weiss/original-bsd"},
                         ]
                     },
             ]        
@@ -107,13 +101,13 @@ class ChatroomCreationOs extends Component {
             <div class="main-box">
                 <div class="elements">
                     <div class="osKinds">
-                        <div className="Os">
+                        <div className="mainOs">
                             <select name="selectedOs" value={this.state.selectedOs} onChange={this.handleChange}>
                                 {this.state.OS.map(os => 
                                    <option key={os.id} value={os.name}>{os.name}</option> 
                                 )}
                             </select>
-                        </div>  
+                        </div> 
                         {this.state.selectedOs ? 
                             <div className="subOs">
                                 <select name="selectedSubOs" value={this.state.selectedSubOs} onChange={this.handleChange}>
@@ -122,15 +116,17 @@ class ChatroomCreationOs extends Component {
                                     )}
                                 </select>
                             </div> : ''
-                        }
+                        } 
                     </div>
                     {this.state.selectedSubOs ? <div className="osLink">
                         {"You can check "}    
-                        <a href={this.state.OS.find(os => os.name === this.state.selectedOs).subOs.find(subOs => subOs.name === this.state.selectedSubOs ).link}>
-                            This link
-                        </a>
+                            <a href={this.state.OS.find(os => os.name === this.state.selectedOs).subOs.find(subOs => subOs.name === this.state.selectedSubOs ).link}  target="_blank">
+                                {"This link"}
+                            </a>
                         {" for more information about selected OS"}
-                    </div> : ''}
+
+                        </div> : ''}
+                    
                     <div class="description descriptionOs">
                         <h3>Description :</h3>
                         <textarea class="textarea" maxlength="175" rows="4" cols="50">
