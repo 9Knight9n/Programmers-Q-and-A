@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
-import ChatroomCreationLast from './components/ChatroomCreationLast';
-import ChatroomCreationApp from './components/ChatroomCreationApp';
-import ChatroomCreationOs from './components/ChatroomCreationOs';
-import ChatroomCreationFirst from './components/ChatroomCreationFirst';
-import ChatroomCreationPl from './components/ChatroomCreationPl';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import chatroomCreationLast from './components/ChatroomCreationLast';
+import chatroomCreationApp from './components/ChatroomCreationApp';
+import chatroomCreationOs from './components/ChatroomCreationOs';
+import chatroomCreationFirst from './components/ChatroomCreationFirst';
+import chatroomCreationPl from './components/ChatroomCreationPl';
 import './index.css';
 
 
@@ -14,7 +15,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<ChatroomCreationPl refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<chatroomCreationFirst refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){
@@ -28,9 +29,20 @@ class App extends Component {
 
   render(){
     return (
-      <React.Fragment>
-        {this.state.currentComponent}
-      </React.Fragment>
+      <Router>
+        <div>
+        
+          <Switch>
+            <Route exact path="/"  component={chatroomCreationFirst} />
+
+            <Route exact path="/chatroomCreationOs" component={chatroomCreationOs} />
+
+            <Route exact path="/chatroomCreationApp" component={chatroomCreationApp} />
+
+            <Route exact path="/chatroomCreationPl" component={chatroomCreationPl} />
+          </Switch>
+        </div>
+      </Router>
     ); 
   }
 }

@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  Redirect
 } from "react-router-dom";
 import './CSS/ChatroomCreation.css';
 import osImg from '../img/operating-system.png';
 import appImg from '../img/mobile-app.png';
 import prLangImg from '../img/coding-language.png';
-import chatroomCreationOs from './ChatroomCreationOs';
+
 
 class ChatroomCreationOs extends Component {
     state = { 
@@ -42,23 +39,15 @@ class ChatroomCreationOs extends Component {
                                 </div>
                                 <div className="prLangBox">
                                     <div className="prlang">
-                                        <a href="#">
+                                        <Link to="/chatroomCreationPl">
                                             <img src={prLangImg} />
                                             <h3>Programming Languages</h3>
-                                        </a>  
+                                        </Link>  
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Switch>
-                        <Route path="/chatroomCreationOs">
-                            <chatroomCreationOs />
-                        </Route>
-                        <Route path="/chatroomCreationApp">
-                            <chatroomCreationApp />
-                        </Route>
-                    </Switch>
                 </div>
             </Router>
          );
