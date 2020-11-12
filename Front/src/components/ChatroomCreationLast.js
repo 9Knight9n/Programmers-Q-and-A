@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import ChatroomCreationAvatar from '../img/uploadAvatar.png';
+import {Link} from 'react-router-dom';
 
 class ChatroomCreation extends Component {
     state = {  }
@@ -15,15 +16,12 @@ class ChatroomCreation extends Component {
                     <div className="nameField">
                         <input placeholder="Enter chatroom name" />
                     </div>
-                    {/* <div className="chatroomContext">
-                        <label for="context">Choose a context:</label>
-                        <select className="context">
-                            <option value="operatingSystem">Operating system</option>
-                            <option value="programmingLang">Programming language</option>
-                            <option value="application">Application</option>
-                        </select>
-                    </div> */}
-                    <button className="createButtonLast" type="button">Create</button>
+                    <Link to="/chatroomCreationFirst">
+                        <button className="backButtonLast" type="button">Back</button>
+                    </Link>
+                    <Link to="/">
+                        <button className="createButtonLast" type="button">Create</button>
+                    </Link>
                 </div>
             </div>
          );

@@ -46,6 +46,9 @@ class ChatroomCreationOs extends Component {
                                 </div>
                             </div>
                         </div>
+                        <Link to="/">
+                            <button class="backButtonFirst" type="button">Back</button>
+                        </Link>
                     </div>
                 </div>
          );

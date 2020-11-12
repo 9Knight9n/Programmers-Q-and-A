@@ -84,6 +84,13 @@ class ChatroomCreationOs extends Component {
         this.setState({
           [name]: value,
         });
+
+        if (name === "selectedOs") {
+            this.setState({
+                selectedSubOs: '',
+            });
+        }
+
         if (value === "Select an OS") {
             this.setState({
                 selectedOs: null,
@@ -130,17 +137,15 @@ class ChatroomCreationOs extends Component {
                     
                     <div class="description descriptionOs">
                         <h3>Description :</h3>
-                        <textarea class="textarea" maxlength="175" rows="4" cols="50">
+                        <textarea class="textarea" maxlength="175" rows="4" cols="53">
                         </textarea>
                     </div>
-                    <div className="buttonsOS">
-                        <Link to="/">
+                        <Link to="/chatroomCreationFirst">
                             <button class="backButtonOs" type="button">Back</button>
                         </Link>
                         <Link to="/chatroomCreationLast">
                             <button class="nextButtonOs" type="button">Next</button>
                         </Link>
-                    </div>
                 </div>
             </div>
          );

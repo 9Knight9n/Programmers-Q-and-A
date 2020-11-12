@@ -34,14 +34,14 @@ class ChatroomCreationOs extends Component {
 
                     <div class="description descriptionPl">
                         <h1>Description :</h1>
-                        <textarea class="textarea" maxlength="175" rows="4" cols="50">
+                        <textarea class="textarea" maxlength="175" rows="4" cols="53">
                         </textarea>
                     </div>
-                    <Link to="/">
+                    <Link to="/chatroomCreationFirst">
                     <button class="backButtonPl" type="button">Back</button>
                     </Link>
                     <Link to="/chatroomCreationLast">
-                    <button class="nextButtonPl" type="button">Next1</button>
+                    <button class="nextButtonPl" type="button">Next</button>
                     </Link>
 
                 </div>

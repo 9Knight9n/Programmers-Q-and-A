@@ -16,15 +16,15 @@ class ChatroomCreationApp extends Component {
                         </div>
                         <div class="description descriptionApp">
                             <h3>Description :</h3>
-                            <textarea class="textarea" maxlength="175" rows="4" cols="50">
+                            <textarea class="textarea" maxlength="175" rows="4" cols="53">
                             </textarea>
                         </div>
                     </div>
-                    <Link to="/chatroomCreationLast">
-                    <button class="nextButtonApp" type="button">Next</button>
+                    <Link to="/chatroomCreationFirst">
+                        <button class="backButtonApp" type="button">Back</button>
                     </Link>
-                    <Link to="/">
-                    <button class="backButtonApp" type="button">Back</button>
+                    <Link to="/chatroomCreationLast">
+                        <button class="nextButtonApp" type="button">Next</button>
                     </Link>
                 </div>
             </div>
