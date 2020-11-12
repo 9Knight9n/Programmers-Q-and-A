@@ -1,0 +1,450 @@
+body {
+  margin: 0%;
+  background-color: white;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+select {
+  color: #844444;
+  background: #b5b5d3;
+}
+
+button {
+  color: white;
+  background-color: #141d48;
+  border: 0px;
+  border-radius: 10px;
+  height: 9%;
+  width: 20%;
+}
+
+input:focus,
+textarea:focus,
+select:focus button:focus {
+  outline: none;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #5f5e61;
+  opacity: 1; /* Firefox */
+  font-size: 14px;
+}
+
+.elements {
+  margin: auto;
+  width: 72%;
+}
+
+.main-box {
+  margin: auto;
+  margin-top: 12%;
+  width: 50%;
+  height: 58vh;
+  background: #333b60;
+  overflow: auto;
+  border: 6px solid rgba(9, 156, 167, 0.432);
+  /* border-radius: 60px; */
+}
+
+.chatroomAvatar {
+  margin-left: 12%;
+  margin-top: -14%;
+}
+
+.chatroomAvatar h3 {
+  color: #9bd6f7;
+  margin-left: 29.5%;
+  margin-top: -1.5%;
+  font-size: 15px;
+}
+
+.chatroomAvatar img {
+  width: 18%;
+  border-radius: 50%;
+  border: 2px solid rgba(9, 156, 167, 0.432);
+  margin-top: 23%;
+  margin-left: 32%;
+  background: #9ba5a7;
+}
+
+.inputs {
+  margin-top: -4%;
+}
+
+.nameField input {
+  width: 74%;
+  height: 4%;
+  border-color: #9a79ea;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  outline: none;
+  text-indent: 2%;
+  border-bottom: 2px solid #9a79ea;
+  margin-left: 7%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  background: transparent;
+  margin-top: 11%;
+  margin-left: 11%;
+}
+
+.chatroomContext {
+  margin-top: -3%;
+}
+
+.chatroomContext label {
+  margin-left: 7%;
+}
+
+.chatroomContext select {
+  margin-left: 1.5%;
+  margin-top: 11%;
+}
+
+.createButtonLast {
+  margin-left: 90%;
+  margin-top: 25%;
+}
+
+.description textarea {
+  background-color: #bab9f7;
+  margin-top: 0%;
+  /* background-attachment: local;
+  background-image: linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(
+      white,
+      white 30px,
+      #ccc 30px,
+      #ccc 31px,
+      white 31px
+    ); */
+  /* background-size: 100% 100%, 100% 100%, 100% 31px; */
+  line-height: 31px;
+  font-family: Arial, Helvetica, Sans-serif;
+  padding-left: 3%;
+  padding-right: 3%;
+  height: 41%;
+  border: 3px solid #2d7ec3;
+  /* border-radius: 60px; */
+}
+
+.description:focus {
+  outline: none;
+}
+/*Last*/
+.contextKinds label {
+  margin-top: 7%;
+  margin-left: 22%;
+  font-size: 18px;
+}
+
+.osBox :hover {
+  background-color: #42697e;
+}
+
+.os {
+  width: 32%;
+  height: 13vh;
+  padding-top: 2%;
+  padding-left: 4%;
+  margin-top: 16%;
+  /* margin-top: 15%;
+  margin-left: 7%; */
+}
+
+.os img {
+  width: 36%;
+  margin-left: 27%;
+  /* margin-left: 7%; */
+}
+
+.os h3 {
+  color: #9bd6f7;
+}
+
+.application {
+  width: 24%;
+  height: 13vh;
+  padding-left: 5%;
+  margin-left: 37%;
+  margin-top: -17%;
+  padding-top: 2%;
+  /* margin-left: 45%;
+  margin-top: -18%; */
+}
+
+.appBox :hover {
+  background-color: #42697e;
+}
+
+.application img {
+  width: 50%;
+  margin-left: 13%;
+  /* margin-left: 2%; */
+}
+
+.application h3 {
+  color: #9bd6f7;
+}
+
+.prlang {
+  width: 27%;
+  height: 16vh;
+  padding-top: 1%;
+  padding-left: 1%;
+  margin-left: 68%;
+  margin-top: -19%;
+
+  /* margin-left: 78%;
+  margin-top: -18%; */
+}
+
+.prLangBox :hover {
+  background-color: #42697e;
+}
+
+.prlang img {
+  width: 43%;
+  margin-left: 26%;
+  /* margin-left: 13%; */
+}
+
+.prlang h3 {
+  color: #9bd6f7;
+  text-align: center;
+}
+
+/*OS*/
+
+.osKinds {
+  margin-top: 6%;
+  margin-left: 8%;
+}
+
+.osKinds select {
+  margin-left: 1%;
+  width: 80%;
+  height: 4vh;
+}
+
+.mainOs {
+  width: 50%;
+}
+
+.subOs {
+  width: 50%;
+  margin-left: 50%;
+  margin-top: -6%;
+}
+
+.osLink {
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 3%;
+}
+
+.osLink input {
+  width: 83%;
+  /* height: 16%; */
+  /* border-color: #91bfeb; */
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 0px;
+  outline: none;
+  text-indent: 2%;
+  margin-left: 7%;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  background: #bab9f7;
+  margin-top: 3%;
+  margin-left: 8%;
+}
+
+.osLink label {
+  margin-top: 4%;
+  margin-left: 8%;
+  font-size: 16px;
+}
+
+/* 
+.windows {
+  margin-left: 15%;
+  margin-top: -6%;
+}
+
+.windows img {
+  width: 6%;
+  margin-left: 1%;
+}
+
+.windows label {
+  margin-left: 2%;
+}
+
+.linux {
+  margin-left: 48%;
+  margin-top: -7%;
+}
+
+.linux label {
+  margin-left: 2%;
+}
+
+.linux img {
+  width: 12%;
+  margin-left: 1%;
+}
+
+.mac {
+  margin-left: 79%;
+  margin-top: -7%;
+}
+
+.mac img {
+  width: 29%;
+}
+
+.mac label {
+  margin-left: 2%;
+} */
+
+.buttonsOS {
+  margin-top: 16%;
+}
+
+.backButtonOs {
+}
+
+.nextButtonOs {
+}
+
+.descriptionOs {
+  margin-top: 18%;
+  margin-left: 8%;
+}
+
+.descriptionOs h3 {
+  margin-top: -5%;
+}
+/*app*/
+
+.createButtonApp {
+  margin-left: 90%;
+}
+
+.backButtonApp {
+  margin-left: -122%;
+  margin-top: 7%;
+}
+
+.descriptionApp textarea {
+  margin-top: 0%;
+  margin-left: 2%;
+}
+
+.descriptionApp {
+  margin-top: 10%;
+  margin-left: 3%;
+}
+
+.linkFieldApp {
+}
+
+.descriptionApp h3 {
+  margin-left: 2%;
+}
+
+.linkFieldApp input {
+  width: 83%;
+  height: 4%;
+  border-color: #91bfeb;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 0px;
+  outline: none;
+  text-indent: 2%;
+  margin-left: 7%;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  background: #bab9f7;
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.linkFieldApp label {
+  margin-top: 8%;
+  margin-left: 5%;
+  font-size: 18px;
+}
+
+/*pl*/
+.plLink input {
+  width: 83%;
+  /* height: 16%; */
+  /* border-color: #91bfeb; */
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 0px;
+  outline: none;
+  text-indent: 2%;
+  margin-left: 7%;
+  padding-bottom: 1%;
+  padding-top: 1%;
+  background: #bab9f7;
+  margin-top: 2%;
+  margin-left: 8%;
+}
+
+.plLink label {
+  margin-top: 4%;
+  margin-left: 8%;
+  font-size: 16px;
+}
+.plKinds {
+  margin-top: 6%;
+  margin-left: 10%;
+}
+
+.plKinds select {
+  font-size: 14px;
+  margin-left: 1%;
+  width: 42%;
+  height: 4vh;
+  overflow: auto !important;
+}
+
+.plKinds label {
+  margin-left: -2%;
+  font-size: 16px;
+}
+
+.backButtonPl {
+  margin-left: -124%;
+  margin-top: 4%;
+}
+
+.nextButtonPl {
+  margin-left: 92%;
+  margin-top: 6%;
+}
+
+.descriptionPl {
+  margin-top: 2%;
+  margin-left: 8%;
+}
