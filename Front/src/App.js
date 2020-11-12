@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
@@ -22,9 +30,20 @@ class App extends Component {
 
   render(){
     return (
-      <React.Fragment>
-        {this.state.currentComponent}
-      </React.Fragment>
+      <Router>
+          <Switch>
+          <Route path="/login">
+            <SignInForm />
+          </Route>
+          <Route path="/signup">
+            <SignUpForm />
+          </Route>
+          <Route path="/">
+            <Homepage />
+          </Route>
+        </Switch>
+        {/* {this.state.currentComponent} */}
+      </Router>
     ); 
   }
 }
