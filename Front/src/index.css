@@ -58,3 +58,6 @@ code {
 .black-text{
 	color: black !important;
 }
+a{
+	text-decoration: none !important;
+}

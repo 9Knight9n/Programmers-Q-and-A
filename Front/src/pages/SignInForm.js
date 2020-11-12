@@ -5,6 +5,7 @@ import emailImg from '../img/email.png'
 import passImg from '../img/password.png'
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
+import { Link } from 'react-router-dom';
 
 class SignInForm extends Component{ 
   static displayName = 'RememberMe';
@@ -92,11 +93,7 @@ class SignInForm extends Component{
 
   }
 
-  
 
-  handleClick = (index) => {
-    this.props.refToSelectComponent(index);
-  }
 
   emailValidation = () => {
     var validator = require("email-validator");
@@ -132,8 +129,10 @@ class SignInForm extends Component{
             </div>
             <br />
               <div className="signUpTransfer">
-                <p>Don't have an account ?</p> 
-                <button onClick={()=>this.handleClick(1)} name= "signUpButton" type="button">Sign Up</button>
+                <p>Don't have an account ?</p>
+                <Link to="/signup">
+                <button name= "signUpButton" type="button">Sign Up</button>
+                </Link>
               </div>
           </div>
           ); 
