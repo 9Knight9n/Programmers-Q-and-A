@@ -3,7 +3,7 @@ import './CSS/ChatroomCreation.css';
 import AppAvatar from '../img/uploadAvatar.png';
 import {Link} from 'react-router-dom';
 
-class ChatroomCreation extends Component {
+class ChatroomCreationApp extends Component {
     state = {  }
     render() { 
         return ( 
@@ -32,4 +32,4 @@ class ChatroomCreation extends Component {
     }
 }
  
-export default ChatroomCreation;
+export default ChatroomCreationApp;

@@ -43,7 +43,6 @@ class LeftMenu extends Component {
         window.$username="username"
         return (
             <div className="max-height">
-                <NewChatroom hideModal={this.hideModal} show={this.state.show} />
             
                 <div className="d-flex flex-column justify-content-center fix-height">
                     <div className="d-flex pl-4 align-top" id="profile">
@@ -72,12 +71,15 @@ class LeftMenu extends Component {
 
 
                     <div className="w-100 d-flex flex-column align-bottom">
-                        <button onClick={this.showModal} className="w-100 d-flex align-items-center justify-content-center btn lm-btn btn-primary">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-plus m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                            new chatroom
-                        </button>
+                        <Link to="/chatroomcreationfirst">
+                            <button onClick={this.showModal} className="w-100 d-flex align-items-center justify-content-center btn lm-btn btn-primary">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-plus m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                new chatroom
+                            </button>
+                        </Link>
+                        
                         <div className="w-100 d-flex flex-row">
                             <Link className="w-50  p-0" to="/login">
                             {/* onClick={() => this.handleLogOutClick()} */}
@@ -106,6 +108,7 @@ class LeftMenu extends Component {
                     </div>
                 </div> */}
             </div>
+            <NewChatroom hideModal={this.hideModal} show={this.state.show} />
             </div>
         );
     }
