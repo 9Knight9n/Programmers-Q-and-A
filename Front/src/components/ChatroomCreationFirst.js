@@ -15,7 +15,6 @@ class ChatroomCreationOs extends Component {
      }
     render() { 
         return ( 
-            <Router>
                 <div class="main-box">
                     <div class="elements">
                         <div class="contextKinds">
@@ -49,7 +48,6 @@ class ChatroomCreationOs extends Component {
                         </div>
                     </div>
                 </div>
-            </Router>
          );
     }
 }

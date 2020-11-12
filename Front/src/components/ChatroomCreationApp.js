@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import AppAvatar from '../img/uploadAvatar.png';
+import {Link} from 'react-router-dom';
 
 class ChatroomCreation extends Component {
     state = {  }
@@ -19,8 +20,12 @@ class ChatroomCreation extends Component {
                             </textarea>
                         </div>
                     </div>
-                    <button class="createButtonApp" type="button">Next</button>
+                    <Link to="/chatroomCreationLast">
+                    <button class="nextButtonApp" type="button">Next</button>
+                    </Link>
+                    <Link to="/">
                     <button class="backButtonApp" type="button">Back</button>
+                    </Link>
                 </div>
             </div>
          );

@@ -3,11 +3,11 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import chatroomCreationLast from './components/ChatroomCreationLast';
-import chatroomCreationApp from './components/ChatroomCreationApp';
-import chatroomCreationOs from './components/ChatroomCreationOs';
-import chatroomCreationFirst from './components/ChatroomCreationFirst';
-import chatroomCreationPl from './components/ChatroomCreationPl';
+import ChatroomCreationLast from './components/ChatroomCreationLast';
+import ChatroomCreationApp from './components/ChatroomCreationApp';
+import ChatroomCreationOs from './components/ChatroomCreationOs';
+import ChatroomCreationFirst from './components/ChatroomCreationFirst';
+import ChatroomCreationPl from './components/ChatroomCreationPl';
 import './index.css';
 
 
@@ -31,15 +31,16 @@ class App extends Component {
     return (
       <Router>
         <div>
-        
           <Switch>
-            <Route exact path="/"  component={chatroomCreationFirst} />
+            <Route exact path="/"  component={ChatroomCreationFirst} />
 
-            <Route exact path="/chatroomCreationOs" component={chatroomCreationOs} />
+            <Route exact path="/chatroomCreationOs" component={ChatroomCreationOs} />
 
-            <Route exact path="/chatroomCreationApp" component={chatroomCreationApp} />
+            <Route exact path="/chatroomCreationApp" component={ChatroomCreationApp} />
 
-            <Route exact path="/chatroomCreationPl" component={chatroomCreationPl} />
+            <Route exact path="/chatroomCreationPl" component={ChatroomCreationPl} />
+
+            <Route exact path="/chatroomCreationLast" component={ChatroomCreationLast} />
           </Switch>
         </div>
       </Router>

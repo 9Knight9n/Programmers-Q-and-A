@@ -3,6 +3,7 @@ import './CSS/ChatroomCreation.css';
 import windowsImg from '../img/windows.png';
 import linuxImg from '../img/linux.png';
 import macImg from '../img/apple.png';
+import {Link} from 'react-router-dom';
 
 class ChatroomCreationOs extends Component {
     state = {  }
@@ -36,8 +37,13 @@ class ChatroomCreationOs extends Component {
                         <textarea class="textarea" maxlength="175" rows="4" cols="50">
                         </textarea>
                     </div>
-                    <button class="nextButtonPl" type="button">Next</button>
+                    <Link to="/">
                     <button class="backButtonPl" type="button">Back</button>
+                    </Link>
+                    <Link to="/chatroomCreationLast">
+                    <button class="nextButtonPl" type="button">Next1</button>
+                    </Link>
+
                 </div>
             </div>
          );

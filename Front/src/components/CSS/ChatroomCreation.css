@@ -322,18 +322,18 @@ select:focus button:focus {
   margin-left: 2%;
 } */
 
+.buttonsOS {
+  margin-top: 16%;
+}
+
 .backButtonOs {
-  margin-left: -122%;
-  margin-top: 7%;
 }
 
 .nextButtonOs {
-  margin-left: 92%;
-  margin-top: 6%;
 }
 
 .descriptionOs {
-  margin-top: 22%;
+  margin-top: 18%;
   margin-left: 8%;
 }
 
