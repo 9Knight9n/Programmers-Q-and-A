@@ -23,15 +23,16 @@ class LeftMenu extends Component {
     }
 
     render() { 
+        window.$username="username"
         return (
             <div className="max-height">
 
             
                 <div className="d-flex flex-column justify-content-center fix-height">
-                    <div className="d-flex flex-row justify-content-center align-top" id="profile">
+                    <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                             src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg" /></div>
-                        <h1 className="d-flex align-items-center pr-4">{window.$username}</h1>
+                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{window.$username}</h1>
                     </div>
 
 

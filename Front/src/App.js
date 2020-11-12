@@ -8,7 +8,7 @@ import './index.css';
 
 class App extends Component {
   state={
-    currentComponent:<SignInForm refToSelectComponent={this.selectComponent.bind(this)}/>
+    currentComponent:<Homepage refToSelectComponent={this.selectComponent.bind(this)}/>
   }
 
   selectComponent(index){
