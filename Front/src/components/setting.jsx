@@ -34,8 +34,12 @@ class Setting extends Component {
 
     render() { 
         return (  
-          <div className="Setting-bg">
-            <div className="setting-Menu">
+          <div className="Setting-bg d-flex justify-content-center">
+            <div className="h-100 empty-125"></div>
+            <div className="w-75 ">
+
+            
+            <div className="setting-Menu ">
               <div className="h-100 d-flex align-items-start flex-column">
 
                 <p className="h1 mt-3 ml-4 mb-4">Setting</p>
@@ -48,7 +52,7 @@ class Setting extends Component {
                       className={"nav-link".concat(this.state.activeTab===opt.id?" active":"")}
                       href="#" >
                         <div className="d-flex flex-row">
-                            <div className="pl-5 d-flex align-items-center pr-5">{opt.label}</div>
+                            <div className="pl-2 d-flex align-items-center pr-5">{opt.label}</div>
                         </div>  
                     </a>
                   )}
@@ -67,12 +71,15 @@ class Setting extends Component {
             </div>
             
             <div className=" setting-right">
-              <div className="mr-5 ml-5 mt-2 mb-2">
+              <div className="mr-4 ml-4 mt-2 mb-2">
               {this.state.options[this.state.activeTab-1].content}
 
               </div>
             </div>
             
+            </div>
+            <div className="h-100 empty-125"></div>
+
           </div>
           
         );

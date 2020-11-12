@@ -67,17 +67,23 @@ class MyAccount extends Component {
             <React.Fragment>
                 <nav className="">
                     <ul class="nav nav-tabs">
-                        <div className="avatar-size p-2">
+                        <div className="w-25 avatar-size p-2">
                             <SelectAvatar src={this.state.src}
                                 onCrop={this.onCrop}
                                 onClose={this.onClose}
                                 onSave={this.onSave} side="20" />
                         </div>
+                        <div className="w-75 d-flex flex-column justify-content-center">
+                        <p className="h1">Username</p>
+                        <p>User@email.com</p>
+                        </div>
                         {this.state.tabs.map(tab =>
-                            <li class="nav-item d-flex align-items-end">
+                            <li class="pl-1 pr-1 nav-item d-flex align-items-end">
                                 <a key={tab.id}
-                                onClick={()=>this.tabSelected(tab.id)}
-                                class={"nav-link".concat(this.state.selectedTab===tab.id?" active":"")} href="#">{tab.label}</a>
+                                    onClick={()=>this.tabSelected(tab.id)}
+                                    class={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"")} href="#">
+                                    {tab.label}
+                                </a>
                             </li>
                         )}
                     </ul>

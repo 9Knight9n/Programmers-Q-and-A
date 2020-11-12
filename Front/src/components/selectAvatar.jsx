@@ -49,12 +49,12 @@ class SelectAvatar extends Component {
                     style={{ 
                         width:this.props.side+"vh",
                         height:this.props.side+"vh",
-                        position:"relative"
+                        position:"relative",
                     }}>
                     <div className="d-flex justify-content-center align-items-center" onMouseEnter={() =>this.hover(true)}
                         onMouseLeave={() => this.hover(false)}
                         id="preview" 
-                        style={this.state.showSelect ? {backgroundColor: "#141d48",}:{backgroundImage:"url(" +  this.state.src  + ")",}}>
+                        style={this.state.showSelect ? {backgroundColor: "#141d48",}:{backgroundImage:"url(" +  this.state.src  + ")",borderRadius:"50%"}}>
                         {this.state.showSelect ?
                             <React.Fragment>
                                 <Avatar
