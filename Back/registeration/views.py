@@ -28,3 +28,7 @@ def signin(request):
                 return Response({"message":"wellcome" , 'user': serializer.data} , status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({"message": "password or email is not correct"} , status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+def showprofile(request):
+    pass

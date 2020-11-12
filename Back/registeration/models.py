@@ -58,6 +58,15 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    profile_picture = models.TextField()
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    username = models.CharField(max_length=30 , unique=True)
+    askedQuestions = models.IntegerField(default=0)
+    repliedQuestions = models.IntegerField(default=0)
+    onlineTime = models.TimeField()
+    description = models.TextField(max_length=100)
+    fileField = models.TextField()
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
