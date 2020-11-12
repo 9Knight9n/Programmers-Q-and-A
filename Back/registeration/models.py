@@ -58,15 +58,19 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    profile_picture = models.TextField()
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    username = models.CharField(max_length=30 , unique=True)
+    # first page of profile
+    profile_picture = models.TextField(null=True)
+    first_name = models.CharField(max_length=20 , null=True)
+    last_name = models.CharField(max_length=20 , null=True)
+    username = models.CharField(max_length=30 , null=True) # must be unique
+    # second page of profile
     askedQuestions = models.IntegerField(default=0)
     repliedQuestions = models.IntegerField(default=0)
-    onlineTime = models.TimeField()
-    description = models.TextField(max_length=100)
-    fileField = models.TextField()
+    onlineTime = models.TimeField(null=True)
+    # theard page of profile
+    description = models.TextField(max_length=100 , null=True)
+    fileField = models.TextField(null=True)
+    # type of user
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -110,3 +114,7 @@ class User(AbstractBaseUser):
     def is_active(self):
         "Is the user active?"
         return self.active
+
+class intrestedIn:
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    field = models.TextField(max_length=20)
