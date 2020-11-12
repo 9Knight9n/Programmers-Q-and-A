@@ -10,15 +10,15 @@ class ProfileTwo extends Component {
         
                <div class="activity">
                      
-                    <div class="content-form">
+               <div class="content-form1 d-flex justify-content-center d-flex align-items-center">
                     
-                        <div class="INPUT-FORM"> 
+                        <div class="INPUT-FORM2"> 
                         
-                            <input type="text" class="input" placeholder="ask questions"/><br></br>
-                            <input type="text" class="input" placeholder="answer questions"/><br></br>
-                            <input type="text" class="input" placeholder="activity time"/><br></br>
-                            <input type="text" class="input" placeholder="user rate"/><br></br>
-                            <div class="btn">Save all details</div>
+                            <p> ask questions : 43</p><br></br>
+                            <p>answer questions  : 2</p><br></br>
+                            <p>activity time : 65h 33 min 23sc</p><br></br>
+                            <p>user rate : 1568 </p><br></br>
+                            
             
                             </div>
                             

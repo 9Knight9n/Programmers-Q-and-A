@@ -9,14 +9,14 @@ class ProfileOne extends Component {
             <React.Fragment>
         
 
-                    <div class="content-form">
+                    <div class="content-form1 d-flex justify-content-center d-flex align-items-center">
                     
-                        <div class="INPUT-FORM"> 
+                        <div class="INPUT-FORM1"> 
                         
-                            <input type="text" class="input" placeholder="First name"/><br></br>
-                            <input type="text" class="input" placeholder="Last name"/><br></br>
-                            <input type="text" class="input" placeholder="User name"/><br></br>
-                            <input type="text" class="input" placeholder="Email"/><br></br>
+                            <input type="text" class="input p-2" placeholder="First name"/><br></br>
+                            <input type="text" class="input p-2" placeholder="Last name"/><br></br>
+                            <input type="text" class="input p-2" placeholder="User name"/><br></br>
+                            <input type="text" class="input p-2" placeholder="Email"/><br></br>
                             <div class="btn">Save all details</div>
             
                         </div>
