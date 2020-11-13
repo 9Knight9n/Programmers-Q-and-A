@@ -11,7 +11,7 @@ urlpatterns = [
     path('api/' , include('django.contrib.auth.urls')),
     path('api/' , include("submittext.urls")),
     path('api/token/' , jwt_views.TokenObtainPairView.as_view()),
-    path('api/token/reflesh/' , jwt_views.TokenRefreshView.as_view()),
+    path('api/token/refresh/' , jwt_views.TokenRefreshView.as_view()),
     path('profile/' , include("userprofile.urls")),
 ]
 #urlpatterns = urlpatterns + static(settings.MEDIA_URL , document_root=settings.MEDIA_URL)
