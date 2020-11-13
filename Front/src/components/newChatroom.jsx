@@ -14,7 +14,7 @@ class NewChatroom extends Component {
     }
 
     modalClick = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         return false;
     }

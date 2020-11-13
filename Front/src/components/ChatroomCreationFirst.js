@@ -11,7 +11,7 @@ import prLangImg from '../img/coding-language.png';
 
 class ChatroomCreationOs extends Component {
     state = { 
-       
+       chatroomContext: null,
      }
     render() { 
         return ( 
@@ -22,7 +22,7 @@ class ChatroomCreationOs extends Component {
                             <div className="contextLogo">
                                 <div className="osBox">
                                     <div className="os">
-                                        <Link to="/chatroomCreationOs">
+                                        <Link name="OS" to="/chatroomCreationOs" onClick={this.handleClick}>
                                             <img src={osImg} />
                                             <h3>Operating system</h3>
                                         </Link> 

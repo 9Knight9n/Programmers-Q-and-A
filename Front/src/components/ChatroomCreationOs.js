@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
-import windowsImg from '../img/windows.png';
-import linuxImg from '../img/linux.png';
-import macImg from '../img/apple.png';
+
 import {Link} from 'react-router-dom';
 
 class ChatroomCreationOs extends Component {
@@ -11,6 +9,8 @@ class ChatroomCreationOs extends Component {
         this.state = {
             selectedOs: null,
             selectedSubOs: null,
+            osDescription: null,
+            error: false,
 
             OS: [
                     {
@@ -75,7 +75,16 @@ class ChatroomCreationOs extends Component {
             ]        
         };
         this.handleChange = this.handleChange.bind(this);
-      }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        if (!this.state.selectedOs || !this.state.selectedSubOs && !this.state.error) {
+            this.setState({
+                error: true,
+            });
+        }
+    }
 
      handleChange(e) {
         let target = e.target;
@@ -84,6 +93,12 @@ class ChatroomCreationOs extends Component {
         this.setState({
           [name]: value,
         });
+
+        if (name === "selectedSubOs" && value !== "Select a distro") {
+            this.setState({
+                error: false,
+            });
+        }
 
         if (name === "selectedOs") {
             this.setState({
@@ -106,11 +121,11 @@ class ChatroomCreationOs extends Component {
      }
     render() { 
         return ( 
-            <div class="main-box">
-                <div class="elements">
-                    <div class="osKinds">
+            <div className="main-box">
+                <form className="elements">
+                    <div className="osKinds">
                         <div className="mainOs">
-                            <select name="selectedOs" value={this.state.selectedOs} onChange={this.handleChange}>
+                            <select name="selectedOs" value={this.state.selectedOs} onChange={this.handleChange} required>
                                 {this.state.OS.map(os => 
                                    <option key={os.id} value={os.name}>{os.name}</option> 
                                 )}
@@ -118,7 +133,7 @@ class ChatroomCreationOs extends Component {
                         </div> 
                         {this.state.selectedOs ? 
                             <div className="subOs">
-                                <select name="selectedSubOs" value={this.state.selectedSubOs} onChange={this.handleChange}>
+                                <select name="selectedSubOs" value={this.state.selectedSubOs} onChange={this.handleChange} required>
                                     {this.state.OS.find(os => os.name === this.state.selectedOs).subOs.map(subOs => 
                                         <option value={subOs.name}>{subOs.name}</option>  
                                     )}
@@ -134,19 +149,22 @@ class ChatroomCreationOs extends Component {
                         {" for more information about selected OS"}
 
                         </div> : ''}
+
+                    {this.state.error ? <div className="osError">Please select an OS and Distro</div> : ''} 
                     
                     <div class="description descriptionOs">
                         <h3>Description :</h3>
-                        <textarea class="textarea" maxlength="175" rows="4" cols="53">
+                        <textarea name="osDescription" value={this.state.osDescription} onChange={this.handleChange} className="textarea" maxlength="175" rows="4" cols="53">
+                            {this.state.osDescription}
                         </textarea>
                     </div>
                         <Link to="/chatroomCreationFirst">
-                            <button class="backButtonOs" type="button">Back</button>
+                            <button className="backButtonOs" type="button">Back</button>
                         </Link>
-                        <Link to="/chatroomCreationLast">
-                            <button class="nextButtonOs" type="button">Next</button>
+                        <Link to={this.state.selectedOs && this.state.selectedSubOs ? "/chatroomCreationLast": "/chatroomCreationOs"} onClick={this.handleClick}>
+                            <button className="nextButtonOs" type="button">Next</button>
                         </Link>
-                </div>
+                </form>
             </div>
          );
     }

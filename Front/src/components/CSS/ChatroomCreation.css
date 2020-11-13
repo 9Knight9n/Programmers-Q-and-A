@@ -97,7 +97,7 @@ select:focus button:focus {
   padding-bottom: 3%;
   padding-top: 3%;
   background: #bab9f7;
-  margin-top: 11%;
+  margin-top: 5%;
   margin-left: 11%;
 }
 
@@ -117,12 +117,18 @@ select:focus button:focus {
 .abed-css .createButtonLast {
   position: absolute;
   margin-left: 57%;
-  margin-top: 15%;
+  margin-top: 6%;
 }
 .abed-css .backButtonLast {
   position: absolute;
-  margin-top: 15%;
+  margin-top: 6%;
   margin-left: -7%;
+}
+
+.abed-css .LastError {
+  position: absolute;
+  margin-left: 8%;
+  color: red;
 }
 
 .abed-css .description textarea {
@@ -233,6 +239,12 @@ select:focus button:focus {
 }
 
 /*OS*/
+
+.osError {
+  position: absolute;
+  margin-left: 6%;
+  color: red;
+}
 
 .abed-css .osKinds {
   margin-top: 6%;
@@ -349,6 +361,12 @@ select:focus button:focus {
 }
 /*app*/
 
+.appError {
+  position: absolute;
+  margin-left: 4%;
+  color: red;
+}
+
 .abed-css .nextButtonApp {
   position: absolute;
   margin-left: 57%;
@@ -403,6 +421,13 @@ select:focus button:focus {
 }
 
 /*pl*/
+
+.abed-css .plError {
+  position: absolute;
+  margin-left: 6%;
+  color: red;
+}
+
 .abed-css .plLink input {
   width: 88%;
 
@@ -421,7 +446,7 @@ select:focus button:focus {
 }
 
 .abed-css .plLink label {
-  margin-top: 4%;
+  margin-top: 9%;
   margin-left: 8%;
   font-size: 16px;
 }
@@ -445,18 +470,18 @@ select:focus button:focus {
 
 .abed-css .backButtonPl {
   position: absolute;
-  margin-top: 6%;
+  margin-top: 1%;
   margin-left: -7%;
 }
 
 .abed-css .nextButtonPl {
   position: absolute;
   margin-left: 57%;
-  margin-top: 6%;
+  margin-top: 1%;
 }
 
 .abed-css .descriptionPl {
-  margin-top: 2%;
+  margin-top: 4%;
   margin-left: 8%;
 }
 /* first */
