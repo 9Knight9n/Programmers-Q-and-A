@@ -9,4 +9,4 @@ class PersonalInfoSerializer(serializers.ModelSerializer):
 class InterestsInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id' , 'description', 'cvfile', 'interests']
+        fields = ['description', 'cvfile', 'interests']

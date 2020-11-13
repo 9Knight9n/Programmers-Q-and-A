@@ -49,9 +49,24 @@ def show_activity(request):
 def show_interests(request):
     pass
 
-@api_view(['GET' , ])
-def add_interests(request):
-    pass
+@api_view(['POST' , ])
+def edit_interests(request):
+    data = dict(request.POST)
+    print(data)
+    file_obj = request.FILES['cvfile']
+    print(file_obj)
+    user = User.objects.get(id=data['id'][0])
+    print(user)
+    if user != []:
+        if 'description' in data.keys():
+            user.description = data['description'][0]
+        if 'description' in data.keys():
+            user.cvfile = file_obj
+        if 'description' in data.keys():
+            user.interests = data['interests'][0]
+        user.save()
+        return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
+        #return Response({'message':'Fields not correct.'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET' , ])
 def show_picture_profile(request):
@@ -59,11 +74,7 @@ def show_picture_profile(request):
 
 @api_view(['POST' , ])
 def edit_picture_profile(request):
-    serializer = InterestsInfoSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
-    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+    pass
 
 @api_view(['GET' , ])
 def show_CV(request):
