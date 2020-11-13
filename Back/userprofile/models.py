@@ -1,3 +1,6 @@
 from django.db import models
+from registeration.models import User
 
-# Create your models here.
+class intrestedIn(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    field = models.TextField(max_length=20)
