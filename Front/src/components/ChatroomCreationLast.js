@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
-import ChatroomCreationAvatar from '../img/uploadAvatar.png';
 import {Link} from 'react-router-dom';
 import SelectAvatar from './selectAvatar';
+import Cookies from 'js-cookie';
 
 class ChatroomCreationLast extends Component {
     
@@ -22,6 +22,11 @@ class ChatroomCreationLast extends Component {
         this.onSave = this.onSave.bind(this)
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleBack = this.handleBack.bind(this);
+      }
+
+      handleBack() {
+        return "/chatroomCreation" + Cookies.get("selectedContext");
       }
 
       onClose() {
@@ -48,7 +53,7 @@ class ChatroomCreationLast extends Component {
         this.setState({
           [name]: value,
         });
-        if (this.state.chatroomName) {
+        if (name === "chatroomName" && value !== "") {
             this.setState({
                 error: false,
             });
@@ -77,7 +82,7 @@ class ChatroomCreationLast extends Component {
                         <input name="chatroomName" value={this.state.chatroomName} placeholder="Enter chatroom name" onChange={this.handleChange} />
                     </div>
                     {this.state.error ? <div className="LastError">Please select a name for chatroom</div> : ''}
-                    <Link to="/chatroomCreationFirst">
+                    <Link to={this.handleBack}>
                         <button className="backButtonLast" type="button">Back</button>
                     </Link>
                     <Link to={this.state.chatroomName ? "/": "/chatroomCreationLast"} onClick={this.handleClick}>

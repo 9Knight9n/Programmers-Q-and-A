@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
-
 import {Link} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class ChatroomCreationApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appLink: null,
-            appDescription: null,
+            appLink: Cookies.get("appLink"),
+            appDescription: Cookies.get("appDescription"),
             error: false,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -21,8 +21,9 @@ class ChatroomCreationApp extends Component {
         this.setState({
           [name]: value,
         });
-        
-        if (this.state.appLink) {
+     
+        if (name === "appLink" && value !== '') {
+
             this.setState({
                 error: false,
             });
@@ -35,6 +36,14 @@ class ChatroomCreationApp extends Component {
                 error: true,
             });
         }
+        if (this.state.appLink) {
+            Cookies.set("appLink" , this.state.appLink);
+            Cookies.set("appDescription" , this.state.appDescription);
+        }
+    }
+
+    hideModal() {
+        this.props.hideModal();
     }
 
     render() { 
@@ -49,7 +58,8 @@ class ChatroomCreationApp extends Component {
                         {this.state.error ? <div className="abed-css appError">Please put a link for application.</div> : ''}
                         <div className="description descriptionApp">
                             <h3>Description :</h3>
-                            <textarea name="appDescription" value={this.state.appDescription} class="textarea" maxlength="175" rows="4" cols="53">
+                            <textarea name="appDescription" value={this.state.appDescription} onChange={this.handleChange} className="textarea" maxLength="175" rows="4" cols="53">
+                                {this.state.appDescription}
                             </textarea>
                         </div>
                     </div>

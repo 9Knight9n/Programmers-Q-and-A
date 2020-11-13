@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
-
 import {Link} from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 class ChatroomCreationOs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOs: null,
-            selectedSubOs: null,
-            osDescription: null,
+            selectedOs: Cookies.get("selectedOs"),
+            selectedSubOs: Cookies.get("selectedSubOs"),
+            osDescription: Cookies.get("osDescription"),
             error: false,
 
             OS: [
@@ -84,6 +83,11 @@ class ChatroomCreationOs extends Component {
                 error: true,
             });
         }
+        if (this.state.selectedOs && this.state.selectedSubOs) {
+            Cookies.set("selectedOs" , this.state.selectedOs);
+            Cookies.set("selectedSubOs" , this.state.selectedSubOs);
+            Cookies.set("osDescription" , this.state.osDescription);
+        }
     }
 
      handleChange(e) {
@@ -154,7 +158,7 @@ class ChatroomCreationOs extends Component {
                     
                     <div class="description descriptionOs">
                         <h3>Description :</h3>
-                        <textarea name="osDescription" value={this.state.osDescription} onChange={this.handleChange} className="textarea" maxlength="175" rows="4" cols="53">
+                        <textarea name="osDescription" value={this.state.osDescription} onChange={this.handleChange} className="textarea" maxLength="175" rows="4" cols="53">
                             {this.state.osDescription}
                         </textarea>
                     </div>

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-class ChatroomCreationOs extends Component {
+class ChatroomCreationPl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedPl: null,
-            plDescription: null,
-            plLink: null,
+            selectedPl: Cookies.get("selectedPl"),
+            plDescription: Cookies.get("plDescription"),
+            plLink: Cookies.get("plLink"),
             error1: false,
             error2: false,
         };
@@ -17,15 +18,20 @@ class ChatroomCreationOs extends Component {
     }
     
     handleClick() {
-        if (!this.state.selectedPl || !this.state.plLink) {
+        if (!this.state.selectedPl && !this.state.error1) {
             this.setState({
                 error1: true,
             });
         }
-        if (!this.state.error) {
+        if (!this.state.plLink && !this.state.error2) {
             this.setState({
                 error2: true,
             });
+        }
+        if (this.state.selectedPl && this.state.plLink) {
+            Cookies.set("selectedPl" , this.state.selectedPl);
+            Cookies.set("plLink" , this.state.plLink);
+            Cookies.set("plDescription" , this.state.plDescription);
         }
     }
 
@@ -36,17 +42,16 @@ class ChatroomCreationOs extends Component {
         this.setState({
           [name]: value,
         });
-        console.log(value);
         if (name === "selectedPl" && value !== "Select a programming language") {
             
             this.setState({
-                error1: false,
+                error1: false,//select
             });
         }
-        if (this.state.plLink) {
+        if (name === "plLink" && value !== '') {
             
             this.setState({
-                error2: false,
+                error2: false,//link
             });
         }
      }
@@ -93,4 +98,4 @@ class ChatroomCreationOs extends Component {
     }
 }
  
-export default ChatroomCreationOs;
+export default ChatroomCreationPl;
