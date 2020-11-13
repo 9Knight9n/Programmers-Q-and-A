@@ -52,39 +52,27 @@ def show_interests(request):
 @api_view(['POST' , ])
 def edit_interests(request):
     data = dict(request.POST)
-    print(data)
-    file_obj = request.FILES['cvfile']
-    print(file_obj)
     user = User.objects.get(id=data['id'][0])
-    print(user)
     if user != []:
         if 'description' in data.keys():
             user.description = data['description'][0]
-        if 'description' in data.keys():
-            user.cvfile = file_obj
-        if 'description' in data.keys():
+        if 'cvfile' in request.FILES.keys():
+            user.cvfile = request.FILES['cvfile']
+        if 'interests' in data.keys():
             user.interests = data['interests'][0]
         user.save()
         return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
-        #return Response({'message':'Fields not correct.'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET' , ])
 def show_picture_profile(request):
     pass
 
 @api_view(['POST' , ])
-def edit_picture_profile(request):
-    pass
-
-@api_view(['GET' , ])
-def show_CV(request):
-    if request.method == 'GET':
-        data = dict(request.POST)
-        user = User.objects.get(id=data['id'][0])
-        print(user.profile_picture)
-        return Response({}) 
-
-@api_view(['POST' , ])
-def edit_CV(request):
-    pass
-
+def edit_profile_picture(request):
+    data = dict(request.POST)
+    user = User.objects.get(id=data['id'][0])
+    if user != []:
+        if 'profile_picture' in request.FILES.keys():
+            user.profile_picture = request.FILES['profile_picture']
+        user.save()
+        return Response({'message': 'Edit user profile picture '}, status=status.HTTP_200_OK)
