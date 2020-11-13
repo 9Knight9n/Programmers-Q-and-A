@@ -78,7 +78,7 @@ class MyAccount extends Component {
                         <p>User@email.com</p>
                         </div>
                         {this.state.tabs.map(tab =>
-                            <li class="pl-1 pr-1 nav-item d-flex align-items-end">
+                            <li class="mt-3 pl-1 pr-1 nav-item d-flex align-items-end">
                                 <a key={tab.id}
                                     onClick={()=>this.tabSelected(tab.id)}
                                     class={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"")} href="#">
