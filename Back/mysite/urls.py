@@ -7,9 +7,9 @@ from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('' , include("registeration.urls")),
-    path('' , include('django.contrib.auth.urls')),
-    path('' , include("submittext.urls")),
+    path('api/' , include("registeration.urls")),
+    path('api/' , include('django.contrib.auth.urls')),
+    path('api/' , include("submittext.urls")),
     path('api/token/' , jwt_views.TokenObtainPairView.as_view()),
     path('api/token/reflesh/' , jwt_views.TokenRefreshView.as_view()),
     path('profile/' , include("userprofile.urls")),

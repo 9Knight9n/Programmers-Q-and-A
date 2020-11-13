@@ -31,6 +31,3 @@ def signin(request):
             else:
                 return Response({"message": "password or email is not correct"} , status=status.HTTP_406_NOT_ACCEPTABLE)
 
-
-def showprofile(request):
-    pass
