@@ -139,17 +139,6 @@ select:focus button:focus {
 .abed-css .description textarea {
   background-color: #bab9f7;
   margin-top: 0%;
-  /* background-attachment: local;
-  background-image: linear-gradient(to right, white 10px, transparent 10px),
-    linear-gradient(to left, white 10px, transparent 10px),
-    repeating-linear-gradient(
-      white,
-      white 30px,
-      #ccc 30px,
-      #ccc 31px,
-      white 31px
-    ); */
-  /* background-size: 100% 100%, 100% 100%, 100% 31px; */
   line-height: 31px;
   font-family: Arial, Helvetica, Sans-serif;
   padding-left: 3%;
