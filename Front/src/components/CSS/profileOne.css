@@ -28,10 +28,14 @@ font-family: 'Roboto',sans-serif;
 .INPUT-FORM1{
     display: flex;
     flex-direction: column;
+    
   
     
     
 
+}
+input{
+    border-radius: 8px;
 }
 .INPUT-FORM1,
 .msg textarea{
@@ -59,15 +63,24 @@ width: 40%;
 ::-ms-input-placeholder{
     color: #575252;
 }
-.btn{
+.btn-pro{
+    color: white;
     background: #39b7dd;
     text-align: center;
     padding: 15px;
     border-radius: 5px;
-    color: rgb(255, 4, 4);
     cursor: pointer;
     text-transform: uppercase;
     line-height: 0;
+    border-radius: 8px;
+}
+.pro-error{
+    color: red !important;
+    font-size: smaller;
+}
+.pro-success{
+    color: #00ff00 !important;
+    font-size: smaller;
 }
 
 @media screen and (max-width:600px){

@@ -2,8 +2,12 @@
     border-radius: 0px;
 }
 .btn{
+    background-color: #39b7dd !important;
     border-radius: 0px;
     padding-right: 0px;
+}
+.btn:hover{
+    color: black;
 }
 #profile {
     line-height: 500%;

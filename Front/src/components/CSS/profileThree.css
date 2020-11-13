@@ -24,6 +24,8 @@
       height: 50px;
       border: 2px solid #323262;
       border-radius: 7px;
+      border-top-right-radius: 0px !important;
+      border-bottom-right-radius:  0px !important;
       font-family: arial, sans-serif;
       font-size: .80rem;
       font-weight: regular; }
@@ -37,9 +39,6 @@
           width: 0; }
           
     .fileUploadInput button {
-      position: absolute;
-      right: 0;
-      bottom: 0;
       width: 70px;
       height: 50px;
       line-height: 0;
@@ -49,29 +48,14 @@
       border-radius: 0 3px 3px 0;
       font-family: arial, sans-serif;
       font-size: 2rem;
-      font-weight: 30%; }
-      .fileUploadInput button svg {
-        width: auto;
-        height: 50%; }
-  
-  * {
-    margin:auto;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 0px;
-    outline: 0;
-    background-repeat: no-repeat;
-    appearance: none;
-    border-radius: 0;
-    vertical-align: middle;
-    font-weight: inherit;
-    font-style: inherit;
-    font-family: inherit;
-    text-decoration: none;
-    list-style: none;
-    user-select: text;
-    line-height: 1.333em; }
-  
+      font-weight: 30%; 
+    }
+
+
+
+
+
+
   body {
     display: flex;
     align-items: center;
