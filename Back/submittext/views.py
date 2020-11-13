@@ -9,10 +9,10 @@ from .models import ChatText
 def send_all_text(request):
     if request.method == 'GET':
         chattext = ChatText.objects.all()
-        data = {}
+        data = []
         for i in chattext:
             serializer = ChatTextSerializer(i)
-            data[i.id] = serializer.data
+            data.append(serializer.data)
         return Response(data)
 
 @api_view(['POST' , ])
@@ -22,4 +22,4 @@ def get_text(request):
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'New chat created'}, status=status.HTTP_201_CREATED)
-        return Response({'message':'user with this email address not exists.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message':'user or parent text with this email address not exists.'}, status=status.HTTP_400_BAD_REQUEST)

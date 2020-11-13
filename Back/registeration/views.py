@@ -16,6 +16,7 @@ def signup(request):
 
 
 @api_view(['POST'])
+@permission_classes([])
 def signin(request):
     if request.method == 'POST':
         post_data = dict(request.POST)
