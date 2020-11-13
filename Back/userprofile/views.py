@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 from registeration.models import User
 from .serializer import (PersonalInfoSerializer,
+                        InterestsInfoSerializer,
 )
 
 @api_view(['GET' , ])
@@ -58,14 +59,19 @@ def show_picture_profile(request):
 
 @api_view(['POST' , ])
 def edit_picture_profile(request):
-    pass
+    serializer = InterestsInfoSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
+    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET' , ])
 def show_CV(request):
     if request.method == 'GET':
         data = dict(request.POST)
         user = User.objects.get(id=data['id'][0])
-        return Response(user.profile_picture) 
+        print(user.profile_picture)
+        return Response({}) 
 
 @api_view(['POST' , ])
 def edit_CV(request):
