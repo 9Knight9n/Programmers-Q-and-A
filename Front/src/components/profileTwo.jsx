@@ -15,9 +15,9 @@ class ProfileTwo extends Component {
                         <div class="INPUT-FORM2"> 
                         
                             <p> ask questions : 43</p><br></br>
-                            <p>answer questions  : 2</p><br></br>
-                            <p>activity time : 65h 33 min 23sc</p><br></br>
-                            <p>user rate : 1568 </p><br></br>
+                            <p> answer questions  : 2</p><br></br>
+                            <p> activity time : 65h 33 min 23sc</p><br></br>
+                            <p> user rate : 1568 </p><br></br>
                             
             
                             </div>

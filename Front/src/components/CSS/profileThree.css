@@ -1,70 +1,4 @@
 
-body{
-  margin: 0;
-  padding: 0;
-}
-.container6{
-  text-align: center;
-  margin-top: 360px;
-}
-.btnn{
-  border:1px;
-  background: none;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-family: "montserrat";
-  cursor: pointer;
-  margin: 10px;
-  transition: 0.8s;
-
-}
-.btn1,.btn2{
-  color: #3498db;
-}
-.btn3,.btn4{
-  color: #fff;
-}
-
-.btn1:hover,btn2:hover{
-  color: #fff;
-}
-.btn3:hover,btn4:hover{
-  color: #fff;
-}
-.btnn::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #3498db;
-  z-index: -1;
-  transition: 0.8s;
-}
-.btn1::before,.btn3::before{
-  top:0;
-  border-radius: 0 0 50% 50%;
-}
-.btn2::before,.btn4::before{
-  top:0;
-  border-radius: 50% 50% 0 0;
-}
-.btn3::before,.btn4::before{
-  top:0;
-  border-radius: 50% 50% 0 0;
-}
-.btn1:hover::before,.btn2:hover::before{
-height: 180%;
-}
-.btn3:hover::before,.btn4:hover::before{
-  height: 0%;
-  }
-
-
-
-
-
-
 
 .fileUploadInput {
     display: grid;
@@ -79,7 +13,7 @@ height: 180%;
       background: setColor(white);
       transition: .4s ease;
       font-family: arial, sans-serif;
-      font-size: .75em;
+      font-size: 1em;
       font-weight: regular; }
       
     .fileUploadInput input {
@@ -88,10 +22,10 @@ height: 180%;
       padding: 0 gap(m);
       width: 100%;
       height: 50px;
-      border: 1px solid #323262;
-      border-radius: 3px;
+      border: 2px solid #323262;
+      border-radius: 7px;
       font-family: arial, sans-serif;
-      font-size: 1rem;
+      font-size: .80rem;
       font-weight: regular; }
       .fileUploadInput input[type="file"] {
         padding: 0 gap(m); }
@@ -106,7 +40,7 @@ height: 180%;
       position: absolute;
       right: 0;
       bottom: 0;
-      width: 50px;
+      width: 70px;
       height: 50px;
       line-height: 0;
       user-select: none;
@@ -114,7 +48,7 @@ height: 180%;
       background-color: #323262;
       border-radius: 0 3px 3px 0;
       font-family: arial, sans-serif;
-      font-size: 1rem;
+      font-size: 2rem;
       font-weight: 30%; }
       .fileUploadInput button svg {
         width: auto;
@@ -122,7 +56,7 @@ height: 180%;
   
   * {
     margin:auto;
-    padding: 0px;
+    padding: 10px;
     box-sizing: border-box;
     border: 0px;
     outline: 0;
