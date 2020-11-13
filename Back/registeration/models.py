@@ -59,7 +59,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     # first page of profile
-    profile_picture = models.TextField(null=True)
+    profile_picture = models.ImageField(upload_to="profile_image",null=True)
     first_name = models.CharField(max_length=20 , null=True)
     last_name = models.CharField(max_length=20 , null=True)
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
@@ -69,7 +69,7 @@ class User(AbstractBaseUser):
     onlineTime = models.TimeField(null=True)
     # theard page of profile
     description = models.TextField(max_length=100 , null=True)
-    fileField = models.TextField(null=True)
+    fileField = models.FileField(upload_to="profile_cv",null=True)
     # type of user
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user

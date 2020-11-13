@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'registeration.apps.RegisterConfig',
     'submittext.apps.SubmittextConfig',
     'userprofile.apps.UserprofileConfig',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
