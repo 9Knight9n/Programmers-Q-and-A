@@ -15,9 +15,10 @@ def signup(request):
     return Response({'message':'user with this email address already exists.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
+@api_view(['GET'])
+@permission_classes([])
 def signin(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         post_data = dict(request.POST)
         check_user = User.objects.filter(email=post_data['email'][0])
         if len(check_user) == 0:

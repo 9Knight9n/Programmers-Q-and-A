@@ -9,10 +9,10 @@ from .models import ChatText
 def send_all_text(request):
     if request.method == 'GET':
         chattext = ChatText.objects.all()
-        data = {}
+        data = []
         for i in chattext:
             serializer = ChatTextSerializer(i)
-            data[i.id] = serializer.data
+            data.append(serializer.data)
         return Response(data)
 
 @api_view(['POST' , ])
