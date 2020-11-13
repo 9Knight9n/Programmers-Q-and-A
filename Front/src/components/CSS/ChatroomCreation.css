@@ -9,13 +9,13 @@
 }
 
 .abed-css select {
-  color: #844444;
+  color: #050d0f;
   background: #b5b5d3;
 }
 
 .abed-css button {
   color: white;
-  background-color: #141d48;
+  background-color: rgba(9, 156, 167, 0.432);
   border: 0px;
   border-radius: 10px;
   height: 9%;
@@ -28,6 +28,11 @@ input textarea {
 
 .abed-css textarea {
   resize: none;
+  color: black;
+}
+
+.abed-css input {
+  color: black;
 }
 
 .abed-css input:focus,
