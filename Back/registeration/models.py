@@ -62,7 +62,7 @@ class User(AbstractBaseUser):
     profile_picture = models.TextField(null=True)
     first_name = models.CharField(max_length=20 , null=True)
     last_name = models.CharField(max_length=20 , null=True)
-    username = models.CharField(max_length=30 , null=True) # must be unique
+    username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
     repliedQuestions = models.IntegerField(default=0)
