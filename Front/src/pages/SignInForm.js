@@ -95,7 +95,7 @@ class SignInForm extends Component{
 
     if(response.data.message==="wellcome")
     {
-      Cookies.set("email",this.state.emailSignUp)
+      Cookies.set("email",this.state.email)
       Cookies.set("username",response.data.user.username)
       Cookies.set("id",response.data.user.id)
       const response2 =
@@ -111,6 +111,7 @@ class SignInForm extends Component{
 
       let token = Cookies.get("access")
       token = "Bearer "+token;
+      console.log(token)
       form.set("id",Cookies.get("id"))
       const response3 =
       await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
@@ -119,7 +120,7 @@ class SignInForm extends Component{
       },
     })
 
-      console.log(response3.data)
+      // console.log(response3.data)
       window.$avatar=response3.data
       sessionStorage.setItem("avatar",response3.data)
       Cookies.set("avatar",response3.data);

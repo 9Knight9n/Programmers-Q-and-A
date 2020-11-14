@@ -124,7 +124,7 @@ class SignUpForm extends Component{
       const response3 =
       await axios.get('http://127.0.0.1:8000/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',
-                  'Authorization': `Bearer ${token}`
+                  'Authorization': token
       },
     })
 
@@ -133,7 +133,7 @@ class SignUpForm extends Component{
 
 
 
-    console.log(response3.data)
+    // console.log(response3.data)
     window.$avatar=response3.data
     sessionStorage.setItem("avatar",response3.data)
     Cookies.set("avatar",response3.data);

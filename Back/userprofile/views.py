@@ -9,9 +9,9 @@ from .serializer import (PersonalInfoSerializer,
                         InterestsInfoSerializer,
 )
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def show_personal_info(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         data = dict(request.POST)
         user = User.objects.get(id=data['id'][0])
         serializer = PersonalInfoSerializer(user)
@@ -22,7 +22,7 @@ def get_personal_info(request):
     if request.method == 'POST':
         data = dict(request.POST)
         print(data)
-        user = User.objects.get(id=request.data['id'][0])
+        user = User.objects.get(id=data['id'][0])
         if 'first_name' in data.keys():
             user.first_name = data['first_name'][0]
         if 'last_name' in data.keys():
@@ -31,13 +31,15 @@ def get_personal_info(request):
             if list(User.objects.filter(username=data['username'][0])) == []:
                 user.username = data['username'][0]
             else:
-                return Response({'message': 'This username already exist'} , status=status.HTTP_302_FOUND)
+                if user.username != data['username'][0]:
+                    return Response({'message': 'This username already exist'} , status=status.HTTP_302_FOUND)
 
         if 'email' in data.keys():
             if list(User.objects.filter(email=data['email'][0])) == []:
                 user.email = data['email'][0]
             else:
-                return Response({'message': 'This email already exist'} , status=status.HTTP_302_FOUND)
+                if user.email != data['email'][0]:
+                    return Response({'message': 'This email already exist'} , status=status.HTTP_302_FOUND)
         user.save()
         serializer = PersonalInfoSerializer(user)
         return Response(serializer.data , status=status.HTTP_200_OK)

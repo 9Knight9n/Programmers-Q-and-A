@@ -55,9 +55,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.black-text *{
+.black-text * {
 	color: black !important;
-}
-a{
-	text-decoration: none !important;
 }
