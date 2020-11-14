@@ -6,12 +6,10 @@ import passImg from '../img/password.png'
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class SignInForm extends Component{ 
   static displayName = 'RememberMe';
-  state = {
-    test:false,
-  }
 
   constructor(props) {
     super(props);
@@ -76,22 +74,32 @@ class SignInForm extends Component{
     form.set('email', this.state.email.toLowerCase());
     form.set('password', this.state.password)
     const response =
-    await axios.post('http://localhost:8000', form, {
+    await axios.post('http://localhost:8000/api/login/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
     console.log(response)
 
-    if(response.data.error==="wellcome")
+    if(response.data.message==="wellcome")
     {
-      window.$username = this.state.email.split("@")[0];
-      return this.handleClick(2);
+      Cookies.set("email",response.data.user.email)   
+      Cookies.set("username",)
+      Cookies.set("avatar",)
+      const response =
+      await axios.post('http://localhost:8000/api/token/', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
+
+      Cookies.set("refresh",response.data.refresh)
+      Cookies.set("access",response.data.access)
+      document.getElementById("GoHomepageFromSignin").click()
     }
 
     this.setState({email:""})
     this.setState({password:""})
-    return(this.setState({loginCheckMassage:{massage:response.data.error,active:true}}));
+    return(this.setState({loginCheckMassage:{massage:response.data.message,active:true}}));
   }
 
 
@@ -129,7 +137,8 @@ class SignInForm extends Component{
               {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
             </div>
             <div className="signInTransfer">
-              <button name= "signInButton" type="button" onClick={this.handleSubmit} >Sign In</button>
+            <Link id="GoHomepageFromSignin" to="/"></Link>
+            <button name= "signInButton" type="button" onClick={this.handleSubmit}>Sign In</button>
               <br />
             </div>
             <br />

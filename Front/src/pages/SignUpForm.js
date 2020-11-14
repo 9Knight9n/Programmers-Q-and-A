@@ -6,6 +6,7 @@ import passImg from '../img/password.png';
 import confirmImg from '../img/confirm.png';
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
+import Cookies from 'js-cookie';
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -97,24 +98,44 @@ class SignUpForm extends Component{
     console.log(this.state.emailSignUp.toLowerCase())
     form.set('password', this.state.passwordSignUp)
     const response =
-    await axios.post('http://localhost:8000/signup', form, {
+    await axios.post('http://localhost:8000/api/signup/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
     console.log(response)
-    if(response.data.error)
-      return(this.setState({signUpCheckMassage:{massage:"Email already registered!",active:true}}))
-    else
+    if(response.data.massage ==="New user created" )
     {
-      window.$username = this.state.emailSignUp.split("@")[0];
-      return this.handleClick(2);
+
+      Cookies.set("email",response.data.user.email)
+      Cookies.set("username",)
+      Cookies.set("avatar",)
+      const response =
+      await axios.post('http://localhost:8000/api/token/', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
+
+      Cookies.set("refresh",response.data.refresh)
+      Cookies.set("access",response.data.access)
+      document.getElementById("GoHomepageFromSignup").click()
     }
-      
-  
+
+    else{
+
+
+      this.setState({email:""})
+      this.setState({password:""})
+      return(this.setState({signUpCheckMassage:{massage:"Email already registered!",active:true}}))
+
+    }
+
     
-   // alert('A name was submitted: ' + this.state.value);
-  }
+
+
+    }
+    
+
 
 
 
@@ -217,6 +238,7 @@ class SignUpForm extends Component{
                     </div>
 
                   <div className="signUpTransfer2">
+                    <Link id="GoHomepageFromSignup" to="/"></Link>
                     <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
                     <br />
                   </div>
