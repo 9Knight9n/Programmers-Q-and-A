@@ -117,9 +117,6 @@ class SignUpForm extends Component{
   }
 
 
-  handleClick = (index) => {
-    this.props.refToSelectComponent(index);
-  }
 
   emailValidation = () => {
     var validator = require("email-validator");
@@ -230,7 +227,9 @@ class SignUpForm extends Component{
                   <br />
                   <div className="signInTransfer2">
                     <p>Already have account ?</p> 
-                    <button onClick={() => this.handleClick(0)} name= "signInButton2" type="button">Sign In</button>
+                    <Link to="/login">
+                      <button  name= "signInButton2" type="button">Sign In</button>
+                    </Link>
                   </div> 
                 </div>
         );
