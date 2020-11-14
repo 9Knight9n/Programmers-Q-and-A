@@ -1,10 +1,10 @@
 .btn-proo{
   padding: 19px;
-  padding-left: 231px;
-  padding-right: 208px;
-  margin: 108px;
-  margin-left: 163px;
-  margin-top: 14px;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin: 60px;
+  margin-left: 285px;
+  margin-top: 25px;
   color: white;
   background-color: rgba(9, 156, 167, 0.432) !important;
   text-align: center;
@@ -13,7 +13,6 @@
   text-transform: uppercase;
   line-height: 0;
   border-radius: 8px;
-
 }
 .fileUploadInput {
   display: grid;
@@ -96,6 +95,7 @@ body {
 .textarea:focus {
   outline: none;
 }
+
 .bioField textarea {
   background-color: #bab9f7;
   margin-top: 0%;
