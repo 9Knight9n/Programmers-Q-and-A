@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
+from django.http import FileResponse
 
 
 from registeration.models import User
@@ -47,13 +48,29 @@ def show_activity(request):
 
 @api_view(['GET' , ])
 def show_interests(request):
-    pass
+    data = dict(request.POST)
+    user = User.objects.filter(id=data['id'][0])
+    if user != []:
+        user = user[0]
+        serializer = InterestsInfoSerializer(user)
+        return Response(serializer.data)
+
+@api_view(['GET' , ])
+def show_cv_file(request):
+    data = dict(request.POST)
+    user = User.objects.filter(id=data['id'][0])
+    if user != []:
+        user = user[0]
+        filename = user.cvfile.path
+        response = FileResponse(open(filename, 'rb'))
+        return response
 
 @api_view(['POST' , ])
 def edit_interests(request):
     data = dict(request.POST)
-    user = User.objects.get(id=data['id'][0])
+    user = User.objects.filter(id=data['id'][0])
     if user != []:
+        user = user[0]
         if 'description' in data.keys():
             user.description = data['description'][0]
         if 'cvfile' in request.FILES.keys():
@@ -64,14 +81,22 @@ def edit_interests(request):
         return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
 
 @api_view(['GET' , ])
-def show_picture_profile(request):
-    pass
+def show_profile_picture(request):
+    data = dict(request.POST)
+    user = User.objects.filter(id=data['id'][0])
+    if user != []:
+        user = user[0]
+        filename = user.profile_picture.path
+        response = FileResponse(open(filename, 'rb'))
+        return response
+
 
 @api_view(['POST' , ])
 def edit_profile_picture(request):
     data = dict(request.POST)
-    user = User.objects.get(id=data['id'][0])
+    user = User.objects.filter(id=data['id'][0])
     if user != []:
+        user = user[0]
         if 'profile_picture' in request.FILES.keys():
             user.profile_picture = request.FILES['profile_picture']
         user.save()
