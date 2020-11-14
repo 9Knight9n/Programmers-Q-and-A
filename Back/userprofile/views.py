@@ -21,7 +21,6 @@ def show_personal_info(request):
 def get_personal_info(request):
     if request.method == 'POST':
         data = dict(request.POST)
-        print(data)
         user = User.objects.get(id=request.data['id'][0])
         if 'first_name' in data.keys():
             user.first_name = data['first_name'][0]
