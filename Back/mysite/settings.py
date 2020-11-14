@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'registeration.apps.RegisterConfig',
-    'submittext.apps.SubmittextConfig'
+    'submittext.apps.SubmittextConfig',
+    'chatroom'
 ]
 
 MIDDLEWARE = [
