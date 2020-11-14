@@ -66,7 +66,7 @@ class MyAccount extends Component {
         return ( 
             <React.Fragment>
                 <nav className="">
-                    <ul class="nav nav-tabs">
+                    <ul className="nav nav-tabs">
                         <div className="w-25 avatar-size p-2">
                             <SelectAvatar src={this.state.src}
                                 onCrop={this.onCrop}
@@ -78,10 +78,9 @@ class MyAccount extends Component {
                         <p>User@email.com</p>
                         </div>
                         {this.state.tabs.map(tab =>
-                            <li class="pl-1 pr-1 nav-item d-flex align-items-end">
-                                <a key={tab.id}
-                                    onClick={()=>this.tabSelected(tab.id)}
-                                    class={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"").concat(tab.id===2?" disabled":"")} href="#">
+                            <li key={tab.id} className="pl-1 pr-1 nav-item d-flex align-items-end">
+                                <a onClick={()=>this.tabSelected(tab.id)}
+                                    className={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"").concat(tab.id===2?" disabled":"")} href="#">
                                     {tab.label}
                                 </a>
                             </li>
