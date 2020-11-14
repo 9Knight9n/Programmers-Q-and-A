@@ -50,7 +50,7 @@ class LeftMenu extends Component {
                 <div className="d-flex flex-column justify-content-center fix-height">
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
-                            src={sessionStorage.getItem("avatar")} /></div>
+                            src={sessionStorage.getItem("avatar").data} /></div>
                         <h1 className="pt-1 h4 d-flex align-items-center pr-4">{Cookies.get("username")}</h1>
                     </div>
 

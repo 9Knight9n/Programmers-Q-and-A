@@ -14,6 +14,25 @@
   line-height: 0;
   border-radius: 8px;
 }
+.parisa-css 
+textarea:focus {
+  outline: none;
+}
+.parisa-css .description textarea {
+  background-color: #bab9f7;
+  margin-top: 0%;
+  line-height: 31px;
+  font-family: Arial, Helvetica, Sans-serif;
+  padding-left: 3%;
+  padding-right: 3%;
+  height: 41%;
+  border: 3px solid #2d7ec3;
+  /* border-radius: 60px; */
+}
+
+.parisa-css .description:focus {
+  outline: none;
+}
 .parisa-css .fileUploadInput {
   display: grid;
   grid-gap: 10px;
@@ -33,11 +52,13 @@
 }
 
 .parisa-css .fileUploadInput input {
+  margin: -0.5%;
+  border-radius: 4px;
   position: relative;
   z-index: 1;
   padding: 0 gap(m);
   width: 100%;
-  height: 50px;
+  height: 5vh;
   border: 2px solid #323262;
   border-radius: 7px;
   border-top-right-radius: 0px !important;
@@ -58,7 +79,8 @@
 }
 
 .parisa-css .fileUploadInput button {
-  height: 50px;
+  margin: -0.5%;
+  height: 5vh;
   line-height: 0;
   user-select: none;
   color: white;
