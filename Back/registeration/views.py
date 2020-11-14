@@ -13,7 +13,7 @@ def signup(request):
     if serializer.is_valid():
         serializer.save()
         return Response({'message': 'New user created'}, status=status.HTTP_201_CREATED)
-    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message':'user with this email address already exists.'}, status=HTTP_406_NOT_ACCEPTABLE)
 
 
 @api_view(['POST'])
@@ -27,7 +27,9 @@ def signin(request):
         else:
             if check_user[0].check_password(post_data['password'][0]):
                 serializer = UserSigninSerializer(check_user[0])
-                return Response({"message":"wellcome" , 'user': serializer.data} , status=status.HTTP_202_ACCEPTED)
+                data = serializer.data
+                data['username'] = check_user[0].username
+                return Response({"message":"wellcome" , 'user': data} , status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({"message": "password or email is not correct"} , status=status.HTTP_406_NOT_ACCEPTABLE)
 
