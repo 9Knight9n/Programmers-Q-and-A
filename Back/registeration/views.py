@@ -12,8 +12,13 @@ def signup(request):
     serializer = AccountRegistrationSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        return Response({'message': 'New user created'}, status=status.HTTP_201_CREATED)
-    return Response({'message':'user with this email address already exists.'}, status=HTTP_406_NOT_ACCEPTABLE)
+        user = User.objects.get(email=request.data['email'])
+        data = {}
+        data['id'] = user.id
+        data['email'] = user.email
+        data['username'] = user.username
+        return Response({'message': 'New user created' , 'user' : data}, status=status.HTTP_201_CREATED)
+    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
 @api_view(['POST'])
