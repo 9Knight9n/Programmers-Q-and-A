@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
+import Cookies from 'js-cookie';
 // import pro from "../img/";
 
 class LeftMenu extends Component {
@@ -16,6 +17,8 @@ class LeftMenu extends Component {
     }
 
     handleTabClick = (id) =>{
+        console.log(Cookies.get("avatar"))
+        console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
     }
@@ -47,8 +50,8 @@ class LeftMenu extends Component {
                 <div className="d-flex flex-column justify-content-center fix-height">
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
-                            src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg" /></div>
-                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{window.$username}</h1>
+                            src={sessionStorage.getItem("avatar")} /></div>
+                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{Cookies.get("username")}</h1>
                     </div>
 
 

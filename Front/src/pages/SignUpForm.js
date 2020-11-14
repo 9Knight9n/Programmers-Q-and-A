@@ -95,7 +95,6 @@ class SignUpForm extends Component{
     
     const form = new FormData()
     form.set('email', this.state.emailSignUp.toLowerCase());
-    console.log(this.state.emailSignUp.toLowerCase())
     form.set('password', this.state.passwordSignUp)
     const response =
     await axios.post('http://localhost:8000/api/signup/', form, {
@@ -107,25 +106,45 @@ class SignUpForm extends Component{
     if(response.data.massage ==="New user created" )
     {
 
-      Cookies.set("email",response.data.user.email)
-      Cookies.set("username",)
-      Cookies.set("avatar",)
-      const response =
+      Cookies.set("email",this.state.emailSignUp)
+      Cookies.set("username",response.data.user.username)
+      Cookies.set("id",response.data.user.id)
+      const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
-      Cookies.set("refresh",response.data.refresh)
-      Cookies.set("access",response.data.access)
+      Cookies.set("refresh",response2.data.refresh)
+      Cookies.set("access",response2.data.access)
+
+      let token = Cookies.get("access")
+      token = "Bearer "+token;
+      form.set("id",Cookies.get("id"))
+      const response3 =
+      await axios.get('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      headers: { 'Content-Type': 'multipart/form-data',
+                  'Authorization': `Bearer ${token}`
+      },
+    })
+
+
+    
+
+
+
+    console.log(response3.data)
+    window.$avatar=response3.data
+    sessionStorage.setItem("avatar",response3.data)
+    Cookies.set("avatar",response3.data);
+
+
+      
       document.getElementById("GoHomepageFromSignup").click()
     }
 
     else{
 
-
-      this.setState({email:""})
-      this.setState({password:""})
       return(this.setState({signUpCheckMassage:{massage:"Email already registered!",active:true}}))
 
     }

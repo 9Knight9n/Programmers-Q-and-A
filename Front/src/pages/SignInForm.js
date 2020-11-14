@@ -8,6 +8,17 @@ import logo from '../img/backgr.jpg';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+
+// axios.interceptors.request.use(
+//   config => {
+//     config.headers.authorization = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA1MzcxMDAxLCJqdGkiOiI5ODE4ZGYzODIyZWU0YWE0ODAyMWJlYzY1YzFlY2ZjMCIsInVzZXJfaWQiOjE3fQ.fYSWwvvVeQg4f6uw5V_9T2MaQ6LCD1iGLDcamkn2ixQ';
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// )
+
 class SignInForm extends Component{ 
   static displayName = 'RememberMe';
 
@@ -73,6 +84,7 @@ class SignInForm extends Component{
     const form = new FormData()
     form.set('email', this.state.email.toLowerCase());
     form.set('password', this.state.password)
+    console.log(form)
     const response =
     await axios.post('http://localhost:8000/api/login/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
@@ -83,22 +95,60 @@ class SignInForm extends Component{
 
     if(response.data.message==="wellcome")
     {
-      Cookies.set("email",response.data.user.email)   
-      Cookies.set("username",)
-      Cookies.set("avatar",)
-      const response =
+      Cookies.set("email",this.state.emailSignUp)
+      Cookies.set("username",response.data.user.username)
+      Cookies.set("id",response.data.user.id)
+      const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
-      Cookies.set("refresh",response.data.refresh)
-      Cookies.set("access",response.data.access)
+      Cookies.set("refresh",response2.data.refresh)
+      Cookies.set("access",response2.data.access)
+
+
+
+      let token = Cookies.get("access")
+      token = "Bearer "+token;
+      form.set("id",Cookies.get("id"))
+      const response3 =
+      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      headers: { 'Content-Type': 'multipart/form-data',
+                  'Authorization': token
+      },
+    })
+
+      console.log(response3.data)
+      window.$avatar=response3.data
+      sessionStorage.setItem("avatar",response3.data)
+      Cookies.set("avatar",response3.data);
+
+
+    // var data = new FormData();
+    // data.set('id', '20');
+
+    // var config = {
+    //   method: 'get',
+    //   url: 'http://127.0.0.1:8000/api/show_profile_picture/',
+    //   headers: { 
+    //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA1MzYyODQ5LCJqdGkiOiI5OTQ0MWMyMjk3NzY0YjQ3YjllMmQ0MTQ0M2IyYjJjOSIsInVzZXJfaWQiOjIwfQ.AmBRJeI1JnIB7uE8Rq2Rv2IUvUst1peai3i3Qqgu8NA', 
+    //   },
+    //   data : data
+    // };
+
+    // axios(config)
+    // .then(function (response) {
+    //   console.log(JSON.stringify(response.data));
+    // })
+
+
+
+
+
       document.getElementById("GoHomepageFromSignin").click()
     }
 
-    this.setState({email:""})
-    this.setState({password:""})
     return(this.setState({loginCheckMassage:{massage:response.data.message,active:true}}));
   }
 

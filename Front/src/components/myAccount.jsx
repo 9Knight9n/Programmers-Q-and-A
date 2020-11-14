@@ -55,7 +55,7 @@ class MyAccount extends Component {
         console.log("save button pressed")
         console.log("current preview:",src)
         this.setState({avatarChanged:true,src})
-        console.log("changed src:",this.state.src)
+        console.log( this.state.src)
       }
 
       tabSelected=(id)=>{

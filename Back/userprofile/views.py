@@ -80,9 +80,10 @@ def edit_interests(request):
         user.save()
         return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def show_profile_picture(request):
     data = dict(request.POST)
+    print(data)
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
