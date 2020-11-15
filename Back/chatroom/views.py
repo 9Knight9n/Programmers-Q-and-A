@@ -18,11 +18,12 @@ def createchatroom(request):
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0],
-            Description=data['Description'][0],
             selected=data['selected'][0]
         )
         if 'chatroomAvatar' in request.FILES.keys():
             chatroom.chatroomAvatar = request.FILES['chatroomAvatar']
+        if 'Description' in request.FILES.keys():
+            chatroom.Description = request.FILES['Description']
         chatroom.save()
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
     if Topic == "OS":
@@ -30,12 +31,13 @@ def createchatroom(request):
             owner=user[0],
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
-            Description=data['Description'][0],
             selected=data['selected'][0],
             selectedSub=data['selectedSub'][0],
         )
         if 'chatroomAvatar' in request.FILES.keys():
             chatroom.chatroomAvatar = request.FILES['chatroomAvatar']
+        if 'Description' in request.FILES.keys():
+            chatroom.Description = request.FILES['Description']
         chatroom.save()
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
     if Topic == "App":
@@ -44,9 +46,10 @@ def createchatroom(request):
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0],
-            Description=data['Description'][0],
         )
         if 'chatroomAvatar' in request.FILES.keys():
             chatroom.chatroomAvatar = request.FILES['chatroomAvatar']
+        if 'Description' in request.FILES.keys():
+            chatroom.Description = request.FILES['Description']
         chatroom.save()
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
