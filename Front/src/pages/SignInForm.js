@@ -65,7 +65,7 @@ class SignInForm extends Component{
     if (!this.emailValidation())
     {
       this.setState({email:""})
-      this.setState({emailCheckMassage:{massage:"Email is not valid!",active:true}});
+      this.setState({emailCheckMassage:{massege:"Email is not valid!",active:true}});
       return;
     }
     
@@ -97,6 +97,7 @@ class SignInForm extends Component{
     {
       Cookies.set("email",this.state.email)
       Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("username",response.data.user.username)
       Cookies.set("id",response.data.user.id)
       const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
@@ -122,7 +123,7 @@ class SignInForm extends Component{
 
       // console.log(response3.data)
       window.$avatar=response3.data
-      sessionStorage.setItem("avatar",response3.data)
+      sessionStorage.setItem("avatar",response3)
       Cookies.set("avatar",response3.data);
 
 

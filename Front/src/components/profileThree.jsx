@@ -81,9 +81,9 @@ class profileThree extends Component {
 
                         <div className="w-50">
                             <div class="fileUploadInput w-100">
-                            <h1 className="w-100 mb-2">please Upload your resume Files here:</h1>
+                            <h1 className="w-100">Please Upload your resume Files here:</h1>
                                 <div className="w-75 d-flex flex-row">
-                                    <input type="file" onChange={this.handleChangeFile}
+                                    <input onChange={this.handleChangeFile}
                                         id="upload-file-pro" className="w-75" type="file" />
                                     <button onClick={this.handleUploadClick} className="w-25 d-flex justify-content-center rounded-right align-items-center">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class=" bi bi-cloud-arrow-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -95,18 +95,19 @@ class profileThree extends Component {
                             </div>
                         </div> 
                     </div>
-                    <div className="bioBox">
+                    <div className="parisa-css bioBox mt-auto">
                         <div>
                             <h3>Bio :</h3>
                         </div>
-                        <div className="black-text bioField d-flex justify-content-center">
+                        <div className="parisa-css bioField black-text d-flex justify-content-center">
                             <textarea name="bio" value={this.state.bio}  onChange={this.handleChange}  className="" maxlength="175" rows="4" cols="53">
                                 
                             </textarea>
                         </div>
+                        <button class="btn btn-primary" onClick={console.log(this.state.selectedFile)}>Save</button>
                     </div>
 
-                    <button class="btn btn-primary" onClick={console.log(this.state.selectedFile)}>Save</button>
+                    
                          
             </React.Fragment>
             

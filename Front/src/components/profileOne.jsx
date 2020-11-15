@@ -73,6 +73,11 @@ class ProfileOne extends Component {
 
 
         async handleSubmit(){
+            if(this.state.username.startsWith("user-") && this.state.username!=="user-"+Cookies.get("id"))
+                return this.setState({usernameError:true,emailError:false,succeed:false})
+            var validator = require("email-validator");
+            if(!validator.validate(this.state.emailProfile))
+                return this.setState({usernameError:false,emailError:true,succeed:false})
             let token = Cookies.get("access")
             if(isExpired(Cookies.get("access")))
             {
@@ -114,6 +119,8 @@ class ProfileOne extends Component {
                 this.setState({emailError:false})
                 this.setState({usernameError:false})
                 this.setState({succeed:true})
+                Cookies.set("email",this.state.emailProfile)
+                Cookies.set("username",this.state.username)
             }
 
         }
@@ -123,7 +130,7 @@ class ProfileOne extends Component {
             <React.Fragment>
         
 
-                    <div class="parisa-css content-form1 d-flex justify-content-center align-items-center">
+                    <div class="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
                     
                         <div className="INPUT-FORM1"> 
                             <p>First Name :</p>
@@ -132,10 +139,10 @@ class ProfileOne extends Component {
                             <input name="lastName" value={this.state.lastName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Last name"/><br></br>
                             <p>Username :</p>
                             <input name="username" value={this.state.username}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Username"/>
-                            {this.state.usernameError? <p className="pro-error">Username already exist!</p> : <br/>}
+                            {this.state.usernameError? <p className="pro-error">Username is not available</p> : <br/>}
                             <p>Email :</p>
                             <input name="emailProfile" value={this.state.emailProfile}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Email"/>
-                            {this.state.emailError? <p className="pro-error">Email already registered!</p> : <br/>}
+                            {this.state.emailError? <p className="pro-error">Email is not valid or already registered!</p> : <br/>}
                             <button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
                             {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
                         </div>

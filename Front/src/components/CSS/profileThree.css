@@ -1,4 +1,4 @@
-.parisa-css .btn-proo{
+.parisa-css .btn-proo {
   padding: 19px;
   padding-left: 100px;
   padding-right: 100px;
@@ -6,7 +6,7 @@
   margin-left: 285px;
   margin-top: 25px;
   color: white;
-  background-color: rgba(9, 156, 167, 0.parisa .432) !important;
+  background-color: rgba(9, 156, 167, 0parisa 0.432) !important;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
@@ -31,13 +31,13 @@
   font-size: 1em;
   font-weight: regular;
 }
-
 .parisa-css .fileUploadInput input {
+  margin: -0.5%;
+  border-radius: 4px;
   position: relative;
   z-index: 1;
-  padding: 0 gap(m);
-  width: 100%;
-  height: 50px;
+  top: -8px;
+  height: auto;
   border: 2px solid #323262;
   border-radius: 7px;
   border-top-right-radius: 0px !important;
@@ -58,7 +58,9 @@
 }
 
 .parisa-css .fileUploadInput button {
-  height: 50px;
+  margin: -0.5%;
+  margin-top: -3%;
+  margin-bottom: 2%;
   line-height: 0;
   user-select: none;
   color: white;
@@ -69,7 +71,6 @@
   font-weight: 30%;
 }
 
-
 .parisa-css .container {
   padding: 25px;
   box-shadow: 0 0 20px rgba(66, 50, 98, 0.35);
@@ -79,8 +80,7 @@
   width: 690px;
 }
 
-
-.parisa-css .textarea:focus {
+.parisa-css textarea:focus {
   outline: none;
 }
 
@@ -94,14 +94,20 @@
   height: 41%;
   border: 3px solid #2d7ec3;
   resize: none;
-  /* border-radius: 60px; */
 }
 
-.parisa-css .bioBox h3 {
+.bioBox button {
+  margin-left: 24%;
+  margin-top: 4%;
+  width: 50%;
+}
+
+.bioBox h3 {
   margin-left: 20%;
+  margin-top: 10%;
 }
 
-.parisa-css .bioBox {
+.bioBox {
   margin-top: 10%;
 }
 
