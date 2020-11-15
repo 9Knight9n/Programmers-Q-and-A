@@ -6,12 +6,21 @@ import passImg from '../img/password.png'
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+
+// axios.interceptors.request.use(
+//   config => {
+//     config.headers.authorization = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA1MzcxMDAxLCJqdGkiOiI5ODE4ZGYzODIyZWU0YWE0ODAyMWJlYzY1YzFlY2ZjMCIsInVzZXJfaWQiOjE3fQ.fYSWwvvVeQg4f6uw5V_9T2MaQ6LCD1iGLDcamkn2ixQ';
+//     return config;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// )
 
 class SignInForm extends Component{ 
   static displayName = 'RememberMe';
-  state = {
-    test:false,
-  }
 
   constructor(props) {
     super(props);
@@ -52,47 +61,107 @@ class SignInForm extends Component{
   }
 
   async handleSubmit() {
+    this.clearErrors()
     if (!this.emailValidation())
     {
       this.setState({email:""})
-      this.setState({emailCheckMassage:{massage:"Email is not valid!",active:true}});
+      this.setState({emailCheckMassage:{massege:"Email is not valid!",active:true}});
       return;
     }
+    
     if (this.state.password.length===0)
     {
       this.setState({password:""})
       return(this.setState({passwordCheckMassage:{massage:"Enter your password",active:true}}));
     }
+
     if (!this.validatePassword())
     {
       this.setState({password:""})
       return(this.setState({passwordCheckMassage:{massage:"Password is incorrect!",active:true}}));
     }
+    
     const form = new FormData()
     form.set('email', this.state.email.toLowerCase());
     form.set('password', this.state.password)
+    console.log(form)
     const response =
-    await axios.post('http://localhost:8000', form, {
+    await axios.post('http://localhost:8000/api/login/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
     console.log(response)
 
-    if(response.data.error==="wellcome")
+    if(response.data.message==="wellcome")
     {
-      window.$username = this.state.email.split("@")[0];
-      return this.handleClick(2);
+      Cookies.set("email",this.state.email)
+      Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("username",response.data.user.username)
+      Cookies.set("id",response.data.user.id)
+      const response2 =
+      await axios.post('http://localhost:8000/api/token/', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
+
+      Cookies.set("refresh",response2.data.refresh)
+      Cookies.set("access",response2.data.access)
+
+
+
+      let token = Cookies.get("access")
+      token = "Bearer "+token;
+      console.log(token)
+      form.set("id",Cookies.get("id"))
+      const response3 =
+      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      headers: { 'Content-Type': 'multipart/form-data',
+                  'Authorization': token
+      },
+    })
+
+      // console.log(response3.data)
+      window.$avatar=response3.data
+      sessionStorage.setItem("avatar",response3)
+      Cookies.set("avatar",response3.data);
+
+
+    // var data = new FormData();
+    // data.set('id', '20');
+
+    // var config = {
+    //   method: 'get',
+    //   url: 'http://127.0.0.1:8000/api/show_profile_picture/',
+    //   headers: { 
+    //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA1MzYyODQ5LCJqdGkiOiI5OTQ0MWMyMjk3NzY0YjQ3YjllMmQ0MTQ0M2IyYjJjOSIsInVzZXJfaWQiOjIwfQ.AmBRJeI1JnIB7uE8Rq2Rv2IUvUst1peai3i3Qqgu8NA', 
+    //   },
+    //   data : data
+    // };
+
+    // axios(config)
+    // .then(function (response) {
+    //   console.log(JSON.stringify(response.data));
+    // })
+
+
+
+
+
+      document.getElementById("GoHomepageFromSignin").click()
     }
 
-    this.setState({email:""})
-    this.setState({password:""})
-    return(this.setState({loginCheckMassage:{massage:response.data.error,active:true}}));
-
-
-
+    return(this.setState({loginCheckMassage:{massage:response.data.message,active:true}}));
   }
 
+
+  clearErrors(){
+    this.setState({emailCheckMassage:{active:false}});
+    this.setState({passwordCheckMassage:{active:false}})
+    this.setState({loginCheckMassage:{active:false}})
+  }
+
+  
 
 
   emailValidation = () => {
@@ -120,7 +189,8 @@ class SignInForm extends Component{
               {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
             </div>
             <div className="signInTransfer">
-              <button name= "signInButton" type="button" onClick={this.handleSubmit} >Sign In</button>
+            <Link id="GoHomepageFromSignin" to="/"></Link>
+            <button name= "signInButton" type="button" onClick={this.handleSubmit}>Sign In</button>
               <br />
             </div>
             <br />
@@ -129,9 +199,9 @@ class SignInForm extends Component{
             </div>
             <br />
               <div className="signUpTransfer">
-                <p>Don't have an account ?</p>
+                <p>Don't have an account ?</p> 
                 <Link to="/signup">
-                <button name= "signUpButton" type="button">Sign Up</button>
+                  <button name= "signUpButton" type="button">Sign Up</button>
                 </Link>
               </div>
           </div>

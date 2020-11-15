@@ -6,6 +6,7 @@ import passImg from '../img/password.png';
 import confirmImg from '../img/confirm.png';
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
+import Cookies from 'js-cookie';
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -25,7 +26,10 @@ class SignUpForm extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleChange(e) {
+    this.setState({error:false})
+    this.clearError()
     let target = e.target;
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
@@ -34,18 +38,32 @@ class SignUpForm extends Component{
       [name]: value,
     });
 
-    if(!this.validatePassword() && (this.state.passwordSignUp.length!==0))
+
+    console.log("pass length",value)
+    if(!this.validatePassword(value) && (value.length!==0) && (name==="passwordSignUp"))
     {
+      this.setState({error:false})
       this.setState({passwordCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
     }
     else
     {
       this.setState({passwordCheckMassage:{massage:"",active:true}});
     }
+    
 
-    if (this.state.passwordSignUp!==this.state.confirmPassword)
+    if(name==="confirmPassword")
     {
-      this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      if (this.state.passwordSignUp!==value)
+      {
+        this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      }
+    }
+    else if(name==="passwordSignUp")
+    {
+      if (this.state.confirmPassword!==value && this.state.confirmPassword.length!==0)
+      {
+        this.setState({ConfirmPasswordCheckMassage:{massage:"Password doesn't match!",active:true}});
+      }
     }
     else
     {
@@ -56,41 +74,88 @@ class SignUpForm extends Component{
 
   async handleSubmit() {
 
+    console.log(this.state.passwordSignUp)
+    this.clearError()
+
     if (!this.emailValidation())
     {
       this.setState({emailSignUp:""});
       return(this.setState({emailCheckMassage:{massage:"Email is not valid!",active:true}}));
     }
     if (!this.checkPassword())
-      return;
-    if (!this.validatePassword())
     {
-      this.setState({signUpCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
+      return;
+    }
+    if (!this.validatePassword(this.state.passwordSignUp))
+    {
+      console.log("enteredaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      this.setState({error:true})
+      this.setState({passwordCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
+      return;
     }
     
     const form = new FormData()
     form.set('email', this.state.emailSignUp.toLowerCase());
-    console.log(this.state.emailSignUp.toLowerCase())
     form.set('password', this.state.passwordSignUp)
     const response =
-    await axios.post('http://localhost:8000/signup', form, {
+    await axios.post('http://localhost:8000/api/signup/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
 
     console.log(response)
-    if(response.data.error)
-      return(this.setState({signUpCheckMassage:{massage:"Email already registered!",active:true}}))
-    else
+    if(response.data.message ==="New user created" )
     {
-      window.$username = this.state.emailSignUp.split("@")[0];
-      return this.handleClick(2);
-    }
-      
-  
+      Cookies.set("email",this.state.emailSignUp)
+      Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("username",response.data.user.username)
+      Cookies.set("id",response.data.user.id)
+      const response2 =
+      await axios.post('http://localhost:8000/api/token/', form, {
+      headers: { 'Content-Type': 'multipart/form-data'
+      },
+    })
+      console.log(response2);
+      Cookies.set("refresh",response2.data.refresh)
+      Cookies.set("access",response2.data.access)
+
+      let token = Cookies.get("access")
+      token = "Bearer "+token;
+      form.set("id",Cookies.get("id"))
+      const response3 =
+      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      headers: { 'Content-Type': 'multipart/form-data',
+                  'Authorization': token
+      },
+    })
+
+
     
-   // alert('A name was submitted: ' + this.state.value);
-  }
+
+
+
+    // console.log(response3.data)
+    window.$avatar=response3.data
+    sessionStorage.setItem("avatar",response3.data)
+    Cookies.set("avatar",response3.data);
+
+
+      
+      document.getElementById("GoHomepageFromSignup").click()
+    }
+
+    else{
+
+      return(this.setState({signUpCheckMassage:{massage:"Email already registered!",active:true}}))
+
+    }
+
+    
+
+
+    }
+    
+
 
 
 
@@ -101,8 +166,10 @@ class SignUpForm extends Component{
   }
 //checking confrim and pass
   checkPassword() { 
+    this.setState({error:true})
     let password1 = this.state.passwordSignUp;
     let password2 = this.state.confirmPassword;
+    this.setState({error:true})
     // If password not entered 
     if (password1 === '') 
     {
@@ -113,23 +180,26 @@ class SignUpForm extends Component{
     // If confirm password not entered 
     else if (password2 === '') 
     {
+      console.log("pass not confirmed")
       this.setState({ConfirmPasswordCheckMassage:{massage:"Please enter confirm password",active:true}});
+      console.log("activate?:",this.state.ConfirmPasswordCheckMassage.massage)
       return false;
     }
 
     // If Not same return False.
     else if (password1 !== password2) { 
 
-      this.setState({signUpCheckMassage:{massage:"Password did not match: Please try again...",active:true}});
+      this.setState({ConfirmPasswordCheckMassage:{massage:"Password did not match: Please try again...",active:true}});
       return false;
     } 
     else{
+      this.setState({error:false})
         return true;
 
     }
   }
 
-  validatePassword() {
+  validatePassword(pass) {
     var passwordValidator = require('password-validator');
  
     // Create a schema
@@ -144,8 +214,16 @@ class SignUpForm extends Component{
     .has().lowercase()                              // Must have lowercase letters
     .has().digits(1)                                // Must have at least 2 digits
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
-    return schema.validate(this.state.passwordSignUp);
+    return schema.validate(pass);
 
+  }
+
+
+  clearError(){
+    this.setState({ConfirmPasswordCheckMassage:{active:false}});
+    this.setState({emailCheckMassage:{active:false}});
+    this.setState({signUpCheckMassage:{active:false}});
+    this.setState({ConfirmPasswordCheckMassage:{active:false}});
   }
 
     render() {
@@ -175,11 +253,12 @@ class SignUpForm extends Component{
                       <input placeholder="Confirm your password" value={this.state.confirmPassword} onChange={this.handleChange} name="confirmPassword" className="confirmPassField" type="password" />
                     </div>
 
-                    <div className="confirmPassConflict">
-                      {this.state.confirmPassword.active ? this.state.confirmPassword.massage:""}
+                    <div className={"confirmPassConflict".concat(this.state.error?" error":"")}>
+                      {this.state.ConfirmPasswordCheckMassage.active ? this.state.ConfirmPasswordCheckMassage.massage:""}
                     </div>
 
                   <div className="signUpTransfer2">
+                    <Link id="GoHomepageFromSignup" to="/"></Link>
                     <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
                     <br />
                   </div>
@@ -191,7 +270,7 @@ class SignUpForm extends Component{
                   <div className="signInTransfer2">
                     <p>Already have account ?</p> 
                     <Link to="/login">
-                    <button name= "signInButton2" type="button">Sign In</button>
+                      <button  name= "signInButton2" type="button">Sign In</button>
                     </Link>
                   </div> 
                 </div>

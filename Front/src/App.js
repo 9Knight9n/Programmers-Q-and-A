@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link,
   useRouteMatch,
   useParams
@@ -11,6 +12,7 @@ import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
+import Cookies from 'js-cookie';
 import './index.css';
 
 
@@ -38,6 +40,7 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
+        {!sessionStorage.getItem("avatar")? <Redirect to="/login" /> : ""}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 

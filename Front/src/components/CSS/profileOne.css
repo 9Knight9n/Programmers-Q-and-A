@@ -1,58 +1,44 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-*{
-
-margin: 10;
-padding: 0;
-box-sizing: border-box;
-outline: none;
-font-family: 'Roboto',sans-serif;
-}
 
 
 
-.profile{
+.parisa-css .profile{
     position: absolute;
     top: 80%;
     transform: translateY(-50%);
     width: 100%;
     padding: 0 20PX;
 }
-.content-form{
-    max-width: 105%;
+.parisa-css .content-form1{
+    width: 100%;
     height: 100%;
-    margin: 100 auto;
-    padding: 1%;
-    padding-top: 30%;
-    padding-bottom: 55%;
     border-radius: 2%;
     display:flex ;
     
 }
-.INPUT-FORM{
+.parisa-css .INPUT-FORM1{
     display: flex;
     flex-direction: column;
-    margin-right: 10% ;
-    margin-left: 5px;
+    
+  
     
     
 
 }
-.INPUT-FORM,
+.parisa-css input{
+    border-radius: 8px;
+}
+.parisa-css .INPUT-FORM1,
 .msg textarea{
 
 background: transparent;
 border: 90%;
-margin: -164px;
-margin-left:30%;
-padding: -13%;
-color: #C5ECFD;
+color: #000203;
 width: 40%;
 
 
 
 }
-.msg textarea{
+.parisa-css .msg textarea{
     height: 300px;
 }
 
@@ -67,15 +53,24 @@ width: 40%;
 ::-ms-input-placeholder{
     color: #575252;
 }
-.btn{
-    background: #39b7dd;
+.parisa-css .btn-pro{
+    color: white;
+    background: rgba(9, 156, 167, 0.432) !important;
     text-align: center;
     padding: 15px;
     border-radius: 5px;
-    color: #fff;
     cursor: pointer;
     text-transform: uppercase;
     line-height: 0;
+    border-radius: 8px;
+}
+.parisa-css .pro-error{
+    color: red !important;
+    font-size: smaller;
+}
+.parisa-css .pro-success{
+    color: #00ff00 !important;
+    font-size: smaller;
 }
 
 @media screen and (max-width:600px){
@@ -86,7 +81,7 @@ width: 40%;
     .msg textarea{
         height: 80px;
     }
-    .INPUT-FORM,
+    .INPUT-FORM1,
     .msg{
         width: 100%;
         
