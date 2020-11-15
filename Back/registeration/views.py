@@ -17,6 +17,8 @@ def signup(request):
         data['id'] = user.id
         data['email'] = user.email
         data['username'] = user.username
+        open('media\profile_image\\' + str(user.id) + '.txt', 'a').close()
+        user.profile_picture = 'media\profile_image\\' + str(user.id) + '.txt'
         return Response({'message': 'New user created' , 'user' : data}, status=status.HTTP_201_CREATED)
     return Response({'message':'user with this email address already exists.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 

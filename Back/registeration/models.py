@@ -59,7 +59,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     # first page of profile
-    profile_picture = models.FileField(upload_to="profile_image",default="profile_image/default-profile-picture.jpg")
+    profile_picture = models.FileField(upload_to="profile_image",default="profile_image/text.txt")
     first_name = models.CharField(max_length=20 , null=True)
     last_name = models.CharField(max_length=20 , null=True)
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique

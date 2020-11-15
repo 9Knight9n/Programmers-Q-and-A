@@ -21,7 +21,6 @@ def show_personal_info(request):
 def get_personal_info(request):
     if request.method == 'POST':
         data = dict(request.POST)
-        print(data)
         user = User.objects.get(id=data['id'][0])
         if 'first_name' in data.keys():
             user.first_name = data['first_name'][0]
@@ -75,8 +74,8 @@ def edit_interests(request):
         user = user[0]
         if 'description' in data.keys():
             user.description = data['description'][0]
-        if 'cvfile' in request.FILES.keys():
-            user.cvfile = request.FILES['cvfile']
+        if 'cvfile' in request.data.keys():
+            user.cvfile = request.data['cvfile']
         if 'interests' in data.keys():
             user.interests = data['interests'][0]
         user.save()
@@ -85,13 +84,13 @@ def edit_interests(request):
 @api_view(['POST' , ])
 def show_profile_picture(request):
     data = dict(request.POST)
-    print(data)
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
-        filename = user.profile_picture.path
-        response = FileResponse(open(filename, 'rb'))
-        return response
+        filename = 'media\profile_image\\' + str(user.id) + '.txt'
+        data = open(filename, 'rb').read()
+        print(data)
+        return Response ({'Base64' : data})
 
 
 @api_view(['POST' , ])
@@ -100,7 +99,11 @@ def edit_profile_picture(request):
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
-        if 'profile_picture' in request.FILES.keys():
-            user.profile_picture = request.FILES['profile_picture']
+        if 'Base64' in request.POST.keys():
+            filename = 'media\profile_image\\' + str(user.id) + '.txt'
+            data = open(filename, 'w')
+            data.write(request.POST['Base64'])
+            data.close()
+            data = open(filename, 'r')
         user.save()
         return Response({'message': 'Edit user profile picture '}, status=status.HTTP_200_OK)
