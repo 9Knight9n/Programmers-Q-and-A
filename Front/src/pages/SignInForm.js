@@ -122,9 +122,7 @@ class SignInForm extends Component{
     })
 
       // console.log(response3.data)
-      window.$avatar=response3.data
-      sessionStorage.setItem("avatar",response3)
-      Cookies.set("avatar",response3.data);
+      sessionStorage.setItem("avatar",response3.data.Base64)
 
 
     // var data = new FormData();

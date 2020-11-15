@@ -66,7 +66,9 @@ class ProfileOne extends Component {
         },
         })
         console.log(response)
-        this.setState({firstName:response.data.first_name,lastName:response.data.last_name,username:response.data.username,emailProfile:response.data.email})
+        let fn = (response.data.first_name ? response.data.first_name : "")
+        let ln = (response.data.last_name ? response.data.last_name : "")
+        this.setState({firstName:fn,lastName:ln,username:response.data.username,emailProfile:response.data.email})
 
     }
 
@@ -121,6 +123,7 @@ class ProfileOne extends Component {
                 this.setState({succeed:true})
                 Cookies.set("email",this.state.emailProfile)
                 Cookies.set("username",this.state.username)
+                
             }
 
         }

@@ -2,7 +2,9 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from django.http import FileResponse
-
+from mysite import settings 
+from django.conf.urls.static import static
+import os
 
 from registeration.models import User
 from .serializer import (PersonalInfoSerializer,
@@ -47,8 +49,9 @@ def get_personal_info(request):
 def show_activity(request):
     pass
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def show_interests(request):
+    print(static(settings.MEDIA_URL , document_root=settings.MEDIA_URL))
     data = dict(request.POST)
     user = User.objects.filter(id=data['id'][0])
     if user != []:
@@ -56,7 +59,7 @@ def show_interests(request):
         serializer = InterestsInfoSerializer(user)
         return Response(serializer.data)
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def show_cv_file(request):
     data = dict(request.POST)
     user = User.objects.filter(id=data['id'][0])
@@ -65,20 +68,45 @@ def show_cv_file(request):
         filename = user.cvfile.path
         response = FileResponse(open(filename, 'rb'))
         return response
+    # fill these variables with real values
+        fl_path = 'media/profile_cv/'
+        filename = str(user.id)+"."+user.cvfile.path.split(".")[1]
+
+        fl = open(fl_path+filename, 'r')
+        mime_type, _ = mimetypes.guess_type(fl_path+filename)
+        response = HttpResponse(fl, content_type=mime_type)
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        return response
+
+
+    
 
 @api_view(['POST' , ])
 def edit_interests(request):
+    fileChanged = False
     data = dict(request.POST)
+    s = {}
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
         if 'description' in data.keys():
             user.description = data['description'][0]
-        if 'cvfile' in request.data.keys():
-            user.cvfile = request.data['cvfile']
+        if 'cvfile' in request.FILES.keys():
+            fil = request.FILES['cvfile']
+            user.cvfile = fil
+            # s = str(fil)
+            # fileChanged = True
         if 'interests' in data.keys():
             user.interests = data['interests'][0]
         user.save()
+        # if fileChanged:
+        #     os.rename('media/profile_cv/'+s.replace(" ","_"),'media/profile_cv/'+str(user.id)+"."+s.split(".")[1])
+        #     newfile = open('/media/profile_cv/'+str(user.id)+"."+s.split(".")[1] ,'rb')
+        #     user.cvfile = newfile
+        #     newfile.close()
+        # print(user.cvfile)
+        # user.cvfile.path = str(user.id)+"."+str(user.cvfile).split(".")[1]
+        print(user.cvfile)
         return Response({'message': 'Edit user interest'}, status=status.HTTP_200_OK)
 
 @api_view(['POST' , ])
@@ -87,7 +115,7 @@ def show_profile_picture(request):
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
-        filename = 'media\profile_image\\' + str(user.id) + '.txt'
+        filename = 'media/profile_image/' + str(user.id) + '.txt'
         data = open(filename, 'rb').read()
         print(data)
         return Response ({'Base64' : data})
@@ -100,7 +128,7 @@ def edit_profile_picture(request):
     if user != []:
         user = user[0]
         if 'Base64' in request.POST.keys():
-            filename = 'media\profile_image\\' + str(user.id) + '.txt'
+            filename = 'media/profile_image/' + str(user.id) + '.txt'
             data = open(filename, 'w')
             data.write(request.POST['Base64'])
             data.close()

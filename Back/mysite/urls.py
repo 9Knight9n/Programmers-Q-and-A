@@ -14,4 +14,4 @@ urlpatterns = [
     path('api/token/refresh/' , jwt_views.TokenRefreshView.as_view()),
     path('api/' , include("userprofile.urls")),
 ]
-#urlpatterns = urlpatterns + static(settings.MEDIA_URL , document_root=settings.MEDIA_URL)
+urlpatterns = urlpatterns + static(settings.MEDIA_URL , document_root=settings.MEDIA_URL)

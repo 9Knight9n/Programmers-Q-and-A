@@ -130,17 +130,8 @@ class SignUpForm extends Component{
     })
 
 
-    
-
-
-
-    // console.log(response3.data)
-    window.$avatar=response3.data
-    sessionStorage.setItem("avatar",response3.data)
-    Cookies.set("avatar",response3.data);
-
-
-      
+    sessionStorage.setItem("avatar",response3.data.Base64)
+   
       document.getElementById("GoHomepageFromSignup").click()
     }
 
