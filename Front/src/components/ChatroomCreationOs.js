@@ -87,7 +87,7 @@ class ChatroomCreationOs extends Component {
         if (this.state.selectedOs && this.state.selectedSubOs) {
             Cookies.set("selected" , this.state.selectedOs);
             Cookies.set("selectedSub" , this.state.selectedSubOs);
-            Cookies.set("description" , this.state.osDescription);
+            Cookies.set("Description" , this.state.osDescription);
         }
     }
 

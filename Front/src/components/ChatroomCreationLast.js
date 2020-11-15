@@ -91,10 +91,11 @@ class ChatroomCreationLast extends Component {
         }
 
         if (Cookies.get("selectedTopic") === "PL") {
+          let selected = Cookies.get("selected")
           form.set('selectedTopic', Cookies.get("selectedTopic"))
           form.set('chatroomName', Cookies.get("chatroomName"))
           form.set('owner', Cookies.get("id"))
-          form.set('selected', Cookies.get("selected"))
+          form.set('selected', Cookies.get("selected") )
           form.set('Link', Cookies.get("Link"))
           form.set('Description', Cookies.get("selected"))
         }
@@ -113,6 +114,11 @@ class ChatroomCreationLast extends Component {
                     'Authorization': token
       },
     })
+    Cookies.remove("selectedSub")
+    Cookies.remove("selected")
+    Cookies.remove("selectedTopic")
+    Cookies.remove("Description")
+    Cookies.remove("Link")
   }
 
     render() { 

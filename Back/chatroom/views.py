@@ -30,7 +30,6 @@ def createchatroom(request):
             owner=user[0],
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
-            Link=data['Link'][0],
             Description=data['Description'][0],
             selected=data['selected'][0],
             selectedSub=data['selectedSub'][0],

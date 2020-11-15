@@ -7,7 +7,7 @@ import ChatroomCreationFirst from './ChatroomCreationFirst';
 import ChatroomCreationPl from './ChatroomCreationPl';
 import exitImg from '../img/exit.png';
 import './CSS/newChatroom.css'
-
+import Cookies from 'js-cookie';
 
 class NewChatroom extends Component {
     state = {
@@ -16,6 +16,11 @@ class NewChatroom extends Component {
 
     hideModal = () => {
         this.props.hideModal();
+        Cookies.remove("selectedSub")
+        Cookies.remove("selected")
+        Cookies.remove("selectedTopic")
+        Cookies.remove("Description")
+        Cookies.remove("Link")
     }
 
     modalClick = (e) => {
