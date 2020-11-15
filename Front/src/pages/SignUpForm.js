@@ -86,8 +86,9 @@ class SignUpForm extends Component{
     {
       return;
     }
-    if (!this.validatePassword())
+    if (!this.validatePassword(this.state.passwordSignUp))
     {
+      console.log("enteredaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       this.setState({error:true})
       this.setState({passwordCheckMassage:{massage:"Password must contains Uppercase, Lowercase, digit and at least 8 characters",active:true}});
       return;
@@ -103,18 +104,18 @@ class SignUpForm extends Component{
     })
 
     console.log(response)
-    if(response.data.massage ==="New user created" )
+    if(response.data.message ==="New user created" )
     {
-
       Cookies.set("email",this.state.emailSignUp)
       Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("username",response.data.user.username)
       Cookies.set("id",response.data.user.id)
       const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
-
+      console.log(response2);
       Cookies.set("refresh",response2.data.refresh)
       Cookies.set("access",response2.data.access)
 
@@ -122,7 +123,7 @@ class SignUpForm extends Component{
       token = "Bearer "+token;
       form.set("id",Cookies.get("id"))
       const response3 =
-      await axios.get('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',
                   'Authorization': token
       },

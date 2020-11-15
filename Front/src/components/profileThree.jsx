@@ -95,18 +95,19 @@ class profileThree extends Component {
                             </div>
                         </div> 
                     </div>
-                    <div className="bioBox mt-auto">
+                    <div className="parisa-css bioBox mt-auto">
                         <div>
                             <h3>Bio :</h3>
                         </div>
-                        <div className="description black-text bioField d-flex justify-content-center">
+                        <div className="parisa-css bioField black-text d-flex justify-content-center">
                             <textarea name="bio" value={this.state.bio}  onChange={this.handleChange}  className="" maxlength="175" rows="4" cols="53">
                                 
                             </textarea>
                         </div>
+                        <button class="btn btn-primary" onClick={console.log(this.state.selectedFile)}>Save</button>
                     </div>
 
-                    <button class="btn btn-primary" onClick={console.log(this.state.selectedFile)}>Save</button>
+                    
                          
             </React.Fragment>
             

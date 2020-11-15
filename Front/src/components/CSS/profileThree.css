@@ -1,4 +1,4 @@
-.parisa-css .btn-proo{
+.parisa-css .btn-proo {
   padding: 19px;
   padding-left: 100px;
   padding-right: 100px;
@@ -6,32 +6,13 @@
   margin-left: 285px;
   margin-top: 25px;
   color: white;
-  background-color: rgba(9, 156, 167, 0.parisa .432) !important;
+  background-color: rgba(9, 156, 167, 0parisa 0.432) !important;
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
   text-transform: uppercase;
   line-height: 0;
   border-radius: 8px;
-}
-.parisa-css 
-textarea:focus {
-  outline: none;
-}
-.parisa-css .description textarea {
-  background-color: #bab9f7;
-  margin-top: 0%;
-  line-height: 31px;
-  font-family: Arial, Helvetica, Sans-serif;
-  padding-left: 3%;
-  padding-right: 3%;
-  height: 41%;
-  border: 3px solid #2d7ec3;
-  /* border-radius: 60px; */
-}
-
-.parisa-css .description:focus {
-  outline: none;
 }
 .parisa-css .fileUploadInput {
   display: grid;
@@ -50,15 +31,13 @@ textarea:focus {
   font-size: 1em;
   font-weight: regular;
 }
-
 .parisa-css .fileUploadInput input {
   margin: -0.5%;
   border-radius: 4px;
   position: relative;
   z-index: 1;
-  padding: 0 gap(m);
-  width: 100%;
-  height: 5vh;
+  top: -8px;
+  height: auto;
   border: 2px solid #323262;
   border-radius: 7px;
   border-top-right-radius: 0px !important;
@@ -80,7 +59,8 @@ textarea:focus {
 
 .parisa-css .fileUploadInput button {
   margin: -0.5%;
-  height: 5vh;
+  margin-top: -3%;
+  margin-bottom: 2%;
   line-height: 0;
   user-select: none;
   color: white;
@@ -91,7 +71,6 @@ textarea:focus {
   font-weight: 30%;
 }
 
-
 .parisa-css .container {
   padding: 25px;
   box-shadow: 0 0 20px rgba(66, 50, 98, 0.35);
@@ -101,8 +80,7 @@ textarea:focus {
   width: 690px;
 }
 
-
-.parisa-css .textarea:focus {
+.parisa-css textarea:focus {
   outline: none;
 }
 
@@ -116,14 +94,20 @@ textarea:focus {
   height: 41%;
   border: 3px solid #2d7ec3;
   resize: none;
-  /* border-radius: 60px; */
 }
 
-.parisa-css .bioBox h3 {
+.bioBox button {
+  margin-left: 24%;
+  margin-top: 4%;
+  width: 50%;
+}
+
+.bioBox h3 {
   margin-left: 20%;
+  margin-top: 10%;
 }
 
-.parisa-css .bioBox {
+.bioBox {
   margin-top: 10%;
 }
 

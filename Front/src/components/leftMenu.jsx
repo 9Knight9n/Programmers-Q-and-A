@@ -50,7 +50,7 @@ class LeftMenu extends Component {
                 <div className="d-flex flex-column justify-content-center fix-height">
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
-                            src={sessionStorage.getItem("avatar").data} /></div>
+                            src={sessionStorage.getItem("avatar")} /></div>
                         <h1 className="pt-1 h4 d-flex align-items-center pr-4">{Cookies.get("username")}</h1>
                     </div>
 
@@ -84,7 +84,7 @@ class LeftMenu extends Component {
                         </Link>
                         
                         <div className="w-100 d-flex flex-row">
-                            <Link className="w-50  p-0" to="/login">
+                            <Link className="w-50  p-0" to="/login" onClick={()=>sessionStorage.removeItem("avatar")}>
                             {/* onClick={() => this.handleLogOutClick()} */}
                                 <button  className=" w-100 d-flex align-items-center justify-content-center btn lm-btn btn-primary">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-door-open-fill m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
