@@ -65,7 +65,7 @@ class SelectAvatar extends Component {
                                 onCrop={this.onCrop}
                                 onClose={this.onClose}
                                 onFileLoad={() => this.setState({editing:true})}
-                            />
+                                />
                                 {/* <input type="file" 
                                     id="selectedFile" 
                                     style={{display:"none"}} 

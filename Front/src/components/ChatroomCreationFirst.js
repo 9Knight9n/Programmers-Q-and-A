@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {renewToken} from './token';
 import {
   BrowserRouter as Router,
   Link,
@@ -7,12 +8,27 @@ import './CSS/ChatroomCreation.css';
 import osImg from '../img/operating-system.png';
 import appImg from '../img/mobile-app.png';
 import prLangImg from '../img/coding-language.png';
+import Cookies from 'js-cookie';
 
 
-class ChatroomCreationOs extends Component {
-    state = { 
-       
-     }
+class ChatroomCreationFirst extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            chatroomContext: null,
+        }
+        this.hideModal = this.hideModal.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+      }
+
+        hideModal() {
+            this.props.hideModal();
+        }
+
+        handleClick(input) {
+            Cookies.set("selectedTopic" , input);
+        }
+
     render() { 
         return ( 
                 <div class="main-box">
@@ -22,7 +38,7 @@ class ChatroomCreationOs extends Component {
                             <div className="contextLogo">
                                 <div className="osBox">
                                     <div className="os">
-                                        <Link to="/chatroomCreationOs">
+                                        <Link name="OS" to="/chatroomCreationOs" onClick={() => this.handleClick("OS")}>
                                             <img src={osImg} />
                                             <h3>Operating system</h3>
                                         </Link> 
@@ -30,7 +46,7 @@ class ChatroomCreationOs extends Component {
                                 </div>
                                 <div className="appBox">
                                     <div className="application">
-                                        <Link to="/chatroomCreationApp">
+                                        <Link to="/chatroomCreationApp" onClick={() => this.handleClick("App")}>
                                             <img src={appImg} />
                                             <h3>Application</h3>
                                         </Link> 
@@ -38,7 +54,7 @@ class ChatroomCreationOs extends Component {
                                 </div>
                                 <div className="prLangBox">
                                     <div className="prlang">
-                                        <Link to="/chatroomCreationPl">
+                                        <Link to="/chatroomCreationPl" onClick={() => this.handleClick("PL")}>
                                             <img src={prLangImg} />
                                             <h3>Programming Languages</h3>
                                         </Link>  
@@ -46,10 +62,14 @@ class ChatroomCreationOs extends Component {
                                 </div>
                             </div>
                         </div>
+                        <Link to="/" onClick={this.hideModal} >
+                            <button class="backButtonFirst" type="button" >Back</button>
+                        </Link>
                     </div>
                 </div>
+                
          );
     }
 }
  
-export default ChatroomCreationOs;
+export default ChatroomCreationFirst;

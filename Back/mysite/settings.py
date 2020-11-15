@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'submittext.apps.SubmittextConfig',
     'userprofile.apps.UserprofileConfig',
     'django_cleanup',
+    'chatroom.apps.ChatroomConfig',
 ]
 
 MIDDLEWARE = [
