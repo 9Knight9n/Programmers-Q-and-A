@@ -254,7 +254,7 @@ class SignUpForm extends Component{
                     <br />
                   </div>
                   <br />
-                  <div className="validFieldSignUp error">
+                  <div className="validFieldsSignUp error">
                     {this.state.signUpCheckMassage.active ? this.state.signUpCheckMassage.massage:""}
                   </div>
                   <br />

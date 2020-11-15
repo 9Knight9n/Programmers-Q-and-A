@@ -26,7 +26,7 @@ def signup(request):
         
         user.profile_picture = 'media/profile_image/' + str(user.id) + '.txt'
         return Response({'message': 'New user created' , 'user' : data}, status=status.HTTP_201_CREATED)
-    return Response({'message':'user with this email address already exists.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+    return Response({'message':'user with this email address already exists.'})
 
 
 @api_view(['POST'])
@@ -36,7 +36,7 @@ def signin(request):
         post_data = dict(request.POST)
         check_user = User.objects.filter(email=post_data['email'][0])
         if len(check_user) == 0:
-            return Response({"message":"this email does not exist!"} , status=status.HTTP_404_NOT_FOUND)
+            return Response({"message":"this email does not exist!"} )
         else:
             if check_user[0].check_password(post_data['password'][0]):
                 serializer = UserSigninSerializer(check_user[0])
@@ -44,5 +44,5 @@ def signin(request):
                 data['username'] = check_user[0].username
                 return Response({"message":"wellcome" , 'user': data} , status=status.HTTP_202_ACCEPTED)
             else:
-                return Response({"message": "password or email is not correct"} , status=status.HTTP_406_NOT_ACCEPTABLE)
+                return Response({"message": "password or email is not correct"} )
 
