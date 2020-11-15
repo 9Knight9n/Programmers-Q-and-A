@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {renewToken} from './token';
 import {
   BrowserRouter as Router,
   Link,
@@ -25,7 +26,7 @@ class ChatroomCreationFirst extends Component {
         }
 
         handleClick(input) {
-            Cookies.set("selectedContext" , input);
+            Cookies.set("selectedTopic" , input);
         }
 
     render() { 
@@ -37,7 +38,7 @@ class ChatroomCreationFirst extends Component {
                             <div className="contextLogo">
                                 <div className="osBox">
                                     <div className="os">
-                                        <Link name="OS" to="/chatroomCreationOs" onClick={() => this.handleClick("Os")}>
+                                        <Link name="OS" to="/chatroomCreationOs" onClick={() => this.handleClick("OS")}>
                                             <img src={osImg} />
                                             <h3>Operating system</h3>
                                         </Link> 
@@ -53,7 +54,7 @@ class ChatroomCreationFirst extends Component {
                                 </div>
                                 <div className="prLangBox">
                                     <div className="prlang">
-                                        <Link to="/chatroomCreationPl" onClick={() => this.handleClick("Pl")}>
+                                        <Link to="/chatroomCreationPl" onClick={() => this.handleClick("PL")}>
                                             <img src={prLangImg} />
                                             <h3>Programming Languages</h3>
                                         </Link>  

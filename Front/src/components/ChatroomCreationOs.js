@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {renewToken} from './token';
 class ChatroomCreationOs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOs: Cookies.get("selectedOs"),
-            selectedSubOs: Cookies.get("selectedSubOs"),
-            osDescription: Cookies.get("osDescription"),
+            selectedOs: Cookies.get("selected"),
+            selectedSubOs: Cookies.get("selectedSub"),
+            osDescription: Cookies.get("Description"),
             error: false,
 
             OS: [
@@ -84,9 +85,9 @@ class ChatroomCreationOs extends Component {
             });
         }
         if (this.state.selectedOs && this.state.selectedSubOs) {
-            Cookies.set("selectedOs" , this.state.selectedOs);
-            Cookies.set("selectedSubOs" , this.state.selectedSubOs);
-            Cookies.set("osDescription" , this.state.osDescription);
+            Cookies.set("selected" , this.state.selectedOs);
+            Cookies.set("selectedSub" , this.state.selectedSubOs);
+            Cookies.set("description" , this.state.osDescription);
         }
     }
 

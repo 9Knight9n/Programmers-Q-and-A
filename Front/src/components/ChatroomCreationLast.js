@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
+import { isExpired } from "react-jwt";
 import SelectAvatar from './selectAvatar';
 import Cookies from 'js-cookie';
+import axios from 'axios';
+import {renewToken} from './token';
 
 class ChatroomCreationLast extends Component {
     
@@ -26,7 +29,7 @@ class ChatroomCreationLast extends Component {
       }
 
       handleBack() {
-        return "/chatroomCreation" + Cookies.get("selectedContext");
+        return "/chatroomCreation" + Cookies.get("selectedTopic");
       }
 
       onClose() {
@@ -60,13 +63,57 @@ class ChatroomCreationLast extends Component {
         }
       }
 
-      handleClick() {
+      async handleClick() {
         if (!this.state.chatroomName && !this.state.error) {
             this.setState({
                 error: true,
             });
         }
-      }
+        console.log(Cookies.get("id"))
+        Cookies.set("topic" , this.state.chatroomName);
+        Cookies.set("chatroomName" , this.state.chatroomName);
+        let token = Cookies.get("access")
+        if(isExpired(Cookies.get("access"))){
+        console.log("renewing")
+        token=await renewToken()
+        }
+        console.log("fetching data")
+        token = "Bearer "+token;
+        console.log(token)
+        const form = new FormData()
+        if (Cookies.get("selectedTopic") === "OS") {
+          form.set('selectedTopic', Cookies.get("selectedTopic"))
+          form.set('chatroomName', Cookies.get("chatroomName"))
+          form.set('owner', Cookies.get("id"))
+          form.set('selected', Cookies.get("selected"))
+          form.set('selectedSub', Cookies.get("selectedSub"))
+          form.set('Description', Cookies.get("Description"))
+        }
+
+        if (Cookies.get("selectedTopic") === "PL") {
+          form.set('selectedTopic', Cookies.get("selectedTopic"))
+          form.set('chatroomName', Cookies.get("chatroomName"))
+          form.set('owner', Cookies.get("id"))
+          form.set('selected', Cookies.get("selected"))
+          form.set('Link', Cookies.get("Link"))
+          form.set('Description', Cookies.get("selected"))
+        }
+
+        if (Cookies.get("selectedTopic") === "App") {
+          form.set('selectedTopic', Cookies.get("selectedTopic"))
+          form.set('chatroomName', Cookies.get("chatroomName"))
+          form.set('owner', Cookies.get("id"))
+          form.set('Link', Cookies.get("Link"))
+          form.set('Description', Cookies.get("Description"))
+        }
+
+        const response =
+        await axios.post('http://127.0.0.1:8000/api/createchatroom/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+      },
+    })
+  }
 
     render() { 
         return ( 

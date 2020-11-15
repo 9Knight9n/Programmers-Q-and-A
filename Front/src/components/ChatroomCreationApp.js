@@ -7,8 +7,8 @@ class ChatroomCreationApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appLink: Cookies.get("appLink"),
-            appDescription: Cookies.get("appDescription"),
+            appLink: Cookies.get("link"),
+            appDescription: Cookies.get("description"),
             error: false,
         };
         this.handleChange = this.handleChange.bind(this);
@@ -37,8 +37,8 @@ class ChatroomCreationApp extends Component {
             });
         }
         if (this.state.appLink) {
-            Cookies.set("appLink" , this.state.appLink);
-            Cookies.set("appDescription" , this.state.appDescription);
+            Cookies.set("Link" , this.state.appLink);
+            Cookies.set("Description" , this.state.appDescription);
         }
     }
 

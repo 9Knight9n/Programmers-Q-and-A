@@ -7,9 +7,9 @@ class ChatroomCreationPl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedPl: Cookies.get("selectedPl"),
-            plDescription: Cookies.get("plDescription"),
-            plLink: Cookies.get("plLink"),
+            selectedPl: Cookies.get("selected"),
+            plDescription: Cookies.get("description"),
+            plLink: Cookies.get("link"),
             error1: false,
             error2: false,
         };
@@ -29,9 +29,9 @@ class ChatroomCreationPl extends Component {
             });
         }
         if (this.state.selectedPl && this.state.plLink) {
-            Cookies.set("selectedPl" , this.state.selectedPl);
-            Cookies.set("plLink" , this.state.plLink);
-            Cookies.set("plDescription" , this.state.plDescription);
+            Cookies.set("selected" , this.state.selectedPl);
+            Cookies.set("Link" , this.state.plLink);
+            Cookies.set("Description" , this.state.plDescription);
         }
     }
 
