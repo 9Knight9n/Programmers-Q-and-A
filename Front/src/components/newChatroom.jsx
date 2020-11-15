@@ -43,13 +43,23 @@ class NewChatroom extends Component {
                                 <ChatroomCreationFirst hideModal={this.hideModal} />
                             </Route>
 
-                            <Route exact path="/chatroomCreationOs" component={ChatroomCreationOs}  />
+                            <Route exact path="/chatroomCreationOs" component={ChatroomCreationOs}  >
+                            <ChatroomCreationOs hideModal={this.hideModal} />
+                            </Route>
 
-                            <Route exact path="/chatroomCreationApp" component={ChatroomCreationApp} />
 
-                            <Route exact path="/chatroomCreationPl" component={ChatroomCreationPl} />
 
-                            <Route exact path="/chatroomCreationLast" component={ChatroomCreationLast} />
+                            <Route exact path="/chatroomCreationApp" component={ChatroomCreationApp} >
+                            <ChatroomCreationApp hideModal={this.hideModal} />
+                            </Route>
+
+                            <Route exact path="/chatroomCreationPl" component={ChatroomCreationPl} >
+                            <ChatroomCreationPl hideModal={this.hideModal} />
+                            </Route>
+
+                            <Route exact path="/chatroomCreationLast" component={ChatroomCreationLast} >
+                            <ChatroomCreationLast hideModal={this.hideModal} />
+                            </Route>
                         </Switch>
                         </div>
                     </section>

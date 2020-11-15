@@ -89,17 +89,18 @@ class profileThree extends Component {
 
 
         
-        const response1 =
-        await axios.post('http://127.0.0.1:8000/api/show_cv_file/', form, {
-        headers: { 'Content-Type': 'multipart/form-data',
-                    'Authorization': token
-        },
-        })
+        // const response1 =
+        // await axios.post('http://127.0.0.1:8000/api/show_cv_file/', form, {
+        // headers: { 'Content-Type': 'multipart/form-data',
+        //             'Authorization': token
+        // },
+        // })
+        
 
 
         
-        this.setState({selectedFile:response1.data})
-        this.setState({dowload:response1.data.url})
+        // this.setState({selectedFile:response1.data})
+        // this.setState({dowload:response1.data.url})
 
 
       }

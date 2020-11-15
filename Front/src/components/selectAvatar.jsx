@@ -85,7 +85,7 @@ class SelectAvatar extends Component {
                         :""}
                         
                         {this.state.editing? 
-                        <button onClick={this.onSave} className="d-flex justify-content-center m-1 save-button btn btn-primary">
+                        <button onClick={this.onSave} className="d-flex align-items-center justify-content-center m-1 save-button btn btn-primary">
                             Save
                         </button>:""}
                     </div>

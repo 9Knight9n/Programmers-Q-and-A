@@ -1,8 +1,12 @@
 export const encodeList=(list,selected)=>{
+    
     let result = "";
     for(let k=0;k<list.length;k++)
     {
         result += "0";
+    }
+    if (!selected){
+        return result   
     }
     // console.log(result)
     for(let i = 0;i<selected.length;i++)

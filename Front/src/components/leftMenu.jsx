@@ -7,6 +7,9 @@ import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
 import Cookies from 'js-cookie';
+import {renewToken} from './token';
+import { isExpired } from "react-jwt";
+import axios from 'axios';
 // import pro from "../img/";
 
 class LeftMenu extends Component {
@@ -21,6 +24,37 @@ class LeftMenu extends Component {
         console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
+    }
+
+    componentDidMount(){
+        this.loadChatrooms()
+    }
+
+    async loadChatrooms(){
+
+        let token = Cookies.get("access")
+         if(isExpired(Cookies.get("access")))
+        {
+            console.log("renewing")
+            token=await renewToken()
+
+        }
+        console.log("fetching data")
+        token = "Bearer "+token;
+        console.log(token)
+        const form = new FormData()
+        const response =
+        await axios.post('http://127.0.0.1:8000/api/loadchatroom/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+        },
+        })
+        console.log(response)
+        this.setState({chatrooms:response.data})
+
+
+
+
     }
 
     // handleLogOutClick = () =>{
@@ -38,6 +72,7 @@ class LeftMenu extends Component {
     hideModal = () => {
         this.setState({ show: false });
         this.setState({ submit: -2 });
+        this.loadChatrooms()
     };
 
 
@@ -64,8 +99,8 @@ class LeftMenu extends Component {
                                 onClick={()=> this.handleTabClick(chatroom.id)} 
                                 href="#" >
                                 <div className="d-flex flex-row ">
-                                    <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.img} />
-                                    <div className="d-flex align-items-center pr-5">{chatroom.ButtonName}</div>
+                                    <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
+                                    <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
                                 </div>
                             </a>)}
                         </div>

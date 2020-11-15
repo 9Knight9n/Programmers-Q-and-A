@@ -33,14 +33,14 @@ def get_personal_info(request):
                 user.username = data['username'][0]
             else:
                 if user.username != data['username'][0]:
-                    return Response({'message': 'This username already exist'} , status=status.HTTP_302_FOUND)
+                    return Response({'message': 'This username already exist'})
 
         if 'email' in data.keys():
             if list(User.objects.filter(email=data['email'][0])) == []:
                 user.email = data['email'][0]
             else:
                 if user.email != data['email'][0]:
-                    return Response({'message': 'This email already exist'} , status=status.HTTP_302_FOUND)
+                    return Response({'message': 'This email already exist'} )
         user.save()
         serializer = PersonalInfoSerializer(user)
         return Response(serializer.data , status=status.HTTP_200_OK)
