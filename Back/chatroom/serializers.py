@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .models import Chatroom
 
 
-class Plserializer(serializers.ModelSerializer):
+class ChatroomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chatroom
-        fields = ('owner', 'selectedTopic', 'chatroomAvatar', 'chatroomName', 'Link', 'Description', 'selected')
+        fields = ('owner', 'selectedTopic' , 'chatroomName', 'Link', 'Description', 'selected')
 
 
 class Osserializer(serializers.HyperlinkedModelSerializer):
