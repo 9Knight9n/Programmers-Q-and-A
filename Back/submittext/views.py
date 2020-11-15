@@ -1,14 +1,25 @@
-from django.shortcuts import render
-from .models import chat_text
-from django.views.decorators.csrf import csrf_exempt
-from registeration.models import User , UserManager
-from django.http import HttpResponse
-import json
-from django.core import serializers
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
 
-def submit_text(request):
+from .serializer import ChatTextSerializer , AddChatSerializer
+from .models import ChatText
+
+@api_view(['GET' , ])
+def send_all_text(request):
     if request.method == 'GET':
-        response_data = chat_text.objects.all()
-        tmpJson = serializers.serialize("json",response_data)
-        tmpObj = json.loads(tmpJson)
-        return HttpResponse(json.dumps(tmpObj))
+        chattext = ChatText.objects.all()
+        data = []
+        for i in chattext:
+            serializer = ChatTextSerializer(i)
+            data.append(serializer.data)
+        return Response(data)
+
+@api_view(['POST' , ])
+def get_text(request):
+    if request.method == 'POST':
+        serializer = AddChatSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'New chat created'}, status=status.HTTP_201_CREATED)
+        return Response({'message':'user or parent text with this email address not exists.'}, status=status.HTTP_400_BAD_REQUEST)

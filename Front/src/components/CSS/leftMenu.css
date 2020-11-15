@@ -1,9 +1,27 @@
 .nav-pills .nav-link{
     border-radius: 0px;
 }
+.lm-btn{
+    border-color: black !important;
+    border-radius: 0px !important;
+}
+.lm-btn:hover{
+    text-decoration: none !important;
+
+}
+
+
+a{
+    text-decoration: none !important;
+}
 .btn{
+    background-color: #39b7dd !important;
     border-radius: 0px;
     padding-right: 0px;
+}
+.btn:hover{
+    color: black;
+    text-decoration: none !important;
 }
 #profile {
     line-height: 500%;
@@ -60,7 +78,7 @@
     position: absolute;
     bottom: 0;
     display :table-row;
-    height: 5vh;
+    height: 10vh;
 }
 
 .fill{

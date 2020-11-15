@@ -28,6 +28,7 @@ html {
 }
 
 .Abed-css input {
+  color: black !important;
   width: 20%;
   height: 4%;
   border-radius: 1px;
@@ -43,6 +44,8 @@ html {
   background: #a47af5;
   cursor: pointer;
   border-width: 0px;
+  color: black !important;
+  font-size: 16px !important;
 }
 
 .Abed-css a {
@@ -174,7 +177,7 @@ html {
   position: relative;
   padding: 4% 14%;
   margin-top: -14%;
-  margin-left: 17%;
+  margin-left: -14%;
   background: #5bd4e0;
   border-radius: 18px;
 }
@@ -240,6 +243,62 @@ html {
   margin-left: 1%;
 }
 
+.Abed-css .error {
+  color: red;
+}
+/*signIn conflicts*/
+
+.validEmailSignIn {
+  position: absolute;
+  margin-top: -21%;
+  margin-left: 15%;
+  font-size: 13px;
+}
+
+.validpassSignIn {
+  position: absolute;
+  margin-top: -17%;
+  margin-left: 15%;
+  font-size: 13px;
+}
+
+.validFieldsSignIn {
+  position: absolute;
+  margin-top: -11%;
+  margin-left: 15%;
+  font-size: 13px;
+}
+
+/*signUp conflicts*/
+.confirmPassConflict {
+  position: absolute;
+  margin-top: -13%;
+  margin-left: 15%;
+  font-size: 13px;
+  color: yellow;
+}
+
+.passValidSignUp {
+  position: absolute;
+  margin-top: -17%;
+  margin-left: 15%;
+  font-size: 13px;
+  color: yellow;
+}
+
+.validEmadilSignUp {
+  position: absolute;
+  margin-top: -21%;
+  margin-left: 15%;
+  font-size: 13px;
+}
+
+.validFieldsSignUp {
+  position: absolute;
+  margin-top: -7%;
+  margin-left: 13%;
+  font-size: 13px;
+}
 /* Full-width input fields 
   input[type=text], input[type=password] {
   width: 100%;
