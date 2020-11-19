@@ -1,0 +1,19 @@
+#Question{
+    /* height: ; */
+    border: solid 2px rgba(9, 156, 167, 0.432);
+}
+#Question #header{
+    height: 10vh;
+}
+#Question #footer{
+    height: 10vh;
+}
+#Question #left{
+    width: 15%;
+}
+#Question #middle{
+    width: 70%;
+}
+#Question #right{
+    width: 15%;
+}
