@@ -1,0 +1,75 @@
+body {
+	background-color: white;
+	margin: 0%;
+}
+
+body img{
+	width:100%;
+}
+
+a {
+	text-decoration: none !important;
+	color: blue;
+}
+
+
+button {
+	color: white;
+	background-color: #39b7dd;
+	border: 0px;
+	border-radius: 10px;
+	height: 9%;
+	width: 20%;
+}
+
+.main-box {
+	margin-left: 12.5%;
+	margin-right: 12.5%;
+	min-height: 30%;
+	overflow: auto;
+	border: 6px solid rgba(9, 156, 167, 0.432);
+}
+
+.elements {
+	word-wrap: break-word;
+	flex-direction: column;
+	display: block;
+	width: 100%;
+	min-height: 30%;
+}
+
+.elements:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left {
+	float: left;
+	display: block;
+	min-height: 30%;
+    min-width: 10%;
+	background-color:red;
+}
+
+.right {
+	float: left;
+	display: block;
+	min-height: 30%;
+    min-width: 10%;
+	background-color:red;
+}
+
+.center {
+	word-wrap: break-word;
+	flex-direction: column;
+	display: block;
+	float: left;
+	min-height: 30%;
+    min-width: 80%;
+	background-color:blue;
+}
+
+.elements h1{
+	overflow-x: auto;
+}
