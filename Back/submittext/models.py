@@ -8,3 +8,7 @@ class ChatText(models.Model):
     parent_text = models.ForeignKey('self' , on_delete=models.CASCADE , null=True)
     text = models.TextField()
     time = models.DateTimeField(default=datetime.datetime.now())
+
+
+class Questions(models.Model):
+    text = models.TextField()
