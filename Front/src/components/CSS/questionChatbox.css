@@ -1,6 +1,7 @@
 #Question{
     /* height: ; */
     border: solid 2px rgba(9, 156, 167, 0.432);
+    background-color: #141d48;
 }
 #Question #header{
     height: 10vh;
@@ -16,4 +17,7 @@
 }
 #Question #right{
     width: 15%;
+}
+#Question #middle .show-more-less{
+
 }

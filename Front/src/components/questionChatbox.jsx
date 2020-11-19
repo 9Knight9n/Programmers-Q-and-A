@@ -22,7 +22,7 @@ class QuestionChatbox extends Component {
 
                         <div id="body" className="d-flex flex-row w-100">
                             <div id="left" className="">
-                                Right pannel
+                                Left pannel
                             </div>
 
 
@@ -34,10 +34,9 @@ class QuestionChatbox extends Component {
                                 more='Show more'
                                 less='Show less'
                                 className='content-css'
-                                anchorClass='my-anchor-css-class'
+                                anchorClass='show-more-less'
                                 onClick={this.executeOnClick}
                                 expanded={false}
-                                width={280}
                                 >
                                     Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" target="_blank" rel="noopener noreferrer">yahoo.com</a> adipiscing elit, sed do eiusmod tempor incididunt 
                                     <a href="https://www.google.bg/" title="Google" rel="nofollow" target="_blank" rel="noopener noreferrer">www.google.bg</a> ut labore et dolore magna amet, consectetur adipiscing elit, 
