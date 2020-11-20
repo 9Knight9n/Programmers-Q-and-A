@@ -45,4 +45,3 @@ def signin(request):
                 return Response({"message":"wellcome" , 'user': data} , status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({"message": "password or email is not correct"} )
-

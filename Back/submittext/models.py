@@ -14,3 +14,5 @@ class Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     text = models.TextField()
     time = models.DateTimeField(default=datetime.datetime.now())
+
+
