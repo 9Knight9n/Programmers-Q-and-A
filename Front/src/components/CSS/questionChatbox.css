@@ -7,17 +7,37 @@
     height: 10vh;
 }
 #Question #footer{
-    height: 10vh;
+    height: 3vh;
 }
 #Question #left{
     width: 15%;
 }
 #Question #middle{
-    width: 70%;
+    /* background-color: cyan; */
+    width: 80%;
 }
 #Question #right{
-    width: 15%;
+    width: 5%;
 }
 #Question #middle .show-more-less{
 
+}
+#Question #header #options .dropdown-toggle::after {
+    display: none;
+}
+#Question #header #options .btn {
+    border: none !important;
+    background-color: #39b7dd00 !important;
+    border-radius: 0px;
+    padding-right: 0px;
+}
+#Question #header #options .btn:hover {
+    color: cornflowerblue;
+    border: none !important;
+}
+#Question #header #options .btn:focus{
+    box-shadow: none !important;
+}
+#Question #header #profile{
+    border: none !important;
 }
