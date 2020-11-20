@@ -57,21 +57,11 @@ def show_interests(request):
     if user != []:
         user = user[0]
         serializer = InterestsInfoSerializer(user)
-        return Response(serializer.data)
-@api_view(['POST' , ])
-def show_cv_file(request):
-    data = dict(request.POST)
-    user = User.objects.filter(id=data['id'][0])
-    print(user)
-    if list(user) != []:
-        user = user[0]
+        data = serializer.data
         filename = user.cvfile
-        print(filename)
-        return Response({'downloadlink':'http://127.0.0.1:8000/download/' + str(filename)})
+        data['downloadlink'] = 'http://127.0.0.1:8000/download/' + str(filename)
+        return Response(data)
     return Response({'message': 'User not found'})
-
-
-    
 
 @api_view(['POST' , ])
 def edit_interests(request):
