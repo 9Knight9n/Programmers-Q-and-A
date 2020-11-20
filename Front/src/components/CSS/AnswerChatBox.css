@@ -1,75 +1,98 @@
 body {
-	background-color: white;
-	margin: 0%;
+  background-color: white;
 }
-
-body img{
-	width:100%;
-}
-
-a {
-	text-decoration: none !important;
-	color: blue;
-}
-
 
 button {
-	color: white;
-	background-color: #39b7dd;
-	border: 0px;
-	border-radius: 10px;
-	height: 9%;
-	width: 20%;
+  color: white;
+  background-color: #39b7dd;
+  border: 0px;
 }
 
-.main-box {
-	margin-left: 12.5%;
-	margin-right: 12.5%;
-	min-height: 30%;
-	overflow: auto;
-	border: 6px solid rgba(9, 156, 167, 0.432);
+#answer {
+  /* height: ; */
+  /* border: 6px solid rgba(9, 156, 167, 0.432); */
+  background: #202c6699;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+#answer #header {
+  background-color: #202c6699;
+  height: 10vh;
+  text-align: center;
+}
+#answer #header h1 {
+  font-size: 18px;
 }
 
-.elements {
-	word-wrap: break-word;
-	flex-direction: column;
-	display: block;
-	width: 100%;
-	min-height: 30%;
+#answer #header img {
+  width: 6%;
+  border-radius: 50%;
+  margin-left: 1%;
+  margin-top: 1%;
 }
 
-.elements:after {
-  content: "";
-  display: table;
-  clear: both;
+.profileImg {
+  margin-top: 1.5%;
+  margin-left: 2%;
+  font-size: 18px;
 }
 
-.left {
-	float: left;
-	display: block;
-	min-height: 30%;
-    min-width: 10%;
-	background-color:red;
+#answer #footer {
+  height: 6vh;
+  background-color: #202c6699;
+}
+#answer #left {
+  background-color: #202c6699;
+  width: 10%;
+}
+#answer #middle {
+  border: 2px solid blue;
+  width: 75%;
+  color: white;
+  background-color: #202c6699;
+}
+#answer #right {
+  background-color: #202c6699;
+  width: 15%;
+}
+#answer #middle .show-more-less {
 }
 
-.right {
-	float: left;
-	display: block;
-	min-height: 30%;
-    min-width: 10%;
-	background-color:red;
+#left img {
+  width: 30%;
+  margin-left: 20%;
+  margin-top: 20%;
 }
 
-.center {
-	word-wrap: break-word;
-	flex-direction: column;
-	display: block;
-	float: left;
-	min-height: 30%;
-    min-width: 80%;
-	background-color:blue;
+.editButton {
+  width: 100%;
+  margin-top: 52%;
 }
 
-.elements h1{
-	overflow-x: auto;
+.removeButton {
+  margin-top: 3%;
+  width: 100%;
+}
+#answer #header #options .dropdown-toggle::after {
+  display: none;
+}
+
+#answer #header #options .btn {
+  border: none !important;
+  background-color: #39b7dd00 !important;
+  border-radius: 0px;
+  padding-right: 0px;
+}
+#answer #header #options .btn:hover {
+  color: cornflowerblue;
+  border: none !important;
+}
+#answer #header #options .btn:focus {
+  box-shadow: none !important;
+}
+
+.negativeVoteImg {
+}
+
+.positiveVoteImg {
 }
