@@ -7,3 +7,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = ['id' , 'user', 'chatroom', 'text' , 'time' , 'file' , 'isAnswered' , 'commonQuestion']
 
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ['id' , 'user', 'question' ,'text' , 'time' , 'file' , 'positiveVote' , 'negativeVote']
