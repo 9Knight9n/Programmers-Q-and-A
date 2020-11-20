@@ -13,6 +13,7 @@ import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
+import ChatroomInfo from './components/chatroomInfo';
 import './index.css';
 
 
@@ -27,6 +28,9 @@ class App extends Component {
     return (
       <Router>
           <Switch>
+          <Route path="/ChatroomInfo">
+            <ChatroomInfo />
+          </Route>
           <Route path="/login">
             <SignInForm />
           </Route>
@@ -40,7 +44,7 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {!sessionStorage.getItem("avatar")? <Redirect to="/login" /> : ""}
+        {!sessionStorage.getItem("avatar")? <Redirect to="/ChatroomInfo" /> : ""}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 
