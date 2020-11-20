@@ -5,11 +5,11 @@ from chatroom.models import Chatroom
 import datetime
 # Create your models here.
 class Question(models.Model):
-    user = models.ForeignKey(User)
-    chatroom = models.ForeignKey(Chatroom)
+    user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
+    chatroom = models.ForeignKey(Chatroom , on_delete=models.SET_NULL , null=True)
     text = models.TextField()
     time = models.DateTimeField(default=datetime.datetime.now())
-    file = models.FileField(upload_to='question/file')
+    file = models.FileField(upload_to='question/file' , null=True)
     isAnswered = models.BooleanField(default=False)
     commonQuestion = models.IntegerField(default=0)
 
