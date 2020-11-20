@@ -1,18 +1,9 @@
 from rest_framework import serializers
-from .models import Answer
+from .models import Answer , Question
 
 
-class ChatTextSerializer(serializers.ModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
-        fields = ['id' , 'user', 'parent_text', 'text' , 'time']
+        model = Question
+        fields = ['id' , 'user', 'chatroom', 'text' , 'time' , 'file' , 'isAnswered' , 'commonQuestion']
 
-class AddChatSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        chat = Answer(user=validated_data['user'] , parent_text=validated_data['parent_text'] , text=validated_data['text'])
-        chat.save()
-        return chat
-
-    class Meta:
-        model = Answer
-        fields = ('user', 'parent_text', 'text')
