@@ -3,12 +3,12 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
 from .serializer import ChatTextSerializer , AddChatSerializer
-from .models import ChatText
+from .models import Answer
 
 @api_view(['GET' , ])
 def send_all_text(request):
     if request.method == 'GET':
-        chattext = ChatText.objects.all()
+        chattext = Answer.objects.all()
         data = []
         for i in chattext:
             serializer = ChatTextSerializer(i)

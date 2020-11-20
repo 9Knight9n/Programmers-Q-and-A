@@ -17,14 +17,14 @@ def signup(request):
         data['id'] = user.id
         data['email'] = user.email
         data['username'] = user.username
-        src = open('media/profile_image/default.txt', 'r')
+        src = open('media/profile/image/default.txt', 'r')
         default = src.read()
         src.close()
-        newsrc = open('media/profile_image/' + str(user.id) + '.txt', 'a')
+        newsrc = open('media/profile/image/' + str(user.id) + '.txt', 'a')
         newsrc.write(default)
         newsrc.close()
         
-        user.profile_picture = 'media/profile_image/' + str(user.id) + '.txt'
+        user.profile_picture = 'media/profile/image/' + str(user.id) + '.txt'
         return Response({'message': 'New user created' , 'user' : data}, status=status.HTTP_201_CREATED)
     return Response({'message':'user with this email address already exists.'})
 
@@ -45,4 +45,3 @@ def signin(request):
                 return Response({"message":"wellcome" , 'user': data} , status=status.HTTP_202_ACCEPTED)
             else:
                 return Response({"message": "password or email is not correct"} )
-
