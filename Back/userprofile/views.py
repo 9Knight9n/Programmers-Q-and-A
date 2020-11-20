@@ -54,12 +54,15 @@ def show_interests(request):
     print(static(settings.MEDIA_URL , document_root=settings.MEDIA_URL))
     data = dict(request.POST)
     user = User.objects.filter(id=data['id'][0])
-    if user != []:
+    if list(user) != []:
         user = user[0]
         serializer = InterestsInfoSerializer(user)
         data = serializer.data
         filename = user.cvfile
-        data['downloadlink'] = 'http://127.0.0.1:8000/download/' + str(filename)
+        if str(filename) != '':
+            data['downloadlink'] = 'http://127.0.0.1:8000/download/' + str(filename)
+        else:
+            data['downloadlink'] = 'Does not exist file'
         return Response(data)
     return Response({'message': 'User not found'})
 
@@ -87,7 +90,7 @@ def show_profile_picture(request):
     user = User.objects.filter(id=data['id'][0])
     if user != []:
         user = user[0]
-        filename = 'media/profile_image/' + str(user.id) + '.txt'
+        filename = 'media/profile/image/' + str(user.id) + '.txt'
         data = open(filename, 'rb').read()
         print(data)
         return Response ({'Base64' : data})
@@ -100,7 +103,7 @@ def edit_profile_picture(request):
     if user != []:
         user = user[0]
         if 'Base64' in request.POST.keys():
-            filename = 'media/profile_image/' + str(user.id) + '.txt'
+            filename = 'media/profile/image/' + str(user.id) + '.txt'
             data = open(filename, 'w')
             data.write(request.POST['Base64'])
             data.close()
