@@ -59,5 +59,16 @@ def ShowUserProfile(request):
     return Response({'message' : 'User not found'})
 
 @api_view(['POST' , ])
+def Search(request):
+    pass
+#document :
+    # realtime sreach (only on chatrooms)
+    # advanced filter :
+        # chatroom
+        # period of time
+        # chatroom with more user
+        # question with true answer
+
+@api_view(['POST' , ])
 def AddQuestion(request):
     pass
