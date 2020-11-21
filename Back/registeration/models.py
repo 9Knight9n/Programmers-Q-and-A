@@ -65,7 +65,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
-    repliedQuestions = models.IntegerField(default=0)
+    answers = models.IntegerField(default=0)
     onlineTime = models.TimeField(null=True)
     # theard page of profile
     description = models.TextField(max_length=100 , null=True)
