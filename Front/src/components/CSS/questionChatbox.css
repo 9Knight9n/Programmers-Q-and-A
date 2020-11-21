@@ -40,4 +40,14 @@
 }
 #Question #header #profile{
     border: none !important;
+    background-color: #141d48;
+    line-height: 500%;
+}
+#Question #header #profile #profile-img{
+    width: 7vh;
+    border-radius: 60%;
+    border: 2px solid #e74c3c;
+    /* margin: 0% 15%; */
+    /* margin-left: 10%; */
+    /* display: inline-block; */
 }

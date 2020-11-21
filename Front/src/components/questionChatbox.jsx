@@ -19,7 +19,7 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row">
-                            <div className="d-flex pl-4 align-top" id="profile">
+                            <div className="d-flex pl-4 ml-3 align-top" id="profile">
                                 <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                                     src={icon}/></div>
                                 <p className="pt-1 h5 d-flex align-items-center pr-4">Username</p>
@@ -44,18 +44,26 @@ class QuestionChatbox extends Component {
 
 
                         <div id="body" className="d-flex flex-row w-100">
-                            <div id="left" className="d-flex flex-column ">
-                                <div className="d-flex flex-row ml-auto mr-auto mt-auto mb-auto">
-                                    
-                                    <small>same problem</small>
 
+
+                            <div id="left" className="d-flex flex-column mt-2">
+
+                                <small className="ml-3 mt-2">100 users have same problem!</small>
+                                <div className="d-flex flex-row pr-3 ml-auto mr-auto mt-2 mb-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input mt-4" type="checkbox" value="" id="defaultCheck1"/>
+                                        <label class="form-check-label d-flex flex-column" for="defaultCheck1">
+                                                <small>i have</small>
+                                                <small style={{lineHeight: "1"}}>same </small>
+                                                <small>problem</small>
+                                        </label>  
+                                    </div>
                                 </div>
-                                
                             </div>
 
 
 
-                            <div id="middle" className="mb-4">
+                            <div id="middle" className="mt-2 mb-4 pl-3 border-left">
                                 <div className="h2">
                                     Question title
                                 </div>
@@ -88,7 +96,7 @@ class QuestionChatbox extends Component {
 
 
                             <div id="right" className="">
-                                Right pannel
+                                
                             </div>
 
 
