@@ -51,7 +51,10 @@ class QuestionChatbox extends Component {
                                 <small className="ml-3 mt-2">100 users have same problem!</small>
                                 <div className="d-flex flex-row pr-3 ml-auto mr-auto mt-2 mb-auto">
                                     <div class="form-check">
-                                        <input class="form-check-input mt-4" type="checkbox" value="" id="defaultCheck1"/>
+                                        <input class="form-check-input mt-4" type="checkbox" 
+                                            checked={this.state.sameProblem} 
+                                            onClick={()=>this.setState({sameProblem:!this.state.sameProblem})}
+                                            value="" id="defaultCheck1"/>
                                         <label class="form-check-label d-flex flex-column" for="defaultCheck1">
                                                 <small>i have</small>
                                                 <small style={{lineHeight: "1"}}>same </small>
@@ -77,8 +80,12 @@ class QuestionChatbox extends Component {
                                 onClick={this.executeOnClick}
                                 expanded={false}
                                 >
-                                    Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" target="_blank" rel="noopener noreferrer">yahoo.com</a> adipiscing elit, sed do eiusmod tempor incididunt 
-                                    <a href="https://www.google.bg/" title="Google" rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg</a> ut labore et dolore magna amet, consectetur adipiscing elit, 
+                                    Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
+                                    target="_blank" rel="noopener noreferrer">yahoo.com
+                                    </a> adipiscing elit, sed do eiusmod tempor incididunt 
+                                    <a href="https://www.google.bg/" title="Google" 
+                                        rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
+                                    </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
                                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                                     minim veniam, quis nostrud exercitation ullamco laboris nisi
                                     ut aliquip ex Lorem ipsum dolor sit amet, consectetur
