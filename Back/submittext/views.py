@@ -28,7 +28,8 @@ def ShowQuestion(request):
 def ShowAnswer(request):
     question = Question.objects.filter(id=request.data['QuestionID'])
     if list(question) != []:
-        answers = Answer.objects.filter(question=question[0])
+        answers = Answer.objects.filter(question=question[0]).order_by('isAccepted' , 'positiveVote')
+        answers = answers[::-1]
         data_list = []
         for i in answers:
             user = i.user
