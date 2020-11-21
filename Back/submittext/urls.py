@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path("ShowQuestion/", views.ShowQuestion, name="ShowQuestion"),
     path("ShowAnswer/", views.ShowAnswer, name="ShowAnswer"),
+    path("ShowUserProfile/", views.ShowUserProfile, name="ShowUserProfile"),
 ]
