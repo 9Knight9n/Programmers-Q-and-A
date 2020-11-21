@@ -59,17 +59,17 @@ class User(AbstractBaseUser):
         unique=True,
     )
     # first page of profile
-    profile_picture = models.FileField(upload_to="profile_image",default="profile_image/text.txt")
+    profile_picture = models.FileField(upload_to="profile/image")
     first_name = models.CharField(max_length=20 , null=True)
     last_name = models.CharField(max_length=20 , null=True)
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
-    repliedQuestions = models.IntegerField(default=0)
+    answers = models.IntegerField(default=0)
     onlineTime = models.TimeField(null=True)
     # theard page of profile
     description = models.TextField(max_length=100 , null=True)
-    cvfile = models.FileField(upload_to="profile_cv",null=True)
+    cvfile = models.FileField(upload_to="profile/cv",null=True)
     interests = models.CharField(default='',max_length=200)
     # type of user
     active = models.BooleanField(default=True)
