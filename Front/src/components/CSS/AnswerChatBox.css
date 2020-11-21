@@ -17,37 +17,38 @@ button {
 }
 #answer #header {
   background-color: #202c6699;
-  height: 10vh;
+  height: 12vh;
   text-align: center;
 }
 #answer #header h1 {
   font-size: 18px;
 }
 
-#answer #header img {
-  width: 6%;
+.profileImg {
+  width: auto;
+  height: 77%;
   border-radius: 50%;
-  margin-left: 1%;
+  margin-left: 11%;
   margin-top: 1%;
 }
 
-.profileImg {
+.profileUsername {
   margin-top: 1.5%;
   margin-left: 2%;
-  font-size: 18px;
 }
 
 #answer #footer {
-  height: 6vh;
+  height: 10vh;
   background-color: #202c6699;
 }
 #answer #left {
   background-color: #202c6699;
-  width: 10%;
+  width: 11%;
 }
 #answer #middle {
   border: 2px solid blue;
   width: 75%;
+  height: 20vh;
   color: white;
   background-color: #202c6699;
 }
@@ -55,13 +56,10 @@ button {
   background-color: #202c6699;
   width: 15%;
 }
-#answer #middle .show-more-less {
-}
 
 #left img {
-  width: 30%;
+  width: 22%;
   margin-left: 20%;
-  margin-top: 20%;
 }
 
 .editButton {
@@ -91,8 +89,29 @@ button {
   box-shadow: none !important;
 }
 
+.moreOptionsImg {
+  position: absolute;
+  position: absolute;
+  width: 100%;
+  margin-left: -71%;
+  margin-top: -96%;
+}
+
+.voteCount {
+  margin-left: 24%;
+}
+
 .negativeVoteImg {
+  cursor: pointer;
 }
 
 .positiveVoteImg {
+  cursor: pointer;
+  margin-top: 20%;
+}
+
+.date {
+  margin-top: 2%;
+  margin-right: 2%;
+  float: right;
 }
