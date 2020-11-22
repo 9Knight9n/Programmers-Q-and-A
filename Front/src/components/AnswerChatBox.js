@@ -4,41 +4,49 @@ import negativeVoteImg from '../img/negativeVoteImg.png';
 import positiveVoteImg from '../img/positiveVoteImg.png';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import moreOptionsImg from '../img/dots-menu.png';
+import checkMarkImg from '../img/checkmark.png';
 import { Dropdown } from 'react-bootstrap';
 
 class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            answer: null,
+            answer: 'This is answer',
             trueAnswer: false,
-            positiveVote: 0,
-            negativeVote: 0,
-            vote: 1,
+            vote: 0,
             newAnswer: null,
             profileImg: null,
+            answerSubmiteDate: '11/22/2020'
         }
-        this.handlePositiveVote = this.handlePositiveVote.bind(this);
-        this.handleNegativeVote = this.handleNegativeVote.bind(this);
+
         this.handleVote = this.handleVote.bind(this);
+        this.handleTrueAnswer = this.handleTrueAnswer.bind(this);
     }
 
-    handlePositiveVote() {
-        return this.state.positiveVote++;
-    }
-
-    handleNegativeVote() {
-        return this.state.negativeVote++;
-    }
-
-    handleVote() {
-        let pVote = this.handlePositiveVote();
-        let nVote = this.handleNegativeVote();
-        if (pVote > nVote) {
-            return pVote - nVote;
+    handleVote(e) {
+        if (e.target.className === "positiveVoteImg") {
+            this.setState({
+                vote: this.state.vote + 1,
+            })
         }else {
-            return nVote - pVote;
+            this.setState({
+                vote: this.state.vote - 1,
+            })
         }
+    }
+
+    handleEdit() {
+        //handle edit answer and opening submit answer component and send new answer to back
+    }
+
+    handleRemove() {
+        //handle Remove answer send request for removing answer and remove for front
+    }
+
+    handleTrueAnswer(){
+        this.setState({
+            trueAnswer: true,
+        })
     }
 
     render() { 
@@ -54,13 +62,12 @@ class AnswerChatBox  extends Component {
                             <div id="options" className="options ml-auto">
                                 <Dropdown>
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">
-                                        <img className="moreOptionsImg" src={moreOptionsImg} />
+                                       <img className="moreOptionsImg" src={moreOptionsImg} />
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item as="button">Edit</Dropdown.Item>
-                                        <Dropdown.Item as="button">Delete</Dropdown.Item>
-                                        <Dropdown.Item as="button">Something else</Dropdown.Item>
+                                        <Dropdown.Item onClick={this.handleEdit} as="button">Edit</Dropdown.Item>
+                                        <Dropdown.Item onClick={this.handleRemove} as="button">Remove</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -68,16 +75,28 @@ class AnswerChatBox  extends Component {
                         </div>
 
                         <div id="body" className="d-flex flex-row w-100">
-                            <div id="left" className="">
-                                <img onClick={this.handlePositiveVote} className="positiveVoteImg" src={positiveVoteImg} />
-                                    <p className="voteCount">10{this.handleVote}</p>
-                                <img onClick={this.handleNegativeVote} className="negativeVoteImg" src={negativeVoteImg} />
+                            <div id="left" className="d-flex flex-column bd-highlight">
+                                <div className="d-flex flex-column bd-highlight">
+                                    <div className="positiveVoteImg">
+                                        <img onClick={this.handleVote} className="positiveVoteImg" src={positiveVoteImg} />
+                                    </div>
+                                    <div className="">
+                                        <p className="voteCount" vote={0} >{this.state.vote}</p>
+                                    </div>
+
+                                    <div className="negativeVoteImg">
+                                        <img onClick={this.handleVote} src={negativeVoteImg} />
+                                    </div>
+                                </div>
+                                <div className="trueAnswer">
+                                    <img style={{display: this.state.trueAnswer ? false : 'none' }} className="checkMarkImg" src={checkMarkImg} />
+                                </div>
                             </div>
 
 
 
                             <div id="middle" className="">
-                                Hi this is the answer.
+                                {this.state.answer}
                             </div>
 
 
@@ -89,8 +108,13 @@ class AnswerChatBox  extends Component {
                             </div>
 
                         </div>
-                        <div id="footer" className="">
-                            <p className="date">Date: 11/21/2020</p>
+                        <div id="footer" className="d-flex justify-content-around">
+                            <div className="form-group col-xs-4 col-md-4 p-2 w-100 bd-highlight trueAnswer  flex-column">
+                                <label className="control-label" for="trueAnswerButton">Does it solve your problem? Let us know.</label>
+                                <button onClick={this.handleTrueAnswer} className="trueAnswerButton">Asnwer was true</button>
+                            </div>
+                            <div></div>
+                            <div className="p-2 flex-shrink-1 bd-highlight"><p className="date">{this.state.answerSubmiteDate}</p></div>
                         </div>
                 </div>
          );

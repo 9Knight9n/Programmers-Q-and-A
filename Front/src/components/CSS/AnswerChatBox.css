@@ -38,12 +38,14 @@ button {
 }
 
 #answer #footer {
+  display: inline-block;
   height: 10vh;
   background-color: #202c6699;
 }
 #answer #left {
+  align-items: center;
   background-color: #202c6699;
-  width: 11%;
+  width: 10%;
 }
 #answer #middle {
   border: 2px solid blue;
@@ -59,7 +61,7 @@ button {
 
 #left img {
   width: 22%;
-  margin-left: 20%;
+  margin-left: 30%;
 }
 
 .editButton {
@@ -97,8 +99,13 @@ button {
   margin-top: -96%;
 }
 
+.moreOptionsImg:hover {
+  background-color: #65a1c970;
+}
+
 .voteCount {
-  margin-left: 24%;
+  margin-left: 36%;
+  font-size: 18px;
 }
 
 .negativeVoteImg {
@@ -106,12 +113,29 @@ button {
 }
 
 .positiveVoteImg {
+  margin-top: 10%;
+
   cursor: pointer;
-  margin-top: 20%;
+}
+
+.checkMarkImg {
+  margin-top: 8%;
 }
 
 .date {
-  margin-top: 2%;
-  margin-right: 2%;
-  float: right;
+  margin-top: 40%;
+  margin-left: -59%;
+}
+
+.trueAnswer {
+  margin-top: 0%;
+  margin-left: 0.5%;
+}
+
+.trueAnswer button {
+  width: 90%;
+}
+
+.trueAnswer label {
+  margin-left: 5%;
 }
