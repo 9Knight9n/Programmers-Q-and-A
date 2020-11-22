@@ -57,7 +57,7 @@ class QuestionChatbox extends Component {
             
             this.setState({loading:false})
             
-          }, 1300);
+          }, 100);
         
     }
     render() { 
@@ -71,7 +71,7 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row">
-                            <div className="d-flex pl-4 ml-3 align-top" id="profile">
+                            <div className="d-flex ml-3 pl-2 align-top" id="profile">
                                 <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
                                 <p className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
@@ -99,21 +99,20 @@ class QuestionChatbox extends Component {
 
 
                             <div id="left" className="d-flex flex-column mt-2">
-
-                                <small className="ml-3 mt-2">{this.state.sameProblemCount} users have same problem!</small>
-                                <div className="d-flex flex-row pr-3 ml-auto mr-auto mt-2 mb-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input mt-4" type="checkbox" 
-                                            checked={this.state.sameProblem} 
-                                            onClick={this.handleSameProblemClicked}
-                                            value="" id="defaultCheck1"/>
-                                        <label class="form-check-label d-flex flex-column" for="defaultCheck1">
-                                                <small>i have</small>
-                                                <small style={{lineHeight: "1"}}>same </small>
-                                                <small>problem</small>
-                                        </label>  
-                                    </div>
-                                </div>
+                                <small className="ml-2 mb-2 mt-auto" style={{ lineHeight:"17px"}}>
+                                    {this.state.sameProblemCount} other users have this problem!
+                                </small>
+                                <button className={"ml-1 mr-1 mb-auto p-1 d-flex flex-row checkbox".concat(this.state.sameProblem?" active":"")}
+                                onClick={this.handleSameProblemClicked}>
+                                {this.state.sameProblem?
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="align-self-center bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>:
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="align-self-center bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                </svg>}<small className="ml-2" style={{ lineHeight:"20px"}}>I have same Question</small>
+                            </button>
                             </div>
 
 
@@ -145,7 +144,8 @@ class QuestionChatbox extends Component {
 
                         </div>
                         <div id="footer" className="d-flex flex-row">
-                            <small className="ml-auto mr-2">Submitted on : {this.state.sentDate}</small>
+                            
+                            <small className="ml-auto mr-2 mt-auto mb-auto">Submitted on : {this.state.sentDate}</small>
                         </div>
                 </div>
             </React.Fragment>
