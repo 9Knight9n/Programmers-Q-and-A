@@ -20,8 +20,7 @@ class Answer(models.Model):
     text = models.TextField()
     time = models.DateTimeField(default=datetime.datetime.now())
     file = models.FileField(upload_to='answer/file' , null=True)
-    positiveVote = models.IntegerField(default=0)
-    negativeVote = models.IntegerField(default=0)
+    vote = models.IntegerField(default=0)
     isAccepted = models.BooleanField(default=False)
 
 #'question feilds : owner — time — linkOfFile — picture — text — chatroom — IsAnswered -- CommonQuestion'

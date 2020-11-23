@@ -11,7 +11,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['id' , 'user', 'question' ,'text' , 'time' , 'file' , 'positiveVote' , 'negativeVote' , 'isAccepted']
+        fields = ['id' , 'user', 'question' ,'text' , 'time' , 'file' , 'vote', 'isAccepted']
 
 class ShowUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
