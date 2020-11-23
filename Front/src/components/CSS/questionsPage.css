@@ -3,7 +3,7 @@
     /* display:table; */
 
     /* padding: 0px; */
-  border: solid 5px #2363b8fc;
+  border: solid 3px #2363b8fc;
   border-radius: 5px;
   /* margin-top: 2%; */
   /* margin-right: 2%; */
@@ -18,5 +18,5 @@
 }
 #question-page #chatroom-info{
     width: 100%;
-    height: 12vh !important;
+    height: 18vh !important;
 }

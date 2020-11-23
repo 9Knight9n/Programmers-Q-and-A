@@ -22,12 +22,14 @@ class QuestionChatbox extends Component {
         context:this.props.context,
         sentDate:this.props.sentDate,
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+
+        this.componentDidMount = this.componentDidMount.bind(this)
     }
-    componentDidMount=()=>{
-        if(Cookies.get(this.state.senderId+":username") || sessionStorage.getItem(this.state.senderId+":avatar"))
+    componentDidMount(){
+        console.log("inside");
+        if(!Cookies.get(this.state.senderId+":username") || !sessionStorage.getItem(this.state.senderId+":avatar"))
         {
+            
             getUserInfo();
         }
         this.setState({senderUsername:Cookies.get(this.state.senderId+":username"),
@@ -64,9 +66,6 @@ class QuestionChatbox extends Component {
 
     // }
 
-    componentDidMount=()=>{
-        this.loadData()
-    }
 
     loadData=()=>{
         //request to load data from backend
