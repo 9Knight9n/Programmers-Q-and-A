@@ -9,6 +9,7 @@ import './CSS/chatroomInfo.css';
 
 
 
+
 class ChatroomInfo extends Component {
     state = {
       options:[
@@ -19,6 +20,8 @@ class ChatroomInfo extends Component {
     tabClicked=(id)=>{
       this.setState({activeTab:id})
     }
+
+    
 
     render() { 
         return (  
@@ -55,10 +58,7 @@ class ChatroomInfo extends Component {
 
 
                 
-           
-
-
-                
+          
                 <div className="mt-auto w-100">
                     <Link className="p-0 w-100" to="/"> </Link>
                 </div>
