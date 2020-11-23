@@ -71,8 +71,13 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row">
-                            <div className="d-flex ml-3 pl-2 align-top" id="profile">
-                                <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
+                            <div className="d-flex ml-3 pl-2 align-top w-20">
+                                <p className="pt-1 d-flex align-items-center ml-2 mr-4" style={{fontSize: "0.85rem"}}>
+                                    Question submitted by
+                                </p>
+                            </div>
+                            <div className="d-flex pl-2 align-top w-80" id="profile">
+                                <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
                                 <p className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
                             </div>
@@ -117,7 +122,7 @@ class QuestionChatbox extends Component {
 
 
 
-                            <div id="middle" className="mt-2 mb-4 pl-3 border-left">
+                            <div id="middle" className="mt-2 mb-4 p-3 border-left">
                                 <div className="h2">
                                     {this.state.title}
                                 </div>
