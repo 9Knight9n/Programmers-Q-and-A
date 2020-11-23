@@ -13,12 +13,16 @@
     "password-validator": "^5.1.0",
     "react": "^16.14.0",
     "react-avatar-edit": "^0.9.0",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
     "react-jwt": "^1.0.7",
+    "react-loading": "^2.0.3",
     "react-minimal-side-navigation": "^1.5.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-select": "^3.1.0"
+    "react-select": "^3.1.0",
+    "react-show-more-text": "^1.4.6",
+    "react-spinners": "^0.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
