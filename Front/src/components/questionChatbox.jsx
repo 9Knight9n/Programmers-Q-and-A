@@ -3,39 +3,66 @@ import ShowMoreText from 'react-show-more-text';
 import { Dropdown } from 'react-bootstrap';
 import LoadingPage from './loading';
 import './CSS/questionChatbox.css';
-import icon from "../img/default-profile-picture.jpg";
+import Cookies from 'js-cookie';
+import { getUserInfo } from './util';
 
 
 class QuestionChatbox extends Component {
-    state = {
-        loading:false,
-        sameProblem:false,
-        sameProblemCount:0,
-        senderId:1,
-        senderUsername:"username",
-        senderAvatar:icon,
-        title:"Question title",
-        context:<div>
-            Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-                                    target="_blank" rel="noopener noreferrer">yahoo.com
-                                    </a> adipiscing elit, sed do eiusmod tempor incididunt 
-                                    <a href="https://www.google.bg/" title="Google" 
-                                        rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-                                    </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                    ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
 
-                                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        </div>,
-        sentDate:new Date().toLocaleString(),
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading:false,
+        sameProblem:false,
+        sameProblemCount:this.props.sameProblemCount,
+        senderId:this.props.senderId,
+        senderUsername:null,
+        senderAvatar:null,
+        title:this.props.title,
+        context:this.props.context,
+        sentDate:this.props.sentDate,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    componentDidMount=()=>{
+        if(Cookies.get(this.state.senderId+":username") || sessionStorage.getItem(this.state.senderId+":avatar"))
+        {
+            getUserInfo();
+        }
+        this.setState({senderUsername:Cookies.get(this.state.senderId+":username"),
+                        senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar"),})
 
     }
+    // state = {
+    //     loading:false,
+    //     sameProblem:false,
+    //     sameProblemCount:0,
+    //     senderId:1,
+    //     senderUsername:"username",
+    //     senderAvatar:icon,
+    //     title:"Question title",
+    //     context:<div>
+    //         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
+    //                                 target="_blank" rel="noopener noreferrer">yahoo.com
+    //                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
+    //                                 <a href="https://www.google.bg/" title="Google" 
+    //                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
+    //                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
+    //                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    //                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
+    //                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
+    //                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
+
+    //                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
+    //                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
+    //                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    //                                 do eiusmod tempor incididunt ut labore et dolore magna
+    //                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    //     </div>,
+    //     sentDate:new Date().toLocaleString(),
+
+    // }
 
     componentDidMount=()=>{
         this.loadData()
