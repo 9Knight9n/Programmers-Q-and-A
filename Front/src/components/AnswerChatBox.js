@@ -11,16 +11,24 @@ class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            answer: 'This is answer',
-            trueAnswer: false,
-            vote: 0,
+            answer: this.props.answer,
+            trueAnswer: this.props.trueAnswer,
+            vote: this.props.vote,
             newAnswer: null,
             profileImg: null,
-            answerSubmiteDate: '11/22/2020'
+            userName: null,
+            answerSubmiteDate: this.props.answerSubmiteDate,
         }
 
         this.handleVote = this.handleVote.bind(this);
         this.handleTrueAnswer = this.handleTrueAnswer.bind(this);
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            profileImg: defaultProfileImg,
+            userName: 'abed',
+        })
     }
 
     handleVote(e) {
@@ -57,8 +65,8 @@ class AnswerChatBox  extends Component {
                     }}
                     className="d-flex flex-column">
                         <div id="header" className="d-flex flex-row ">
-                            <img className="profileImg" src={defaultProfileImg} />
-                            <label className="profileUsername" for="profileImg">UserName</label>
+                            <img className="profileImg" src={this.state.profileImg} />
+                            <label className="profileUsername" for="profileImg">{this.state.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown>
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">
@@ -81,7 +89,7 @@ class AnswerChatBox  extends Component {
                                         <img onClick={this.handleVote} className="positiveVoteImg" src={positiveVoteImg} />
                                     </div>
                                     <div className="">
-                                        <p className="voteCount" vote={0} >{this.state.vote}</p>
+                                        <p className="voteCount" >{this.state.vote}</p>
                                     </div>
 
                                     <div className="negativeVoteImg">
