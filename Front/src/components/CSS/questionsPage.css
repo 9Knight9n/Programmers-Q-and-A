@@ -1,0 +1,22 @@
+#question-page{
+    /* height: 91vh; */
+    /* display:table; */
+
+    /* padding: 0px; */
+  border: solid 5px #2363b8fc;
+  border-radius: 5px;
+  /* margin-top: 2%; */
+  /* margin-right: 2%; */
+  /* margin: 2% 2% 0% 2%; */
+  /* padding-bottom: 52%; */
+
+  /* min-height: 94%; */
+  /* border-radius: 20px; */
+  /* border: solid black 1px; */
+  background-color: #7b94f075;
+  /* transition: height 2s; */
+}
+#question-page #chatroom-info{
+    width: 100%;
+    height: 12vh !important;
+}

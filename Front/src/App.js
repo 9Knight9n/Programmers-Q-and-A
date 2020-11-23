@@ -40,7 +40,7 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {!sessionStorage.getItem("avatar")? <Redirect to="/login" /> : ""}
+        {!sessionStorage.getItem("avatar")? <Redirect to="/" /> : ""}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 

@@ -10,6 +10,7 @@ import Chatroom from './chatroom';
 import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
+import QuestionsPage from './questionsPage';
 
 
 class Homepage extends Component {
@@ -60,7 +61,10 @@ class Homepage extends Component {
                 </div>
                 <div className="RightColumn">
                     <Navbar />
-                    {this.state.activeChatroom}
+                    <div style={{height:"91vh"}}>
+                        <QuestionsPage  />
+                    </div>
+                    
                 </div>
                     
                     
