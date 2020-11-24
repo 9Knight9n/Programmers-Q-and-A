@@ -1,7 +1,7 @@
 .setting-Menu{
     position: relative;
     display: inline-block;
-    background-color: #202c6699 !important;
+   
     width:25%;
     height: 100%;
 }
@@ -54,7 +54,6 @@ main{
 	display:inline-block;
 	font-size:15px;
   vertical-align:top;
-  background-color: #202c6699 !important;
   margin-left: 10%;
 
 }
@@ -175,7 +174,7 @@ main header h3{
     border-right: solid .25vh rgba(9, 156, 167, 0.432) ;
     border-left: solid .25vh rgba(9, 156, 167, 0.432) ;
     border-bottom: none;
-    background-color: #2363b8fc;
+    background-color: #070329;
     height: 5vh;
     padding-left: 5px;
     padding-right: 5px;

@@ -51,7 +51,7 @@ class ChatroomInfo extends Component {
                                 <h2>Chat with Vincent Porter</h2>
                                 <h3>already 1902 messages</h3>
                             </div>
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt=""/>
+                            
                         </header>
                     </main>
                 </div>
