@@ -89,18 +89,6 @@ button {
   box-shadow: none !important;
 }
 
-.moreOptionsImg {
-  position: absolute;
-  position: absolute;
-  width: 100%;
-  margin-left: -71%;
-  margin-top: -96%;
-}
-
-.moreOptionsImg:hover {
-  background-color: #65a1c970;
-}
-
 .voteCount {
   margin-left: 36%;
   font-size: 23px;
