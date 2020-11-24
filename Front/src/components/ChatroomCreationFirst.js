@@ -22,6 +22,7 @@ class ChatroomCreationFirst extends Component {
       }
 
         hideModal() {
+            console.log("clicked");
             this.props.hideModal();
         }
 
