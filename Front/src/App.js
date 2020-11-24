@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <Router>
           <Switch>
-          <Route path="/texteditor">
+          <Route path="/Texteditor">
             <Texteditor />
           </Route>
           <Route path="/login">
@@ -46,7 +46,7 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {!sessionStorage.getItem("avatar")? <Redirect to="/texteditor" /> : ""}
+        {!sessionStorage.getItem("avatar")? <Redirect to="/Texteditor" /> : ""}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 

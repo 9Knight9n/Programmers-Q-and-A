@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
-import './CSS/texteditor.css';
-import * as React from "react";
-import {
-    DateInput,
-    Edit,
-    EditButton,
-    TextInput,
-} from 'react-admin';
-import RichTextInput from 'ra-input-rich-text';
+import 'jodit';
+import 'jodit/build/jodit.min.css';
+import JoditEditor from "jodit-react";
+
+
  
-const PostTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.title}"` : ''}</span>;
-};
- 
-class Texteditor extends Component {
-  state = {  }
-  render() { 
-    return (    <Edit title={<PostTitle />} {...props}>
-      <TextInput disabled label="Id" source="id" />
-      <TextInput source="title" validation={{ required: true }} />
-      <TextInput multiline source="teaser" validation={{ required: true }} />
-      <RichTextInput source="body" validation={{ required: true }} />
-      <DateInput label="Publication date" source="published_at" />
-    </Edit> );
+
+  class Texteditor  extends Component {
+      constructor(props) {
+          super(props);
+          this.state = {
+            content: 'content',
+          }
+      }
+  
+      updateContent = (value) => {
+          this.setState({content:value})
+      }
+      /**
+       * @property Jodit jodit instance of native Jodit
+       */
+    jodit;
+    setRef = jodit => this.jodit = jodit;
+    
+    config = {
+      readonly: false // all options from https://xdsoft.net/jodit/doc/
+    }
+      render() {
+          return (
+              <JoditEditor
+                editorRef={this.setRef}
+                  value={this.state.content}
+                  config={this.config}
+                  onChange={this.updateContent}
+              />
+          );
+      }
   }
-}
- 
 export default Texteditor;
               
         
