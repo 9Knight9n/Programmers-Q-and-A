@@ -62,7 +62,7 @@ class Homepage extends Component {
                 <div className="RightColumn">
                     <Navbar />
                     <div style={{height:"91vh"}}>
-                        <QuestionsPage  />
+                        <QuestionsPage ChatroomID={26} />
                     </div>
                     
                 </div>

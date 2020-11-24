@@ -17,4 +17,5 @@ class Chatroom(models.Model):
     chatroomAvatar = models.FileField(upload_to="chatroom/image")
     chatroomName = models.CharField(max_length=100, null=True)
     selected = models.CharField(max_length=100, null=True)
+    numberOfUser = models.IntegerField(default=1)
 

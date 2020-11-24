@@ -65,14 +65,14 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
-    repliedQuestions = models.IntegerField(default=0)
+    answeredAnswers = models.IntegerField(default=0)
     onlineTime = models.TimeField(null=True)
     # theard page of profile
     description = models.TextField(max_length=100 , null=True)
     cvfile = models.FileField(upload_to="profile/cv",null=True)
     interests = models.CharField(default='',max_length=200)
     # type of user
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
     # notice the absence of a "Password field", that is built in.

@@ -48,7 +48,7 @@ class ProfileOne extends Component {
     async loadData()
     {
         let token = Cookies.get("access")
-         if(isExpired(Cookies.get("access")))
+        if(isExpired(Cookies.get("access")))
         {
             console.log("renewing")
             token=await renewToken()

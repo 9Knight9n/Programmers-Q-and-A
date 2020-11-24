@@ -92,7 +92,6 @@ def show_profile_picture(request):
         user = user[0]
         filename = 'media/profile/image/' + str(user.id) + '.txt'
         data = open(filename, 'rb').read()
-        print(data)
         return Response ({'Base64' : data})
 
 

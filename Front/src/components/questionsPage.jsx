@@ -1,89 +1,122 @@
 import React, { Component } from 'react';
 import SubmitField from './submitField'
+import {request} from './token';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
 
 class QuestionsPage extends Component {
-    state = {
-        questions:[
-            {
-                id:1,
-                sameProblemCount:5,
-                senderId:1,
-                title:"this is first Question",
-                context:<div>
-                            Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-                                                    target="_blank" rel="noopener noreferrer">yahoo.com
-                                                    </a> adipiscing elit, sed do eiusmod tempor incididunt 
-                                                    <a href="https://www.google.bg/" title="Google" 
-                                                        rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-                                                    </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-                                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                    ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    // state = {
+    //     questions:[
+    //         {
+    //             id:1,
+    //             sameProblemCount:5,
+    //             senderId:1,
+    //             title:"this is first Question",
+    //             context:<div>
+    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
+    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
+    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
+    //                                                 <a href="https://www.google.bg/" title="Google" 
+    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
+    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
+    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
+    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
+    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
             
-                                                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                                    do eiusmod tempor incididunt ut labore et dolore magna
-                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        </div>,
-                sentDate:new Date().toLocaleString()
-            },
-            {
-                id:2,
-                sameProblemCount:5,
-                senderId:1,
-                title:"this is second Question",
-                context:<div>
-                            Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-                                                    target="_blank" rel="noopener noreferrer">yahoo.com
-                                                    </a> adipiscing elit, sed do eiusmod tempor incididunt 
-                                                    <a href="https://www.google.bg/" title="Google" 
-                                                        rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-                                                    </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-                                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                    ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
+    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
+    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
+    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    //                     </div>,
+    //             sentDate:new Date().toLocaleString()
+    //         },
+    //         {
+    //             id:2,
+    //             sameProblemCount:5,
+    //             senderId:1,
+    //             title:"this is second Question",
+    //             context:<div>
+    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
+    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
+    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
+    //                                                 <a href="https://www.google.bg/" title="Google" 
+    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
+    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
+    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
+    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
+    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
             
-                                                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                                    do eiusmod tempor incididunt ut labore et dolore magna
-                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        </div>,
-                sentDate:new Date().toLocaleString()
-            },
-            {
-                id:3,
-                sameProblemCount:5,
-                senderId:1,
-                title:"this is third Question",
-                context:<div>
-                            Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-                                                    target="_blank" rel="noopener noreferrer">yahoo.com
-                                                    </a> adipiscing elit, sed do eiusmod tempor incididunt 
-                                                    <a href="https://www.google.bg/" title="Google" 
-                                                        rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-                                                    </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-                                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                    ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
+    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
+    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
+    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    //                     </div>,
+    //             sentDate:new Date().toLocaleString()
+    //         },
+    //         {
+    //             id:3,
+    //             sameProblemCount:5,
+    //             senderId:1,
+    //             title:"this is third Question",
+    //             context:<div>
+    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
+    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
+    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
+    //                                                 <a href="https://www.google.bg/" title="Google" 
+    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
+    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
+    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
+    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
+    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
             
-                                                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                                    do eiusmod tempor incididunt ut labore et dolore magna
-                                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        </div>,
-                sentDate:new Date().toLocaleString()
-            }
+    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
+    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
+    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
+    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    //                     </div>,
+    //             sentDate:new Date().toLocaleString()
+    //         }
 
-        ]
+    //     ]
+        
+    // }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            questions:[]
+        };
+        this.componentDidMount=this.componentDidMount.bind(this)
+        this.loadQuestions=this.loadQuestions.bind(this)
+    }
+
+
+    componentDidMount(){
+        this.loadQuestions()
+    }
+
+
+    async loadQuestions(){
+        let config ={
+            needToken:true,
+            type:"get",
+            formKey:[
+                "ChatroomID"
+            ],
+            formValue:[
+                this.props.ChatroomID
+            ]
+        }
+        let response = await request(config)
+        console.log(response)
     }
 
 
