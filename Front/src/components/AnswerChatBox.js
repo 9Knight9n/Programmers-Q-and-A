@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/AnswerChatBox.css';
-import negativeVoteImg from '../img/negativeVoteImg.png';
-import positiveVoteImg from '../img/positiveVoteImg.png';
+import negativeVoteImg from '../img/down-arrow.png';
+import positiveVoteImg from '../img/up-arrow.png';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import moreOptionsImg from '../img/dots-menu.png';
 import checkMarkImg from '../img/checkmark.png';
@@ -11,6 +11,8 @@ class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            PactiveVote:false,
+            NactiveVote:false,
             answer: this.props.answer,
             trueAnswer: this.props.trueAnswer,
             vote: this.props.vote,
@@ -32,15 +34,33 @@ class AnswerChatBox  extends Component {
     }
 
     handleVote(e) {
-        if (e.target.className === "positiveVoteImg") {
-            this.setState({
-                vote: this.state.vote + 1,
-            })
-        }else {
-            this.setState({
-                vote: this.state.vote - 1,
-            })
-        }
+
+            if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === false && this.state.NactiveVote === false) {
+                this.setState({
+                    vote: this.state.vote + 1,
+                    PactiveVote: true,
+                })
+            }else if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === true) {
+
+            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === false && this.state.PactiveVote === true) {
+                this.setState({
+                    vote: this.state.vote - 1,
+                    PactiveVote: false,
+                })
+            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === false && this.state.PactiveVote === false) {
+                this.setState({
+                    vote: this.state.vote - 1,
+                    NactiveVote: true,
+                })
+            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === true) {
+   
+            }else if (e.target.className === "positiveVoteImg" && this.state.NactiveVote === true && this.state.PactiveVote === false) {
+                this.setState({
+                    vote: this.state.vote + 1,
+                    NactiveVote: false,
+                })
+            }
+        
     }
 
     handleEdit() {
@@ -85,15 +105,15 @@ class AnswerChatBox  extends Component {
                         <div id="body" className="d-flex flex-row w-100">
                             <div id="left" className="d-flex flex-column bd-highlight">
                                 <div className="d-flex flex-column bd-highlight">
-                                    <div className="positiveVoteImg">
-                                        <img onClick={this.handleVote} className="positiveVoteImg" src={positiveVoteImg} />
+                                    <div onClick={this.handleVote} className="positiveVoteImg">
+                                        <img className="positiveVoteImg" src={positiveVoteImg} />
                                     </div>
                                     <div className="">
                                         <p className="voteCount" >{this.state.vote}</p>
                                     </div>
 
-                                    <div className="negativeVoteImg">
-                                        <img onClick={this.handleVote} src={negativeVoteImg} />
+                                    <div onClick={this.handleVote} className="negativeVoteImg">
+                                        <img className="negativeVoteImg" src={negativeVoteImg} />
                                     </div>
                                 </div>
                                 <div className="trueAnswer">
@@ -110,11 +130,10 @@ class AnswerChatBox  extends Component {
                         </div>
                         <div id="footer" className="d-flex justify-content-around">
                             <div className="form-group col-xs-4 col-md-4 p-2 w-100 bd-highlight trueAnswer  flex-column">
-                                <label className="control-label" for="trueAnswerButton">Does it solve your problem? Let us know.</label>
-                                <button onClick={this.handleTrueAnswer} className="trueAnswerButton">Asnwer was true</button>
+                                <button onClick={this.handleTrueAnswer} className="trueAnswerButton">Click if the answer was useful</button>
                             </div>
                             <div></div>
-                            <div className="p-2 flex-shrink-1 bd-highlight"><p className="date">{this.state.answerSubmiteDate}</p></div>
+                            <div className="p-2 flex-shrink-1 bd-highlight"><p className="date">Submitted on: {this.state.answerSubmiteDate}</p></div>
                         </div>
                 </div>
          );

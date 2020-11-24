@@ -22,15 +22,28 @@ class AnswersPage extends Component {
             titleOfChatroom: 'Title',
             show: false,//modal
             submit: -2,//modal
+            
             answers:[
                 {
-                    
+                    id:1,
+                    answer: 'This is answer 1',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString,
                 },
                 {
-
+                    id:2,
+                    answer: 'This is answer 2',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString,
                 },
                 {
-
+                    id:3,
+                    answer: 'This is answer 3',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString,
                 }
             ]
         }
@@ -76,14 +89,19 @@ class AnswersPage extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="question">
-                    {this.state.question}
-                </div>
-                <div className="clearFix"></div>
-                <div className="answers">
-                    <AnswerChatBox>
-                        
-                    </AnswerChatBox>
+                <div className="abed-add-scroll-active">
+                    <div className="question">
+                        {this.state.question}
+                    </div>
+                    <div className="answers  ">
+                        {this.state.answers.map(answer => 
+                            <div className="mt-5" key={answer.id}>
+                                <AnswerChatBox answer={answer.answer} vote={parseInt(answer.vote)} trueAnswer={answer.trueAnswer} answerSubmiteDate={answer.answerSubmiteDate}>
+
+                                </AnswerChatBox> 
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="left h-100 empty-125"></div>

@@ -32,7 +32,7 @@ button {
 
 .profileUsername {
   margin-top: 1.5%;
-  margin-left: 2%;
+  margin-left: 1%;
 }
 
 #answer #footer {
@@ -48,7 +48,7 @@ button {
 #answer #middle {
   border: 2px solid blue;
   width: 90%;
-  height: 20vh;
+  min-height: 2vh;
   color: white;
   background-color: #202c6699;
 }
@@ -103,7 +103,7 @@ button {
 
 .voteCount {
   margin-left: 36%;
-  font-size: 18px;
+  font-size: 23px;
 }
 
 .negativeVoteImg {
@@ -126,14 +126,11 @@ button {
 }
 
 .trueAnswer {
-  margin-top: 0%;
+  margin-top: 3%;
   margin-left: 0.5%;
 }
 
 .trueAnswer button {
   width: 90%;
-}
-
-.trueAnswer label {
-  margin-left: 5%;
+  height: 3vh;
 }

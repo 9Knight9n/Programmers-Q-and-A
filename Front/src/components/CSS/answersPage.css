@@ -17,10 +17,14 @@ button {
   background-color: #00000070;
 }
 
+.infoImg {
+  width: 7% !important;
+}
+
 .infoImg img {
   border-radius: 50%;
-  width: 5%;
-  margin-left: 3%;
+  width: 70%;
+  margin-left: 15%;
 }
 
 .infoElements {
@@ -28,20 +32,20 @@ button {
 }
 
 .infoBox {
-  background-color: blueviolet;
+  background-color: #050a43;
   height: 10%;
 }
 
 .userInfo {
-  margin-left: -62%;
 }
 
 .buttons {
-  margin-left: 75%;
+  margin-left: 72%;
 }
 
 .buttons button {
-  height: 70%;
+  height: 3vh;
+  width: 120%;
 }
 
 .answerButton {
@@ -57,4 +61,9 @@ button {
 
 .clearFix {
   height: 5%;
+}
+
+.abed-add-scroll-active {
+  overflow-y: auto;
+  height: calc(96vh - 55px);
 }
