@@ -7,20 +7,35 @@ import './CSS/chatroomInfo.css';
 import MyAccount from './myAccount';
 import ChatroomInfo from './chatroomInfo';
 import SubmitField from './submitField';
+import AnswerChatBox from './AnswerChatBox';
+import defaultProfileImg from '../img/default-profile-picture.jpg';
+
 import './CSS/answersPage.css';
 
 
 class AnswersPage extends Component {
-    state = {
-        show: false,
-        submit: -2,
-        refToChatroom:React.createRef()
+    constructor(props) {
+        super(props)
+        this.state = {
+            question: 'This is the question',
+            chatroomName: 'chatroom name',
+            titleOfChatroom: 'Title',
+            show: false,//modal
+            submit: -2,//modal
+            answers:[
+                {
+                    
+                },
+                {
+
+                },
+                {
+
+                }
+            ]
+        }
     }
-    state = {
-        options:[
-        ],
-        activeTab:1
-      }
+
 
     tabClicked=(id)=>{
         this.setState({activeTab:id})
@@ -43,74 +58,37 @@ class AnswersPage extends Component {
 
     render() { 
         return (  
-
-        <React.Fragment>
-
-            <div className="Setting-bg d-flex justify-content-center">
-              
-                    <div className="h-100 empty-125"></div>
-                    
-                    <div className="w-42 ">
-                    
-                        <div className=" nav nav-pills">
-                            {this.state.options.map(opt =>
-                            <a key={opt.id} 
-                            onClick={()=> this.tabClicked(opt.id)} 
-                            href="#" >
-                                        
-                            </a>
-                                    )}
+          <div className="Setting-bg d-flex justify-content-center">
+            <div className="right h-100 empty-125"></div>
+            <div className="center w-75">
+                <div className="infoBox">
+                    <div className="infoElements d-flex flex-row">
+                        <div className="infoImg">
+                            <img src={defaultProfileImg} alt=""/>
                         </div>
-                            
-        
-                        <div id="container">
-                            <main>
-                                <header>
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt=""/>
-                                    <div>
-                                        <h2>Chat with Vincent Porter</h2>
-                                        <h3>already 1902 messages</h3>
-                                    </div>
-                                   
- 
-                                </header>
-                                
-                            </main>
-
-                            <SubmitField ref={this.state.refToChatroom} hideModal={this.hideModal} show={this.state.show} submit={this.state.submit} />
-
-                            <button onClick={() => this.showModal(-1)} className="flex-row justify-content-center align-self-end btn btn-primary submit-button" type="button"> Answer Question</button>
+                        <div className="userInfo">
+                            <h2>{this.state.chatroomName}</h2>
+                            <h3>{this.state.titleOfChatroom}</h3>
                         </div>
-        
-                    
-                        <div className="mt-auto w-100">
-                            <Link className="p-0 w-100" to="/"> </Link>
+                        <div className="buttons d-flex flex-column bd-highlight mb-3">
+                            <button className="answerButton">Submite answer</button>
+                            <button className="LinkButtons">Link</button>
                         </div>
-                        <div className=" setting-right"></div>
-                   </div>
-                <div className="h-100 empty-125"></div>  
-
-                    
-                <meta charset="utf-8"/>
-                                     <title>Page title</title>
-                                     <div id="blackout">
-                                        
-                                        <div id="box">
-                                            Share link With Friends<br/>
-                                            <a href="#" class="close">Close</a>
-                                            <div className="INPUT-FORM1"> 
-                                       
-                                        <input name="gplink" value={this.state.gplink}  onChange={this.handleChange} type="text" className="input p-2" placeholder=" gplink "/><br></br>
-                                    </div> 
-                                        </div>
-                                    </div>
-                                        
-                                        <a href="#blackout">Call a popup window</a>
-   
+                    </div>
+                </div>
+                <div className="question">
+                    {this.state.question}
+                </div>
+                <div className="clearFix"></div>
+                <div className="answers">
+                    <AnswerChatBox>
+                        
+                    </AnswerChatBox>
+                </div>
             </div>
-
-        </React.Fragment>
-        
+            <div className="left h-100 empty-125"></div>
+          </div>
+          
         );
         
     }

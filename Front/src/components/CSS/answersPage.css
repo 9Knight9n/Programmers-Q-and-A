@@ -1,91 +1,10 @@
-
-.submit-button{
- 
-  width: 100%;
-  height: 5vh !important;
-}
-.full-box{
-  height: 100%;
-  padding-right: 0;
-}
-.chatbox{
-    
-  border: solid 5px #2363b8fc;
-  border-radius: 5px;
- 
-  background-color: #7b94f075;
-  
-}
-
-.chatbox ::-webkit-scrollbar-track {
-  background: #7b94f0;
-}
-.chatbox ::-webkit-scrollbar-thumb {
-  background:#141d48;
-}
-
-.chatbox ::-webkit-scrollbar-thumb:hover {
-  background: #0a0e24;
-}
-.add-scroll{
-  overflow-y: auto;
-  height: calc(86vh - 55px);
-  
-}
-.add-scroll-active{
-  overflow-y: auto;
-  height: calc(78vh - 55px);
- 
-}
-
-.btn{
-  border-top: solid .25vh rgba(9, 156, 167, 0.432) ;
-  border-right: solid .25vh rgba(9, 156, 167, 0.432) ;
-  border-left: solid .25vh rgba(9, 156, 167, 0.432) ;
-  border-bottom: none;
-  background-color: #2363b8fc;
-  height: 5vh;
-  padding-left: 5px;
-  padding-right: 5px;
-  cursor: pointer;
-  margin-left: 16.5%;
-  margin-top: -87%;
-  width: 79.4%;
-}
-
-body{
+button {
   color: white;
+  background-color: #39b7dd;
+  border: 0px;
 }
 
-
-body{
-    font: 1em/1.5em "HELVETICA NEUE" , Arial, Helvetica, Geneva, sans-serif;
-    color: #222;
-    background-color: #050035;
-}
-
-/*------------------------------------------*/
-.setting-Menu{
-  position: relative;
-  display: inline-block;
-  background-color: #202c6699 !important;
-  width:25%;
-  height: 100%;
-}
-.setting-right{
-  height: 100%;
-  position: relative;
-  width: 75%;
-  display: inline-block;
-  vertical-align:top;
-}
-.setting-Menu .nav-link{
-  width: 100%;
-}
-.setting-Menu .nav-link:hover{
-  background-color: royalblue;
-}
-.Setting-bg{
+.Setting-bg {
   height: 100vh;
   width: 100vw;
   background-image: url("../../img/bg.jpg");
@@ -93,152 +12,49 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-.empty-125{
-  width: 0;
+.empty-125 {
+  width: 12.5%;
   background-color: #00000070;
 }
 
-*{
-box-sizing:border-box;
+.infoImg img {
+  border-radius: 50%;
+  width: 5%;
+  margin-left: 3%;
 }
 
-#container{
-  width: 235.5%;
-  height: 121%;
-  margin: 0 auto;
-  font-size: 0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-left: -69%;
-  
-
+.infoElements {
+  padding-top: 1%;
 }
 
-main{
-  
-
-  width: 79.5%;
-  height: 85%;
-  display: inline-block;
-  font-size: 15px;
-  vertical-align: top;
-  background-color: #202c6699 !important;
-  margin-left: 16.5%;
-}
-main header{
-
-  height: 14%;
-  padding: 30px 20px 30px 40px;
-  background-color: rgb(30 6 99);
-  MARGIN-TOP: 0.5%;
-  width: 84.%;
-  margin-left: 0%;
-}
-main header > *{
-display:inline-block;
-vertical-align:top;
-}
-main header img:first-child{
-
-  border-radius: 54%;
-  margin-left: -17px;
-  border: 51%;
-}
-main header img:last-child{
-width:36px;
-  margin-top:-4%;
-  margin-left: 96%;
-}
-main header div{
-margin-left:10px;
-margin-right:145px;
-}
-main header h2{
-font-size:16px;
-margin-bottom:5px;
-}
-main header h3{
-font-size:14px;
-font-weight:normal;
-color:#ffffff;
-}
-.bttn-pro{
-  background:    #6fa8dc;
-  border-radius: 14px;
-  width:         150px;
-  height:        55px;
-  color:         #ffffff;
-  display:       inline-block;
-  font:          normal bold 29px/55px "Open Sans", sans-serif;
-  text-align:    center;
-  text-shadow:   1px 1px #000000;
+.infoBox {
+  background-color: blueviolet;
+  height: 10%;
 }
 
+.userInfo {
+  margin-left: -62%;
+}
 
+.buttons {
+  margin-left: 75%;
+}
 
-#blackout {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  margin-top: -1%;
-  background: rgb(0 0 0 / 0%);
-  width: 99%;
-  height: 86%
+.buttons button {
+  height: 70%;
 }
-#box {
-  width: 55%;
-  height: 29%;
-  text-align: center;
-  padding: 15px;
-  border: 3px solid #0000cc;
-  border-radius: 10px;
-  color: #ffffff;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  background: #10044a;
-  
-}
-#blackout:target {display: block;}
-.close {
-  display: inline-block;
-  border: 1px solid #0000cc;
-  color: #0000cc;
-  padding: 0 12px;
-  margin: 10px;
-  text-decoration: none;
-  background: #f2f2f2;
-  font-size: 14pt;
-  cursor:pointer;
-}
-.close:hover {background: #e6e6ff;}
 
- .content-form1{
-  width: 100%;
-  height: 100%;
-  border-radius: 2%;
-  display:flex ;
-  
+.answerButton {
 }
-.INPUT-FORM1{
-  display: flex;
-  flex-direction: column;
-  margin-top: 7%;
-  width: 153%;
-  
-}
- input{
-  border-radius: 8px;
-}
- .INPUT-FORM1
-{
 
-background: transparent;
-border: 90%;
-color: #000203;
-width: 40%;
+.LinkButtons {
+  margin-top: 10%;
+}
+.question {
+  border: 2px solid blue;
+  min-height: 20%;
+}
+
+.clearFix {
+  height: 5%;
 }

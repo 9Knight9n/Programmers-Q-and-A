@@ -12,8 +12,6 @@ button {
   /* height: ; */
   /* border: 6px solid rgba(9, 156, 167, 0.432); */
   background: #202c6699;
-  margin-left: 12.5%;
-  margin-right: 12.5%;
 }
 #answer #header {
   background-color: #202c6699;
@@ -49,7 +47,7 @@ button {
 }
 #answer #middle {
   border: 2px solid blue;
-  width: 75%;
+  width: 90%;
   height: 20vh;
   color: white;
   background-color: #202c6699;

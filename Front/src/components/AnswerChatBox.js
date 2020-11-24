@@ -107,14 +107,6 @@ class AnswerChatBox  extends Component {
                                 {this.state.answer}
                             </div>
 
-
-
-
-                            <div id="right" className="">
-                                {/* <button className="editButton" type="button">Edit</button>
-                                <button className="removeButton" type="button">Remove</button> */}
-                            </div>
-
                         </div>
                         <div id="footer" className="d-flex justify-content-around">
                             <div className="form-group col-xs-4 col-md-4 p-2 w-100 bd-highlight trueAnswer  flex-column">
