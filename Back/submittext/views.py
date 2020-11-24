@@ -1,25 +1,27 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view
 
-from .serializer import ChatTextSerializer , AddChatSerializer
-from .models import ChatText
+from .serializer import QuestionSerializer
+from .models import Answer , Question
+from chatroom.models import Chatroom
 
 @api_view(['GET' , ])
-def send_all_text(request):
-    if request.method == 'GET':
-        chattext = ChatText.objects.all()
-        data = []
-        for i in chattext:
-            serializer = ChatTextSerializer(i)
-            data.append(serializer.data)
-        return Response(data)
+def ShowQuestion(request):
+    chatroom = Chatroom.objects.filter(id=request.data['ChatroomID'])
+    if list(chatroom) != []:
+        questions = Question.objects.filter(chatroom=chatroom[0])
+        data_list = []
+        for i in questions:
+            username = i.user.username
+            serializer = QuestionSerializer(i)
+            data = serializer.data
+            data['user'] = username
+            data['file'] = 'http://127.0.0.1:8000' + data['file']
+            data_list.append(data)
+        return Response(data_list)
+    return Response({'message' : 'Chatroom not found'})
 
 @api_view(['POST' , ])
-def get_text(request):
-    if request.method == 'POST':
-        serializer = AddChatSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'New chat created'}, status=status.HTTP_201_CREATED)
-        return Response({'message':'user or parent text with this email address not exists.'}, status=status.HTTP_400_BAD_REQUEST)
+def AddQuestion(request):
+    pass
