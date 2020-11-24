@@ -47,7 +47,7 @@ class AnswersPage extends Component {
         <React.Fragment>
 
             <div className="Setting-bg d-flex justify-content-center">
-                    
+              
                     <div className="h-100 empty-125"></div>
                     
                     <div className="w-42 ">
@@ -71,8 +71,10 @@ class AnswersPage extends Component {
                                         <h2>Chat with Vincent Porter</h2>
                                         <h3>already 1902 messages</h3>
                                     </div>
-                                    
+                                   
+ 
                                 </header>
+                                
                             </main>
 
                             <SubmitField ref={this.state.refToChatroom} hideModal={this.hideModal} show={this.state.show} submit={this.state.submit} />
@@ -89,18 +91,23 @@ class AnswersPage extends Component {
                 <div className="h-100 empty-125"></div>  
 
                     
-                   
+                <meta charset="utf-8"/>
+                                     <title>Page title</title>
+                                     <div id="blackout">
+                                        
+                                        <div id="box">
+                                            Share link With Friends<br/>
+                                            <a href="#" class="close">Close</a>
+                                            <div className="INPUT-FORM1"> 
+                                       
+                                        <input name="gplink" value={this.state.gplink}  onChange={this.handleChange} type="text" className="input p-2" placeholder=" gplink "/><br></br>
+                                    </div> 
+                                        </div>
+                                    </div>
+                                        
+                                        <a href="#blackout">Call a popup window</a>
    
             </div>
-
-          
-
-
-
-
-
-
-
 
         </React.Fragment>
         
