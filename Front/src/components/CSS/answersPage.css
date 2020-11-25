@@ -1,7 +1,8 @@
 button {
-  color: white;
-  background-color: #39b7dd;
+  color: #f1f1f5;
+  background-color: #5f88d3;
   border: 0px;
+  font-size: 18px;
 }
 
 .Setting-bg {
@@ -32,20 +33,35 @@ button {
 }
 
 .infoBox {
-  background-color: #050a43;
+  background-color: #000753;
   height: 10%;
 }
 
-.userInfo {
+.userInfo h2 {
+  font-size: 20px;
+}
+
+.userInfo h3 {
+  color: #9d9dd1;
+}
+
+.userInfo img {
+  cursor: pointer;
+  position: absolute;
+  width: 1.5%;
+  transform: rotate(44deg);
+  margin-top: -0.2%;
+  margin-left: 8%;
 }
 
 .buttons {
-  margin-left: 72%;
+  margin-left: 71.5%;
+  margin-top: -1%;
 }
 
 .buttons button {
-  height: 3vh;
-  width: 120%;
+  height: 4vh;
+  width: 129%;
 }
 
 .answerButton {
@@ -55,7 +71,8 @@ button {
   margin-top: 10%;
 }
 .question {
-  border: 2px solid blue;
+  margin-top: 1%;
+  border: 1px solid #96a7f8;
   min-height: 20%;
 }
 
@@ -66,4 +83,17 @@ button {
 .abed-add-scroll-active {
   overflow-y: auto;
   height: calc(96vh - 55px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(56, 71, 155);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #8babe6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(48, 68, 121);
 }

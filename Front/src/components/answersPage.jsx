@@ -9,6 +9,7 @@ import ChatroomInfo from './chatroomInfo';
 import SubmitField from './submitField';
 import AnswerChatBox from './AnswerChatBox';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
+import linkImg from '../img/link.png';
 
 import './CSS/answersPage.css';
 
@@ -80,12 +81,12 @@ class AnswersPage extends Component {
                             <img src={defaultProfileImg} alt=""/>
                         </div>
                         <div className="userInfo">
+                            <img src={linkImg} alt=" Link Image " />
                             <h2>{this.state.chatroomName}</h2>
                             <h3>{this.state.titleOfChatroom}</h3>
                         </div>
                         <div className="buttons d-flex flex-column bd-highlight mb-3">
                             <button className="answerButton">Submite answer</button>
-                            <button className="LinkButtons">Link</button>
                         </div>
                     </div>
                 </div>
