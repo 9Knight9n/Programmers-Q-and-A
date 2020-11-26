@@ -84,16 +84,16 @@ button {
   overflow-y: auto;
   height: calc(96vh - 55px);
 }
-
+/* Thumb */
 ::-webkit-scrollbar-thumb {
-  background: rgb(56, 71, 155);
+  background: rgb(38, 60, 124);
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #8babe6;
+  background: rgb(3, 14, 87);
 }
-
+/* Hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(48, 68, 121);
+  background: rgb(44, 72, 156);
 }

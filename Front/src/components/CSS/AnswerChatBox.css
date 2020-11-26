@@ -105,13 +105,9 @@ button {
   cursor: pointer;
 }
 
-.checkMarkImg {
-  margin-left: 31% !important;
-}
-
 .date {
-  margin-top: 40%;
-  margin-left: -59%;
+  margin-top: 18%;
+  margin-left: -2%;
   color: #9d9dd1;
   font-size: 16px;
 }
@@ -119,11 +115,16 @@ button {
 .trueAnswer {
   margin-top: 3%;
   margin-left: 0.5%;
+  min-height: 45px;
 }
-
 .trueAnswer button {
   width: 90%;
   height: 3vh;
+}
+
+.trueAnswer img {
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .dropDown {

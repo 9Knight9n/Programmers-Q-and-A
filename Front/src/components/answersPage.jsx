@@ -20,31 +20,51 @@ class AnswersPage extends Component {
         this.state = {
             question: 'This is the question',
             chatroomName: 'chatroom name',
-            titleOfChatroom: 'Title',
-            show: false,//modal
-            submit: -2,//modal
-            
+            chatroomContext: 'Title',
+            chatroomProfileImg: null,
+            chatroomLink: null,
             answers:[
                 {
                     id:1,
                     answer: 'This is answer 1',
                     trueAnswer: false,
                     vote: '0',
-                    answerSubmiteDate: new Date().toLocaleString,
+                    answerSubmiteDate: new Date().toLocaleString(),
                 },
                 {
                     id:2,
                     answer: 'This is answer 2',
                     trueAnswer: false,
                     vote: '0',
-                    answerSubmiteDate: new Date().toLocaleString,
+                    answerSubmiteDate: new Date().toLocaleString(),
                 },
                 {
                     id:3,
                     answer: 'This is answer 3',
                     trueAnswer: false,
                     vote: '0',
-                    answerSubmiteDate: new Date().toLocaleString,
+                    answerSubmiteDate: new Date().toLocaleString(),
+                },
+                {
+                    id:4,
+                    answer: 'This is answer 4',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString(),
+                },
+                {
+                    id:5,
+                    answer: 'This is answer 5',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString(),
+                },
+                {
+                    id:6,
+                    answer: 'This is answer 6',
+                    trueAnswer: false,
+                    vote: '0',
+                    answerSubmiteDate: new Date().toLocaleString(),
                 }
             ]
         }
@@ -78,12 +98,12 @@ class AnswersPage extends Component {
                 <div className="infoBox">
                     <div className="infoElements d-flex flex-row">
                         <div className="infoImg">
-                            <img src={defaultProfileImg} alt=""/>
+                            <img src={defaultProfileImg} alt="chatroom profile image"/>
                         </div>
                         <div className="userInfo">
-                            <img src={linkImg} alt=" Link Image " />
+                            <img data-toggle="tooltip" data-placement="top" title="Click to copy link" src={linkImg} alt=" Link Image " />
                             <h2>{this.state.chatroomName}</h2>
-                            <h3>{this.state.titleOfChatroom}</h3>
+                            <h3>{this.state.chatroomContext}</h3>
                         </div>
                         <div className="buttons d-flex flex-column bd-highlight mb-3">
                             <button className="answerButton">Submite answer</button>
@@ -111,9 +131,6 @@ class AnswersPage extends Component {
         );
         
     }
-    
-
-    
 }
 
 
