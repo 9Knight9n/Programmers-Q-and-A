@@ -124,7 +124,7 @@ class QuestionsPage extends Component {
         // console.log("outside",data)
         if (data)
             this.setState({questions:data})
-        console.log(data)
+        // console.log(data)
     }
 
 
@@ -169,11 +169,11 @@ class QuestionsPage extends Component {
                                 <div className="mr-5 mb-2">
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3">
-                                        <QuestionChatbox sameProblemCount={question.sameProblemCount}
-                                            senderId={question.senderId}
-                                            // title={question.title}
-                                            text={question.context}
-                                            sentDate={question.sentDate}/>
+                                        <QuestionChatbox sameProblemCount={question.commonQuestion}
+                                            senderId={question.userid}
+                                            senderUsername={question.user}
+                                            context={question.text}
+                                            sentDate={question.time}/>
                                     </div>
                                     )}
                                 </div>

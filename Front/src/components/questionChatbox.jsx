@@ -4,7 +4,7 @@ import { Dropdown } from 'react-bootstrap';
 import LoadingPage from './loading';
 import './CSS/questionChatbox.css';
 import Cookies from 'js-cookie';
-import { getUserInfo } from './util';
+import { getUserAvatar } from './util';
 
 
 class QuestionChatbox extends Component {
@@ -13,28 +13,25 @@ class QuestionChatbox extends Component {
         super(props);
         this.state = {
             loading:false,
-        sameProblem:false,
-        sameProblemCount:this.props.sameProblemCount,
-        senderId:this.props.senderId,
-        senderUsername:null,
-        senderAvatar:null,
-        title:this.props.title,
-        context:this.props.context,
-        sentDate:this.props.sentDate,
+            sameProblem:false,
+            sameProblemCount:this.props.sameProblemCount,
+            senderId:this.props.senderId,
+            senderUsername:this.props.senderUsername,
+            senderAvatar:null,
+            context:this.props.context,
+            sentDate:this.props.sentDate,
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
     }
-    componentDidMount(){
+    componentDidMount=async()=>{
         console.log("inside");
-        if(!Cookies.get(this.state.senderId+":username") || !sessionStorage.getItem(this.state.senderId+":avatar"))
+        if(!sessionStorage.getItem(this.state.senderId+":avatar"))
         {
-            
-            getUserInfo();
+            await getUserAvatar(this.state.senderId);
         }
-        this.setState({senderUsername:Cookies.get(this.state.senderId+":username"),
-                        senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar"),})
-
+        this.setState({senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar")})
+        console.log(sessionStorage.getItem(this.state.senderId+":avatar"))
     }
     // state = {
     //     loading:false,
@@ -149,9 +146,6 @@ class QuestionChatbox extends Component {
 
 
                             <div id="middle" className="mt-2 mb-4 p-3 border-left">
-                                <div className="h2">
-                                    {this.state.title}
-                                </div>
                                 <ShowMoreText
                                 /* Default options */
                                 lines={3}
