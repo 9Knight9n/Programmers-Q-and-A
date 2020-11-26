@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from registeration.models import User
 from .models import Chatroom
-from .serializers import Osserializer, Appserializer, ChatroomSerializer
+from .serializers import ShowUChatroomProfileSerializer
 
 
 @api_view(['POST'])
@@ -19,22 +19,22 @@ def createchatroom(request):
             Link=data['Link'][0],
             selected=data['selected'][0]
         )
-        if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+        if "Description" in request.data.keys():
+            Description = data['Description'][0]
         chatroom.save()
-        if "Base64" in request.data.keys() :
-            base64=data['Base64'][0] 
+        if "Base64" in request.data.keys():
+            base64 = data['Base64'][0]
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(base64)
             newsrc.close()
-        else :
+        else:
             src = open('media/chatroom_image/default.txt', 'r')
             default = src.read()
             src.close()
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(default)
             newsrc.close()
-        
+
         chatroom.chatroomAvatar = 'media/chatroom_image/' + str(chatroom.id) + '.txt'
         chatroom.save()
         print(chatroom.chatroomAvatar)
@@ -47,22 +47,22 @@ def createchatroom(request):
             selected=data['selected'][0],
             selectedSub=data['selectedSub'][0]
         )
-        if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+        if "Description" in request.data.keys():
+            Description = data['Description'][0]
         chatroom.save()
-        if "Base64" in request.data.keys() :
-            base64=data['Base64'][0] 
+        if "Base64" in request.data.keys():
+            base64 = data['Base64'][0]
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(base64)
             newsrc.close()
-        else :
+        else:
             src = open('media/chatroom_image/default.txt', 'r')
             default = src.read()
             src.close()
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(default)
             newsrc.close()
-        
+
         chatroom.chatroomAvatar = 'media/chatroom_image/' + str(chatroom.id) + '.txt'
         chatroom.save()
         print(chatroom.chatroomAvatar)
@@ -74,22 +74,22 @@ def createchatroom(request):
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0]
         )
-        if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+        if "Description" in request.data.keys():
+            Description = data['Description'][0]
         chatroom.save()
-        if "Base64" in request.data.keys() :
-            base64=data['Base64'][0] 
+        if "Base64" in request.data.keys():
+            base64 = data['Base64'][0]
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(base64)
             newsrc.close()
-        else :
+        else:
             src = open('media/chatroom_image/default.txt', 'r')
             default = src.read()
             src.close()
             newsrc = open('media/chatroom_image/' + str(chatroom.id) + '.txt', 'a')
             newsrc.write(default)
             newsrc.close()
-        
+
         chatroom.chatroomAvatar = 'media/chatroom_image/' + str(chatroom.id) + '.txt'
         chatroom.save()
         print(chatroom.chatroomAvatar)
@@ -102,8 +102,20 @@ def show_chatrooms(request):
     data = []
     for i in range(len(chatrooms)):
         # data.append(ChatroomSerializer(chatrooms[i]))
-        data.append({'id':chatrooms[i].id,'name':chatrooms[i].chatroomName})
+        data.append({'id': chatrooms[i].id, 'name': chatrooms[i].chatroomName})
         image = open('media/chatroom_image/' + str(chatrooms[i].id) + '.txt', 'r').read()
         data[i]['Base64'] = image
-    return Response(data , status=status.HTTP_200_OK)
+    return Response(data, status=status.HTTP_200_OK)
 
+
+@api_view(['GET', ])
+def ShowChatroomProfile(request):
+    chatroom = Chatroom.objects.filter(chatroomName=request.data['chatroomName'])
+    if list(chatroom) != []:
+        chatroom = chatroom[0]
+        serializer = ShowUChatroomProfileSerializer(chatroom)
+        data = serializer.data
+        filename = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
+        data['chatroom_profile_image'] = open(filename, 'rb').read()
+        return Response(data)
+    return Response({'message': 'Chatroom not found'})

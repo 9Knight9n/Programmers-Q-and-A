@@ -14,7 +14,6 @@ class Chatroom(models.Model):
     Link = models.URLField(blank=True, null=True)
     Description = models.CharField(max_length=100, null=True)
     selectedSub = models.CharField(max_length=100, null=True)
-    chatroomAvatar = models.FileField(upload_to="chatroom_image", null=True)
+    chatroomAvatar = models.FileField(upload_to="chatroom/image")
     chatroomName = models.CharField(max_length=100, null=True)
     selected = models.CharField(max_length=100, null=True)
-
