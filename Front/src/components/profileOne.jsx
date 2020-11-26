@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/profileOne.css';
 import { isExpired } from "react-jwt";
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 

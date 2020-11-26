@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SubmitField from './submitField'
-import {request} from './token';
+import {request} from './requests';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import './CSS/questionsPage.css';
@@ -105,9 +105,11 @@ class QuestionsPage extends Component {
 
 
     async loadQuestions(){
+        console.log("fetching Questions")
         let config ={
+            url:"http://127.0.0.1:8000/api/ShowQuestion/",
             needToken:true,
-            type:"get",
+            type:"post",
             formKey:[
                 "ChatroomID"
             ],
@@ -115,8 +117,14 @@ class QuestionsPage extends Component {
                 this.props.ChatroomID
             ]
         }
-        let response = await request(config)
-        console.log(response)
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        if (data)
+            this.setState({questions:data})
+        console.log(data)
     }
 
 
@@ -163,8 +171,8 @@ class QuestionsPage extends Component {
                                     <div key={question.id} className="mb-3">
                                         <QuestionChatbox sameProblemCount={question.sameProblemCount}
                                             senderId={question.senderId}
-                                            title={question.title}
-                                            context={question.context}
+                                            // title={question.title}
+                                            text={question.context}
                                             sentDate={question.sentDate}/>
                                     </div>
                                     )}

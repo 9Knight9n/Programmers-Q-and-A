@@ -8,20 +8,25 @@ from .models import Answer , Question , Chatroom_User
 from chatroom.models import Chatroom
 from registeration.models import User
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def ShowQuestion(request):
     chatroom = Chatroom.objects.filter(id=request.data['ChatroomID'])
     if list(chatroom) != []:
         questions = Question.objects.filter(chatroom=chatroom[0])
         data_list = []
         for i in questions:
-            user = i.user
             serializer = QuestionSerializer(i)
             data = serializer.data
-            data['user'] = user.username
             data['file'] = 'http://127.0.0.1:8000' + data['file']
-            filename = 'media/profile/image/' + str(user.id) + '.txt'
-            data['user_profile_image'] = open(filename, 'rb').read()
+            if i.user == None:
+                data['user'] = 'User is not exist'
+                filename = 'media/profile/image/default.txt'
+                data['user_profile_image'] = open(filename, 'rb').read()  
+            else:
+                user = i.user
+                data['user'] = user.username
+                filename = 'media/profile/image/' + str(user.id) + '.txt'
+                data['user_profile_image'] = open(filename, 'rb').read()
             data_list.append(data)
         return Response(data_list)
     return Response({'message' : 'Chatroom not found'})
@@ -34,13 +39,18 @@ def ShowAnswer(request):
         answers = answers[::-1]
         data_list = []
         for i in answers:
-            user = i.user
             serializer = AnswerSerializer(i)
             data = serializer.data
-            data['user'] = user.username
             data['file'] = 'http://127.0.0.1:8000' + data['file']
-            filename = 'media/profile/image/' + str(user.id) + '.txt'
-            data['user_profile_image'] = open(filename, 'rb').read()
+            if i.user == None:
+                data['user'] = 'User is not exist'
+                filename = 'media/profile/image/default.txt'
+                data['user_profile_image'] = open(filename, 'rb').read()  
+            else:
+                user = i.user
+                data['user'] = user.username
+                filename = 'media/profile/image/' + str(user.id) + '.txt'
+                data['user_profile_image'] = open(filename, 'rb').read()
             data_list.append(data)
         return Response(data_list)
     return Response({'message' : 'Question not found'})
@@ -52,15 +62,13 @@ def ShowUserProfile(request):
         user = user[0]
         serializer = ShowUserProfileSerializer(user)
         data = serializer.data
-        numberOfChatrooms = Chatroom_User.objects.filter(user=user.id).count()
-        data['numberOfChatrooms'] = numberOfChatrooms
         filename = 'media/profile/image/' + str(user.id) + '.txt'
         data['user_profile_image'] = open(filename, 'rb').read()
         return Response(data)
     return Response({'message' : 'User not found'})
 
 def calculateSearchOrder(searchText , QuestionText , chatroomValue):
-    value = chatroomValue * 20
+    value = chatroomValue * 0.0001
     searchTextList = searchText.split()
     for word in searchTextList:
         if word in QuestionText:
@@ -89,17 +97,24 @@ def GeneralSearch(request):
     if 'chatroomMember' in request.data.keys():
         chatroomValue = 1
     queryset = Question.objects.filter(query)
+    print(queryset)
     valuelist = []
     searchText = request.data["searchText"]
     for q in range(len(queryset)):
-        numberOfUser = queryset[q].chatroom.numberOfUser
+        if queryset[q].chatroom != None:
+            numberOfUser = queryset[q].chatroom.numberOfUser
+        else:
+            numberOfUser = 0
         valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)])
     valuelist = Sort(valuelist)
     data_list = []
     for i in valuelist:
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
-            data['user'] = queryset[i[0]].user.username
+            if queryset[i[0]].user != None:
+                data['user'] = queryset[i[0]].user.username
+            else:
+                data['user'] = 'user does not exist'
             data_list.append(data)
     return Response(data_list)
 

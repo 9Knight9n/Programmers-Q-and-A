@@ -51,7 +51,6 @@ def show_activity(request):
 
 @api_view(['POST' , ])
 def show_interests(request):
-    print(static(settings.MEDIA_URL , document_root=settings.MEDIA_URL))
     data = dict(request.POST)
     user = User.objects.filter(id=data['id'][0])
     if list(user) != []:
@@ -60,7 +59,7 @@ def show_interests(request):
         data = serializer.data
         filename = user.cvfile
         if str(filename) != '':
-            data['downloadlink'] = 'http://127.0.0.1:8000/download/' + str(filename)
+            data['downloadlink'] = 'http://127.0.0.1:8000/media/' + str(filename)
         else:
             data['downloadlink'] = 'Does not exist file'
         return Response(data)

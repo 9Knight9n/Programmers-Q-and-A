@@ -1,33 +1,36 @@
-import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { isExpired } from "react-jwt";
 export const renewToken= async ()=>{
-  try{
     console.log("Renewing Token")
-    const form = new FormData()
     if (!Cookies.get("refresh"))
     {
       console.log("Can't renew Token:no Refresh token found maybe try loging in first!")
       return false
     }
+    const form = new FormData()
     form.set('refresh', Cookies.get("refresh"));
-    const response =
     await axios.post('http://localhost:8000/api/token/refresh/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
-    })
-    console.log(response.data.access)
-    Cookies.set("access",response.data.access)
-    return response.data.access
-  }
-  catch(error){
-    handleError(error)
-``}
+    }).then(response => {
+
+      // do good things
+      console.log(response.data.access)
+      Cookies.set("access",response.data.access)
+      return response.data.access
+    }).catch(err => {
+      handleError(err)
+    })    
     
 }
 
-const handleError= async (error)=>{
-  if (error.response) {
+export const handleError= async (error)=>{
+  if(!error)
+  {
+    console.log("Server unavailable")
+  }
+  else if (error.response) {
     // Request made and server responded
     console.log("Request made and server responded an error")
     console.log(error.response.data);
@@ -56,34 +59,44 @@ export const request= async (config)=>{
     token = "Bearer "+token;
   }
   let form = new FormData();
-  for(let i=0;i<formKey.length;i++){
-    form.set(formKey[i], formValue[i]);
+  for(let i=0;i<config.formKey.length;i++){
+    form.set(config.formKey[i], config.formValue[i]);
   }
-  try{
-    if(config.type=="post"){
-      const response =
-            await axios.post(url, form, {
-            headers: { 'Content-Type': 'multipart/form-data',
-                    'Authorization': token
-            },
-            })
-      return response
-    }
-    else if(config.type=="get"){
-      const response =
-            await axios.get(url, form, {
-            headers: { 'Content-Type': 'multipart/form-data',
-                    'Authorization': token
-            },
-            })
-      return response
-    }
-    else{
-      console.log("Type is incorrect")
+
+
+
+  if(config.type==="post"){
+    const response = await axios.post(config.url, form, {
+    headers: { 'Content-Type': 'multipart/form-data',
+            'Authorization': token
+    },
+    })
+    if (!response){
+      console.log("Can't reach server or request rejected")
       return false
     }
+    if(!response.data)
+      return handleError(response.error)
+    return response.data
   }
-  catch(error){
-    handleError(error)
+  else if(config.type==="get"){
+    // console.log(config.url,":", form.get("ChatroomID"), token)
+    const response = await axios.get(config.url, form, {
+    headers: { 'Content-Type': 'multipart/form-data',
+            'Authorization': token
+    },
+    })
+    if (!response){
+      console.log("Can't reach server or request rejected")
+      return false
+    }
+    if(!response.data)
+      return handleError(response.error)
+    return response.data
+    
+  }
+  else{
+    console.log("Type is incorrect")
+    return false
   }
 }
