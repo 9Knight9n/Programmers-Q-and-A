@@ -191,3 +191,49 @@ main header h3{
   }
   
   
+
+  .infoImg {
+    width: 7% !important;
+  }
+  
+  .infoImg img {
+    border-radius: 50%;
+    width: 70%;
+    margin-left: 15%;
+  }
+  
+  .infoElements {
+    padding-top: 1%;
+  }
+  
+  .infoBox {
+    background-color: #000753;
+    height: 15vh;
+  }
+  
+  .userInfo h2 {
+    font-size: 20px;
+  }
+  
+  .userInfo h3 {
+    color: #9d9dd1;
+  }
+  
+  .userInfo img {
+    cursor: pointer;
+    position: absolute;
+    width: 1.5%;
+    transform: rotate(44deg);
+    margin-top: 0.3%;
+    margin-left: 12%;
+  }
+  .buttons {
+    margin-left: 71.9%;
+    margin-top: -1%;
+  }
+  
+  .buttons button {
+    height: 4vh;
+    width: 129%;
+    background: rgb(85 175 213);
+  }
