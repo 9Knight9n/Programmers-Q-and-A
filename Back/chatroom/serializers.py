@@ -4,7 +4,7 @@ from .models import Chatroom
 class ShowUChatroomProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chatroom
-        fields = ['owner', 'selectedTopic', 'chatroomAvatar', 'chatroomName', 'Link', 'Description', 'selectedSub', 'selected']
+        fields = ['selectedTopic', 'chatroomAvatar', 'chatroomName', 'Description']
 
 
 class ChatroomSerializer(serializers.ModelSerializer):
