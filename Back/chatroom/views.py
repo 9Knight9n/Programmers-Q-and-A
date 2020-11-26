@@ -92,7 +92,6 @@ def createchatroom(request):
 
         chatroom.chatroomAvatar = 'media/chatroom_image/' + str(chatroom.id) + '.txt'
         chatroom.save()
-        print(chatroom.chatroomAvatar)
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
 
 
