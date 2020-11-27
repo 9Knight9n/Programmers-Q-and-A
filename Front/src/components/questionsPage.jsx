@@ -164,8 +164,8 @@ class QuestionsPage extends Component {
                                     submit={this.state.submit} />
                             </div>
                         </div>
-                        <div className="mt-1 mb-1 ml-3">
-                            <div className={"add-scroll add-scroll-active"}>
+                        <div className="mt-1 mb-1 ml-3 h-100">
+                            <div className="questions-box">
                                 <div className="mr-5 mb-2">
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3">
