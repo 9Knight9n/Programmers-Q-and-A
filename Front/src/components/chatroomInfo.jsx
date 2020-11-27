@@ -20,29 +20,27 @@ class ChatroomInfo extends Component {
       chatroomLink: null,
     }
 
-    tabClicked=(id)=>{
-      this.setState({activeTab:id})
-    }
-
     
 
     render() { 
         return (  
-          <div className="infoBox">
-          <div className="infoElements d-flex flex-row">
-              <div className="infoImg">
-                  <img src={defaultProfileImg} alt="chatroom profile image"/>
-              </div>
-              <div className="userInfo">
-                  <img data-toggle="tooltip" data-placement="top" title="Click to copy link" src={linkImg} alt=" Link Image " />
-                  <h2>{this.state.chatroomName}</h2>
-                  <h3>{this.state.chatroomContext}</h3>
-              </div>
-              <div className="buttons d-flex flex-column bd-highlight mb-3">
-                  <button className="answerButton">Submite answer</button>
-              </div>
-          </div>
-      </div>
+            <div className="infoBox">
+                <div className="infoElements d-flex flex-row">
+                    <div className="infoImg">
+                        <img src={defaultProfileImg} alt="chatroom profile image"/>
+                    </div>
+                    <div className="userInfo">
+                        <div className="d-flex flex-row">
+                            <h2 className="">{this.state.chatroomName}</h2>
+                            <img className="" data-toggle="tooltip" data-placement="top" title="Click to copy link" src={linkImg} alt=" Link Image " />
+                        </div>
+                        <h3>{this.state.chatroomContext}</h3>
+                    </div>
+                    <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
+                        <button onClick={this.handleClick} className="btn-pro answerButton">Submit Question</button>
+                    </div>
+                </div>
+            </div>
           
         );
         

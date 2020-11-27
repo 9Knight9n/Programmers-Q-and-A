@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
+import ChatroomInfo from './chatroomInfo.jsx';
 
 class QuestionsPage extends Component {
     // state = {
@@ -148,21 +149,8 @@ class QuestionsPage extends Component {
             <React.Fragment>
                 <div className="w-100 h-100 p-2">
                     <div id="question-page" className="d-flex flex-column h-100 w-100">
-                        <div id="chatroom-info" className="border d-flex flex-row">
-                            <div>
-                                Chatroom info
-                            </div>
-                            
-                            <div className="d-flex ml-auto mt-auto">
-                                <button onClick={() => this.showModal(-1)} className="btn btn-primary submit-button2" type="button">
-                                    Submit a Question
-                                </button>
-                                <SubmitField 
-                                    ref={this.state.refToChatroom} 
-                                    hideModal={this.hideModal} 
-                                    show={this.state.show} 
-                                    submit={this.state.submit} />
-                            </div>
+                        <div id="chatroom-info" className=" d-flex flex-row">
+                            <ChatroomInfo/>
                         </div>
                         <div className="mt-1 mb-1 ml-3">
                             <div className={"add-scroll add-scroll-active"}>
