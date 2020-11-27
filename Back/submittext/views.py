@@ -2,9 +2,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.db.models import Q
+import datetime
 
 from .serializer import QuestionSerializer , AnswerSerializer , ShowUserProfileSerializer
-from .models import Answer , Question , Chatroom_User
+from .models import Answer , Question , Chatroom_User , User_Question , User_Answer
 from chatroom.models import Chatroom
 from registeration.models import User
 
@@ -150,13 +151,13 @@ def SeggestionChatroomSreach(request):
 def AddQuestion(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
-    user = User.objects.filter(username=request.data['username'])
+    user = User.objects.filter(id=request.data['user_id'])
     if list(user) != []:
         question = Question.objects.create(
             user=user[0],
             chatroom=chatroom[0],
             text=data['text'][0],
-            time=datetime.datetime.now(),
+            time=datetime.datetime.now().ctime(),
         )
         if 'file' in request.FILES.keys():
             question.file = request.FILES['file']
@@ -169,18 +170,121 @@ def AddQuestion(request):
 def AddAnswer(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question'][0])
-    user = User.objects.filter(username=request.data['username'])
+    user = User.objects.filter(id=request.data['user_id'])
     if list(user) != []:
         answer = Answer.objects.create(
             user=user[0],
             question=question[0],
             text=data['text'][0],
-            time=datetime.datetime.now(),
+            time=datetime.datetime.now().ctime(),
         )
         if 'file' in request.FILES.keys():
-            question.file = request.FILES['file']
+            answer.file = request.FILES['file']
         answer.save()
         return Response({'message': 'New answer created'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'User not found'})
 
 
+def EditQuestion(request):
+    data = dict(request.POST)
+    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    question = Question.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    if list(question) != []:
+        if 'text' in data.keys():
+            question[0].text = data['text'][0]
+        if 'isAnswered' in data.keys():
+            question[0].isAnswered = data['isAnswered']
+        if 'file' in request.FILES.keys():
+            question[0].isAnswered = request.FILES['file']
+        return Response({'message':'edit complete'})
+    else:
+        return Response({'message':'you can`t edit'})
+
+def DeleteQuestion(request):
+    data = dict(request.POST)
+    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    question = Question.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    if list(question) != []:
+        question.delete()
+        return Response({'message':'delete complete'})
+    else:
+        return Response({'message':'you can`t delete'})
+
+def CommonQuestion(request):
+    data = dict(request.POST)
+    question = Question.objects.filter(id=data['question_id'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    user_question = User_Question.objects.filter(user=user[0] , question=question[0])
+    if list(user_question) != []:
+        user_question.delete()
+        question[0].commonQuestion -= 1
+    else:
+        user_question = User_Question.objects.create(user=user[0] , question=question[0])
+        question[0].commonQuestion += 1
+    return Response({'message':'done it'})
+
+def ShowCommonQuestion(request):
+    data = dict(request.POST)
+    question = Question.objects.filter(id=data['question_id'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    user_question = User_Question.objects.filter(user=user[0] , question=question[0])
+    if list(user_question) != []:
+        return Response({'message': False})
+    else:
+        return Response({'message': True})
+
+
+def EditAnswer(request):
+    data = dict(request.POST)
+    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    answer = Answer.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    if list(answer) != []:
+        if 'text' in data.keys():
+            answer[0].text = data['text'][0]
+        if 'isAccepted' in data.keys():
+            answer[0].isAccepted = data['isAccepted']
+        if 'file' in request.FILES.keys():
+            question[0].isAnswered = request.FILES['file']
+        return Response({'message':'edit complete'})
+    else:
+        return Response({'message':'you can`t edit'})
+
+def DeleteAnswer(request):
+    data = dict(request.POST)
+    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    answer = Answer.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    if list(answer) != []:
+        answer.delete()
+        return Response({'message':'delete complete'})
+    else:
+        return Response({'message':'you can`t delete'})
+
+def VoteAnswer(request):
+    data = dict(request.POST)
+    answer = Answer.objects.filter(id=data['answer_id'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
+    if list(user_answer) != []:
+        if user_answer.isVoted == data['vote']:
+            return Response({'message':'this user can not do that'})
+        else:
+            user_answer.isVoted = data['vote']
+            answer[0].vote += data['vote']
+    else:
+        user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , isVoted=data['vote'])
+        answer[0].vote += data['vote']
+    return Response({'message':'done it'})
+
+def ShowVoteAnswer(request):
+    data = dict(request.POST)
+    answer = Answer.objects.filter(id=data['answer_id'][0])
+    user = User.objects.filter(id=request.data['user_id'][0])
+    user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
+    if list(user_answer) != []:
+        return Response({'message': user_answer.isVoted})
+    else:
+        return Response({'message':0})
