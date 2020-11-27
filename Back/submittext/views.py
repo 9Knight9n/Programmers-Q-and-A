@@ -30,7 +30,7 @@ def ShowQuestion(request):
         return Response(data_list)
     return Response({'message' : 'Chatroom not found'})
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def ShowAnswer(request):
     question = Question.objects.filter(id=request.data['QuestionID'])
     if list(question) != []:

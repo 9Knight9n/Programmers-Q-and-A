@@ -6,6 +6,7 @@ import defaultProfileImg from '../img/default-profile-picture.jpg';
 import greenCheckMark from '../img/greenCheckMark.png';
 import blueCheckMark from '../img/blueCheckMark.png';
 import { Dropdown } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
 
 class AnswerChatBox  extends Component {
     constructor(props) {
@@ -81,11 +82,9 @@ class AnswerChatBox  extends Component {
 
     render() { 
         return ( 
-                <div id="answer"
-                    style={{ 
-                        width:this.props.width+"vw",
-                    }}
+                <div id="answer" style={{ width:this.props.width+"vw",}}
                     className="d-flex flex-column">
+                        <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
                             <img className="profileImg" src={this.state.profileImg} />
                             <label className="profileUsername" for="profileImg">{this.state.userName}</label>
@@ -110,21 +109,21 @@ class AnswerChatBox  extends Component {
                             <div id="left" className="d-flex flex-column bd-highlight">
                                 <div className="trueAnswer">
                                     {!this.state.trueAnswer? 
-                                    <img data-toggle="tooltip" data-placement="top" title="This answer is true" src={blueCheckMark} onClick={this.handleTrueAnswer}/> :
-                                    <img data-toggle="tooltip" data-placement="top" title="This answer is not true" src={greenCheckMark} onClick={this.handleTrueAnswer}/>}
+                                    <img data-tip="This answer is useful" src={blueCheckMark} onClick={this.handleTrueAnswer}/> :
+                                    <img data-tip="This answer is not useful" src={greenCheckMark} onClick={this.handleTrueAnswer}/>}
                                     
                                     
                                 </div>
                                 <div className="d-flex flex-column bd-highlight">
                                     <div onClick={this.handleVote} >
-                                        <img className="positiveVoteImg" data-toggle="tooltip" data-placement="top" title="This answer is useful" className="positiveVoteImg" src={positiveVoteImg} />
+                                        <img className="positiveVoteImg" data-tip="This Question is answered" className="positiveVoteImg" src={positiveVoteImg} />
                                     </div>
                                     <div className="">
                                         <p className="voteCount" >{this.state.vote}</p>
                                     </div>
 
                                     <div onClick={this.handleVote} >
-                                        <img className="negativeVoteImg" data-toggle="tooltip" data-placement="top" title="This answer is not useful" className="negativeVoteImg" src={negativeVoteImg} />
+                                        <img className="negativeVoteImg" data-tip="This Question is answered" className="negativeVoteImg" src={negativeVoteImg} />
                                     </div>
                                 </div>
                             </div>
