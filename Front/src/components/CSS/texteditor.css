@@ -10,7 +10,7 @@
   
 #editor .modal .modal-main {
     position:fixed;
-    background: #333b60;
+    background: #33415c;
     width: 80%;
     height: auto;
     top:50%;
@@ -20,3 +20,14 @@
 #editor .modal .modal-main .modal-footer{
     justify-content: unset !important;
   }
+
+.jodit-wysiwyg {
+    background-color: #292929 !important;
+}
+.jodit-toolbar__box {
+
+    background: #292929 !important;
+}
+.jodit-toolbar__box svg{
+    fill: #ffffff !important;
+}

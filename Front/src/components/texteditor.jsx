@@ -57,7 +57,7 @@ class Texteditor  extends Component {
     "askBeforePasteFromWord": false,
   // "defaultActionOnPaste": "insert_only_text",
     "maxHeight": 500,
-    "theme": "dark",
+    theme: "dark",
     readonly: false // all options from https://xdsoft.net/jodit/doc/
   }
     render() {
