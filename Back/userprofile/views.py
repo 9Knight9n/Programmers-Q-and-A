@@ -51,7 +51,6 @@ def show_activity(request):
 
 @api_view(['POST' , ])
 def show_interests(request):
-    print(static(settings.MEDIA_URL , document_root=settings.MEDIA_URL))
     data = dict(request.POST)
     user = User.objects.filter(id=data['id'][0])
     if list(user) != []:
@@ -60,7 +59,7 @@ def show_interests(request):
         data = serializer.data
         filename = user.cvfile
         if str(filename) != '':
-            data['downloadlink'] = 'http://127.0.0.1:8000/download/' + str(filename)
+            data['downloadlink'] = 'http://127.0.0.1:8000/media/' + str(filename)
         else:
             data['downloadlink'] = 'Does not exist file'
         return Response(data)
@@ -87,13 +86,19 @@ def edit_interests(request):
 @api_view(['POST' , ])
 def show_profile_picture(request):
     data = dict(request.POST)
-    user = User.objects.filter(id=data['id'][0])
-    if user != []:
-        user = user[0]
-        filename = 'media/profile/image/' + str(user.id) + '.txt'
+    # print("############",data['id'],"##################")
+    if data['id'][0]=='no id':
+        # print("###########################################################")
+        filename = 'media/profile/image/default.txt'
         data = open(filename, 'rb').read()
-        print(data)
         return Response ({'Base64' : data})
+    else:
+        user = User.objects.filter(id=data['id'][0])
+        if user != []:
+            user = user[0]
+            filename = 'media/profile/image/' + str(user.id) + '.txt'
+            data = open(filename, 'rb').read()
+            return Response ({'Base64' : data})
 
 
 @api_view(['POST' , ])
