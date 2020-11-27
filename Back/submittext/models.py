@@ -30,4 +30,11 @@ class Chatroom_User(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     chatroom = models.ForeignKey(Chatroom , on_delete=models.CASCADE)
 
+class User_Question(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    question = models.ForeignKey(Question , on_delete=models.CASCADE)
 
+class User_Answer(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer , on_delete=models.CASCADE)
+    isVoted = models.IntegerField(default=0)
