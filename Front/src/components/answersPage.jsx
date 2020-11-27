@@ -4,12 +4,13 @@ import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import './CSS/leftMenu.css';
 import './CSS/setting.css';
 import './CSS/chatroomInfo.css';
-import MyAccount from './myAccount';
-import ChatroomInfo from './chatroomInfo';
-import SubmitField from './submitField';
 import AnswerChatBox from './AnswerChatBox';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import {renewToken} from './token';
+import { isExpired } from "react-jwt";
 
 import './CSS/answersPage.css';
 
@@ -19,11 +20,12 @@ class AnswersPage extends Component {
         super(props)
         this.state = {
             question: 'This is the question',
+            QuestionID: 1,
             chatroomName: 'chatroom name',
             chatroomContext: 'Title',
             chatroomProfileImg: null,
             chatroomLink: null,
-            answers:[
+            text:[
                 {
                     id:1,
                     answer: 'This is answer 1',
@@ -90,6 +92,10 @@ class AnswersPage extends Component {
       
     };
 
+    loadData = async () => {
+
+    }
+
     render() { 
         return (  
           <div className="Setting-bg d-flex justify-content-center">
@@ -115,9 +121,9 @@ class AnswersPage extends Component {
                         {this.state.question}
                     </div>
                     <div className="answers  ">
-                        {this.state.answers.map(answer => 
+                        {this.state.text.map(answer => 
                             <div className="mt-5" key={answer.id}>
-                                <AnswerChatBox answer={answer.answer} vote={parseInt(answer.vote)} trueAnswer={answer.trueAnswer} answerSubmiteDate={answer.answerSubmiteDate}>
+                                <AnswerChatBox answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.trueAnswer} answerSubmiteDate={answer.answerSubmiteDate}>
 
                                 </AnswerChatBox> 
                             </div>
