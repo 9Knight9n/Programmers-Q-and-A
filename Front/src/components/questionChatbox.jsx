@@ -5,6 +5,7 @@ import LoadingPage from './loading';
 import './CSS/questionChatbox.css';
 import Cookies from 'js-cookie';
 import { getUserAvatar } from './util';
+import ReactTooltip from 'react-tooltip';
 
 
 class QuestionChatbox extends Component {
@@ -12,14 +13,16 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isAnswered:this.props.isAnswered,
             loading:false,
-            sameProblem:false,
+            sameProblem:this.props.sameProblem,
             sameProblemCount:this.props.sameProblemCount,
             senderId:this.props.senderId,
             senderUsername:this.props.senderUsername,
             senderAvatar:null,
             context:this.props.context,
             sentDate:this.props.sentDate,
+            showMoreButton:this.props.showMoreButton,
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -86,6 +89,7 @@ class QuestionChatbox extends Component {
     render() { 
         return (  
             <React.Fragment>
+                <ReactTooltip place="right" effect="solid" type="dark"/>
                 {this.state.loading?<LoadingPage/>: ""}
                 <div id="Question"
                     style={{ 
@@ -94,12 +98,12 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row">
-                            <div className="d-flex ml-3 pl-2 align-top w-20">
-                                <p className="pt-1 d-flex align-items-center ml-2 mr-4" style={{fontSize: "0.85rem"}}>
-                                    Question submitted by
+                            <div className="d-flex ml-2 pl-2 align-top w-10">
+                                <p className="pt-1 d-flex align-items-center ml-1" style={{fontSize: "0.85rem"}}>
+                                    submitted by
                                 </p>
                             </div>
-                            <div className="d-flex pl-2 align-top w-80" id="profile">
+                            <div className="d-flex pl-2 align-top w-80 ml-3" id="profile">
                                 <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
                                 <p className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
@@ -127,36 +131,54 @@ class QuestionChatbox extends Component {
 
 
                             <div id="left" className="d-flex flex-column mt-2">
-                                <small className="ml-2 mb-2 mt-auto" style={{ lineHeight:"17px"}}>
-                                    {this.state.sameProblemCount} other users have this problem!
-                                </small>
-                                <button className={"ml-1 mr-1 mb-auto p-1 d-flex flex-row checkbox".concat(this.state.sameProblem?" active":"")}
-                                onClick={this.handleSameProblemClicked}>
-                                {this.state.sameProblem?
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="align-self-center bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                                </svg>:
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" className="align-self-center bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                    <path fillRule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
-                                </svg>}<small className="ml-2" style={{ lineHeight:"20px"}}>I have same Question</small>
-                            </button>
+                                
+                                <button style={{outline:"none"}} className="ml-auto mr-auto pr-2 pl-2 mb-2 mt-2"
+                                    data-tip="Select this button if you have same problem!"
+                                    onClick={this.handleSameProblemClicked}>
+                                    {this.state.sameProblem?
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                    </svg>:
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                                    </svg>}
+                                </button>
+                                <button style={{outline:"none"}} class="ml-auto mr-auto pr-2 pl-2 mt-1" data-tip="Number of users with same problem!">
+                                    {this.state.sameProblemCount + 1524}
+                                </button>
+                                {this.state.isAnswered?
+                                <svg style={{fill:"green"}} data-tip="This Question is answered"
+                                  width="1em" height="1em" viewBox="0 0 16 16" 
+                                  className="mt-4 mb-3 align-self-center bi bi-check-circle-fill" 
+                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg%22%3E">
+                                     <path fillRule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>
+                                :""
+                            }
+                                
                             </div>
 
 
 
-                            <div id="middle" className="mt-2 mb-4 p-3 border-left">
-                                <ShowMoreText
-                                /* Default options */
-                                lines={3}
-                                more={<p className="ml-auto blue-on-hover" >Show more</p>}
-                                less={<p className="ml-auto blue-on-hover">Show less</p>}
-                                className='content-css'
-                                anchorClass='show-more-less d-flex flex-row'
-                                onClick={this.executeOnClick}
-                                expanded={false}>
-                                    {this.state.context}
-                                </ShowMoreText>
+                            <div id="middle" className="mt-2 mb-1 d-flex flex-column">
+                                <div className="p-3">
+                                {this.props.showMoreButton?
+                                    <ShowMoreText
+                                    /* Default options */
+                                    lines={3}
+                                    more={<p className="ml-auto blue-on-hover" >Show more</p>}
+                                    less={<p className="ml-auto blue-on-hover">Show less</p>}
+                                    className='content-css'
+                                    anchorClass='show-more-less d-flex flex-row'
+                                    onClick={this.executeOnClick}
+                                    expanded={false}>
+                                        {this.state.context}
+                                    </ShowMoreText>:
+                                    this.state.context
+                                }
+                                </div>
+                                <small className="ml-auto mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
+
                             </div>
 
 
@@ -170,7 +192,12 @@ class QuestionChatbox extends Component {
                         </div>
                         <div id="footer" className="d-flex flex-row">
                             
-                            <small className="ml-auto mr-2 mt-auto mb-auto">Submitted on : {this.state.sentDate}</small>
+                           
+
+                            <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
+                                <button style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
+                            </div>
+                            
                         </div>
                 </div>
             </React.Fragment>
