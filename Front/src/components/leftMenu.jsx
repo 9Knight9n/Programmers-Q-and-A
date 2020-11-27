@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
 import Cookies from 'js-cookie';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import { isExpired } from "react-jwt";
 import axios from 'axios';
 // import pro from "../img/";

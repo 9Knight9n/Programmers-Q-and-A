@@ -99,6 +99,8 @@ class SignInForm extends Component{
       Cookies.set("username",response.data.user.username)
       sessionStorage.setItem("username",response.data.user.username)
       Cookies.set("id",response.data.user.id)
+      console.log(form.get("email"))
+      console.log(form.get("password"))
       const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
