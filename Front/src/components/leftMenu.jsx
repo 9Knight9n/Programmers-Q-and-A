@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
 import Cookies from 'js-cookie';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import { isExpired } from "react-jwt";
 import axios from 'axios';
 // import pro from "../img/";
@@ -15,13 +15,13 @@ import axios from 'axios';
 class LeftMenu extends Component {
     state = {  
         show: false,
-        chatrooms:this.props.chatrooms,
+        chatrooms:[],
         activeChatroom:-1
     }
 
     handleTabClick = (id) =>{
-        console.log(Cookies.get("avatar"))
-        console.log(window.$avatar)
+        // console.log(Cookies.get("avatar"))
+        // console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
     }

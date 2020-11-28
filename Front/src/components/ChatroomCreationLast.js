@@ -5,7 +5,7 @@ import { isExpired } from "react-jwt";
 import SelectAvatar from './selectAvatar';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 
 class ChatroomCreationLast extends Component {
     
