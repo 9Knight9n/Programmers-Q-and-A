@@ -7,7 +7,8 @@ import MyAccount from './myAccount';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
-
+import CopyToClipboard from "reactjs-copy-to-clipboard";
+import ReactTooltip from 'react-tooltip';
 
 
 
@@ -17,7 +18,15 @@ class ChatroomInfo extends Component {
       chatroomName: 'chatroom name',
       chatroomContext: 'Title',
       chatroomProfileImg: null,
-      chatroomLink: null,
+      chatroomLink: "link to chatroom",
+      copied:false,
+    }
+
+
+    handleCopy=(e)=>{
+        // copyToClipboard('Text to copy');
+        console.log("Clicked")
+        this.setState({copied:true})
     }
 
     
@@ -25,6 +34,7 @@ class ChatroomInfo extends Component {
     render() { 
         return (  
             <div className="infoBox">
+                <ReactTooltip place="bottom" effect="solid" type="dark"/>
                 <div className="infoElements d-flex flex-row">
                     <div className="infoImg">
                         <img src={defaultProfileImg} alt="chatroom profile image"/>
@@ -32,7 +42,17 @@ class ChatroomInfo extends Component {
                     <div className="userInfo">
                         <div className="d-flex flex-row">
                             <h2 className="">{this.state.chatroomName}</h2>
-                            <img className="" data-toggle="tooltip" data-placement="top" title="Click to copy link" src={linkImg} alt=" Link Image " />
+                            <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
+                                <div className=" d-flex flex-row">
+                                    
+                                    <img src={linkImg} className="h-100"
+                                        data-tip={this.state.copied?"Copied":"Click to copy"} />
+                                    <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
+                                </div>
+                                
+                                
+                            </CopyToClipboard>
+                            
                         </div>
                         <h3>{this.state.chatroomContext}</h3>
                     </div>
