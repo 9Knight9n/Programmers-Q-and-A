@@ -123,7 +123,9 @@ class AnswersPage extends Component {
         return (  
           <div className="Setting-bg d-flex justify-content-center">
             <ReactTooltip place="right" effect="solid" type="dark"/>
-            <div className="right h-100 empty-125"></div>
+            <div className="right h-100 empty-125">
+                <button className="backButton">Back</button>
+            </div>
             <div className="center w-75">
                 <div className="infoBox">
                     {/* <ChatroomInfo /> */}
@@ -135,7 +137,7 @@ class AnswersPage extends Component {
                     <div className="answers  ">
                         {this.state.answers.map(answer => 
                             <div className="mt-5" key={answer.id}>
-                                <AnswerChatBox answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
+                                <AnswerChatBox userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
 
                                 </AnswerChatBox> 
                             </div>

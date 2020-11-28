@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import './CSS/AnswerChatBox.css';
 import negativeVoteImg from '../img/down-arrow.png';
+import lockedNegativeVoteImg from '../img/down.png';
 import positiveVoteImg from '../img/up-arrow.png';
+import lockedPositiveVoteImg from '../img/up.png';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import greenCheckMark from '../img/greenCheckMark.png';
 import blueCheckMark from '../img/blueCheckMark.png';
 import { Dropdown } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
+import Cookies from 'js-cookie';
+import { getUserAvatar } from './util';
 
 class AnswerChatBox  extends Component {
     constructor(props) {
@@ -19,20 +23,18 @@ class AnswerChatBox  extends Component {
             vote: this.props.vote,
             newAnswer: null,
             profileImg: null,
-            userName: null,
             answerSubmiteDate: this.props.answerSubmiteDate,
+            isOwner: this.props.userid === parseInt(Cookies.get('id')),
         }
 
         this.handleVote = this.handleVote.bind(this);
         this.handleTrueAnswer = this.handleTrueAnswer.bind(this);
     }
 
-    componentDidMount = () => {
-        console.log(this.props.answerSubmiteDate)
-        this.setState({
-            profileImg: defaultProfileImg,
-            userName: 'abed',
-        })
+    componentDidMount = async () =>{
+        if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
+          await getUserAvatar(this.props.userid);  
+        }
     }
 
     handleVote(e) {
@@ -75,9 +77,11 @@ class AnswerChatBox  extends Component {
     }
 
     handleTrueAnswer(){
-        this.setState({
-            trueAnswer: !this.state.trueAnswer,
-        })
+        if (this.state.isOwner) {
+            this.setState({
+                trueAnswer: !this.state.trueAnswer,
+            })
+        }
     }
 
     render() { 
@@ -86,8 +90,8 @@ class AnswerChatBox  extends Component {
                     className="d-flex flex-column">
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
-                            <img className="profileImg" src={this.state.profileImg} />
-                            <label className="profileUsername" for="profileImg">{this.state.userName}</label>
+                            <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                            <label className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown className="dropDownMain">
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">
@@ -97,8 +101,9 @@ class AnswerChatBox  extends Component {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu  className="dropDown">
-                                        <Dropdown.Item onClick={this.handleEdit} as="button">Edit</Dropdown.Item>
-                                        <Dropdown.Item onClick={this.handleRemove} as="button">Remove</Dropdown.Item>
+                                       {this.state.isOwner? <Dropdown.Item onClick={this.handleEdit} as="button">Edit</Dropdown.Item> : " "
+                                       } 
+                                        {this.state.isOwner? <Dropdown.Item onClick={this.handleRemove} as="button">Remove</Dropdown.Item>: " "}
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -108,22 +113,26 @@ class AnswerChatBox  extends Component {
                         <div id="body" className="d-flex flex-row w-100">
                             <div id="left" className="d-flex flex-column bd-highlight">
                                 <div className="trueAnswer">
-                                    {!this.state.trueAnswer? 
-                                    <img data-tip="This answer is useful" src={blueCheckMark} onClick={this.handleTrueAnswer}/> :
-                                    <img data-tip="This answer is not useful" src={greenCheckMark} onClick={this.handleTrueAnswer}/>}
-                                    
+                                    {this.state.isOwner? 
+                                    <img data-tip="This answer is true" src={blueCheckMark} onClick={this.handleTrueAnswer}/> : ""}
+                                    {this.state.trueAnswer?
+                                    <img data-tip="This answer is true" src={greenCheckMark} onClick={this.handleTrueAnswer}/> : ""}
                                     
                                 </div>
                                 <div className="d-flex flex-column bd-highlight">
                                     <div onClick={this.handleVote} >
-                                        <img className="positiveVoteImg" data-tip="This Question is answered" className="positiveVoteImg" src={positiveVoteImg} />
+                                        {!this.state.PactiveVote?
+                                        <img className="positiveVoteImg" data-tip="This answer is useful" className="positiveVoteImg" src={positiveVoteImg} />:
+                                        <img className="positiveVoteImg" data-tip="This answer is useful" className="positiveVoteImg" src={lockedPositiveVoteImg} />}
                                     </div>
                                     <div className="">
                                         <p className="voteCount" >{this.state.vote}</p>
                                     </div>
 
                                     <div onClick={this.handleVote} >
-                                        <img className="negativeVoteImg" data-tip="This Question is answered" className="negativeVoteImg" src={negativeVoteImg} />
+                                    {!this.state.NactiveVote?
+                                        <img className="negativeVoteImg" data-tip="This answer is not useful" src={negativeVoteImg} />:
+                                        <img className="negativeVoteImg" data-tip="This answer is not useful" src={lockedNegativeVoteImg} />}
                                     </div>
                                 </div>
                             </div>

@@ -54,14 +54,9 @@ button {
   margin-left: 8%;
 }
 
-.buttons {
-  margin-left: 71.5%;
-  margin-top: -1%;
-}
-
-.buttons button {
-  height: 4vh;
-  width: 129%;
+.backButton {
+  width: 100%;
+  margin-top: 381%;
 }
 
 .LinkButtons {
