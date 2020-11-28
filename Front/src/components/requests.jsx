@@ -16,8 +16,8 @@ export const renewToken= async ()=>{
     }).then(response => {
 
       // do good things
-      console.log(response.data.access)
-      Cookies.set("access",response.data.access)
+      // console.log(response.data.access)
+      // Cookies.set("access",response.data.access)
       return response.data.access
     }).catch(err => {
       handleError(err)

@@ -16,40 +16,40 @@ import QuestionsPage from './questionsPage';
 class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
-        activeChatroom : 
-            <div className="d-flex justify-content-center my-auto">
-                    Select a Chatroom
-            </div>,
-        chatrooms:[
-            {
-                id:1,
-                ButtonName:'Java',
-                img:j_logo
-            },
-            {
-                id:2,
-                ButtonName:'Python',
-                img:p_logo
+        activeChatroom : 3,
+        // chatrooms:[
+        //     {
+        //         id:1,
+        //         ButtonName:'Java',
+        //         img:j_logo
+        //     },
+        //     {
+        //         id:2,
+        //         ButtonName:'Python',
+        //         img:p_logo
     
-            },
+        //     },
             
-        ]
+        // ]
     }
     
 
 
     chatroomClicked = (id) =>{
-        let chatrooms = [...this.state.chatrooms];
-        for (let i = 0; i < chatrooms.length; i++)
-            if (chatrooms[i].id===id)
-            {
-                chatrooms[i].isActive = true;
-                let activeChatroom = <Chatroom chatID={chatrooms[i].id}/>
-                this.setState({activeChatroom:activeChatroom});
-            }
-            else
-                chatrooms[i].isActive = false;
-        this.setState({chatrooms});      
+        this.setState({activeChatroom:id})
+        // let chatrooms = [...this.state.chatrooms];
+        // for (let i = 0; i < chatrooms.length; i++)
+        //     if (chatrooms[i].id===id)
+        //     {
+        //         chatrooms[i].isActive = true;
+        //         let activeChatroom = <Chatroom chatID={chatrooms[i].id}/>
+        //         this.setState({activeChatroom:activeChatroom});
+        //     }
+        //     else
+        //         chatrooms[i].isActive = false;
+        // this.setState({chatrooms}); 
+        console.log("__________________________________________________________")     
+        console.log("chatroom ",id," selected")     
     }
 
 
@@ -62,7 +62,9 @@ class Homepage extends Component {
                 <div className="RightColumn">
                     <Navbar />
                     <div style={{height:"91vh"}}>
-                        <QuestionsPage ChatroomID={3} />
+                        {/* <p>{this.state.activeChatroom}</p> */}
+                        <QuestionsPage ChatroomID={this.state.activeChatroom} />
+                        
                     </div>
                     
                 </div>

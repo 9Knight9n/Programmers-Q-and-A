@@ -15,13 +15,13 @@ import axios from 'axios';
 class LeftMenu extends Component {
     state = {  
         show: false,
-        chatrooms:this.props.chatrooms,
+        chatrooms:[],
         activeChatroom:-1
     }
 
     handleTabClick = (id) =>{
-        console.log(Cookies.get("avatar"))
-        console.log(window.$avatar)
+        // console.log(Cookies.get("avatar"))
+        // console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
     }

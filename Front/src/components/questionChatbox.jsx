@@ -13,6 +13,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isOwner:this.props.senderId===6,
             isAnswered:this.props.isAnswered,
             loading:false,
             sameProblem:this.props.sameProblem,
@@ -117,9 +118,9 @@ class QuestionChatbox extends Component {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item as="button">Edit</Dropdown.Item>
-                                        <Dropdown.Item as="button">Delete</Dropdown.Item>
-                                        <Dropdown.Item as="button">Something else</Dropdown.Item>
+                                        {this.state.isOwner?<Dropdown.Item as="button">Edit</Dropdown.Item>:""}
+                                        {this.state.isOwner?<Dropdown.Item as="button">Delete</Dropdown.Item>:""}
+                                        <Dropdown.Item as="button">option 3</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>

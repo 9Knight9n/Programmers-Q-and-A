@@ -101,6 +101,7 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
+        console.log("Question page created with chatroom id ",this.props.ChatroomID)
         this.loadQuestions()
     }
 
@@ -161,7 +162,8 @@ class QuestionsPage extends Component {
                                             senderId={question.userid}
                                             senderUsername={question.user}
                                             context={question.text}
-                                            sentDate={question.time}/>
+                                            sentDate={question.time}
+                                            showMoreButton={true}/>
                                     </div>
                                     )}
                                 </div>

@@ -7,8 +7,10 @@ import MyAccount from './myAccount';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
+import Cookies from 'js-cookie';
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
+import {request} from './requests';
 
 
 
@@ -28,6 +30,36 @@ class ChatroomInfo extends Component {
         console.log("Clicked")
         this.setState({copied:true})
     }
+
+
+    handleSubmitQuestion= async ()=>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/AddQuestion/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+                "chatroom",
+                "text"
+            ],
+            formValue:[
+                Cookies.get('id'),
+                3,
+                
+
+
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        if (data)
+            this.setState({questions:data})
+    }
+
+
 
     
 
@@ -57,7 +89,7 @@ class ChatroomInfo extends Component {
                         <h3>{this.state.chatroomContext}</h3>
                     </div>
                     <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
-                        <button onClick={this.handleClick} className="btn-pro answerButton">Submit Question</button>
+                        <button style={{outline:"none"}} onClick={this.handleSubmitQuestion} className="btn-pro answerButton">Submit Question</button>
                     </div>
                 </div>
             </div>
