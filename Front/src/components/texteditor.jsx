@@ -4,7 +4,7 @@ import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 
 
-import './CSS/textEditor.css';
+import './CSS/texteditor.css';
 
 
 
@@ -26,7 +26,7 @@ import './CSS/textEditor.css';
 //   };
 
 // 3.add following tag to your code:
-//   <TextEditor 
+//   <Texteditor 
 //   content={this.state.content} 
 //   updateContent={this.updateContent} 
 //   hideEditor={this.hideEditor}

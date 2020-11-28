@@ -10,6 +10,7 @@
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "email-validator": "^2.0.4",
+    "jodit-react": "^1.0.66",
     "js-cookie": "^2.2.1",
     "js-copy-to-clipboard": "0.0.4",
     "password-validator": "^5.1.0",

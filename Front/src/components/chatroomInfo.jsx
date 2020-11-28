@@ -11,17 +11,20 @@ import Cookies from 'js-cookie';
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
+import Texteditor from './texteditor'
 
 
 
 
 class ChatroomInfo extends Component {
     state = {
-      chatroomName: 'chatroom name',
-      chatroomContext: 'Title',
-      chatroomProfileImg: null,
-      chatroomLink: "link to chatroom",
-      copied:false,
+        chatroomName: 'chatroom name',
+        chatroomContext: 'Title',
+        chatroomProfileImg: null,
+        chatroomLink: "link to chatroom",
+        copied:false,
+        editorContent:null,
+        editorVisible:false,
     }
 
 
@@ -30,6 +33,18 @@ class ChatroomInfo extends Component {
         console.log("Clicked")
         this.setState({copied:true})
     }
+
+      showEditor = () => {
+    this.setState({ editorVisible: true });
+  };
+  hideEditor = (submit) => {
+      this.setState({ editorVisible: false });
+      if(submit)
+        this.handleSubmitQuestion()
+  };
+  updateContent = (value) => {
+    this.setState({editorContent:value})
+  };
 
 
     handleSubmitQuestion= async ()=>{
@@ -45,9 +60,7 @@ class ChatroomInfo extends Component {
             formValue:[
                 Cookies.get('id'),
                 3,
-                
-
-
+                this.state.editorContent
             ]
         }
         let data = []
@@ -55,8 +68,9 @@ class ChatroomInfo extends Component {
         data = await request(config)
         // console.log(await request(config))
         // console.log("outside",data)
-        if (data)
-            this.setState({questions:data})
+        // console.log(data)
+        this.setState({editorContent:null})
+
     }
 
 
@@ -66,6 +80,11 @@ class ChatroomInfo extends Component {
     render() { 
         return (  
             <div className="infoBox">
+                <Texteditor 
+                content={this.state.content} 
+                updateContent={this.updateContent} 
+                hideEditor={this.hideEditor}
+                editorVisible={this.state.editorVisible}/>
                 <ReactTooltip place="bottom" effect="solid" type="dark"/>
                 <div className="infoElements d-flex flex-row">
                     <div className="infoImg">
@@ -89,7 +108,7 @@ class ChatroomInfo extends Component {
                         <h3>{this.state.chatroomContext}</h3>
                     </div>
                     <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
-                        <button style={{outline:"none"}} onClick={this.handleSubmitQuestion} className="btn-pro answerButton">Submit Question</button>
+                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro answerButton">Submit Question</button>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@ import './CSS/questionChatbox.css';
 import Cookies from 'js-cookie';
 import { getUserAvatar } from './util';
 import ReactTooltip from 'react-tooltip';
+import Texteditor from './texteditor';
+import {request} from './requests';;
 
 
 class QuestionChatbox extends Component {
@@ -13,7 +15,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOwner:this.props.senderId===6,
+            isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,
             loading:false,
             sameProblem:this.props.sameProblem,
@@ -24,18 +26,22 @@ class QuestionChatbox extends Component {
             context:this.props.context,
             sentDate:this.props.sentDate,
             showMoreButton:this.props.showMoreButton,
+            editorContent:this.props.context,
+            editorVisible:false,
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
     }
     componentDidMount=async()=>{
-        console.log("inside");
+        // console.log(Cookies.get('id'))
+        // console.log(this.props.senderId)
+        // console.log("inside");
         if(!sessionStorage.getItem(this.state.senderId+":avatar"))
         {
             await getUserAvatar(this.state.senderId);
         }
         this.setState({senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar")})
-        console.log(sessionStorage.getItem(this.state.senderId+":avatar"))
+        // console.log(sessionStorage.getItem(this.state.senderId+":avatar"))
     }
     // state = {
     //     loading:false,
@@ -72,6 +78,36 @@ class QuestionChatbox extends Component {
         //request to load data from backend
     }
 
+    handleEdit=async()=>{
+        // Cookies.set('id','6')
+        let config ={
+            url:"http://127.0.0.1:8000/api/EditQuestion/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "chatroom",
+                "user_id",
+                "id",
+                "text",
+            ],
+            formValue:[
+                this.props.Cid,
+                Cookies.get("id"),
+                this.props.Qid,
+                this.state.editorContent,
+            ]
+        }
+        console.log(config)
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
+        this.setState({editorContent:null})
+
+    }
+
     handleSameProblemClicked=()=>{
         this.setState({loading:true})
         //request to back to change same question status
@@ -87,9 +123,33 @@ class QuestionChatbox extends Component {
           }, 100);
         
     }
+
+
+
+    showEditor = () => {
+        
+    this.setState({ editorVisible: true });
+  };
+  hideEditor = (submit) => {
+    this.setState({ editorVisible: false });
+      if (submit)
+        this.handleEdit()
+      
+  };
+  updateContent = (value) => {
+    this.setState({editorContent:value})
+  };
+
+
+
     render() { 
         return (  
             <React.Fragment>
+                <Texteditor 
+                    content={this.state.editorContent} 
+                    updateContent={this.updateContent} 
+                    hideEditor={this.hideEditor}
+                    editorVisible={this.state.editorVisible}/>
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 {this.state.loading?<LoadingPage/>: ""}
                 <div id="Question"
@@ -118,7 +178,7 @@ class QuestionChatbox extends Component {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        {this.state.isOwner?<Dropdown.Item as="button">Edit</Dropdown.Item>:""}
+                                        {this.state.isOwner?<Dropdown.Item as="button" onClick={this.showEditor}>Edit</Dropdown.Item>:""}
                                         {this.state.isOwner?<Dropdown.Item as="button">Delete</Dropdown.Item>:""}
                                         <Dropdown.Item as="button">option 3</Dropdown.Item>
                                     </Dropdown.Menu>
@@ -145,7 +205,7 @@ class QuestionChatbox extends Component {
                                     </svg>}
                                 </button>
                                 <button style={{outline:"none"}} class="ml-auto mr-auto pr-2 pl-2 mt-1" data-tip="Number of users with same problem!">
-                                    {this.state.sameProblemCount + 1524}
+                                    {this.state.sameProblemCount}
                                 </button>
                                 {this.state.isAnswered?
                                 <svg style={{fill:"green"}} data-tip="This Question is answered"

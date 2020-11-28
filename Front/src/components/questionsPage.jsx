@@ -163,7 +163,9 @@ class QuestionsPage extends Component {
                                             senderUsername={question.user}
                                             context={question.text}
                                             sentDate={question.time}
-                                            showMoreButton={true}/>
+                                            showMoreButton={true}
+                                            Qid={question.id}
+                                            Cid={this.props.ChatroomID}/>
                                     </div>
                                     )}
                                 </div>
