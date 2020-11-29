@@ -93,7 +93,8 @@ class QuestionsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions:[]
+            questions:[],
+            ChatroomID:this.props.ChatroomID
         };
         this.componentDidMount=this.componentDidMount.bind(this)
         this.loadQuestions=this.loadQuestions.bind(this)
@@ -104,6 +105,15 @@ class QuestionsPage extends Component {
         console.log("Question page created with chatroom id ",this.props.ChatroomID)
         this.loadQuestions()
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.ChatroomID !== this.props.ChatroomID) {
+          this.setState({ChatroomID:prevProps.ChatroomID})
+        //   this.updateAndNotify();
+        this.loadQuestions()
+          console.log("inside componentDidUpdate")
+        }
+      }
 
 
     async loadQuestions(){
@@ -169,7 +179,7 @@ class QuestionsPage extends Component {
                                             showMoreButton={true}
                                             isAnswered={question.isAnswered}
                                             Qid={question.id}
-                                            Cid={this.props.ChatroomID}/>
+                                            Cid={this.state.ChatroomID}/>
                                     </div>
                                     )}
                                 </div>
