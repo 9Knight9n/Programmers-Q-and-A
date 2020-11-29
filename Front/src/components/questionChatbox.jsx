@@ -108,20 +108,68 @@ class QuestionChatbox extends Component {
 
     }
 
-    handleSameProblemClicked=()=>{
+    handleSameProblemClicked=async()=>{
+
+        // console.log("chatroom id is :",this.props.Cid)
         this.setState({loading:true})
         //request to back to change same question status
-        setTimeout(() => {
-            if(this.state.sameProblem)
-                this.setState({sameProblemCount:this.state.sameProblemCount-1})
-            else
-                this.setState({sameProblemCount:this.state.sameProblemCount+1})
-            this.setState({sameProblem:!this.state.sameProblem})
-            
-            this.setState({loading:false})
-            
-          }, 100);
+        let config ={
+            url:"http://127.0.0.1:8000/api/CommonQuestion/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "question_id",
+                "user_id",
+            ],
+            formValue:[
+                this.props.Qid,
+                Cookies.get("id"),
+            ]
+        }
+        console.log(config)
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+
+
+        console.log(data)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
         
+        if(this.state.sameProblem)
+                this.setState({sameProblemCount:this.state.sameProblemCount-1})
+        else
+            this.setState({sameProblemCount:this.state.sameProblemCount+1})
+        this.setState({sameProblem:!this.state.sameProblem})
+            
+        this.setState({loading:false})
+        
+    }
+
+    handleDelete = async()=>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/DeleteQuestion/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "chatroom",
+                "user_id",
+                "id",
+            ],
+            formValue:[
+                this.props.Cid,
+                Cookies.get("id"),
+                this.props.Qid,
+            ]
+        }
+        console.log(config)
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        console.log(data)
     }
 
 
@@ -179,7 +227,7 @@ class QuestionChatbox extends Component {
 
                                     <Dropdown.Menu>
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.showEditor}>Edit</Dropdown.Item>:""}
-                                        {this.state.isOwner?<Dropdown.Item as="button">Delete</Dropdown.Item>:""}
+                                        {this.state.isOwner?<Dropdown.Item as="button" onClick={this.handleDelete}>Delete</Dropdown.Item>:""}
                                         <Dropdown.Item as="button">option 3</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>

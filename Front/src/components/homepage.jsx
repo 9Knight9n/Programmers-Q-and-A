@@ -11,12 +11,21 @@ import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
 import QuestionsPage from './questionsPage';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+    Link,
+    useRouteMatch,
+    useParams
+  } from "react-router-dom";
 
 
 class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
-        activeChatroom : 3,
+        activeChatroom : null,
         // chatrooms:[
         //     {
         //         id:1,
@@ -49,8 +58,11 @@ class Homepage extends Component {
         //         chatrooms[i].isActive = false;
         // this.setState({chatrooms}); 
         console.log("__________________________________________________________")     
-        console.log("chatroom ",id," selected")     
+        console.log("chatroom ",id," selected")
+        this.forceUpdate()
+        // document.getElementById("selectChatroom").HTML(<QuestionsPage ChatroomID={id} />)
     }
+
 
 
     render() { 
@@ -63,7 +75,13 @@ class Homepage extends Component {
                     <Navbar />
                     <div style={{height:"91vh"}}>
                         {/* <p>{this.state.activeChatroom}</p> */}
-                        <QuestionsPage ChatroomID={this.state.activeChatroom} />
+
+
+                        <Route  id="selectChatroom" exact path={"/cr"+this.state.activeChatroom}>
+                            {/* {this.state.activeChatroom} */}
+                            <QuestionsPage ChatroomID={this.state.activeChatroom} />
+                        </Route>
+                        
                         
                     </div>
                     

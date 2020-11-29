@@ -12,12 +12,20 @@ from registeration.models import User
 @api_view(['POST' , ])
 def ShowQuestion(request):
     chatroom = Chatroom.objects.filter(id=request.data['ChatroomID'])
+    requestUser = User.objects.filter(id=request.data['user_id'])
     if list(chatroom) != []:
         questions = Question.objects.filter(chatroom=chatroom[0])
         data_list = []
         for i in questions:
             serializer = QuestionSerializer(i)
             data = serializer.data
+            # print(usrequestUserer)
+            # print(i)
+            user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
+            if list(user_question) != []:
+                data['sameProblem']=True
+            else:
+                data['sameProblem']=False
             data['time']=i.time.ctime()
             if data['file']!=None:
                 data['file'] = 'http://127.0.0.1:8000' + data['file']
@@ -210,31 +218,42 @@ def EditQuestion(request):
 def DeleteQuestion(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
-    question = Question.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    user = User.objects.filter(id=data['user_id'][0])
+    question = Question.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
     if list(question) != []:
         question.delete()
         return Response({'message':'delete complete'})
     else:
         return Response({'message':'you can`t delete'})
+
 @api_view(['POST'])
 def CommonQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
+    user = User.objects.filter(id=data['user_id'][0])
+    print(question[0],":",user[0])
     user_question = User_Question.objects.filter(user=user[0] , question=question[0])
-    if list(user_question) != []:
-        user_question.delete()
-        question[0].commonQuestion -= 1
+    if list(user_question) == []:
+        if list(question) != []:
+            question[0].commonQuestion += 1
+            question[0].save()
     else:
-        user_question = User_Question.objects.create(user=user[0] , question=question[0])
-        question[0].commonQuestion += 1
-    return Response({'message':'done it'})
+        if list(question) != []:
+            question[0].commonQuestion -= 1
+            question[0].save()
+    if list(user_question) == []:
+        uq = User_Question.objects.create(user=user[0] , question=question[0])
+        uq.save()
+        return Response({'message':'commonQuestion it'})
+    else:
+        user_question[0].delete()
+        return Response({'message':'uncommonQuestion it'})
+
 @api_view(['POST'])
 def ShowCommonQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
+    user = User.objects.filter(id=data['user_id'][0])
     user_question = User_Question.objects.filter(user=user[0] , question=question[0])
     if list(user_question) != []:
         return Response({'message': False})
@@ -245,8 +264,8 @@ def ShowCommonQuestion(request):
 def EditAnswer(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
-    answer = Answer.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    user = User.objects.filter(id=data['user_id'][0])
+    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
     if list(answer) != []:
         if 'text' in data.keys():
             answer[0].text = data['text'][0]
@@ -254,6 +273,7 @@ def EditAnswer(request):
             answer[0].isAccepted = data['isAccepted']
         if 'file' in request.FILES.keys():
             answer[0].isAnswered = request.FILES['file']
+        answer[0].save()
         return Response({'message':'edit complete'})
     else:
         return Response({'message':'you can`t edit'})
@@ -262,7 +282,7 @@ def DeleteAnswer(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
     user = User.objects.filter(id=request.data['user_id'][0])
-    answer = Answer.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
     if list(answer) != []:
         answer.delete()
         return Response({'message':'delete complete'})

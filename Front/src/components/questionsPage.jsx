@@ -113,10 +113,12 @@ class QuestionsPage extends Component {
             needToken:true,
             type:"post",
             formKey:[
-                "ChatroomID"
+                "ChatroomID",
+                "user_id"
             ],
             formValue:[
-                this.props.ChatroomID
+                this.props.ChatroomID,
+                Cookies.get("id")
             ]
         }
         let data = []
@@ -159,11 +161,13 @@ class QuestionsPage extends Component {
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3">
                                         <QuestionChatbox sameProblemCount={question.commonQuestion}
+                                            sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}
                                             context={question.text}
                                             sentDate={question.time}
                                             showMoreButton={true}
+                                            isAnswered={question.isAnswered}
                                             Qid={question.id}
                                             Cid={this.props.ChatroomID}/>
                                     </div>
