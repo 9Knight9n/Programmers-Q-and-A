@@ -113,7 +113,7 @@ def show_chatrooms(request):
 
 @api_view(['GET', ])
 def ShowChatroomProfile(request):
-    chatroom = Chatroom.objects.filter(chatroomName=request.data['chatroomName'])
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     if list(chatroom) != []:
         chatroom = chatroom[0]
         serializer = ShowUChatroomProfileSerializer(chatroom)
