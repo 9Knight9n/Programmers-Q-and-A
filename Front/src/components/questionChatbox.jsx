@@ -7,7 +7,10 @@ import Cookies from 'js-cookie';
 import { getUserAvatar } from './util';
 import ReactTooltip from 'react-tooltip';
 import Texteditor from './texteditor';
-import {request} from './requests';;
+import {request} from './requests';
+import {Link} from 'react-router-dom';
+
+
 
 
 class QuestionChatbox extends Component {
@@ -27,7 +30,10 @@ class QuestionChatbox extends Component {
             sentDate:this.props.sentDate,
             showMoreButton:this.props.showMoreButton,
             editorContent:this.props.context,
+            newAnswer: this.props.newAnswer,
+            QuestionID:this.props.Qid,
             editorVisible:false,
+            editorContentAnswer:null,
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -94,7 +100,8 @@ class QuestionChatbox extends Component {
                 this.props.Cid,
                 Cookies.get("id"),
                 this.props.Qid,
-                this.state.editorContent,
+
+                this.state.editorContentAnswer,
             ]
         }
         console.log(config)
@@ -106,6 +113,32 @@ class QuestionChatbox extends Component {
         // console.log(data)
         this.setState({editorContent:null})
 
+    }
+
+    handleSubmitAnswer = async () =>{
+        console.log(this.state.QuestionID)
+        let config ={
+            url:"http://127.0.0.1:8000/api/AddAnswer/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+                "question",
+                "text"
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.state.QuestionID,
+                this.state.editorContent
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
+        this.setState({editorContentAnswer:null})
     }
 
     handleSameProblemClicked=async()=>{
@@ -180,13 +213,20 @@ class QuestionChatbox extends Component {
   };
   hideEditor = (submit) => {
     this.setState({ editorVisible: false });
-      if (submit)
+      if (submit) {
+        if (this.state.editorContentAnswer){
+            this.handleSubmitAnswer();
+        }else
         this.handleEdit()
+      }
+
       
   };
   updateContent = (value) => {
     this.setState({editorContent:value})
+    this.setState({editorContentAnswer:value})
   };
+  
 
 
 
@@ -304,7 +344,13 @@ class QuestionChatbox extends Component {
                            
 
                             <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
-                                <button style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
+                                {this.state.showMoreButton?
+                                <Link to="/answerPage">
+                                    <button style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Go to answer page</button>
+                                </Link>: 
+                                <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
+                                }
+                                 
                             </div>
                             
                         </div>

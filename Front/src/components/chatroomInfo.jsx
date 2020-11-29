@@ -19,12 +19,13 @@ import Texteditor from './texteditor'
 class ChatroomInfo extends Component {
     state = {
         chatroomName: 'chatroom name',
-        chatroomContext: 'Title',
-        chatroomProfileImg: null,
+        selectedTopic: 'Title',
+        chatroom_profile_image: null,
         chatroomLink: "link to chatroom",
         copied:false,
         editorContent:null,
         editorVisible:false,
+        chatroomId: this.props.Cid
     }
 
 
@@ -73,22 +74,50 @@ class ChatroomInfo extends Component {
 
     }
 
+    componentDidMount = () => {
+        this.loadData();
+    }
 
+    loadData = async () => {
+        let config = {
+            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                this.state.chatroomId
+            ]
+        };
+        let data = [];
+        data = await request(config);
+        if (data) {
+            this.setState({
+                selectedTopic: data.selectedTopic,
+                chatroomName: data.chatroomName,
+                Description: data.Description,
+                chatroom_profile_image: data.chatroom_profile_image,
+                chatroomLink: data.chatroomLink,
+            });
+        }
+        console.log(data)
+    }
 
     
 
     render() { 
         return (  
-            <div className="infoBox">
+            <div className="w-100 infoBox">
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
                 hideEditor={this.hideEditor}
                 editorVisible={this.state.editorVisible}/>
-                <ReactTooltip place="bottom" effect="solid" type="dark"/>
+                {/* <ReactTooltip place="bottom" effect="solid" type="dark"/> */}
                 <div className="infoElements d-flex flex-row">
                     <div className="infoImg">
-                        <img src={defaultProfileImg} alt="chatroom profile image"/>
+                        <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
                     </div>
                     <div className="userInfo">
                         <div className="d-flex flex-row">
@@ -105,7 +134,7 @@ class ChatroomInfo extends Component {
                             </CopyToClipboard>
                             
                         </div>
-                        <h3>{this.state.chatroomContext}</h3>
+                        <h3>{this.state.selectedTopic}</h3>
                     </div>
                     <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
                         <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro answerButton">Submit Question</button>

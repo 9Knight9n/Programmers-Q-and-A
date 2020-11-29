@@ -19,6 +19,7 @@
     "react-bootstrap": "^1.4.0",
     "react-click-copy-code": "^1.1.0",
     "react-dom": "^16.14.0",
+    "react-html-parser": "^2.0.2",
     "react-jwt": "^1.0.7",
     "react-loading": "^2.0.3",
     "react-minimal-side-navigation": "^1.5.1",

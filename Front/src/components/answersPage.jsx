@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import {request} from "./requests.jsx";
 import ReactTooltip from 'react-tooltip';
 import ChatroomInfo from './chatroomInfo';
+import QuestionChatbox from './questionChatbox'
 
 import './CSS/answersPage.css';
 
@@ -25,51 +26,16 @@ class AnswersPage extends Component {
             chatroomContext: 'Title',
             chatroomProfileImg: null,
             chatroomLink: null,
+            commonQuestion: this.props.commonQuestion,
+            sameProblem: this.props.sameProblem,
+            userid: this.props.userid,
+            user: this.props.user,
+            text: this.props.text,
+            time: this.props.time,
+            isAnswered: this.props.isAnswered,
+            id: 1,
+            ChatroomID: this.props.ChatroomID,
             answers:[],
-            // answers:[
-            //     {
-            //         id:1,
-            //         answer: 'This is answer 1',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     },
-            //     {
-            //         id:2,
-            //         answer: 'This is answer 2',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     },
-            //     {
-            //         id:3,
-            //         answer: 'This is answer 3',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     },
-            //     {
-            //         id:4,
-            //         answer: 'This is answer 4',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     },
-            //     {
-            //         id:5,
-            //         answer: 'This is answer 5',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     },
-            //     {
-            //         id:6,
-            //         answer: 'This is answer 6',
-            //         trueAnswer: false,
-            //         vote: '0',
-            //         answerSubmiteDate: new Date().toLocaleString(),
-            //     }
-            // ]
         }
     }
 
@@ -106,7 +72,7 @@ class AnswersPage extends Component {
                 "QuestionID",
             ],
             formValue:[
-                // this.props.QuestionID
+            //    this.props.QuestionID
                 1
             ]
         };
@@ -124,20 +90,29 @@ class AnswersPage extends Component {
           <div className="Setting-bg d-flex justify-content-center">
             <ReactTooltip place="right" effect="solid" type="dark"/>
             <div className="right h-100 empty-125">
-                <button className="backButton">Back</button>
+                <Link to="/questionPage"><button className="backButton">Back</button></Link>
             </div>
             <div className="center w-75">
                 <div className="infoBox">
-                    {/* <ChatroomInfo /> */}
+                    <ChatroomInfo />
                 </div>
                 <div className="abed-add-scroll-active">
                     <div className="question">
-                        {this.state.question}
+                        <QuestionChatbox    sameProblemCount={this.state.commonQuestion}
+                                            sameProblem={this.state.sameProblem}
+                                            senderId={this.state.userid}
+                                            senderUsername={this.state.user}
+                                            context={this.state.text}
+                                            sent Date={this.state.time}
+                                            showMoreButton={false}
+                                            isAnswered={this.state.isAnswered}
+                                            Qid={this.state.id}
+                                            Cid={this.state.ChatroomID} />
                     </div>
                     <div className="answers  ">
                         {this.state.answers.map(answer => 
                             <div className="mt-5" key={answer.id}>
-                                <AnswerChatBox userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
+                                <AnswerChatBox Qid={this.state.id} answerId={answer.id} userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
 
                                 </AnswerChatBox> 
                             </div>

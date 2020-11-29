@@ -18,42 +18,6 @@ button {
   background-color: #00000070;
 }
 
-.infoImg {
-  width: 7% !important;
-}
-
-.infoImg img {
-  border-radius: 50%;
-  width: 70%;
-  margin-left: 15%;
-}
-
-.infoElements {
-  padding-top: 1%;
-}
-
-.infoBox {
-  background-color: #000753;
-  height: 10%;
-}
-
-.userInfo h2 {
-  font-size: 20px;
-}
-
-.userInfo h3 {
-  color: #9d9dd1;
-}
-
-.userInfo img {
-  cursor: pointer;
-  position: absolute;
-  width: 1.5%;
-  transform: rotate(44deg);
-  margin-top: -0.2%;
-  margin-left: 8%;
-}
-
 .backButton {
   width: 100%;
   margin-top: 381%;

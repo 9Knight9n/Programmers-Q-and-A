@@ -163,7 +163,7 @@ class QuestionsPage extends Component {
                 <div className="w-100 h-100 p-2">
                     <div id="question-page" className="d-flex flex-column h-100 w-100">
                         <div id="chatroom-info" className=" d-flex flex-row">
-                            <ChatroomInfo/>
+                            <ChatroomInfo Cid={this.state.ChatroomID}  />
                         </div>
                         <div className="mt-1 mb-1 ml-3 h-100">
                             <div className="questions-box">

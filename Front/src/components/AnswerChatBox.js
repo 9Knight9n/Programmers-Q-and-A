@@ -11,6 +11,10 @@ import { Dropdown } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import Cookies from 'js-cookie';
 import { getUserAvatar } from './util';
+import {request} from "./requests.jsx";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Texteditor from './texteditor';
+
 
 class AnswerChatBox  extends Component {
     constructor(props) {
@@ -21,23 +25,68 @@ class AnswerChatBox  extends Component {
             answer: this.props.answer,
             trueAnswer: this.props.trueAnswer,
             vote: this.props.vote,
-            newAnswer: null,
+            answerId: parseInt(this.props.answerId),
+            Qid: this.props.Qid,
             profileImg: null,
             answerSubmiteDate: this.props.answerSubmiteDate,
+            isQOwner: this.props.Qid === parseInt(Cookies.get('id')),
             isOwner: this.props.userid === parseInt(Cookies.get('id')),
+            editorContent:null,
+            editorVisible:false,
         }
 
         this.handleVote = this.handleVote.bind(this);
         this.handleTrueAnswer = this.handleTrueAnswer.bind(this);
     }
 
+    showEditor = () => {
+        this.setState({ editorVisible: true });
+    };
+
+    hideEditor = (submit) => {
+        this.setState({ editorVisible: false });
+        if(submit)
+            this.handleEdit()
+    };
+    updateContent = (value) => {
+        this.setState({editorContent:value})
+    };
+
+    handleEdit = async () =>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/EditAnswer/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+                "question",
+                "text",
+                "id"
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.state.Qid,
+                this.state.editorContent,
+                this.state.answerId
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
+        this.setState({editorContent:null})
+    }
+
     componentDidMount = async () =>{
+        console.log(this.props.Qid , " "  , parseInt(Cookies.get('id')))
         if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
           await getUserAvatar(this.props.userid);  
         }
     }
 
-    handleVote(e) {
+    handleVote = async (e) => {
 
             if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === false && this.state.NactiveVote === false) {
                 this.setState({
@@ -64,30 +113,76 @@ class AnswerChatBox  extends Component {
                     NactiveVote: false,
                 })
             }
+            let config ={
+                url:"http://127.0.0.1:8000/api/VoteAnswer/",
+                needToken:true,
+                type:"post",
+                formKey:[
+                    "chatroom",
+                    "user_id",
+                    "id",
+                    "voteState"
+                ],
+                formValue:[
+                    this.state.Cid,
+                    Cookies.get("id"),
+                    this.state.answerId,
+                    
+                ]
+            }
+            console.log(config)
+            let data = []
+            // console.log("outside 0",data)
+            data = await request(config)
+            // console.log(await request(config))
+            // console.log("outside",data)
+            console.log(data)
         
     }
 
-    handleEdit() {
-        //handle edit answer and opening submit answer component and send new answer to back
-    }
-
-    handleRemove() {
-        //handle Remove answer send request for removing answer and remove for front
+    handleRemove = async () =>{
+        console.log(this.state.answerId)
+        let config ={
+            url:"http://127.0.0.1:8000/api/DeleteAnswer/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "question",
+                "user_id",
+                "id",
+            ],
+            formValue:[
+                this.state.Qid,
+                Cookies.get("id"),
+                this.state.answerId,
+            ]
+        }
+        console.log(config)
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        console.log(data)
 
     }
 
     handleTrueAnswer(){
-        if (this.state.isOwner) {
             this.setState({
                 trueAnswer: !this.state.trueAnswer,
             })
-        }
     }
 
     render() { 
         return ( 
-                <div id="answer" style={{ width:this.props.width+"vw",}}
-                    className="d-flex flex-column">
+            
+                <div id="answer" style={{ width:this.props.width+"vw",}} className="d-flex flex-column">
+                    <Texteditor 
+                        content={this.state.answer} 
+                        updateContent={this.updateContent} 
+                        hideEditor={this.hideEditor}
+                        editorVisible={this.state.editorVisible} 
+                        />
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
                             <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
@@ -101,9 +196,10 @@ class AnswerChatBox  extends Component {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu  className="dropDown">
-                                       {this.state.isOwner? <Dropdown.Item onClick={this.handleEdit} as="button">Edit</Dropdown.Item> : " "
+                                       {this.state.isOwner? <Dropdown.Item onClick={this.showEditor} as="button">Edit</Dropdown.Item> : " "
                                        } 
                                         {this.state.isOwner? <Dropdown.Item onClick={this.handleRemove} as="button">Remove</Dropdown.Item>: " "}
+                                        <Dropdown.Item as="button">something</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -113,10 +209,12 @@ class AnswerChatBox  extends Component {
                         <div id="body" className="d-flex flex-row w-100">
                             <div id="left" className="d-flex flex-column bd-highlight">
                                 <div className="trueAnswer">
-                                    {this.state.isOwner? 
-                                    <img data-tip="This answer is true" src={blueCheckMark} onClick={this.handleTrueAnswer}/> : ""}
-                                    {this.state.trueAnswer?
+                                    {this.state.isQOwner && !this.state.trueAnswer? 
+                                    <img data-tip="Click if this answer is true" src={blueCheckMark} onClick={this.handleTrueAnswer}/> :
+                                    this.state.trueAnswer && this.state.isQOwner?
                                     <img data-tip="This answer is true" src={greenCheckMark} onClick={this.handleTrueAnswer}/> : ""}
+                                    {!this.state.isQOwner && this.state.trueAnswer?
+                                    <img data-tip="This answer is true" src={greenCheckMark} /> : "" }
                                     
                                 </div>
                                 <div className="d-flex flex-column bd-highlight">
@@ -140,7 +238,8 @@ class AnswerChatBox  extends Component {
 
 
                             <div id="middle" className="">
-                                {this.state.answer}
+                                { ReactHtmlParser(this.state.answer) }
+                                
                             </div>
 
                         </div>

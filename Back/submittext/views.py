@@ -263,9 +263,9 @@ def ShowCommonQuestion(request):
 @api_view(['POST'])
 def EditAnswer(request):
     data = dict(request.POST)
-    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
+    question = Question.objects.filter(id=data['question'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
+    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , question=question[0])
     if list(answer) != []:
         if 'text' in data.keys():
             answer[0].text = data['text'][0]
@@ -280,9 +280,9 @@ def EditAnswer(request):
 @api_view(['POST'])
 def DeleteAnswer(request):
     data = dict(request.POST)
-    chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
-    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
+    question = Question.objects.filter(id=data['question'][0])
+    user = User.objects.filter(id=data['user_id'][0])
+    answer = Answer.objects.filter(id=request.data['id'] , user=user[0] , question=question[0])
     if list(answer) != []:
         answer.delete()
         return Response({'message':'delete complete'})

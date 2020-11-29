@@ -26,11 +26,7 @@ import './CSS/texteditor.css';
 //   };
 
 // 3.add following tag to your code:
-//   <Texteditor 
-//   content={this.state.content} 
-//   updateContent={this.updateContent} 
-//   hideEditor={this.hideEditor}
-//   editorVisible={this.state.editorVisible}/>
+//   
 
  
 
