@@ -4,75 +4,114 @@ import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 import './CSS/leftMenu.css';
 import './CSS/setting.css';
 import MyAccount from './myAccount';
+import defaultProfileImg from '../img/default-profile-picture.jpg';
+import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
+import Cookies from 'js-cookie';
+import CopyToClipboard from "reactjs-copy-to-clipboard";
+import ReactTooltip from 'react-tooltip';
+import {request} from './requests';
+import Texteditor from './texteditor'
 
 
 
 
 class ChatroomInfo extends Component {
     state = {
-      options:[
-      ],
-      activeTab:1
+        chatroomName: 'chatroom name',
+        chatroomContext: 'Title',
+        chatroomProfileImg: null,
+        chatroomLink: "link to chatroom",
+        copied:false,
+        editorContent:null,
+        editorVisible:false,
     }
 
-    tabClicked=(id)=>{
-      this.setState({activeTab:id})
+
+    handleCopy=(e)=>{
+        // copyToClipboard('Text to copy');
+        console.log("Clicked")
+        this.setState({copied:true})
     }
+
+      showEditor = () => {
+    this.setState({ editorVisible: true });
+  };
+  hideEditor = (submit) => {
+      this.setState({ editorVisible: false });
+      if(submit)
+        this.handleSubmitQuestion()
+  };
+  updateContent = (value) => {
+    this.setState({editorContent:value})
+  };
+
+
+    handleSubmitQuestion= async ()=>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/AddQuestion/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+                "chatroom",
+                "text"
+            ],
+            formValue:[
+                Cookies.get('id'),
+                3,
+                this.state.editorContent
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
+        this.setState({editorContent:null})
+
+    }
+
+
+
+    
 
     render() { 
         return (  
-            
-          <div className="Setting-bg d-flex justify-content-center">
-               
-            <div className="h-100 empty-125"></div>
-            
-            <div className="w-42 ">
-           
-                <div className=" nav nav-pills">
-                  {this.state.options.map(opt =>
-                    <a key={opt.id} 
-                      onClick={()=> this.tabClicked(opt.id)} 
-                      href="#" >
-                        
-                    </a>
-                  )}
+            <div className="infoBox">
+                <Texteditor 
+                content={this.state.content} 
+                updateContent={this.updateContent} 
+                hideEditor={this.hideEditor}
+                editorVisible={this.state.editorVisible}/>
+                <ReactTooltip place="bottom" effect="solid" type="dark"/>
+                <div className="infoElements d-flex flex-row">
+                    <div className="infoImg">
+                        <img src={defaultProfileImg} alt="chatroom profile image"/>
+                    </div>
+                    <div className="userInfo">
+                        <div className="d-flex flex-row">
+                            <h2 className="">{this.state.chatroomName}</h2>
+                            <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
+                                <div className=" d-flex flex-row">
+                                    
+                                    <img src={linkImg} className="h-100"
+                                        data-tip={this.state.copied?"Copied":"Click to copy"} />
+                                    <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
+                                </div>
+                                
+                                
+                            </CopyToClipboard>
+                            
+                        </div>
+                        <h3>{this.state.chatroomContext}</h3>
+                    </div>
+                    <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
+                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro answerButton">Submit Question</button>
+                    </div>
                 </div>
-                    
-
-                <div id="container">
-                    <main>
-                        <header>
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt=""/>
-                            <div>
-                                <h2>Chat with Vincent Porter</h2>
-                                <h3>already 1902 messages</h3>
-                            </div>
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt=""/>
-                        </header>
-                    </main>
-                </div>
-
-
-                
-           
-
-
-                
-                <div className="mt-auto w-100">
-                    <Link className="p-0 w-100" to="/"> </Link>
-                </div>
-                <div className=" setting-right"></div>
-   
             </div>
-             <div className="h-100 empty-125"></div>
-
-
-
-            
-
-        </div>
-        
           
         );
         

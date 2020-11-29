@@ -10,18 +10,18 @@ export const renewToken= async ()=>{
     }
     const form = new FormData()
     form.set('refresh', Cookies.get("refresh"));
-    await axios.post('http://localhost:8000/api/token/refresh/', form, {
+    const response = await axios.post('http://localhost:8000/api/token/refresh/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
-    }).then(response => {
+    })
 
-      // do good things
-      console.log(response.data.access)
-      Cookies.set("access",response.data.access)
-      return response.data.access
-    }).catch(err => {
-      handleError(err)
-    })    
+    if (!response){
+      console.log("Can't reach server or request rejected")
+      return false
+    }
+    if(!response.data)
+      return handleError(response.error)
+    return response.data.access
     
 }
 
@@ -54,6 +54,7 @@ export const request= async (config)=>{
     if(isExpired(Cookies.get("access"))){
       console.log("token expired")
       token=await renewToken()
+      console.log("received token:",token)
       if(!token)
         return false
     }

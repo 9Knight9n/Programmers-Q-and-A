@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
+import ChatroomInfo from './chatroomInfo.jsx';
 
 class QuestionsPage extends Component {
     // state = {
@@ -92,7 +93,8 @@ class QuestionsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions:[]
+            questions:[],
+            ChatroomID:this.props.ChatroomID
         };
         this.componentDidMount=this.componentDidMount.bind(this)
         this.loadQuestions=this.loadQuestions.bind(this)
@@ -100,8 +102,18 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
+        console.log("Question page created with chatroom id ",this.props.ChatroomID)
         this.loadQuestions()
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.ChatroomID !== this.props.ChatroomID) {
+          this.setState({ChatroomID:prevProps.ChatroomID})
+        //   this.updateAndNotify();
+        this.loadQuestions()
+          console.log("inside componentDidUpdate")
+        }
+      }
 
 
     async loadQuestions(){
@@ -111,10 +123,12 @@ class QuestionsPage extends Component {
             needToken:true,
             type:"post",
             formKey:[
-                "ChatroomID"
+                "ChatroomID",
+                "user_id"
             ],
             formValue:[
-                this.props.ChatroomID
+                this.props.ChatroomID,
+                Cookies.get("id")
             ]
         }
         let data = []
@@ -148,21 +162,8 @@ class QuestionsPage extends Component {
             <React.Fragment>
                 <div className="w-100 h-100 p-2">
                     <div id="question-page" className="d-flex flex-column h-100 w-100">
-                        <div id="chatroom-info" className="border d-flex flex-row">
-                            <div>
-                                Chatroom info
-                            </div>
-                            
-                            <div className="d-flex ml-auto mt-auto">
-                                <button onClick={() => this.showModal(-1)} className="btn btn-primary submit-button2" type="button">
-                                    Submit a Question
-                                </button>
-                                <SubmitField 
-                                    ref={this.state.refToChatroom} 
-                                    hideModal={this.hideModal} 
-                                    show={this.state.show} 
-                                    submit={this.state.submit} />
-                            </div>
+                        <div id="chatroom-info" className=" d-flex flex-row">
+                            <ChatroomInfo/>
                         </div>
                         <div className="mt-1 mb-1 ml-3 h-100">
                             <div className="questions-box">
@@ -170,10 +171,15 @@ class QuestionsPage extends Component {
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3">
                                         <QuestionChatbox sameProblemCount={question.commonQuestion}
+                                            sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}
                                             context={question.text}
-                                            sentDate={question.time}/>
+                                            sentDate={question.time}
+                                            showMoreButton={true}
+                                            isAnswered={question.isAnswered}
+                                            Qid={question.id}
+                                            Cid={this.state.ChatroomID}/>
                                     </div>
                                     )}
                                 </div>
