@@ -314,12 +314,13 @@ def VoteAnswer(request):
             user_answer[0].isVoted = int(data['voteState'][0])
             if list(answer) != []:
                 answer[0].vote += int(data['voteState'][0])
+                answer[0].save()
     else:
         user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=data['voteState'][0])
         # user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , )
         if list(answer) != []:
             answer[0].vote += int(data['voteState'][0])
-    answer[0].save()
+            answer[0].save()
     return Response({'message':'done it'})
 @api_view(['POST'])
 def ShowVoteAnswer(request):
