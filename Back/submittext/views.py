@@ -36,10 +36,16 @@ def ShowAnswer(request):
     if list(question) != []:
         answers = Answer.objects.filter(question=question[0]).order_by('isAccepted' , 'vote')
         answers = answers[::-1]
+        user_answer = User_Answer.objects.filter()
         data_list = []
         for i in answers:
             serializer = AnswerSerializer(i)
             data = serializer.data
+            user_answer = User_Answer.objects.filter(user=request.data['user_id'] , answer=i)
+            if list(user_answer) != []:
+                data["voteState"] = user_answer[0].isVoted
+            else:
+                data["voteState"] = 0
             data['file'] = 'http://127.0.0.1:8000' + data['file']
             if i.user == None:
                 data['user'] = 'User is not exist'
@@ -184,23 +190,27 @@ def AddAnswer(request):
         return Response({'message': 'New answer created'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'User not found'})
 
-
+@api_view(['POST'])
 def EditQuestion(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
     user = User.objects.filter(id=request.data['user_id'][0])
-    question = Question.objects.filter(id=data['id'] , user=user[0] , chatroom=chatroom[0])
+    question = Question.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
     if list(question) != []:
         if 'text' in data.keys():
             question[0].text = data['text'][0]
         if 'isAnswered' in data.keys():
             question[0].isAnswered = data['isAnswered']
         if 'file' in request.FILES.keys():
-            question[0].isAnswered = request.FILES['file']
+            question[0].file = request.FILES['file']
+        if 'commonQuestion' in data.keys():
+            question[0].commonQuestion = data['commonQuestion'][0]
+        question[0].save()
         return Response({'message':'edit complete'})
     else:
         return Response({'message':'you can`t edit'})
 
+@api_view(['POST'])
 def DeleteQuestion(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
@@ -212,19 +222,31 @@ def DeleteQuestion(request):
     else:
         return Response({'message':'you can`t delete'})
 
+@api_view(['POST'])
 def CommonQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
     user = User.objects.filter(id=request.data['user_id'][0])
     user_question = User_Question.objects.filter(user=user[0] , question=question[0])
-    if list(user_question) != []:
-        user_question.delete()
-        question[0].commonQuestion -= 1
+    if list(user_question) == []:
+        if list(question) != []:
+            question[0].commonQuestion += 1
+            question[0].save()     
     else:
-        user_question = User_Question.objects.create(user=user[0] , question=question[0])
-        question[0].commonQuestion += 1
-    return Response({'message':'done it'})
+        if list(question) != []:
+            question[0].commonQuestion -= 1
+            question[0].save()
+    if list(user_question) == []:
+        uq = User_Question.objects.create(user=user[0] , question=question[0])
+        uq.save()
+        return Response({'message':'commonQuestion it'})
+    else:
+        user_question[0].delete()
+        return Response({'message':'uncommonQuestion it'})
 
+        
+
+@api_view(['POST'])
 def ShowCommonQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
@@ -235,7 +257,7 @@ def ShowCommonQuestion(request):
     else:
         return Response({'message': True})
 
-
+@api_view(['POST'])
 def EditAnswer(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
@@ -247,11 +269,12 @@ def EditAnswer(request):
         if 'isAccepted' in data.keys():
             answer[0].isAccepted = data['isAccepted']
         if 'file' in request.FILES.keys():
-            question[0].isAnswered = request.FILES['file']
+            question[0].file = request.FILES['file']
         return Response({'message':'edit complete'})
     else:
         return Response({'message':'you can`t edit'})
 
+@api_view(['POST'])
 def DeleteAnswer(request):
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=data['chatroom'][0])
@@ -263,6 +286,7 @@ def DeleteAnswer(request):
     else:
         return Response({'message':'you can`t delete'})
 
+@api_view(['POST'])
 def VoteAnswer(request):
     data = dict(request.POST)
     answer = Answer.objects.filter(id=data['answer_id'][0])
@@ -279,6 +303,7 @@ def VoteAnswer(request):
         answer[0].vote += data['vote']
     return Response({'message':'done it'})
 
+@api_view(['POST'])
 def ShowVoteAnswer(request):
     data = dict(request.POST)
     answer = Answer.objects.filter(id=data['answer_id'][0])
