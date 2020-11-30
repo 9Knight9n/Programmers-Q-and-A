@@ -121,8 +121,15 @@ def ShowChatroomProfile(request):
         filename = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         data['chatroom_profile_image'] = open(filename, 'rb').read()
         data['chatroomLink'] = 'http://127.0.0.1:8000/ShowChatroomByLink/chatroom' + str(chatroom.id) + '/'
-        
+
+        if data['selectedTopic'] == "PL":
+            data['selectedTopic'] = "Programing Language(" + chatroom.selected + ")" 
+        elif data['selectedTopic'] == "App":
+            data['selectedTopic'] = "Application(" + chatroom.selected + ")"
+        elif data['selectedTopic'] == "OS":
+            data['selectedTopic'] = "Operating System(" + chatroom.selected + ")"
         return Response(data)
+        
     return Response({'message': 'Chatroom not found'})
 
 

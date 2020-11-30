@@ -32,7 +32,7 @@ class AnswersPage extends Component {
             text: ReactHtmlParser(sessionStorage.getItem('context')),
             time: sessionStorage.getItem('sentDate'),
             isAnswered: sessionStorage.getItem('isAnswered'),
-            ChatroomID: sessionStorage.getItem('ChatroomID'),
+            ChatroomID: sessionStorage.getItem('ChatroomID'), 
             answers:[],
         }
     }
@@ -66,10 +66,12 @@ class AnswersPage extends Component {
             type:"post",
             formKey:[
                 "QuestionID",
+                "user_id",
             ],
             formValue:[
             //    this.props.QuestionID
-                this.state.QuestionID
+                this.state.QuestionID,
+                Cookies.get("id")
             ]
         };
         let data = [];
@@ -117,8 +119,16 @@ class AnswersPage extends Component {
                         {this.state.answers.map(answer => 
                             <div className="mt-5" key={answer.id}>
                                 <AnswerChatBox loadAnswers={this.loadData}
-                                Qid={this.state.QuestionID} answerId={answer.id} userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
-
+                                Qid={this.state.QuestionID} 
+                                QsenderId={this.state.userid}
+                                answerId={answer.id} 
+                                userName={answer.user} 
+                                userid={answer.userid} 
+                                answer={answer.text} 
+                                vote={parseInt(answer.vote)} 
+                                trueAnswer={answer.isAccepted} 
+                                answerSubmiteDate={answer.time}
+                                voteState={answer.voteState}>
                                 </AnswerChatBox> 
                             </div>
                         )}

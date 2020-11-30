@@ -26,12 +26,13 @@ class AnswerChatBox  extends Component {
             NactiveVote:false,
             answer: this.props.answer,
             trueAnswer: this.props.trueAnswer,
+            voteState: this.props.voteState,
             vote: this.props.vote,
             answerId: parseInt(this.props.answerId),
             Qid: this.props.Qid,
             profileImg: null,
             answerSubmiteDate: this.props.answerSubmiteDate,
-            isQOwner: this.props.Qid === parseInt(Cookies.get('id')),
+            isQOwner: this.props.QsenderId === Cookies.get('id'),
             isOwner: this.props.userid === parseInt(Cookies.get('id')),
             editorContent:null,
             editorVisible:false,
@@ -85,6 +86,7 @@ class AnswerChatBox  extends Component {
     }
 
     componentDidMount = async () =>{
+        console.log("hey this is answer id : " , this.props.QsenderId , parseInt(Cookies.get('id')))
         console.log(this.props.Qid , " "  , parseInt(Cookies.get('id')))
         if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
           await getUserAvatar(this.props.userid);  
@@ -107,27 +109,31 @@ class AnswerChatBox  extends Component {
 
         this.setState({loading:true})
 
-            if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === false && this.state.NactiveVote === false) {
+            if (e.target.className === "positiveVoteImg" && this.state.voteState === 0) {
                 this.setState({
+                    voteState:1,
                     vote: this.state.vote + 1,
                     PactiveVote: true,
                 })
-            }else if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === true) {
+            }else if (e.target.className === "positiveVoteImg" && this.state.voteState === 1) {
 
-            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === false && this.state.PactiveVote === true) {
+            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === 1) {
                 this.setState({
+                    voteState:0,
                     vote: this.state.vote - 1,
                     PactiveVote: false,
                 })
-            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === false && this.state.PactiveVote === false) {
+            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === 0) {
                 this.setState({
+                    voteState:-1,
                     vote: this.state.vote - 1,
                     NactiveVote: true,
                 })
-            }else if (e.target.className === "negativeVoteImg" && this.state.NactiveVote === true) {
+            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === -1) {
    
-            }else if (e.target.className === "positiveVoteImg" && this.state.NactiveVote === true && this.state.PactiveVote === false) {
+            }else if (e.target.className === "positiveVoteImg" && this.state.voteState === -1) {
                 this.setState({
+                    voteState:0,
                     vote: this.state.vote + 1,
                     NactiveVote: false,
                 })
@@ -137,19 +143,18 @@ class AnswerChatBox  extends Component {
                 needToken:true,
                 type:"post",
                 formKey:[
-                    "chatroom",
+                    "answer_id",
                     "user_id",
-                    "id",
                     "voteState"
                 ],
                 formValue:[
-                    this.state.Cid,
-                    Cookies.get("id"),
                     this.state.answerId,
+                    Cookies.get("id"),
+                    this.state.voteState
                     
                 ]
             }
-            console.log(config)
+            
             let data = []
             // console.log("outside 0",data)
             data = await request(config)
@@ -157,6 +162,7 @@ class AnswerChatBox  extends Component {
             // console.log("outside",data)
             console.log(data)
             this.setState({loading:false})
+            console.log("this is vote : " , this.state.voteState)
         
     }
 
@@ -190,10 +196,37 @@ class AnswerChatBox  extends Component {
 
     }
 
-    handleTrueAnswer(){
-            this.setState({
-                trueAnswer: !this.state.trueAnswer,
-            })
+    handleTrueAnswer =async () => {
+        this.setState({loading:true})
+        let config ={
+            url:"http://127.0.0.1:8000/api/EditAnswer/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+                "question",
+                "isAccepted",
+                "id"
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.state.Qid,
+                !this.state.trueAnswer,
+                this.state.answerId
+            ]
+        }
+        this.setState({
+            trueAnswer: !this.state.trueAnswer,
+        })
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        // console.log(data)
+        this.setState({editorContent:null})
+        this.setState({loading:false})
+        this.props.loadAnswers()
     }
 
     render() { 

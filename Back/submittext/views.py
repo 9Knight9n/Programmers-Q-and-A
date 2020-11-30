@@ -50,7 +50,14 @@ def ShowAnswer(request):
         for i in answers:
             serializer = AnswerSerializer(i)
             data = serializer.data
+            print(request.data.keys())
+            user_answer = User_Answer.objects.filter(user=request.data['user_id'] , answer=i)
+            if list(user_answer) != []:
+                data["voteState"] = user_answer[0].isVoted
+            else:
+                data["voteState"] = 0
             data['time']=i.time.ctime()
+
             if data['file']!=None:
                 data['file'] = 'http://127.0.0.1:8000' + data['file']
             if i.user == None:
@@ -270,6 +277,10 @@ def EditAnswer(request):
         if 'text' in data.keys():
             answer[0].text = data['text'][0]
         if 'isAccepted' in data.keys():
+            if request.data['isAccepted'] == 'true':
+                data['isAccepted'] = True
+            else: 
+                data['isAccepted'] = False
             answer[0].isAccepted = data['isAccepted']
         if 'file' in request.FILES.keys():
             answer[0].isAnswered = request.FILES['file']
@@ -291,18 +302,24 @@ def DeleteAnswer(request):
 @api_view(['POST'])
 def VoteAnswer(request):
     data = dict(request.POST)
+    print(data)
     answer = Answer.objects.filter(id=data['answer_id'][0])
-    user = User.objects.filter(id=request.data['user_id'][0])
+    user = User.objects.filter(id=data['user_id'][0])
+    print(user , answer )
     user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
     if list(user_answer) != []:
-        if user_answer.isVoted == data['vote']:
+        if user_answer[0].isVoted == int(data['voteState'][0]):
             return Response({'message':'this user can not do that'})
         else:
-            user_answer.isVoted = data['vote']
-            answer[0].vote += data['vote']
+            user_answer[0].isVoted = int(data['voteState'][0])
+            if list(answer) != []:
+                answer[0].vote += int(data['voteState'][0])
     else:
-        user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , isVoted=data['vote'])
-        answer[0].vote += data['vote']
+        user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=data['voteState'][0])
+        # user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , )
+        if list(answer) != []:
+            answer[0].vote += int(data['voteState'][0])
+    answer[0].save()
     return Response({'message':'done it'})
 @api_view(['POST'])
 def ShowVoteAnswer(request):
