@@ -28,6 +28,18 @@ class ChatroomInfo extends Component {
         chatroomId: this.props.Cid
     }
 
+    componentDidUpdate(prevProps) {
+        // console.log("inside componentDidUpdate")
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+        if (prevProps.Cid !== this.props.Cid) {
+            
+            this.setState({chatroomId:this.props.Cid})
+            console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+            this.loadData()
+            
+        }
+      }
+
 
     handleCopy=(e)=>{
         // copyToClipboard('Text to copy');
@@ -60,7 +72,7 @@ class ChatroomInfo extends Component {
             ],
             formValue:[
                 Cookies.get('id'),
-                3,
+                this.state.chatroomId,
                 this.state.editorContent
             ]
         }
@@ -71,6 +83,7 @@ class ChatroomInfo extends Component {
         // console.log("outside",data)
         // console.log(data)
         this.setState({editorContent:null})
+        this.props.loadQuestions()
 
     }
 
@@ -87,7 +100,7 @@ class ChatroomInfo extends Component {
                 "chatroomId",
             ],
             formValue:[
-                this.state.chatroomId
+                this.props.Cid
             ]
         };
         let data = [];
@@ -101,7 +114,7 @@ class ChatroomInfo extends Component {
                 chatroomLink: data.chatroomLink,
             });
         }
-        console.log(data)
+        // console.log(data.chatroom_profile_image)
     }
 
     

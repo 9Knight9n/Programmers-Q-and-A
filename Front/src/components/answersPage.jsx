@@ -11,7 +11,8 @@ import Cookies from 'js-cookie';
 import {request} from "./requests.jsx";
 import ReactTooltip from 'react-tooltip';
 import ChatroomInfo from './chatroomInfo';
-import QuestionChatbox from './questionChatbox'
+import QuestionChatbox from './questionChatbox';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 import './CSS/answersPage.css';
 
@@ -20,29 +21,20 @@ class AnswersPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            question: 'This is the question',
-            QuestionID: 1,
-            chatroomName: 'chatroom name',
-            chatroomContext: 'Title',
-            chatroomProfileImg: null,
-            chatroomLink: null,
-            commonQuestion: this.props.commonQuestion,
-            sameProblem: this.props.sameProblem,
-            userid: this.props.userid,
-            user: this.props.user,
-            text: this.props.text,
-            time: this.props.time,
-            isAnswered: this.props.isAnswered,
-            id: 1,
-            ChatroomID: this.props.ChatroomID,
+            question: sessionStorage.getItem('context'),
+            QuestionID: sessionStorage.getItem('QuestionID'),
+            commonQuestion: sessionStorage.getItem('sameProblemCount'),
+            sameProblem: sessionStorage.getItem('sameProblem'),
+            userid: sessionStorage.getItem('senderId'),
+            user: sessionStorage.getItem('senderUsername'),
+            text: ReactHtmlParser(sessionStorage.getItem('context')),
+            time: sessionStorage.getItem('sentDate'),
+            isAnswered: sessionStorage.getItem('isAnswered'),
+            ChatroomID: sessionStorage.getItem('ChatroomID'),
             answers:[],
         }
     }
 
-
-    tabClicked=(id)=>{
-        this.setState({activeTab:id})
-      }
 
       
     showModal = (submit) => {
@@ -64,6 +56,7 @@ class AnswersPage extends Component {
     }
 
     loadData = async () => {
+        console.log("-------------------",this.state.QuestionID)
         let config = {
             url:"http://127.0.0.1:8000/api/ShowAnswer/",
             needToken:true,
@@ -73,7 +66,7 @@ class AnswersPage extends Component {
             ],
             formValue:[
             //    this.props.QuestionID
-                1
+                this.state.QuestionID
             ]
         };
         let data = [];
@@ -83,6 +76,7 @@ class AnswersPage extends Component {
                 answers: data,
             });
         }
+        console.log(data)
     }
 
     render() { 
@@ -90,11 +84,15 @@ class AnswersPage extends Component {
           <div className="Setting-bg d-flex justify-content-center">
             <ReactTooltip place="right" effect="solid" type="dark"/>
             <div className="right h-100 empty-125">
-                <Link to="/questionPage"><button className="backButton">Back</button></Link>
+                <div className="d-flex flex-column h-100">
+                    <div className="mt-auto">
+                        <Link to="/questionPage"><button className="backButton ">Back</button></Link>
+                    </div>
+                </div>
             </div>
             <div className="center w-75">
                 <div className="infoBox">
-                    <ChatroomInfo />
+                    <ChatroomInfo Cid={this.state.ChatroomID} />
                 </div>
                 <div className="abed-add-scroll-active">
                     <div className="question">
@@ -103,16 +101,18 @@ class AnswersPage extends Component {
                                             senderId={this.state.userid}
                                             senderUsername={this.state.user}
                                             context={this.state.text}
-                                            sent Date={this.state.time}
+                                            sentDate={this.state.time}
                                             showMoreButton={false}
                                             isAnswered={this.state.isAnswered}
-                                            Qid={this.state.id}
-                                            Cid={this.state.ChatroomID} />
+                                            Qid={this.state.QuestionID}
+                                            Cid={this.state.ChatroomID}
+                                            loadAnswers={this.loadData} />
                     </div>
                     <div className="answers  ">
                         {this.state.answers.map(answer => 
                             <div className="mt-5" key={answer.id}>
-                                <AnswerChatBox Qid={this.state.id} answerId={answer.id} userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
+                                <AnswerChatBox loadAnswers={this.loadData}
+                                Qid={this.state.QuestionID} answerId={answer.id} userName={answer.user} userid={answer.userid} answer={answer.text} vote={parseInt(answer.vote)} trueAnswer={answer.isAccepted} answerSubmiteDate={answer.time}>
 
                                 </AnswerChatBox> 
                             </div>

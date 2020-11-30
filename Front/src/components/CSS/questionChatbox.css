@@ -76,3 +76,8 @@
     background-color: green !important;
     fill: green !important;
 }
+.clean-button{
+    outline:none;
+    /* background-color: none !important; */
+    background:transparent !important;
+}

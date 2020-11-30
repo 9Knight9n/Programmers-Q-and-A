@@ -106,7 +106,7 @@ def show_chatrooms(request):
         # data.append(ChatroomSerializer(chatrooms[i]))
         data.append({'id':chatrooms[i].id,'name':chatrooms[i].chatroomName})
         print(chatrooms[i].chatroomAvatar)
-        image = open('media/' + str(chatrooms[i].chatroomAvatar), 'r').read()
+        image = open( str(chatrooms[i].chatroomAvatar), 'r').read()
         data[i]['Base64'] = image
     return Response(data , status=status.HTTP_200_OK)
 

@@ -108,10 +108,9 @@ class QuestionsPage extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.ChatroomID !== this.props.ChatroomID) {
-          this.setState({ChatroomID:prevProps.ChatroomID})
-        //   this.updateAndNotify();
+          this.setState({ChatroomID:this.props.ChatroomID})
         this.loadQuestions()
-          console.log("inside componentDidUpdate")
+        console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
       }
 
@@ -135,9 +134,13 @@ class QuestionsPage extends Component {
         // console.log("outside 0",data)
         data = await request(config)
         // console.log(await request(config))
-        // console.log("outside",data)
+        console.log("outside",data)
         if (data)
+        {
             this.setState({questions:data})
+            console.log("state set")
+        }
+            
         // console.log(data)
     }
 
@@ -163,14 +166,18 @@ class QuestionsPage extends Component {
                 <div className="w-100 h-100 p-2">
                     <div id="question-page" className="d-flex flex-column h-100 w-100">
                         <div id="chatroom-info" className=" d-flex flex-row">
-                            <ChatroomInfo Cid={this.state.ChatroomID}  />
+                            <ChatroomInfo 
+                                loadQuestions={this.loadQuestions}
+                                Cid={this.state.ChatroomID}  />
                         </div>
                         <div className="mt-1 mb-1 ml-3 h-100">
                             <div className="questions-box">
                                 <div className="mr-5 mb-2">
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3">
-                                        <QuestionChatbox sameProblemCount={question.commonQuestion}
+                                        <QuestionChatbox
+                                            loadQuestions={this.loadQuestions}
+                                            sameProblemCount={question.commonQuestion}
                                             sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}

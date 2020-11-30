@@ -63,7 +63,7 @@ class Texteditor  extends Component {
               <div onClick={() => this.props.hideEditor()} className="modal">
                 <section onClick={this.modalClick} className="modal-main d-flex flex-column">
                   <button 
-                    type="button" class="btn-lg rounded-circle ml-auto mr-2"
+                    type="button" class="btn-lg rounded-circle ml-auto mr-2 clean-button"
                     onClick={() => this.props.hideEditor(false)} 
                     style={{outline:"none",height: "30px",width: "30px"}}>
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -30,10 +30,10 @@ class QuestionChatbox extends Component {
             sentDate:this.props.sentDate,
             showMoreButton:this.props.showMoreButton,
             editorContent:this.props.context,
-            newAnswer: this.props.newAnswer,
             QuestionID:this.props.Qid,
             editorVisible:false,
-            editorContentAnswer:null,
+            editorContentAnswer:"",
+            editing:false
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -47,8 +47,22 @@ class QuestionChatbox extends Component {
             await getUserAvatar(this.state.senderId);
         }
         this.setState({senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar")})
+
+        
         // console.log(sessionStorage.getItem(this.state.senderId+":avatar"))
     }
+
+    componentDidUpdate(prevProps) {
+        // console.log("inside componentDidUpdate")
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+        if (prevProps.context !== this.props.context) {
+            
+            this.setState({context:this.props.context})
+            // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+            // this.loadData()
+            
+        }
+      }
     // state = {
     //     loading:false,
     //     sameProblem:false,
@@ -100,18 +114,20 @@ class QuestionChatbox extends Component {
                 this.props.Cid,
                 Cookies.get("id"),
                 this.props.Qid,
-
-                this.state.editorContentAnswer,
+                this.state.editorContent,
             ]
         }
         console.log(config)
         let data = []
         // console.log("outside 0",data)
+
+
         data = await request(config)
         // console.log(await request(config))
         // console.log("outside",data)
-        // console.log(data)
-        this.setState({editorContent:null})
+        // this.setState({editorContent:null})
+
+        this.props.loadQuestions()
 
     }
 
@@ -129,7 +145,7 @@ class QuestionChatbox extends Component {
             formValue:[
                 Cookies.get('id'),
                 this.state.QuestionID,
-                this.state.editorContent
+                this.state.editorContentAnswer
             ]
         }
         let data = []
@@ -138,7 +154,9 @@ class QuestionChatbox extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         // console.log(data)
+        console.log(data)
         this.setState({editorContentAnswer:null})
+        this.props.loadAnswers()
     }
 
     handleSameProblemClicked=async()=>{
@@ -203,6 +221,7 @@ class QuestionChatbox extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         console.log(data)
+        this.props.loadQuestions()
     }
 
 
@@ -212,20 +231,45 @@ class QuestionChatbox extends Component {
     this.setState({ editorVisible: true });
   };
   hideEditor = (submit) => {
-    this.setState({ editorVisible: false });
+    this.setState({ editorVisible: false, });
       if (submit) {
-        if (this.state.editorContentAnswer){
+        if (!this.state.editing){
             this.handleSubmitAnswer();
-        }else
-        this.handleEdit()
+        }else{
+            // console.log("editing")
+            this.handleEdit()
+        }
+        this.setState({ editing: false, });
       }
 
       
   };
   updateContent = (value) => {
-    this.setState({editorContent:value})
-    this.setState({editorContentAnswer:value})
+        if(this.state.editing)
+            this.setState({editorContent:value})
+        else
+            this.setState({editorContentAnswer:value})
   };
+
+  startEditing=()=>{
+      this.setState({editing:true})
+      this.showEditor()
+  }
+
+
+  goToAnswerPage=()=>{
+    sessionStorage.setItem('sameProblemCount',this.state.sameProblemCount);
+    sessionStorage.setItem('sameProblem',this.state.sameProblem);
+    sessionStorage.setItem('senderId',this.state.senderId);
+    sessionStorage.setItem('senderUsername',this.state.senderUsername);
+    sessionStorage.setItem('senderAvatar',this.state.senderAvatar);
+    sessionStorage.setItem('isAnswered',this.state.isAnswered);
+    sessionStorage.setItem('context',this.state.context);
+    sessionStorage.setItem('sentDate',this.state.sentDate);
+    sessionStorage.setItem('QuestionID',this.state.QuestionID);
+    sessionStorage.setItem('ChatroomID',this.props.Cid);
+    document.getElementById("goToAnswerPage").click()
+  }
   
 
 
@@ -234,7 +278,7 @@ class QuestionChatbox extends Component {
         return (  
             <React.Fragment>
                 <Texteditor 
-                    content={this.state.editorContent} 
+                    content={this.state.editing?this.state.editorContent:""} 
                     updateContent={this.updateContent} 
                     hideEditor={this.hideEditor}
                     editorVisible={this.state.editorVisible}/>
@@ -265,8 +309,8 @@ class QuestionChatbox extends Component {
                                         </svg>
                                     </Dropdown.Toggle>
 
-                                    <Dropdown.Menu>
-                                        {this.state.isOwner?<Dropdown.Item as="button" onClick={this.showEditor}>Edit</Dropdown.Item>:""}
+                                    <Dropdown.Menu className="dropDown">
+                                        {this.state.isOwner?<Dropdown.Item as="button" onClick={this.startEditing}>Edit</Dropdown.Item>:""}
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.handleDelete}>Delete</Dropdown.Item>:""}
                                         <Dropdown.Item as="button">option 3</Dropdown.Item>
                                     </Dropdown.Menu>
@@ -281,7 +325,7 @@ class QuestionChatbox extends Component {
 
                             <div id="left" className="d-flex flex-column mt-2">
                                 
-                                <button style={{outline:"none"}} className="ml-auto mr-auto pr-2 pl-2 mb-2 mt-2"
+                                <button style={{outline:"none"}} className="ml-auto mr-auto pr-2 pl-2 mb-2 mt-2 clean-button"
                                     data-tip="Select this button if you have same problem!"
                                     onClick={this.handleSameProblemClicked}>
                                     {this.state.sameProblem?
@@ -292,7 +336,7 @@ class QuestionChatbox extends Component {
                                         <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
                                     </svg>}
                                 </button>
-                                <button style={{outline:"none"}} class="ml-auto mr-auto pr-2 pl-2 mt-1" data-tip="Number of users with same problem!">
+                                <button style={{outline:"none"}} class="ml-auto mr-auto pr-2 pl-2 mt-1 clean-button" data-tip="Number of users with same problem!">
                                     {this.state.sameProblemCount}
                                 </button>
                                 {this.state.isAnswered?
@@ -345,15 +389,14 @@ class QuestionChatbox extends Component {
 
                             <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
                                 {this.state.showMoreButton?
-                                <Link to="/answerPage">
-                                    <button style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Go to answer page</button>
-                                </Link>: 
+                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
                                 <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
                                 }
                                  
                             </div>
                             
                         </div>
+                        <Link id="goToAnswerPage" to="/answerPage"></Link>
                 </div>
             </React.Fragment>
         );

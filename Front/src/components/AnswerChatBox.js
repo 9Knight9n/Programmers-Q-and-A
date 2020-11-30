@@ -77,6 +77,7 @@ class AnswerChatBox  extends Component {
         // console.log("outside",data)
         // console.log(data)
         this.setState({editorContent:null})
+        this.props.loadAnswers()
     }
 
     componentDidMount = async () =>{
@@ -84,7 +85,19 @@ class AnswerChatBox  extends Component {
         if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
           await getUserAvatar(this.props.userid);  
         }
+        
     }
+    componentDidUpdate(prevProps) {
+        // console.log("inside componentDidUpdate")
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+        if (prevProps.answer !== this.props.answer) {
+            
+            this.setState({answer:this.props.answer})
+            // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+            // this.loadData()
+            
+        }
+      }
 
     handleVote = async (e) => {
 
@@ -164,6 +177,7 @@ class AnswerChatBox  extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         console.log(data)
+        this.props.loadAnswers()
 
     }
 

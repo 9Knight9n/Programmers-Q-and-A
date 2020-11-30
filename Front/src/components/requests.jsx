@@ -54,7 +54,7 @@ export const request= async (config)=>{
     if(isExpired(Cookies.get("access"))){
       console.log("token expired")
       token=await renewToken()
-      console.log("received token:",token)
+      // console.log("received token:",token)
       if(!token)
         return false
     }

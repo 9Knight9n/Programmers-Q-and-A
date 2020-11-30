@@ -25,7 +25,7 @@ import {
 class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
-        activeChatroom : null,
+        activeChatroom : sessionStorage.getItem("targetURL")?sessionStorage.getItem("targetURL").split('cr')[1]:null,
         // chatrooms:[
         //     {
         //         id:1,
@@ -40,6 +40,16 @@ class Homepage extends Component {
         //     },
             
         // ]
+    }
+
+    componentDidMount=()=>{
+        if(sessionStorage.getItem("targetURL"))
+        {
+            document.getElementById("selectChatroom").click()
+            sessionStorage.removeItem("targetURL")
+        }
+            
+
     }
     
 
@@ -68,6 +78,7 @@ class Homepage extends Component {
     render() { 
         return (
             <div className="bg">
+                <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/>
                 <div className="LeftColumn">
                     <LeftMenu refToSelectComponent={this.props.refToSelectComponent} chatrooms={this.state.chatrooms} chatroomClicked={this.chatroomClicked}/>
                 </div>
@@ -77,7 +88,7 @@ class Homepage extends Component {
                         {/* <p>{this.state.activeChatroom}</p> */}
 
 
-                        <Route  id="selectChatroom" exact path={"/cr"+this.state.activeChatroom}>
+                        <Route exact path={"/cr"+this.state.activeChatroom}>
                             {/* {this.state.activeChatroom} */}
                             <QuestionsPage ChatroomID={this.state.activeChatroom} />
                         </Route>

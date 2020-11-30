@@ -6,7 +6,8 @@ import {
   Redirect,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
+  useLocation
 } from "react-router-dom";
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
@@ -24,10 +25,29 @@ class App extends Component {
     
   }
 
+  componentDidMount=()=>{
+    
+    if(!sessionStorage.getItem("avatar"))
+    {
+      console.log(window.location.pathname)
+      sessionStorage.setItem("targetURL",window.location.pathname)
+      document.getElementById("loginfirst").click()
+      
+    }
+      
+  }
+
+  // getUrl()
+  // {
+  //   const location = useLocation();
+  //   console.log(location.pathname);
+  // }
+
 
   render(){
     return (
       <Router>
+          <Link id="loginfirst" to="/login"/>
           <Switch>
           <Route path="/login">
             <SignInForm />
@@ -48,7 +68,6 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {/* {!sessionStorage.getItem("avatar")? <Redirect to="/" /> : ""} */}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 
