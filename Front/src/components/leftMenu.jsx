@@ -7,21 +7,22 @@ import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
 import Cookies from 'js-cookie';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import { isExpired } from "react-jwt";
 import axios from 'axios';
+import {request} from './requests';
 // import pro from "../img/";
 
 class LeftMenu extends Component {
     state = {  
         show: false,
-        chatrooms:this.props.chatrooms,
+        chatrooms:[],
         activeChatroom:-1
     }
 
     handleTabClick = (id) =>{
-        console.log(Cookies.get("avatar"))
-        console.log(window.$avatar)
+        // console.log(Cookies.get("avatar"))
+        // console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
     }
@@ -30,27 +31,25 @@ class LeftMenu extends Component {
         this.loadChatrooms()
     }
 
-    async loadChatrooms(){
+    loadChatrooms=async()=>{
 
-        let token = Cookies.get("access")
-         if(isExpired(Cookies.get("access")))
-        {
-            console.log("renewing")
-            token=await renewToken()
-
+        let config ={
+            url:"http://127.0.0.1:8000/api/loadchatroom/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                
+            ],
+            formValue:[
+                
+            ]
         }
-        console.log("fetching data")
-        token = "Bearer "+token;
-        console.log(token)
-        const form = new FormData()
-        const response =
-        await axios.post('http://127.0.0.1:8000/api/loadchatroom/', form, {
-        headers: { 'Content-Type': 'multipart/form-data',
-                    'Authorization': token
-        },
-        })
-        console.log(response)
-        this.setState({chatrooms:response.data})
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        console.log(data)
+        if(data)
+            this.setState({chatrooms:data})
 
 
 
@@ -94,15 +93,15 @@ class LeftMenu extends Component {
                     <div className="nav d-flex flex-column nav-pills fill">
                         <div>
                             {this.state.chatrooms.map(chatroom => 
-                            <a key={chatroom.id} 
+                            <Link key={chatroom.id} 
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
                                 onClick={()=> this.handleTabClick(chatroom.id)} 
-                                href="#" >
+                                to={"cr"+chatroom.id} >
                                 <div className="d-flex flex-row ">
                                     <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
                                     <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
                                 </div>
-                            </a>)}
+                            </Link>)}
                         </div>
                     </div>
 

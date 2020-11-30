@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 class ChatroomCreationOs extends Component {
     constructor(props) {
         super(props);

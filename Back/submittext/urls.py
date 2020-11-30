@@ -9,4 +9,12 @@ urlpatterns = [
     path("ShowUserProfile/", views.ShowUserProfile, name="ShowUserProfile"),
     path("GeneralSearch/", views.GeneralSearch, name="GeneralSearch"),
     path("SeggestionChatroomSreach/", views.SeggestionChatroomSreach, name="SeggestionChatroomSreach"),
+    path("EditQuestion/", views.EditQuestion, name="EditQuestion"),
+    path("CommonQuestion/", views.CommonQuestion, name="CommonQuestion"),
+    path("EditAnswer/", views.EditAnswer, name="EditAnswer"),
+    path("VoteAnswer/", views.VoteAnswer, name="VoteAnswer"),
+    path("ShowCommonQuestion/", views.ShowCommonQuestion, name="ShowCommonQuestion"),
+    path("ShowVoteAnswer/", views.ShowVoteAnswer, name="ShowVoteAnswer"),
+    path("DeleteQuestion/", views.DeleteQuestion, name="DeleteQuestion"),
+    path("DeleteAnswer/", views.DeleteAnswer, name="DeleteAnswer"),
 ]
