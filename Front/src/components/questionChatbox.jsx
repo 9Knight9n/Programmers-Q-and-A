@@ -39,6 +39,16 @@ class QuestionChatbox extends Component {
         this.componentDidMount = this.componentDidMount.bind(this)
     }
     componentDidMount=async()=>{
+        // console.log(this.state.sameProblem,"________________________________")
+        // console.log(this.state.isAnswered,"________________________________")
+        if(this.state.sameProblem === 'false')
+            this.setState({sameProblem:false})
+        else if(this.state.sameProblem === 'true')
+            this.setState({sameProblem:true})
+        if(this.state.isAnswered === 'false')
+            this.setState({isAnswered:false})
+        else if(this.state.isAnswered === 'true')
+            this.setState({isAnswered:true})
         // console.log(Cookies.get('id'))
         // console.log(this.props.senderId)
         // console.log("inside");
