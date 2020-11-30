@@ -13,6 +13,8 @@ import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
+import AnswerPage from './components/answersPage'
+import QuestionsPage from './components/questionsPage'
 import './index.css';
 
 
@@ -33,6 +35,12 @@ class App extends Component {
           <Route path="/signup">
             <SignUpForm />
           </Route>
+          <Route path="/answerPage">
+            <AnswerPage />
+          </Route>
+          <Route path="questionPage">
+            <QuestionsPage />
+          </Route> 
           <Route path="/setting">
             <Setting />
           </Route>
@@ -40,7 +48,7 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {!sessionStorage.getItem("avatar")? <Redirect to="/login" /> : ""}
+        {/* {!sessionStorage.getItem("avatar")? <Redirect to="/" /> : ""} */}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 

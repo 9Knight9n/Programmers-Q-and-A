@@ -3,7 +3,7 @@ import './CSS/profileThree.css';
 import Select from 'react-select';
 import Cookies from 'js-cookie';
 import { isExpired } from "react-jwt";
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import axios from 'axios';
 import {encodeList , decodeList} from './util';
 

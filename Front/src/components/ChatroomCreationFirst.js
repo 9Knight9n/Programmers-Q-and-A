@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import {
   BrowserRouter as Router,
   Link,
@@ -22,6 +22,7 @@ class ChatroomCreationFirst extends Component {
       }
 
         hideModal() {
+            console.log("clicked");
             this.props.hideModal();
         }
 

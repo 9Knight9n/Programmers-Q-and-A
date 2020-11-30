@@ -6,7 +6,7 @@ import ProfileThree from './profileThree';
 import './CSS/myAccount.css';
 import Cookies from 'js-cookie';
 import { isExpired } from "react-jwt";
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import axios from 'axios';
 
 

@@ -86,12 +86,19 @@ def edit_interests(request):
 @api_view(['POST' , ])
 def show_profile_picture(request):
     data = dict(request.POST)
-    user = User.objects.filter(id=data['id'][0])
-    if user != []:
-        user = user[0]
-        filename = 'media/profile/image/' + str(user.id) + '.txt'
+    # print("############",data['id'],"##################")
+    if data['id'][0]=='no id':
+        # print("###########################################################")
+        filename = 'media/profile/image/default.txt'
         data = open(filename, 'rb').read()
         return Response ({'Base64' : data})
+    else:
+        user = User.objects.filter(id=data['id'][0])
+        if user != []:
+            user = user[0]
+            filename = 'media/profile/image/' + str(user.id) + '.txt'
+            data = open(filename, 'rb').read()
+            return Response ({'Base64' : data})
 
 
 @api_view(['POST' , ])

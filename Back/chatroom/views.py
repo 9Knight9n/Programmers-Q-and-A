@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from registeration.models import User
 from .models import Chatroom
 from submittext.models import Chatroom_User
-from .serializers import Osserializer, Appserializer, ChatroomSerializer , ShowUChatroomProfileSerializer
+from .serializers import ShowUChatroomProfileSerializer
 
 
 @api_view(['POST'])
@@ -111,16 +111,17 @@ def show_chatrooms(request):
     return Response(data , status=status.HTTP_200_OK)
 
 
-@api_view(['GET', ])
+@api_view(['POST', ])
 def ShowChatroomProfile(request):
-    chatroom = Chatroom.objects.filter(chatroomName=request.data['chatroomName'])
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     if list(chatroom) != []:
         chatroom = chatroom[0]
         serializer = ShowUChatroomProfileSerializer(chatroom)
         data = serializer.data
         filename = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         data['chatroom_profile_image'] = open(filename, 'rb').read()
-        data['chatroomLink'] = 'http://127.0.0.1:8000/' + str(chatroom[0]) + '/'
+        data['chatroomLink'] = 'http://127.0.0.1:8000/ShowChatroomByLink/chatroom' + str(chatroom.id) + '/'
+        
         return Response(data)
     return Response({'message': 'Chatroom not found'})
 
