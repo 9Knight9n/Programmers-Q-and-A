@@ -87,11 +87,12 @@ class Homepage extends Component {
                     <div style={{height:"91vh"}}>
                         {/* <p>{this.state.activeChatroom}</p> */}
 
-
-                        <Route exact path={"/cr"+this.state.activeChatroom}>
-                            {/* {this.state.activeChatroom} */}
-                            <QuestionsPage ChatroomID={this.state.activeChatroom} />
-                        </Route>
+                        {this.state.activeChatroom? 
+                            <Route exact path={"/cr"+this.state.activeChatroom}>
+                                {/* {this.state.activeChatroom} */}
+                                <QuestionsPage ChatroomID={this.state.activeChatroom} />
+                            </Route> : ""
+                        }
                         
                         
                     </div>

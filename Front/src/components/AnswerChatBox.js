@@ -272,7 +272,7 @@ class AnswerChatBox  extends Component {
                                 
                             </div>
                             <div></div>
-                            <div className="p-2 flex-shrink-1 bd-highlight"><p className="date">Submitted on: {this.state.answerSubmiteDate}</p></div>
+                            <div className="p-2 flex-shrink-1 bd-highlight mt-auto"><p className="date">Submitted on: {this.state.answerSubmiteDate}</p></div>
                         </div>
                 </div>
          );

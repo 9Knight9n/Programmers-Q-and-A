@@ -12,7 +12,7 @@ button {
 #answer {
   /* height: ; */
   /* border: 6px solid rgba(9, 156, 167, 0.432); */
-  background: #35384699;
+  background: #38406599;
 }
 #answer #header {
   background-color: #202c6699;
@@ -21,6 +21,10 @@ button {
 }
 #answer #header h1 {
   font-size: 18px;
+}
+
+.center {
+  background-color: #00000030;
 }
 
 .profileImg {
@@ -106,7 +110,6 @@ button {
 }
 
 .date {
-  margin-top: 18%;
   margin-left: -2%;
   color: #9d9dd1;
   font-size: 16px;
