@@ -110,6 +110,7 @@ class QuestionChatbox extends Component {
 
     handleEdit=async()=>{
         // Cookies.set('id','6')
+        this.setState({loading:true})
         let config ={
             url:"http://127.0.0.1:8000/api/EditQuestion/",
             needToken:true,
@@ -136,12 +137,14 @@ class QuestionChatbox extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         // this.setState({editorContent:null})
-
+        this.setState({loading:false})
         this.props.loadQuestions()
+        
 
     }
 
     handleSubmitAnswer = async () =>{
+        this.setState({loading:true})
         console.log(this.state.QuestionID)
         let config ={
             url:"http://127.0.0.1:8000/api/AddAnswer/",
@@ -166,6 +169,7 @@ class QuestionChatbox extends Component {
         // console.log(data)
         console.log(data)
         this.setState({editorContentAnswer:null})
+        this.setState({loading:false})
         this.props.loadAnswers()
     }
 
@@ -209,6 +213,7 @@ class QuestionChatbox extends Component {
     }
 
     handleDelete = async()=>{
+        this.setState({loading:true})
         let config ={
             url:"http://127.0.0.1:8000/api/DeleteQuestion/",
             needToken:true,
@@ -231,6 +236,7 @@ class QuestionChatbox extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         console.log(data)
+        this.setState({loading:false})
         this.props.loadQuestions()
     }
 

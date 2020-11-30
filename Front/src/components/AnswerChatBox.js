@@ -14,12 +14,14 @@ import { getUserAvatar } from './util';
 import {request} from "./requests.jsx";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Texteditor from './texteditor';
+import LoadingPage from './loading';
 
 
 class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading:false,
             PactiveVote:false,
             NactiveVote:false,
             answer: this.props.answer,
@@ -53,6 +55,7 @@ class AnswerChatBox  extends Component {
     };
 
     handleEdit = async () =>{
+        this.setState({loading:true})
         let config ={
             url:"http://127.0.0.1:8000/api/EditAnswer/",
             needToken:true,
@@ -77,6 +80,7 @@ class AnswerChatBox  extends Component {
         // console.log("outside",data)
         // console.log(data)
         this.setState({editorContent:null})
+        this.setState({loading:false})
         this.props.loadAnswers()
     }
 
@@ -100,6 +104,8 @@ class AnswerChatBox  extends Component {
       }
 
     handleVote = async (e) => {
+
+        this.setState({loading:true})
 
             if (e.target.className === "positiveVoteImg" && this.state.PactiveVote === false && this.state.NactiveVote === false) {
                 this.setState({
@@ -150,10 +156,12 @@ class AnswerChatBox  extends Component {
             // console.log(await request(config))
             // console.log("outside",data)
             console.log(data)
+            this.setState({loading:false})
         
     }
 
     handleRemove = async () =>{
+        this.setState({loading:true})
         console.log(this.state.answerId)
         let config ={
             url:"http://127.0.0.1:8000/api/DeleteAnswer/",
@@ -177,6 +185,7 @@ class AnswerChatBox  extends Component {
         // console.log(await request(config))
         // console.log("outside",data)
         console.log(data)
+        this.setState({loading:false})
         this.props.loadAnswers()
 
     }
@@ -191,6 +200,7 @@ class AnswerChatBox  extends Component {
         return ( 
             
                 <div id="answer" style={{ width:this.props.width+"vw",}} className="d-flex flex-column">
+                    {this.state.loading?<LoadingPage/>: ""}
                     <Texteditor 
                         content={this.state.answer} 
                         updateContent={this.updateContent} 

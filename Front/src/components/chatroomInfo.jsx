@@ -111,7 +111,7 @@ class ChatroomInfo extends Component {
                 chatroomName: data.chatroomName,
                 Description: data.Description,
                 chatroom_profile_image: data.chatroom_profile_image,
-                chatroomLink: data.chatroomLink,
+                chatroomLink: "http://localhost:3000/cr"+this.state.chatroomId,
             });
         }
         // console.log(data.chatroom_profile_image)

@@ -13,6 +13,7 @@ import ReactTooltip from 'react-tooltip';
 import ChatroomInfo from './chatroomInfo';
 import QuestionChatbox from './questionChatbox';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import LoadingPage from './loading';
 
 import './CSS/answersPage.css';
 
@@ -21,6 +22,7 @@ class AnswersPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading:false,
             question: sessionStorage.getItem('context'),
             QuestionID: sessionStorage.getItem('QuestionID'),
             commonQuestion: sessionStorage.getItem('sameProblemCount'),
@@ -56,6 +58,7 @@ class AnswersPage extends Component {
     }
 
     loadData = async () => {
+        this.setState({loading:true})
         console.log("-------------------",this.state.QuestionID)
         let config = {
             url:"http://127.0.0.1:8000/api/ShowAnswer/",
@@ -77,11 +80,13 @@ class AnswersPage extends Component {
             });
         }
         console.log(data)
+        this.setState({loading:false})
     }
 
     render() { 
         return (  
           <div className="Setting-bg d-flex justify-content-center">
+              {this.state.loading?<LoadingPage/>: ""}
             <ReactTooltip place="right" effect="solid" type="dark"/>
             <div className="right h-100 empty-125">
                 <div className="d-flex flex-column h-100">

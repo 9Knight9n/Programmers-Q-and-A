@@ -6,6 +6,7 @@ import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
 import ChatroomInfo from './chatroomInfo.jsx';
+import LoadingPage from './loading';
 
 class QuestionsPage extends Component {
     // state = {
@@ -93,6 +94,7 @@ class QuestionsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading:false,
             questions:[],
             ChatroomID:this.props.ChatroomID
         };
@@ -116,6 +118,7 @@ class QuestionsPage extends Component {
 
 
     async loadQuestions(){
+        this.setState({loading:true})
         console.log("fetching Questions")
         let config ={
             url:"http://127.0.0.1:8000/api/ShowQuestion/",
@@ -140,7 +143,7 @@ class QuestionsPage extends Component {
             this.setState({questions:data})
             console.log("state set")
         }
-            
+        this.setState({loading:false})
         // console.log(data)
     }
 
@@ -163,6 +166,7 @@ class QuestionsPage extends Component {
     render() { 
         return (
             <React.Fragment>
+                {this.state.loading?<LoadingPage/>: ""}
                 <div className="w-100 h-100 p-2">
                     <div id="question-page" className="d-flex flex-column h-100 w-100">
                         <div id="chatroom-info" className=" d-flex flex-row">
