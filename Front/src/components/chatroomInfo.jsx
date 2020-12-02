@@ -83,8 +83,8 @@ class ChatroomInfo extends Component {
         // console.log("outside",data)
         // console.log(data)
         this.setState({editorContent:null})
-        this.props.loadQuestions()
-
+        if(this.props.loadQuestions)
+            this.props.loadQuestions()
     }
 
     componentDidMount = () => {

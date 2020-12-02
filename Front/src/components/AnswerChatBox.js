@@ -17,6 +17,7 @@ import Texteditor from './texteditor';
 import LoadingPage from './loading';
 
 
+
 class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
@@ -255,7 +256,7 @@ class AnswerChatBox  extends Component {
                                     <Dropdown.Menu  className="dropDown">
                                        {this.state.isOwner? <Dropdown.Item onClick={this.showEditor} as="button">Edit</Dropdown.Item> : " "
                                        } 
-                                        {this.state.isOwner? <Dropdown.Item onClick={this.handleRemove} as="button">Remove</Dropdown.Item>: " "}
+                                        {this.state.isOwner? <Dropdown.Item onClick={this.handleRemove} as="button">Delete</Dropdown.Item>: " "}
                                         <Dropdown.Item as="button">something</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>

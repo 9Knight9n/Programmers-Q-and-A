@@ -315,6 +315,8 @@ def VoteAnswer(request):
             if list(answer) != []:
                 answer[0].vote += int(data['voteState'][0])
                 answer[0].save()
+                user_answer[0].isVoted = int(data['voteState'][0])
+                user_answer[0].save()
     else:
         user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=data['voteState'][0])
         # user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , )
