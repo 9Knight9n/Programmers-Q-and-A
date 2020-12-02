@@ -3,7 +3,7 @@ import './CSS/profileThree.css';
 import Select from 'react-select';
 import Cookies from 'js-cookie';
 import { isExpired } from "react-jwt";
-import {renewToken} from './token';
+import {renewToken} from './requests';
 import axios from 'axios';
 import {encodeList , decodeList} from './util';
 
@@ -206,7 +206,7 @@ class profileThree extends Component {
                     </div>
                     <div className="parisa-css bioBox mt-auto">
                         <div>
-                            <h3>Tell us more about yourself:</h3>
+                            <h3>Bio :</h3>
                         </div>
                         <div className="parisa-css bioField black-text d-flex justify-content-center">
                             <textarea name="bio" value={this.state.bio}  onChange={this.handleChange}  className="" maxlength="175" rows="4" cols="53">
