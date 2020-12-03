@@ -150,7 +150,7 @@ class ChatroomInfo extends Component {
                         <h3>{this.state.selectedTopic}</h3>
                     </div>
                     <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
-                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro answerButton">Submit Question</button>
+                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro chatroomInfo-submiteAnswerButton">Submit Question</button>
                     </div>
                 </div>
             </div>

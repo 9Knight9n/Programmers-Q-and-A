@@ -33,3 +33,10 @@
   margin-top: 0.5%;
   margin-left: 5%;
 }
+
+.chatroomInfo-submiteAnswerButton {
+  height: 60%;
+  border-radius: 0px;
+  border: none;
+  background-color: #5c6bc0;
+}

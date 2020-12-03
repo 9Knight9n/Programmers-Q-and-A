@@ -404,7 +404,7 @@ class QuestionChatbox extends Component {
 
                             <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
                                 {this.state.showMoreButton?
-                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
+                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="Question-showAnswerButton pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
                                 <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
                                 }
                                  

@@ -81,3 +81,9 @@
   /* background-color: none !important; */
   background: transparent !important;
 }
+
+.Question-showAnswerButton {
+  border-radius: 0px;
+  border: none;
+  background-color: #5c6bc0;
+}
