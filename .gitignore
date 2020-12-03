@@ -141,3 +141,4 @@ GitHub.sublime-settings
 .history
 Back/db.sqlite3
 *.pyc
+*.pyc
