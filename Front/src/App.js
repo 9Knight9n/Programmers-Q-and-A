@@ -14,6 +14,7 @@ import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
+import ProfileUsers from './components/profileUsers';
 import AnswerPage from './components/answersPage'
 import QuestionsPage from './components/questionsPage'
 import './index.css';
@@ -31,7 +32,8 @@ class App extends Component {
     {
       console.log(window.location.pathname)
       sessionStorage.setItem("targetURL",window.location.pathname)
-      document.getElementById("loginfirst").click()
+      // document.getElementById("loginfirst").click()
+      document.getElementById("1").click()
       
     }
       
@@ -48,9 +50,13 @@ class App extends Component {
     return (
       <Router>
           <Link id="loginfirst" to="/login"/>
+          <Link id="1" to="/ProfileUsers"/>
           <Switch>
           <Route path="/login">
             <SignInForm />
+          </Route>
+          <Route path="/ProfileUsers">
+            <ProfileUsers />
           </Route>
           <Route path="/signup">
             <SignUpForm />
