@@ -14,8 +14,9 @@ import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
-import AnswerPage from './components/answersPage'
-import QuestionsPage from './components/questionsPage'
+import AnswerPage from './components/answersPage';
+import QuestionsPage from './components/questionsPage';
+import ProfilePreview from './components/ProfilePreview';
 import './index.css';
 
 
@@ -49,26 +50,38 @@ class App extends Component {
       <Router>
           <Link id="loginfirst" to="/login"/>
           <Switch>
-          <Route path="/login">
-            <SignInForm />
-          </Route>
-          <Route path="/signup">
-            <SignUpForm />
-          </Route>
-          <Route path="/answerPage">
-            <AnswerPage />
-          </Route>
-          <Route path="questionPage">
-            <QuestionsPage />
-          </Route> 
-          <Route path="/setting">
-            <Setting />
-          </Route>
-          <Route path="/">
-            <Homepage />
-          </Route>
+
+            <Route path="/profilePreview">
+              <ProfilePreview />
+            </Route>
+
+            <Route path="/login">
+              <SignInForm />
+            </Route>
+
+            <Route path="/signup">
+              <SignUpForm />
+            </Route>
+
+            <Route path="/answerPage">
+              <AnswerPage />
+            </Route>
+
+            <Route path="questionPage">
+              <QuestionsPage />
+            </Route> 
+
+            <Route path="/setting">
+              <Setting />
+            </Route>
+
+            <Route path="/">
+              <Homepage />
+            </Route>
+
         </Switch>
         {/* {this.state.currentComponent} */}
+        <Redirect to="/profilePreview" />
       </Router>
     ); 
   }

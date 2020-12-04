@@ -114,35 +114,35 @@ html {
   margin-top: -23%;
   margin-left: 7%;
   padding-left: 1%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .Abed-css .passField {
   margin-top: -19%;
   margin-left: 7%;
   padding-left: 1%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .Abed-css .emailFieldSignUp {
   margin-top: -23%;
   margin-left: 7%;
   padding-left: 1%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .Abed-css .passFieldSignUp {
   margin-top: -19%;
   margin-left: 7%;
   padding-left: 1%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .Abed-css .confirmPassField {
   margin-top: -15%;
   margin-left: 7%;
   padding-left: 1%;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .Abed-css .signUpLink {
@@ -179,7 +179,7 @@ html {
   margin-top: -14%;
   margin-left: -14%;
   background: #5bd4e0;
-  border-radius: 18px;
+  /* border-radius: 18px; */
 }
 
 .Abed-css .signUpTransfer {
@@ -195,7 +195,7 @@ html {
   margin-left: 22%;
   margin-top: 2%;
   margin-top: 1%;
-  border-radius: 18px;
+  /* border-radius: 18px; */
 }
 /*2 for signUp*/
 .Abed-css .signInTransfer2 {
@@ -211,7 +211,7 @@ html {
   margin-left: 24%;
   margin-top: 2%;
   margin-top: 1%;
-  border-radius: 18px;
+  /* border-radius: 18px; */
 }
 
 .Abed-css .signUpTransfer2 {
@@ -228,25 +228,13 @@ html {
   margin-top: -14%;
   margin-left: 17%;
   background: #5bd4e0;
-  border-radius: 18px;
-}
-/*remember me*/
-.Abed-css .checkBox {
-  margin-top: -6.5%;
-  height: 2%;
-  position: absolute;
-  margin-left: 4%;
+  /* border-radius: 18px; */
 }
 
-.Abed-css .rememberMe {
-  margin-top: -33%;
-  margin-left: 1%;
-}
-
+/*signIn conflicts*/
 .Abed-css .error {
   color: red;
 }
-/*signIn conflicts*/
 
 .validEmailSignIn {
   position: absolute;

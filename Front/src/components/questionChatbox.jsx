@@ -285,6 +285,11 @@ class QuestionChatbox extends Component {
     sessionStorage.setItem('ChatroomID',this.props.Cid);
     document.getElementById("goToAnswerPage").click()
   }
+
+  handleProfilePreview = () =>
+  {
+    //open profile preview modal
+  }
   
 
 
@@ -314,7 +319,7 @@ class QuestionChatbox extends Component {
                             <div className="d-flex pl-2 align-top w-80 ml-3" id="profile">
                                 <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
-                                <p className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
+                                <p onClick={this.handleProfilePreview} className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
                             </div>
                             <div id="options" className="ml-auto">
                                 <Dropdown>

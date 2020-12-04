@@ -1,6 +1,5 @@
 .abed-css body {
   margin: 0%;
-  background-color: rgb(14, 6, 6);
 }
 
 .abed-css a {
@@ -59,7 +58,7 @@ select:focus button:focus {
   height: 100%;
   background: #333b60;
   overflow: auto;
-  border: 6px solid rgba(9, 156, 167, 0.432);
+  border: 6px solid #5c6bc0;
   /* border-radius: 60px; */
 }
 
