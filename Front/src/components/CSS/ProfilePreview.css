@@ -1,6 +1,6 @@
 .ProfilePreview-main-box {
-  width: 30%;
-  height: 70vh;
+  width: 35%;
+  height: 75vh;
   background: #333b60;
   overflow: auto;
   border: 6px solid #5c6bc0;
@@ -10,7 +10,7 @@
 .ProfilePreview-exitImg {
   width: 1.5%;
   position: absolute;
-  margin-left: 27.5%;
+  margin-left: 32.5%;
   margin-top: 0.5%;
   cursor: pointer;
 }
