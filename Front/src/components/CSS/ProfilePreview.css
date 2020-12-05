@@ -1,4 +1,4 @@
-.preview-main-box {
+.ProfilePreview-main-box {
   width: 30%;
   height: 70vh;
   background: #333b60;
@@ -7,47 +7,73 @@
   margin: 10% 10% 10% 28%;
 }
 
-.preview-elements {
+.ProfilePreview-exitImg {
+  width: 1.5%;
+  position: absolute;
+  margin-left: 27.5%;
+  margin-top: 0.5%;
+  cursor: pointer;
+}
+
+.ProfilePreview-elements {
   margin: 2%;
 }
 
-.preview-profileImg {
-  width: 30%;
+.ProfilePreview-profileImg {
+  width: 25%;
   margin-top: 2%;
+  padding: 0%;
   margin-left: 4%;
 }
 
-.preview-profileImg img {
+.ProfilePreview-profileImg img {
   border-radius: 50%;
   width: 100%;
 }
 
-.preview-personalDetail {
+.ProfilePreview-FirstName-LastName-email-userName {
+  margin-left: 10%;
+  margin-top: 5%;
+  padding: 0%;
+  font-size: 20px;
+}
+
+.ProfilePreview-email-userName p {
+  margin-left: 0%;
+  color: #9d9dd1;
+}
+
+.ProfilePreview-email-userName {
+  font-size: 14px;
+  color: #9d9dd1;
+}
+
+.ProfilePreview-personalDetail {
   margin-top: 8%;
   margin-left: 4%;
 }
 
-.preview-personalDetail label {
+.ProfilePreview-personalDetail label {
   color: #9d9dd1;
   font-size: 16px;
 }
 
-.preview-bio {
-  color: black;
+.ProfilePreview-bio {
+  /* color: black; */
 }
 
-.preview-bioBox {
+.ProfilePreview-bioBox {
   width: 100%;
-  height: 17vh;
-  border: 2px solid #5c6bc0 !important;
-  background-color: white;
+  min-height: 10vh;
+  border-bottom: 1px solid #5c6bc0 !important;
+  /* background-color: #c0bed4; */
   padding: 1%;
 }
 
-.preview-personalDetail p {
+.ProfilePreview-personalDetail p {
   font-size: 18px;
 }
 
-.preview-activity {
+.ProfilePreview-activity {
   width: 100%;
 }
