@@ -4,15 +4,18 @@ import './CSS/search.css';
 
 class Search extends Component {
     state = {
-        focused:false
+        focused:true,
+        panelOpened:false,
+        searchInput:null,
     }
 
 
     openPanel=()=>{
         this.setState({focused:!this.state.focused})
+        console.log(this.state.searchInput)
     }
 
-
+    
     render() { 
         return (  
             <React.Fragment>
@@ -26,7 +29,8 @@ class Search extends Component {
                                 <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                             </svg>
                         </button>
-                        <input className="mr-sm-2 form-control" placeholder="Search" />
+                        <input onChange={event => this.setState({searchInput:event.target.value})}
+                            className="mr-sm-2 form-control" placeholder="Search" />
                     </div>
                     
                     </div>
