@@ -52,7 +52,6 @@ class Homepage extends Component {
                 document.getElementById("selectChatroom").click()
             }
             
-            
         }
             
 

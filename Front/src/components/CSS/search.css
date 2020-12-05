@@ -1,0 +1,24 @@
+#search{
+    width: 35vw;
+}
+#search div{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 40px;
+    /* transition: display 1s; */
+    /* display: none; */
+    /* -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out; */
+    transition: width 1s ease-in-out;
+}
+#search div.active{
+    width: 100%;
+    /* display: initial !important; */
+}
+#search .search-button{
+    outline: none !important;
+    /* width: 40px !important; */
+    /* background-color: #00000000 !important; */
+
+}

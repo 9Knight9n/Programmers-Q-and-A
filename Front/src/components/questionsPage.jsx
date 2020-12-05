@@ -7,6 +7,8 @@ import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
 import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
+import scrollToComponent from 'react-scroll-to-component';
+import { ScrollTo,scroll } from "react-scroll-to";
 
 
 class QuestionsPage extends Component {
@@ -95,6 +97,7 @@ class QuestionsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ref:[],
             loading:false,
             questions:[],
             ChatroomID:parseInt(this.props.match.params.chatroomid)
@@ -181,8 +184,16 @@ class QuestionsPage extends Component {
                         <div className="mt-1 mb-1 ml-3 h-100">
                             <div className="questions-box">
                                 <div className="mr-5 mb-2">
+                                    <button onClick={ () =>
+                                    // console.log(this.state.ref)
+                                    scrollToComponent(this.state.ref[25], { offset: 0, align: 'middle', duration: 500, ease:'inCirc'})
+                                    // scroll({ ref: this.state.ref[13]})
+                                    }>
+                                        go to question 1
+                                    </button>
                                     {this.state.questions.map(question =>
-                                    <div key={question.id} className="mb-3">
+                                    <div key={question.id} className="mb-3"
+                                        ref={refToDiv => this.state.ref[question.id] = refToDiv}>
                                         <QuestionChatbox
                                             loadQuestions={this.loadQuestions}
                                             sameProblemCount={question.commonQuestion}
@@ -197,6 +208,9 @@ class QuestionsPage extends Component {
                                             Cid={this.state.ChatroomID}/>
                                     </div>
                                     )}
+                                    <div  ref={(div) => { this.myRef = div; }}>
+                                        Hello
+                                    </div>
                                 </div>
                             </div>
                         </div>
