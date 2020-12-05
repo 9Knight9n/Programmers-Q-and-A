@@ -56,7 +56,8 @@ class App extends Component {
             </Route>
 
             <Route path="/login">
-              <SignInForm />
+              <ProfilePreview />
+              {/* <SignInForm /> */}
             </Route>
 
             <Route path="/signup">
@@ -81,7 +82,7 @@ class App extends Component {
 
         </Switch>
         {/* {this.state.currentComponent} */}
-        <Redirect to="/profilePreview" />
+
       </Router>
     ); 
   }
