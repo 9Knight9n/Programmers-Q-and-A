@@ -2,6 +2,27 @@ import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Select from 'react-select';
+
+const options = [
+    { value: 'java', label: 'java' },
+    { value: 'php', label: 'php' },
+    { value: 'python', label: 'python' },
+    { value: 'c', label: 'c' },
+    { value: 'c++', label: 'c++' },
+    { value: 'c#', label: 'c#' },
+    { value: 'html', label: 'html' },
+    { value: 'css', label: 'css' },
+    { value: 'java-script', label: 'java script' }
+]
+
+const customStyles = {
+    menuList:(provided, state) => ({
+        ...provided,
+        height:"200px",
+        zIndex:"5"
+    })
+} 
 
 class ChatroomCreationPl extends Component {
     constructor(props) {
@@ -18,6 +39,7 @@ class ChatroomCreationPl extends Component {
     }
     
     handleClick() {
+        console.log(this.state.selectedPl)
         if (!this.state.selectedPl && !this.state.error1) {
             this.setState({
                 error1: true,
@@ -42,12 +64,6 @@ class ChatroomCreationPl extends Component {
         this.setState({
           [name]: value,
         });
-        if (name === "selectedPl" && value !== "Select a programming language") {
-            
-            this.setState({
-                error1: false,//select
-            });
-        }
         if (name === "plLink" && value !== '') {
             
             this.setState({
@@ -55,24 +71,30 @@ class ChatroomCreationPl extends Component {
             });
         }
      }
+
+     handleChangeSelect = (selectedPl) => {
+        this.setState({ selectedPl });
+        this.setState({
+            error1: false,//select
+        });
+      }
+
     render() { 
         return ( 
             <div className="main-box">
                 <div className="elements">
-                <div className="plKinds">
-                        <label for="plKinds"><h1>Choose a programming language:</h1></label>
-                        <select name="selectedPl" value={this.state.selectedPl} onChange={this.handleChange}>
-                            <option value="Select a programming language">Select a programming language </option>
-                            <option value="Java">Java</option>
-                            <option value="Python">Python</option>
-                            <option value="Php">Php</option>
-                            <option value="Csharp">Csharp</option>
-                            <option value="C">C</option>
-                            <option value="C++">C++</option>
-                            <option value="JavaScript">JavaScript</option>
-                            <option value="Html">Html</option>
-                            <option value="Css">Css</option>
-                        </select>
+                <div className="black-text plKinds">
+                        <Select
+                        value={this.state.selectedPl} 
+                        onChange={this.handleChangeSelect}
+                        styles={customStyles}
+                        defaultValue={this.state.selectedPl}
+                        name="selectedPl"
+                        options={options}
+                        classNamePrefix="select"
+                        placeholder="Select a Programming language ..."
+                        >
+                        </Select>
                     </div>
                     {this.state.error1 ? <div className="plError">Please select a programming language.</div> : ''}
                     <div className="plLink">
