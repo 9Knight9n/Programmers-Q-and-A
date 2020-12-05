@@ -5,11 +5,15 @@ import ProfileTwo from './profileTwo';
 import ProfileThree from './profileThree';
 import './CSS/myAccount.css';
 import Cookies from 'js-cookie';
+import { isExpired } from "react-jwt";
+import {renewToken} from './requests';
+import axios from 'axios';
+
 
 class MyAccount extends Component {
     constructor(props) {
         super(props)
-        const src = require('../img/default-profile-picture.jpg');
+        const src = sessionStorage.getItem("avatar")
         this.state = {
             tabs:[
                 {
@@ -51,11 +55,30 @@ class MyAccount extends Component {
         console.log(preview)
       }
     
-      onSave(){
+      async onSave(){
         let src = this.state.preview
         console.log("save button pressed")
         console.log("current preview:",src)
         this.setState({avatarChanged:true,src})
+        if(isExpired(Cookies.get("access")))
+        {
+            console.log("renewing")
+            token=await renewToken()
+        }
+        let token = Cookies.get("access")
+        token = "Bearer "+token;
+        const form = new FormData()
+        form.set("id",Cookies.get("id"))
+        form.set("Base64",this.state.preview)
+        const response3 =
+        await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+        },
+        })
+
+        sessionStorage.setItem("avatar",this.state.preview)
+
         console.log( this.state.src)
       }
 

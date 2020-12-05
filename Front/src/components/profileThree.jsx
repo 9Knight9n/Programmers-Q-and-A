@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './CSS/profileThree.css';
 import Select from 'react-select';
+import Cookies from 'js-cookie';
+import { isExpired } from "react-jwt";
+import {renewToken} from './requests';
+import axios from 'axios';
+import {encodeList , decodeList} from './util';
+
+
 const options = [
                     { value: 'java', label: 'java' },
                     { value: 'php', label: 'php' },
@@ -10,7 +17,7 @@ const options = [
                     { value: 'c#', label: 'c#' },
                     { value: 'html', label: 'html' },
                     { value: 'css', label: 'css' },
-                    { value: 'java script', label: 'java script' }
+                    { value: 'java-script', label: 'java script' }
                 ]
 const customStyles = {
     menuList:(provided, state) => ({
@@ -21,10 +28,19 @@ const customStyles = {
 }             
 
 class profileThree extends Component {
-    state = {
-        selectedFile:"",
-        selectedOptions: [],
-        bio:"",
+      constructor(props) {
+        super(props);
+        this.state = {
+            renderSelect:false,
+            succeed:false,
+            dowload:"",
+            selectedFile:null,
+            selectedOptions: [],
+            bio:"",
+          };
+    
+        this.handleSave = this.handleSave.bind(this);
+        this.loadFields = this.loadFields.bind(this);
       }
 
        handleChange = (e) => { 
@@ -37,8 +53,96 @@ class profileThree extends Component {
            });
       }
 
+
+      async componentDidMount(){
+            await this.loadFields()
+            this.setState({renderSelect:true})
+      }
+
+
+      async loadFields(){
+
+
+        let token = Cookies.get("access")
+        if(isExpired(Cookies.get("access")))
+        {
+            console.log("renewing")
+            token=await renewToken()
+
+        }
+        console.log("fetching data")
+        token = "Bearer "+token;
+        console.log(token)
+        const form = new FormData()
+        form.set('id', Cookies.get("id"))
+        const response =
+        await axios.post('http://127.0.0.1:8000/api/show_interests/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+        },
+        })
+        
+        console.log(response)
+        let list = decodeList(options,response.data.interests)
+        console.log(list)
+        this.setState({bio:response.data.description,selectedOptions:list})
+
+
+        
+        // const response1 =
+        // await axios.post('http://127.0.0.1:8000/api/show_cv_file/', form, {
+        // headers: { 'Content-Type': 'multipart/form-data',
+        //             'Authorization': token
+        // },
+        // })
+        
+
+
+        
+        // this.setState({selectedFile:response1.data})
+        // this.setState({dowload:response1.data.url})
+
+
+      }
+
+
+
+      async handleSave(){
+        let token = Cookies.get("access")
+         if(isExpired(Cookies.get("access")))
+        {
+            console.log("renewing")
+            token=await renewToken()
+
+        }
+        console.log("fetching data")
+        token = "Bearer "+token;
+        console.log(token)
+        const form = new FormData()
+        form.set('id', Cookies.get("id"))
+        form.set('description',this.state.bio)
+        form.set('interests',encodeList(options,this.state.selectedOptions))
+        form.set('cvfile',this.state.selectedFile)
+        const response =
+        await axios.post('http://127.0.0.1:8000/api/editinterest/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+        },
+        })
+        console.log(response)
+        this.setState({succeed:true})
+    }
+
+
+
       handleChangeFile=(event)=> {
-        this.setState({
+        //   console.log(this.state.selectedOptions)
+        let encode = encodeList(options,this.state.selectedOptions)
+          console.log(encode)
+          let decode = decodeList(options,encode)
+          console.log(decode)
+          this.setState({selectedOptions:decode})
+            this.setState({
             selectedFile: event.target.files[0],
           })
     }
@@ -59,6 +163,9 @@ class profileThree extends Component {
           console.log(document.getElementById("upload-file-pro"))
           
       }
+
+
+
     render() { 
         return ( 
             <React.Fragment>
@@ -66,15 +173,16 @@ class profileThree extends Component {
                         <div className="w-50">
                             <h1 className="w-100 mb-2">Please select Subjects you are intrested in :</h1>
                             <div className="black-text w-75">
-                                <Select 
+                                {this.state.renderSelect?<Select 
                                 onChange={this.handleChangeSelect}
                                 styles={customStyles}
                                     isMulti
+                                    defaultValue={this.state.selectedOptions}
                                     name="colors"
                                     options={options}
                                     className="basic-multi-select"
                                     classNamePrefix="select"
-                                />
+                                />:""}
                             </div>
                         </div>
                                 
@@ -82,6 +190,7 @@ class profileThree extends Component {
                         <div className="w-50">
                             <div class="fileUploadInput w-100">
                             <h1 className="w-100">Please Upload your resume Files here:</h1>
+                            <a href={this.state.dowload}></a>
                                 <div className="w-75 d-flex flex-row">
                                     <input onChange={this.handleChangeFile}
                                         id="upload-file-pro" className="w-75" type="file" />
@@ -104,7 +213,8 @@ class profileThree extends Component {
                                 
                             </textarea>
                         </div>
-                        <button class="btn btn-primary" onClick={console.log(this.state.selectedFile)}>Save</button>
+                        <button class="btn btn-primary" onClick={this.handleSave}>Save</button>
+                        {this.state.succeed? <p className="d-flex justify-content-center pro-success">Saved successfully!</p> : <br/>}
                     </div>
 
                     

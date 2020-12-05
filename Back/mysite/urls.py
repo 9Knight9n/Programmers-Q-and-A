@@ -15,4 +15,4 @@ urlpatterns = [
     path('api/' , include("userprofile.urls")),
     path('api/' , include("chatroom.urls")),
 ]
-#urlpatterns = urlpatterns + static(settings.MEDIA_URL , document_root=settings.MEDIA_URL)
+urlpatterns = urlpatterns + static('media' , document_root='media')

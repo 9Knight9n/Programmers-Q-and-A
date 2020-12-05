@@ -7,20 +7,53 @@ import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
 import Cookies from 'js-cookie';
+import {renewToken} from './requests';
+import { isExpired } from "react-jwt";
+import axios from 'axios';
+import {request} from './requests';
 // import pro from "../img/";
 
 class LeftMenu extends Component {
     state = {  
         show: false,
-        chatrooms:this.props.chatrooms,
+        chatrooms:[],
         activeChatroom:-1
     }
 
     handleTabClick = (id) =>{
-        console.log(Cookies.get("avatar"))
-        console.log(window.$avatar)
+        // console.log(Cookies.get("avatar"))
+        // console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
+    }
+
+    componentDidMount(){
+        this.loadChatrooms()
+    }
+
+    loadChatrooms=async()=>{
+
+        let config ={
+            url:"http://127.0.0.1:8000/api/loadchatroom/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                
+            ],
+            formValue:[
+                
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        console.log(data)
+        if(data)
+            this.setState({chatrooms:data})
+
+
+
+
     }
 
     // handleLogOutClick = () =>{
@@ -38,6 +71,7 @@ class LeftMenu extends Component {
     hideModal = () => {
         this.setState({ show: false });
         this.setState({ submit: -2 });
+        this.loadChatrooms()
     };
 
 
@@ -59,15 +93,15 @@ class LeftMenu extends Component {
                     <div className="nav d-flex flex-column nav-pills fill">
                         <div>
                             {this.state.chatrooms.map(chatroom => 
-                            <a key={chatroom.id} 
+                            <Link key={chatroom.id} 
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
                                 onClick={()=> this.handleTabClick(chatroom.id)} 
-                                href="#" >
+                                to={"cr"+chatroom.id} >
                                 <div className="d-flex flex-row ">
-                                    <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.img} />
-                                    <div className="d-flex align-items-center pr-5">{chatroom.ButtonName}</div>
+                                    <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
+                                    <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
                                 </div>
-                            </a>)}
+                            </Link>)}
                         </div>
                     </div>
 

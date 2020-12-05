@@ -5,7 +5,7 @@ import { isExpired } from "react-jwt";
 import SelectAvatar from './selectAvatar';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import {renewToken} from './token';
+import {renewToken} from './requests';
 
 class ChatroomCreationLast extends Component {
     
@@ -65,7 +65,7 @@ class ChatroomCreationLast extends Component {
 
       async handleClick() {
         if (!this.state.chatroomName && !this.state.error) {
-            this.setState({
+            return this.setState({
                 error: true,
             });
         }
@@ -81,6 +81,8 @@ class ChatroomCreationLast extends Component {
         token = "Bearer "+token;
         console.log(token)
         const form = new FormData()
+        if(this.state.avatarChanged)
+          form.set('Base64',this.state.src)
         if (Cookies.get("selectedTopic") === "OS") {
           form.set('selectedTopic', Cookies.get("selectedTopic"))
           form.set('chatroomName', Cookies.get("chatroomName"))
@@ -119,6 +121,10 @@ class ChatroomCreationLast extends Component {
     Cookies.remove("selectedTopic")
     Cookies.remove("Description")
     Cookies.remove("Link")
+
+    this.props.hideModal()
+
+
   }
 
     render() { 
