@@ -17,6 +17,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            show: false,
             isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,
             loading:false,
@@ -286,13 +287,18 @@ class QuestionChatbox extends Component {
     document.getElementById("goToAnswerPage").click()
   }
 
-  handleProfilePreview = () =>
-  {
-    //open profile preview modal
-  }
-  
+showModal = (submit) => {
+    this.setState({ submit: submit });
+    this.setState({ show: true });
+    // console.log(this.state.submit)
 
+};
 
+hideModal = () => {
+    this.setState({ show: false });
+    this.setState({ submit: -2 });
+    this.loadChatrooms()
+};
 
     render() { 
         return (  
@@ -319,7 +325,7 @@ class QuestionChatbox extends Component {
                             <div className="d-flex pl-2 align-top w-80 ml-3" id="profile">
                                 <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
-                                <p onClick={this.handleProfilePreview} className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
+                                <p onClick={this.showModal} className="pt-1 h5 d-flex align-items-center pr-4 ">{this.state.senderUsername}</p>
                             </div>
                             <div id="options" className="ml-auto">
                                 <Dropdown>

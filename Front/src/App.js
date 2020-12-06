@@ -56,8 +56,7 @@ class App extends Component {
             </Route>
 
             <Route path="/login">
-              <ProfilePreview />
-              {/* <SignInForm /> */}
+              <SignInForm />
             </Route>
 
             <Route path="/signup">

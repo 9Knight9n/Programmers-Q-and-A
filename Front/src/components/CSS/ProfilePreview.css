@@ -15,6 +15,14 @@
   cursor: pointer;
 }
 
+.intrested {
+  margin-top: 13%;
+}
+
+.intrested p {
+  font-size: 14px;
+}
+
 .ProfilePreview-elements {
   margin: 2%;
 }
@@ -48,21 +56,17 @@
   color: #9d9dd1;
 }
 
-.ProfilePreview-personalDetail {
+.ProfilePreview-bioBox {
   margin-top: 8%;
   margin-left: 4%;
 }
 
-.ProfilePreview-personalDetail label {
+.ProfilePreview-bioBox label {
   color: #9d9dd1;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .ProfilePreview-bio {
-  /* color: black; */
-}
-
-.ProfilePreview-bioBox {
   width: 100%;
   min-height: 10vh;
   border-bottom: 1px solid #5c6bc0 !important;
@@ -70,10 +74,21 @@
   padding: 1%;
 }
 
-.ProfilePreview-personalDetail p {
+.ProfilePreview-bioBox p {
   font-size: 18px;
 }
 
 .ProfilePreview-activity {
   width: 100%;
+  margin-top: 5%;
+}
+
+.ProfilePreview-asked-questions {
+  padding-right: 2%;
+  border-right: 1px solid #5c6bc0 !important;
+}
+
+.ProfilePreview-answered-questions {
+  padding-left: 2%;
+  border-left: 1px solid #5c6bc0 !important;
 }
