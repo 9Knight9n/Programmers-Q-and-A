@@ -14,7 +14,7 @@ import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
-import TextEditor from './components/textEditor';
+import Texteditor from './components/texteditor';
 
 import './index.css';
 
@@ -47,8 +47,8 @@ class App extends Component {
       <Router>
         {this.state.editorContent}
           <Switch>
-          <Route path="/Texteditor">
-            <TextEditor 
+          <Route path="/texteditor">
+            <Texteditor 
               content={this.state.content} 
               updateContent={this.updateContent} 
               hideEditor={this.hideEditor}
