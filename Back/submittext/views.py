@@ -305,22 +305,25 @@ def VoteAnswer(request):
     print(data)
     answer = Answer.objects.filter(id=data['answer_id'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    print(user , answer )
+    print("this is vote :" , data['voteState'])
+     
     user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
     if list(user_answer) != []:
         if user_answer[0].isVoted == int(data['voteState'][0]):
             return Response({'message':'this user can not do that'})
         else:
-            user_answer[0].isVoted = int(data['voteState'][0])
+            # user_answer[0].isVoted = int(data['voteState'][0])
             if list(answer) != []:
-                answer[0].vote += int(data['voteState'][0])
+                print("this is ISVOTED :" , user_answer[0].isVoted)
+                answer[0].vote += int(data['voteState'][0]) - user_answer[0].isVoted
                 answer[0].save()
                 user_answer[0].isVoted = int(data['voteState'][0])
                 user_answer[0].save()
     else:
-        user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=data['voteState'][0])
+        user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=int(data['voteState'][0]))
         # user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , )
         if list(answer) != []:
+            print("this is ISVOTED :" , user_answer.isVoted)
             answer[0].vote += int(data['voteState'][0])
             answer[0].save()
     return Response({'message':'done it'})
