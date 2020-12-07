@@ -4,6 +4,7 @@
 .lm-btn {
   border-color: black !important;
   border-radius: 0px !important;
+  outline: none !important;
 }
 .lm-btn:hover {
   text-decoration: none !important;

@@ -64,6 +64,12 @@
 #Question #left .active {
   background-color: green !important;
 }
+
+#Question button {
+  outline: none !important;
+  border: none !important;
+  border-radius: 0px !important;
+}
 .blue-on-hover:hover {
   color: blue;
 }
