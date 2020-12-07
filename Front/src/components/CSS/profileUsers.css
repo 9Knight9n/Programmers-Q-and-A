@@ -59,9 +59,8 @@
 }
 
 body {
-    
-    background-color: #1f253d;
-    font-size: 18px;
+	background: #1f253d !important;
+	font-size: 2px;
 }
 
 ul {
@@ -155,13 +154,12 @@ h1, h2, p, a, span{
 }
 
 .titular {
-    display: block;
-    line-height: 59px;
-    text-align: center;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    margin-left: 0%;
-    width: 100%;
+	display: block;
+	line-height: 60px;
+	margin: 0;
+	text-align: center;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .button {
@@ -240,57 +238,10 @@ h1, h2, p, a, span{
 
 .main-container {
 	font-family: 'Ubuntu', sans-serif;
-	width: 950px;
-	height: 1725px;
-    margin: 6em auto;
-    
+    width: 100%;
+    height: 100%;
+	margin: 6em auto;
 }	
-	/*********************************************** HEADER ***********************************************/
-	header {
-		height: 80px;
-	}
-		.header-menu {
-			font-size: 17px;
-			line-height: 80px;
-		}
-			.header-menu li {
-				position: relative;
-        		-webkit-transform: translateZ(0); /** To avoid a flash when hover messages **/
-			}
-				.header-menu-tab {
-					padding: 0 27px;
-					display: block;
-					line-height: 74px;
-					font-size: 17px;
-					-webkit-transition: background .3s;
-					transition: background .3s;
-				}
-					.header-menu-tab:hover {
-						background: #50597b;
-						border-bottom: 4px solid #11a8ab;
-						text-decoration: none;
-					}
-					.header-menu-tab .icon {
-						padding-right: 15px;
-					}
-				.header-menu-number {
-					position: absolute;
-					line-height: 22px;
-					padding: 0 6px;
-					font-weight: 700;
-					background: #e64c65;
-					border-radius: 100%;
-					top: 15px;
-					right: 2px;
-					-webkit-transition: all .3s linear;
-					transition: all .3s linear;
-				}
-					.header-menu li:hover .header-menu-number {
-						text-decoration: none;
-						-webkit-transform: rotate(360deg);
-						transform: rotate(360deg);
-
-					}
 		.profile-menu {
 			float: right;
 			height: 80px;
@@ -316,50 +267,34 @@ h1, h2, p, a, span{
 	/** CONTAINERS **/
 	.container {
 		float: left;
-        
+		width: 300px;
 	}
 		.block {
-			
-            
-            margin-bottom: 0px;
-            background: #394264;
-            border-radius: 5px;
-            margin-left: 0%;
-            width: 138%;
-            margin-right: 2%;
-            height: 5%;
-            margin-top: -6%;
-            margin-left: -19%;
-
-        }
+			margin-bottom: 56px;
+			background: #394264;
+			border-radius: 5px;
+		}
 		/******************************************** LEFT CONTAINER *****************************************/
-        .div.container {
-            width: 33%;
-            margin: 5em auto;
-        }
-        
-        .left-container {
-
-            width: 33%;
-            margin: 3em auto;
-        }
-			.menu-box {
-               
-                height: 360px;
-                width: 43%;
-                margin-left: -25%;
-			}
+		.left-container {}
+				.menu-box {
+					height: 361px;
+					width: 81%;
+					margin-top: -23%;
+					margin-left: -1%;
+				}
+				ul {
+					list-style-type: none;
+					
+				}
 				.menu-box .titular {
-                    background: #11a8ab;
-                    
+					background: #11a8ab;
 				}
 				.menu-box-menu .icon {
 					display: inline-block;
 					vertical-align: top;
 					width: 28px;
 					margin-left: 20px;
-                    margin-right: 15px;
-                    
+					margin-right: 15px;
 				}
 				.menu-box-number {
 					width: 36px;
@@ -371,16 +306,11 @@ h1, h2, p, a, span{
 					top: 15px;
 					right: 15px;
 					-webkit-transition: all .3s;
-                    transition: all .3s;
-                    
+					transition: all .3s;
 				}
 				.menu-box-menu li{
 					height: 60px;
-                    position: relative;	
-                    list-style-type: none;
-                    margin: 0;
-                    padding-left: 0px;
-                    width: 100%;									
+					position: relative;										
 				}
 				.menu-box-tab {
 					line-height: 60px;
@@ -400,24 +330,25 @@ h1, h2, p, a, span{
 					.menu-box-tab:hover .menu-box-number {
 						background: #e64c65;
 					}
-			.donut-chart-block {
-				height: 434px;
-			}
+				.donut-chart-block {
+				    height: 273px;
+					margin-top: -11.5%;
+					width: 107%;
+					margin-left: -1%;			
+					}
 				.donut-chart-block .titular {
 					padding: 10px 0;
 				}
-				.donut-chart {
-					height: 270px;
-				}
+				
 				/******************************************
 				DONUT-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
 				******************************************/
 					.donut-chart {
 					  position: relative;
-						width: 200px;
-					  height: 200px;
-						margin: 0 auto 2rem;
-						border-radius: 100%
+						width: 159px;
+					  height: 159px;
+						border-radius: 100%;
+						margin-left: 37%;
 					 }
 					p.center-date {
 					  background: #394264;
@@ -494,16 +425,16 @@ h1, h2, p, a, span{
         .os-percentages {
 					padding-top: 36px;
 				}
-        .os-percentages li {
-					width: 75px;
+		.os-percentages li {
+					width: 25%;
 					border-left: 1px solid #394264;
 					text-align: center;					
 					background: #50597b;
 				}
 					.os {
-						margin: 0;
-						padding: 10px 0 5px;
-						font-size: 15px;		
+					    padding: 0px 0 5px;
+						font-size: 17px;
+							
 					}
 						.os.ios {
 							border-top: 4px solid #e64c65;
@@ -523,7 +454,9 @@ h1, h2, p, a, span{
 						font-size: 25px;
 					}
 			.line-chart-block {
-				height: 400px;
+				height: 271px;
+				margin-top: -11%;
+				width: 106%
 			}
 				.line-chart {
 					height: 200px;
@@ -532,7 +465,86 @@ h1, h2, p, a, span{
         /******************************************
 				LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
 				******************************************/
-				
+				.grafico {
+				  padding: 2rem 1rem 1rem;
+				  width: 100%;
+				  height: 100%;
+				  position: relative;
+				  color: #fff;
+				  font-size: 80%;
+				}
+				.grafico span {
+				  display: block;
+				  position: absolute;
+				  bottom: 3rem;
+				  left: 2rem;
+				  height: 0;
+				  border-top: 2px solid;
+				  -webkit-transform-origin: left center;
+				  transform-origin: left center;
+				}
+				.grafico span > span {
+				  left: 100%; bottom: 0;
+				}
+				[data-valor='25'] {width: 75px; -webkit-transform: rotate(-45deg); transform: rotate(-45deg);}
+				[data-valor='8'] {width: 24px; -webkit-transform: rotate(65deg); transform: rotate(65deg);}
+				[data-valor='13'] {width: 39px; -webkit-transform: rotate(-45deg); transform: rotate(-45deg);}
+				[data-valor='5'] {width: 15px; -webkit-transform: rotate(50deg); transform: rotate(50deg);}
+				[data-valor='23'] {width: 69px; -webkit-transform: rotate(-70deg); transform: rotate(-70deg);}
+				[data-valor='12'] {width: 36px; -webkit-transform: rotate(75deg); transform: rotate(75deg);}
+				[data-valor='15'] {width: 45px; -webkit-transform: rotate(-45deg); transform: rotate(-45deg);}
+
+				[data-valor]:before {
+				  content: '';
+				  position: absolute;
+				  display: block;
+				  right: -4px;
+				  bottom: -3px;
+				  padding: 4px;
+				  background: #fff;
+				  border-radius: 50%;
+				}
+				[data-valor='23']:after {
+				  content: '+' attr(data-valor) '%';
+				  position: absolute;
+				  right: -2.7rem;
+				  top: -1.7rem;
+				  padding: .3rem .5rem;
+				  background: #50597B;
+				  border-radius: .5rem;
+				  -webkit-transform: rotate(45deg);
+				  transform: rotate(45deg);  
+				}
+				[class^='eje-'] {
+				  position: absolute;
+				  left: 0;
+				  bottom: 0rem;
+				  width: 100%;
+				  padding: 1rem 1rem 0 2rem;
+				  height: 80%;
+				}
+				.eje-x {
+				  height: 2.5rem;
+				}
+				.eje-y li {
+				  height: 25%;
+				  border-top: 1px solid #777;
+				}
+				[data-ejeY]:before {
+				  content: attr(data-ejeY);
+				  display: inline-block;
+				  width: 2rem;
+				  text-align: right;
+				  line-height: 0;
+				  position: relative;
+				  left: -2.5rem;
+				  top: -.5rem;
+				} 
+				.eje-x li {
+				  width: 33%;
+				  float: left;
+				  text-align: center;
+				}
 				/******************************************
 				END LINE-CHART by @kseso https://codepen.io/Kseso/pen/phiyL
 				******************************************/
@@ -556,31 +568,22 @@ h1, h2, p, a, span{
 							text-decoration: none;
 							background: #e64c65;
 						}
-				.month-data {
-					padding-top: 28px;
-				}
-					.month-data p {
-						display: inline-block;
-						margin: 0;
-						padding: 0 25px 15px;            
-						font-size: 16px;
-					}
-						.month-data p:last-child {
-							padding: 0 25px;
-              float: right;
-							font-size: 15px;
-						}
+				
 						.increment {
 							color: #e64c65;
 						}
 			
 			
+						
 		/************************************************** MIDDLE CONTAINER **********************************/
 		.middle-container {
 			margin: 0 25px;			
 		}
 			.profile {
-				height: 410px;
+				height: 361px;
+				margin-top: -23%;
+				margin-left: -23%;
+				width: 144%;
 			}
 				.add-button .icon {
 					float: right;
@@ -616,7 +619,7 @@ h1, h2, p, a, span{
 						}
 						.profile-options a {
 							display: block;					
-							width: 99px;
+							width: 200.7px;
 							line-height: 60px;
 							text-align: center;
 							-webkit-transition: background .3s;
@@ -647,9 +650,35 @@ h1, h2, p, a, span{
 							.profile-options .likes {
 								border-top: 4px solid #e64c65;
 							}
-			
+			.weather {
+				height: 198px;
+			}
+				.weather .titular {
+					background: #cc324b;
+				}
+					.weather .titular .icon {
+						padding-right: 15px;
+						font-size: 26px;
+					}
+				.weather .current-day {
+					height: 135px;
+					background: #e64c65;
+				}
+					.weather .current-day p {
+						margin: 0;
+						padding-left: 50px;					
+					}
+						.current-day-date {
+							font-size: 16px;
+							padding-top: 16px;
+						}
+						.current-day-temperature {
+							font-size: 70px;
+						}
+							.current-day-temperature .icon-cloudy {
+								padding-left: 20px;
+							}
 				
-			
 			.middle-container .social {
 				height: 205px;
 				background: #1f253d;
@@ -717,145 +746,70 @@ h1, h2, p, a, span{
 					.middle-container .social .icon.googleplus {
 						background: #cc324b;						
 					}
-		/********************************************* RIGHT CONTAINER ****************************************/
-		.right-container {}
-			.join-newsletter {
-				height: 230px;
-			}
-				.join-newsletter .titular {
-					padding-top: 10px;
-				}
-				.subscribe.button {
-					background: #11a8ab;
-					margin-top: 10px;
-				}
-					.subscribe.button:hover {
-						background: #0F9295;
+
+					div.container {
+						
+							width: 33%;
+							margin: 0em auto;
+						
 					}
-			.account {
-				height: 390px;
-			}
-				.account .titular {
-					padding: 10px 0;
-				}
-				.sign-in.button {
-					background: #e64c65;
-					margin: 10px auto;
-				}
-					.sign-in.button:hover {
-						background: #cc324b;
-					}
-				.account p { 
-					text-align: center;
-				}
-				.fb-sign-in {
-					margin-top: 28px;
-					display: block;
-					line-height: 50px;
-					background: #3468af;
-					border-bottom-left-radius: 5px;
-					border-bottom-right-radius: 5px;
-					-webkit-transition: background .3s;
-					transition: background .3s;
-				}
-					.fb-sign-in:hover {
-						background: #1a4e95;
-						text-decoration: none;
-					}
-				.fb-sign-in .icon {	
-					line-height: 20px;
-					font-size: 12px;
-					padding-right: 3px;
-				}
-					.fb-border {
-						display: inline-block;
-						width: 23px;
-						line-height: 20px;
-						border: 2px solid #fff;
-						border-radius: 100%;
-						margin-right: 10px;
-					}
-			.loading {
-				height: 200px;
-				padding-top: 35px;
-			}
-				.loading p {
-					display: inline-block;
-					padding-left: 30px;
-					margin: 5px 0 20px;
-				}
-					.loading .icon {
-						padding-right: 15px;
-					}
-					.loading .percentage {
-						float: right;
-						padding: 6px 35px 0 0;
-					}
-				.loading .progress-bar {
-					width: 250px;
-					height: 20px;
-					background: #50597b;
-					border-radius: 5px;
-					margin: 0 auto;
-				}
-					.progress-bar.downloading {
-						background: -webkit-linear-gradient(left, #11a8ab 81%,#50597b 81%); /* Chrome10+,Safari5.1+ */
-						background: -ms-linear-gradient(left, #11a8ab 81%,#50597b 81%); /* IE10+ */
-						background: linear-gradient(to right, #11a8ab 81%,#50597b 81%); /* W3C */
-					}
-					.progress-bar.uploading {
-						background: -webkit-linear-gradient(left, #4fc4f6 43%,#50597b 43%); /* Chrome10+,Safari5.1+ */
-						background: -ms-linear-gradient(left, #4fc4f6 43%,#50597b 43%); /* IE10+ */
-						background: linear-gradient(to right, #4fc4f6 43%,#50597b 43%); /* W3C */
-					}
-			.calendar-day {
-				height: 320px;
-				background: #3468af;
-			}
-				.calendar-day .titular {
-					background: #1a4e95;
-				}
-					.calendar-day .arrow-btn:hover {
-						background: #16417E;
-					}
-				.calendar-day .the-day {
-					margin: 0;
-					text-align: center;
-					font-size: 146px;
-				}
-				.add-event.button {
-					background: #4fc4f6;
-				}
-					.add-event.button:hover {
-						background: #35aadc;
-					}
-			.calendar-month {
-				height: 380px;
-			}
-				.calendar-month .titular {
-					background: #3468af;
-				}
-					.calendar-month .arrow-btn:hover {
-						background: #1a4e95;
-					}
-				.calendar {
-					margin: 22px 15px;
-					text-align: center;
-				}
-					.calendar a {
-						font-size: 17px;
-					}
-					.calendar td, .calendar th {
-						width: 40px;
-						height: 38px;						
-					}
-					.calendar .days-week {
-						color: #4fc4f6;
-					}
-					.calendar .today {
+
+
+
+
+
+
+					.list-content{
+						min-height:300px;
+					   }
+					   
+						.list-content .list-group .title {
+							background: #11a8ab;
+							border: 0px solid #DDDDDD;
+							font-weight: bold;
+							color: #FFFFFF;
+						
+					   }
+					   .list-group-item img {
+						height: 52px;
+						width: 52px;
+					
+					   }
+					   .list-group-item {
+						position: relative;
 						display: block;
-						width: 34px;
-						line-height: 34px;
-						background: #e64c65;
-						border-radius: 100%;
-					}
+						padding: 1rem; 
+						background-color: #394264;
+						border: 1px solid rgba(0, 0, 0, 0.125);
+					   }
+					   
+					   .jumbotron .btn {
+						   padding: 5px 5px !important;
+						   font-size: 12px !important;
+					   }
+					   .prj-name {
+						   color:#5bc0de;    
+					   }
+					   .break{
+						   width:100%;
+						   margin:20px;
+					   }
+					   .name {
+						   color:#5bc0de;    
+					   }
+					   
+					   .jumbotron {
+						padding: 0rem;
+						margin-left: 18%;
+						width: 86%;
+						margin-top: -23%;
+						
+						}
+						.img-thumbnail {
+							padding: 0rem;
+							background-color: #fff0;
+							border: 0px solid #dee2e600;
+							border-radius: 2rem;
+							max-width: 100%;
+							height: auto;
+						}
