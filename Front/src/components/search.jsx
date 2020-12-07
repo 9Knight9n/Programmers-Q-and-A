@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './CSS/search.css';
 
 
@@ -36,7 +37,21 @@ class Search extends Component {
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.result?" active":"")}>
                         <div className={"search-result".concat(this.state.result?" ":" display-none")}>
-                            
+                            <div id="header" className="pt-2 pl-2 pr-2 d-flex flex-row w-100">
+                                <Link class="nav-link w-50 active ">
+                                    <p style={{width:"fit-content"}} className="ml-auto mr-auto">
+                                        Chatroom
+                                    </p>
+                                </Link>
+                                <Link class="nav-link w-50">
+                                    <p style={{width:"fit-content"}} className="ml-auto mr-auto">
+                                        Questions
+                                    </p>
+                                </Link>
+                            </div>
+                            <div id="body">
+                                
+                            </div>
                         </div>
                     </div>
                     

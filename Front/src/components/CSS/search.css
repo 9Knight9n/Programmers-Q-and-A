@@ -57,9 +57,33 @@
   }
 
   #search .search-result{
-      display: initial;
+      display: block;
   }
 
 .display-none{
     display: none !important;
+}
+#search .nav-link{
+    width: fit-content;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    /* border-bottom: 1px solid white !important; */
+}
+#search .nav-link:hover{
+    
+    /* outline: none; */
+    color: white !important;
+    border: none;
+    /* margin: 0; */
+}
+#search .nav-link.active{
+    border-top: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-bottom: none !important;
+    background-color: #03506f !important;
+    
+}
+#search #header{
+    background-color: #023043
 }
