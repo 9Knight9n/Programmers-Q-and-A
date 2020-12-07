@@ -7,6 +7,7 @@ class Search extends Component {
         focused:true,
         panelOpened:false,
         searchInput:null,
+        result:true,
     }
 
 
@@ -33,8 +34,10 @@ class Search extends Component {
                             className="mr-sm-2 form-control" placeholder="Search" />
                     </div>
 
-                    <div id='panel' className="mt-5 mr-2 ">
-                        hello
+                    <div id='panel' className={"mt-5 mr-2 ".concat(this.state.result?" active":"")}>
+                        <div className={"search-result".concat(this.state.result?" ":" display-none")}>
+                            
+                        </div>
                     </div>
                     
                 </div>
