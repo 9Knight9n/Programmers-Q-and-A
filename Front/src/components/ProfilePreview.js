@@ -5,16 +5,23 @@ import exitImg from '../img/exit.png'
 import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
 import {Link} from 'react-router-dom';
+import  askedQImg from '../img/askedQuestion.png';
+import  answeredQImg from '../img/answeredQuestion.png';
+import ReactTooltip from 'react-tooltip';
+
 class ProfilePreview extends Component {
     constructor(props) {
         super(props);
         this.state = {
             firstName: 'Sadegh',
             lastName: 'Jafari',
-            userEmail: 'sadegh@yahoo.com',
+            // userEmail: 'sadegh@yahoo.com',
             userName: 'SadeghJafari79',
             userId: null,
-            userBio: 'hiaskakdl akdsaskld;a lsa;dk; kas;ajfsk dfbsc vjdkskd bajbadj ;ka; dkljia jfksndv slbdkj fhaoi fdj ls kafb avdddddas ;;;;;;;; ;;;;;; ;fffff ffff ffffff fff fffssssssss ss ssdfcdea kjjd jfk;sdjfn vv',
+            userBio: 'Hi! This is my bio. Thanks for visiting',
+            userIntrests:'Java, Python, C++, PHP, HTML, CSS',
+            askedQ: '122',
+            answeredQ: '143',
         }; 
 
     }
@@ -28,6 +35,7 @@ class ProfilePreview extends Component {
     render() { 
         return ( 
             <div className="ProfilePreview-main-box ">
+                <ReactTooltip place="right" effect="solid" type="dark"/>
                 <div className="ProfilePreview-exitImg">
                     {/* <Link to="/"> */}
                         <img src={exitImg} />
@@ -45,14 +53,16 @@ class ProfilePreview extends Component {
                                     <p>{this.state.firstName} {this.state.lastName}</p>
                                 </div>
                                 <div className="ProfilePreview-email-userName">
-                                    <p>email : {this.state.userEmail}</p>
+                                    {/* <p>email : {this.state.userEmail}</p> */}
                                     <p>username : {this.state.userName}</p>
                                 </div>
-                                <div className="intrested">
-                                <label for="intrested">Intrested In : </label> 
-                                    <p>
-                                        {this.state.userBio}
-                                    </p>
+                                <div className="ProfilePreview-intrestsBox">
+                                    <label for="ProfilePreview-intrests">Intrested In : </label> 
+                                    <div className="ProfilePreview-intrests">
+                                        <p>
+                                            {this.state.userIntrests}
+                                        </p>
+                                    </div>
                                 </div>
                             </div> 
                         </div>
@@ -65,12 +75,15 @@ class ProfilePreview extends Component {
                             </div>
                         </div>
                         <div className="ProfilePreview-activity">
-                            <div className="ProfilePreview-user-activity d-flex justify-content-center">
-                                <div className="ProfilePreview-asked-questions">
-                                    Asked 125 questions
+                            <div className="ProfilePreview-user-activity d-flex justify-content-around">
+                                <div className="ProfilePreview-asked-questions d-flex justify-content-center">
+                                    <img src={askedQImg} data-tip={this.state.userName + " asked " + this.state.askedQ +" questions"} /> 
+                                    <p>{this.state.askedQ}</p> 
                                 </div>
-                                <div className="ProfilePreview-answered-questions">
-                                    Answered 236 questions
+                                <div></div>
+                                <div className="ProfilePreview-answered-questions d-flex justify-content-center">
+                                    <img src={answeredQImg} data-tip={this.state.userName+ " answered " + this.state.answeredQ +" questions"} /> 
+                                    <p>{this.state.answeredQ}</p>
                                 </div>
                             </div>
                         </div>

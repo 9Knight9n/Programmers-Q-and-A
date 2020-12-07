@@ -1,26 +1,40 @@
 .ProfilePreview-main-box {
-  width: 35%;
-  height: 75vh;
+  width: 40%;
+  height: 80vh;
   background: #333b60;
   overflow: auto;
   border: 6px solid #5c6bc0;
-  margin: 10% 10% 10% 28%;
+  margin: 8% 10% 10% 28%;
 }
 
 .ProfilePreview-exitImg {
   width: 1.5%;
   position: absolute;
-  margin-left: 32.5%;
+  margin-left: 37.5%;
   margin-top: 0.5%;
   cursor: pointer;
 }
 
-.intrested {
+.ProfilePreview-intrests {
+  width: 100%;
+  min-height: 10vh;
+  border-bottom: 1px solid #5c6bc0 !important;
+  /* background-color: #c0bed4; */
+  padding: 5%;
+  background-color: #181852;
+}
+
+.ProfilePreview-intrestsBox {
   margin-top: 13%;
 }
 
-.intrested p {
+.ProfilePreview-intrestsBox label {
+  color: #6363d3;
+}
+
+.ProfilePreview-intrests p {
   font-size: 14px;
+  color: #9d9dd1;
 }
 
 .ProfilePreview-elements {
@@ -62,7 +76,7 @@
 }
 
 .ProfilePreview-bioBox label {
-  color: #9d9dd1;
+  color: #6363d3;
   font-size: 20px;
 }
 
@@ -71,11 +85,13 @@
   min-height: 10vh;
   border-bottom: 1px solid #5c6bc0 !important;
   /* background-color: #c0bed4; */
-  padding: 1%;
+  padding: 3%;
+  background-color: #181852;
 }
 
 .ProfilePreview-bioBox p {
   font-size: 18px;
+  color: #9d9dd1;
 }
 
 .ProfilePreview-activity {
@@ -83,12 +99,23 @@
   margin-top: 5%;
 }
 
+.ProfilePreview-activity p {
+  color: #9d9dd1;
+  font-size: 20px;
+  margin: auto;
+}
+/* .ProfilePreview-user-activity img {
+  width: 100%;
+} */
+
 .ProfilePreview-asked-questions {
-  padding-right: 2%;
+  width: 22%;
   border-right: 1px solid #5c6bc0 !important;
+  padding-right: 8%;
 }
 
 .ProfilePreview-answered-questions {
-  padding-left: 2%;
+  width: 22%;
   border-left: 1px solid #5c6bc0 !important;
+  padding-left: 8%;
 }
