@@ -4,9 +4,10 @@ import profileImg from '../img/default-profile-picture.jpg'
 import exitImg from '../img/exit.png'
 import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
-import {Link} from 'react-router-dom';
+import {generatePath, Link} from 'react-router-dom';
 import  askedQImg from '../img/askedQuestion.png';
 import  answeredQImg from '../img/answeredQuestion.png';
+import groupChat from '../img/group.png';
 import ReactTooltip from 'react-tooltip';
 
 class ProfilePreview extends Component {
@@ -22,6 +23,7 @@ class ProfilePreview extends Component {
             userIntrests:'Java, Python, C++, PHP, HTML, CSS',
             askedQ: '122',
             answeredQ: '143',
+            numOfChatroom: '20'
         }; 
 
     }
@@ -34,7 +36,7 @@ class ProfilePreview extends Component {
 
     render() { 
         return ( 
-            <div className="ProfilePreview-main-box ">
+            <div className="ProfilePreview ProfilePreview-main-box ">
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 <div className="ProfilePreview-exitImg">
                     {/* <Link to="/"> */}
@@ -50,11 +52,12 @@ class ProfilePreview extends Component {
                             </div>
                             <div className="ProfilePreview-FirstName-LastName-email-userName col">
                                 <div className="ProfilePreview-FirstName-LastName">
-                                    <p>{this.state.firstName} {this.state.lastName}</p>
+                                    <h1>{this.state.firstName} {this.state.lastName}</h1>
                                 </div>
-                                <div className="ProfilePreview-email-userName">
+                                <div className="ProfilePreview-email-userName d-flex">
                                     {/* <p>email : {this.state.userEmail}</p> */}
-                                    <p>username : {this.state.userName}</p>
+                                    <label for="ProfilePreview-userName-P">username : </label>
+                                    <p className="ProfilePreview-userName-P"> {this.state.userName}</p>
                                 </div>
                                 <div className="ProfilePreview-intrestsBox">
                                     <label for="ProfilePreview-intrests">Intrested In : </label> 
@@ -80,9 +83,12 @@ class ProfilePreview extends Component {
                                     <img src={askedQImg} data-tip={this.state.userName + " asked " + this.state.askedQ +" questions"} /> 
                                     <p>{this.state.askedQ}</p> 
                                 </div>
-                                <div></div>
+                                <div className="ProfilePreview-joined-chatrooms d-flex justify-content-center">
+                                    <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numOfChatroom +" chatrooms"} /> 
+                                    <p>{this.state.numOfChatroom}</p>
+                                    </div>
                                 <div className="ProfilePreview-answered-questions d-flex justify-content-center">
-                                    <img src={answeredQImg} data-tip={this.state.userName+ " answered " + this.state.answeredQ +" questions"} /> 
+                                    <img src={answeredQImg} data-tip={this.state.userName + " asked " + this.state.askedQ +" questions"} /> 
                                     <p>{this.state.answeredQ}</p>
                                 </div>
                             </div>
