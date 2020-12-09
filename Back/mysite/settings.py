@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'userprofile.apps.UserprofileConfig',
     'django_cleanup',
     'chatroom.apps.ChatroomConfig',
+    'generalchatroom.apps.GeneralchatroomConfig',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -73,7 +75,7 @@ AUTH_USER_MODEL = 'registeration.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'template')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+ASGI_APPLICATION = 'mysite.asgi.application'
 
 
 # Database
