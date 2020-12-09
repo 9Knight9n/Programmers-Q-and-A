@@ -184,13 +184,6 @@ class QuestionsPage extends Component {
                         <div className="mt-1 mb-1 ml-3 h-100">
                             <div className="questions-box">
                                 <div className="mr-5 mb-2">
-                                    <button onClick={ () =>
-                                    // console.log(this.state.ref)
-                                    scrollToComponent(this.state.ref[25], { offset: 0, align: 'middle', duration: 500, ease:'inCirc'})
-                                    // scroll({ ref: this.state.ref[13]})
-                                    }>
-                                        go to question 1
-                                    </button>
                                     {this.state.questions.map(question =>
                                     <div key={question.id} className="mb-3"
                                         ref={refToDiv => this.state.ref[question.id] = refToDiv}>
@@ -208,9 +201,6 @@ class QuestionsPage extends Component {
                                             Cid={this.state.ChatroomID}/>
                                     </div>
                                     )}
-                                    <div  ref={(div) => { this.myRef = div; }}>
-                                        Hello
-                                    </div>
                                 </div>
                             </div>
                         </div>

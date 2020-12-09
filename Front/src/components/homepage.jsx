@@ -11,6 +11,7 @@ import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
 import QuestionsPage from './questionsPage';
+import SearchResultPage from './searchResultPage';
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,6 +22,7 @@ import {
     useParams,
     useHistory 
   } from "react-router-dom";
+
 
 
 class Homepage extends Component {
@@ -92,10 +94,11 @@ class Homepage extends Component {
                     <div style={{height:"91vh"}}>
                         {/* <p>{this.state.activeChatroom}</p> */}
 
+                        <Switch>
+                            <Route path="/cr:chatroomid" component={QuestionsPage}/>
+                            <Route path="/search/:searchPhrase" component={SearchResultPage}/>
+                        </Switch>
                         
-
-                        <Route path="/cr:chatroomid" component={QuestionsPage}/>
-                        <Link id="selectChatroom" to={'/cr'+this.state.activeChatroom}/>
                         
                         
                     </div>

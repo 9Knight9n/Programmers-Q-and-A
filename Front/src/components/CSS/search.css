@@ -31,16 +31,16 @@
     width: calc(35vw - 60px);
 }
 #search #panel{
-    background-color: #03506f;
+    background-color: #01374c;
     border-radius: 2%;
     position: absolute;
-    height: 0px;
+    max-height: 0px;
     width: calc(35vw - 60px);
     z-index: 1024;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1) !important;
 }
 #search #panel.active{
-    height: 40vh;
+    max-height: 35vh;
     transition: height 0.5s ease-in-out;
 }
 #search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -63,27 +63,43 @@
 .display-none{
     display: none !important;
 }
-#search .nav-link{
+#search-result .nav-link{
     width: fit-content;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     /* border-bottom: 1px solid white !important; */
 }
-#search .nav-link:hover{
+#search-result .nav-link:hover{
     
     /* outline: none; */
     color: white !important;
     border: none;
     /* margin: 0; */
 }
-#search .nav-link.active{
-    border-top: 1px solid white !important;
+#search-result .nav-link.active{
+    /* border-top: 1px solid white !important;
     border-right: 1px solid white !important;
-    border-left: 1px solid white !important;
+    border-left: 1px solid white !important; */
     border-bottom: none !important;
-    background-color: #03506f !important;
+    background-color: #2842ad38 !important;
     
 }
-#search #header{
-    background-color: #023043
+/* #search-result #header{
+    background-color: #0709137a
+} */
+#search #sugestion{
+    height: 50px;
+    background-color:#03506f ;
+    border-radius: 7px;
+}
+#search-result{
+    background-color: #0709137a;
+}
+#search-result #body{
+    background-color:#2842ad38 !important ;
+}
+#search-result .found-chatroom{
+    height: 50px;
+    background-color:#03506f ;
+    border-radius: 7px;
 }
