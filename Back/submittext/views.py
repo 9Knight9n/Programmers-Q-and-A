@@ -240,10 +240,10 @@ def VoteQuestion(request):
     user = User.objects.filter(id=data['user_id'][0])
     user_question = User_Question.objects.filter(user=user[0] , question=question[0])
     if list(user_question) != []:
-        if user_question[0].isVoted == int(data['voteState'][0]):
+        if user_question[0].voteState == int(data['voteState'][0]):
             return Response({'message':'this user can not do that'})
         else:
-            user_question[0].isVoted = int(data['voteState'][0])
+            user_question[0].voteState = int(data['voteState'][0])
             if list(question) != []:
                 question[0].vote += int(data['voteState'][0])
                 question[0].save()
