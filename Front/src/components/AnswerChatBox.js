@@ -106,20 +106,17 @@ class AnswerChatBox  extends Component {
         }
       }
 
-    handleVote = async (up) => {
+      handleVote = async (up) => {
 
-        
         let voteState = null;
-        console.log(" VOTESTATE : " , this.state.voteState)
-        // console.log(e.target.className)
             if (up && this.state.voteState === 0) {
                 voteState = 1;
                 this.setState({
                     voteState:1,
                     vote: this.state.vote + 1,
                     PactiveVote: true,
-                    
                 })
+                this.setState({loading:true})
                 console.log(" vote 1 : " , this.state.voteState)
             }else if (up && this.state.voteState === 1) {
                 // voteState = 1;
@@ -131,6 +128,7 @@ class AnswerChatBox  extends Component {
                     vote: this.state.vote - 1,
                     PactiveVote: false,
                 })
+                this.setState({loading:true})
                 console.log(" vote 3 : " , this.state.voteState)
             }else if (!up && this.state.voteState === 0) {
                 voteState = -1;
@@ -139,6 +137,7 @@ class AnswerChatBox  extends Component {
                     vote: this.state.vote - 1,
                     NactiveVote: true,
                 })
+                this.setState({loading:true})
                 console.log(" vote 4 : " , this.state.vote)
             }else if (!up && this.state.voteState === -1) {
                 // voteState = -1;
@@ -150,10 +149,9 @@ class AnswerChatBox  extends Component {
                     vote: this.state.vote + 1,
                     NactiveVote: false,
                 })
-                console.log(" vote 6 : " , this.state.voteState)
+                this.setState({loading:true})
             }
-            this.setState({loading:true})
-            console.log("this sent from front: " , this.state.voteState)
+
             let config ={
                 url:"http://127.0.0.1:8000/api/VoteAnswer/",
                 needToken:true,
@@ -180,7 +178,7 @@ class AnswerChatBox  extends Component {
             // console.log("outside",data)
             console.log(data)
             this.setState({loading:false})
-            console.log("this come from backend: " , this.state.voteState)
+            console.log("this is vote : " , this.state.voteState)
         
     }
 

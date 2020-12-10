@@ -101,10 +101,12 @@ button {
 }
 
 .negativeVoteImg {
+  cursor: pointer;
 }
 
 .positiveVoteImg {
   margin-top: 5%;
+  cursor: pointer;
 }
 
 .date {
@@ -123,14 +125,6 @@ button {
   height: 3vh;
 }
 
-.vote svg {
-  cursor: pointer;
-}
-
-.vote {
-  margin-left: -24%;
-}
-
 .trueAnswer img {
   background-color: transparent;
   cursor: pointer;
@@ -147,3 +141,12 @@ button {
 .dropdown-item:hover {
   background-color: #9d9dd1;
 }
+
+.vote svg {
+  cursor: pointer;
+}
+
+.vote {
+  margin-left: -24%;
+}
+
