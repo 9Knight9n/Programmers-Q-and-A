@@ -238,7 +238,10 @@ def VoteQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    user_question = User_Question.objects.filter(user=user[0] , question=question[0])
+    if (list(user) != []) and (list(question) != []):
+        user_question = User_Question.objects.filter(user=user[0] , question=question[0])
+    else:
+        return Response({"message": 'user or question not exists'})
     if list(user_question) != []:
         if user_question[0].voteState == int(data['voteState'][0]):
             return Response({'message':'this user can not do that'})
@@ -304,7 +307,6 @@ def VoteAnswer(request):
     data = dict(request.POST)
     answer = Answer.objects.filter(id=data['answer_id'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    print(user , answer )
     user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
     if list(user_answer) != []:
         if user_answer[0].voteState == int(data['voteState'][0]):
@@ -312,9 +314,9 @@ def VoteAnswer(request):
         else:
             
             if list(answer) != []:
-                answer[0].vote += int(data['voteState'][0]) - user_answer[0].isVoted
+                answer[0].vote += int(data['voteState'][0]) - user_answer[0].voteState
                 answer[0].save()
-                user_answer[0].isVoted = int(data['voteState'][0])
+                user_answer[0].voteState = int(data['voteState'][0])
                 user_answer[0].save()
     else:
         user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , voteState=int(data['voteState'][0]))
