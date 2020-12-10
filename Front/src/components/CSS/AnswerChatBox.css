@@ -101,10 +101,12 @@ button {
 }
 
 .negativeVoteImg {
+  cursor: pointer;
 }
 
 .positiveVoteImg {
   margin-top: 5%;
+  cursor: pointer;
 }
 
 .date {
@@ -121,14 +123,6 @@ button {
 .trueAnswer button {
   width: 90%;
   height: 3vh;
-}
-
-.vote svg {
-  cursor: pointer;
-}
-
-.vote {
-  margin-left: -24%;
 }
 
 .trueAnswer img {
