@@ -140,3 +140,5 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 Back/db.sqlite3
+*.pyc
+*.pyc

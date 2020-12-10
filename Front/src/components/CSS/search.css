@@ -1,0 +1,105 @@
+#search{
+    width: 35vw;
+}
+#search div#bar{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 30px;
+    /* transition: display 1s; */
+    /* display: none; */
+    /* -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out; */
+    transition: width 1s ease-in-out;
+}
+#search div#bar.active{
+    width: 35vw;
+    /* display: initial !important; */
+}
+#search .search-button{
+    /* outline: 0 !important; */
+    /* border: none; */
+    background-color: #00000000 !important;
+    outline: none;
+    
+    /* width: 40px !important; */
+    /* background-color: #00000000 !important; */
+}
+#search .form-control{
+    color: white;
+    background-color: #03506f !important;
+    width: calc(35vw - 60px);
+}
+#search #panel{
+    background-color: #01374c;
+    border-radius: 2%;
+    position: absolute;
+    max-height: 0px;
+    width: calc(35vw - 60px);
+    z-index: 1024;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1) !important;
+}
+#search #panel.active{
+    max-height: 35vh;
+    transition: height 0.5s ease-in-out;
+}
+#search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(200, 200, 200);
+    opacity: 1; /* Firefox */
+  }
+  
+  #search input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(200, 200, 200);
+  }
+  
+  #search input::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(200, 200, 200);
+  }
+
+  #search .search-result{
+      display: block;
+  }
+
+.display-none{
+    display: none !important;
+}
+#search-result .nav-link{
+    width: fit-content;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    /* border-bottom: 1px solid white !important; */
+}
+#search-result .nav-link:hover{
+    
+    /* outline: none; */
+    color: white !important;
+    border: none;
+    /* margin: 0; */
+}
+#search-result .nav-link.active{
+    /* border-top: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-left: 1px solid white !important; */
+    border-bottom: none !important;
+    background-color: #2842ad38 !important;
+    
+}
+/* #search-result #header{
+    background-color: #0709137a
+} */
+#search #sugestion{
+    height: 50px;
+    background-color:#03506f ;
+    border-radius: 7px;
+}
+#search-result{
+    background-color: #0709137a;
+}
+#search-result #body{
+    background-color:#2842ad38 !important ;
+}
+#search-result .found-chatroom{
+    height: 50px;
+    background-color:#03506f ;
+    border-radius: 7px;
+}

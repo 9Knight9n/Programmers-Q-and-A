@@ -6,13 +6,16 @@ import {
   Redirect,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
+  useLocation
 } from "react-router-dom";
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
+import AnswerPage from './components/answersPage'
+import QuestionsPage from './components/questionsPage'
 import './index.css';
 
 
@@ -22,17 +25,42 @@ class App extends Component {
     
   }
 
+  componentDidMount=()=>{
+    
+    if(!sessionStorage.getItem("avatar"))
+    {
+      console.log(window.location.pathname)
+      sessionStorage.setItem("targetURL",window.location.pathname)
+      document.getElementById("loginfirst").click()
+      
+    }
+      
+  }
+
+  // getUrl()
+  // {
+  //   const location = useLocation();
+  //   console.log(location.pathname);
+  // }
+
 
   render(){
     return (
       <Router>
-          <Switch>
+        <Link id="loginfirst" to="/login"/>
+        <Switch>
           <Route path="/login">
             <SignInForm />
           </Route>
           <Route path="/signup">
             <SignUpForm />
           </Route>
+          <Route path="/answerPage">
+            <AnswerPage />
+          </Route>
+          <Route path="/questionPage">
+            <QuestionsPage />
+          </Route> 
           <Route path="/setting">
             <Setting />
           </Route>
@@ -40,7 +68,6 @@ class App extends Component {
             <Homepage />
           </Route>
         </Switch>
-        {!sessionStorage.getItem("avatar")? <Redirect to="/login" /> : ""}
         {/* {this.state.currentComponent} */}
       </Router>
     ); 
