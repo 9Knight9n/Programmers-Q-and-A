@@ -11,7 +11,7 @@ class Question(models.Model):
     time = models.DateTimeField()
     file = models.FileField(upload_to='question/file' , null=True)
     isAnswered = models.BooleanField(default=False)
-    commonQuestion = models.IntegerField(default=0)
+    vote = models.IntegerField(default=0)
 
 class Answer(models.Model):
     user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
