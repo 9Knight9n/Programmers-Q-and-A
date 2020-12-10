@@ -234,27 +234,27 @@ def DeleteQuestion(request):
         return Response({'message':'you can`t delete'})
 
 @api_view(['POST'])
-def CommonQuestion(request):
+def VoteQuestion(request):
     data = dict(request.POST)
     question = Question.objects.filter(id=data['question_id'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    print(question[0],":",user[0])
     user_question = User_Question.objects.filter(user=user[0] , question=question[0])
-    if list(user_question) == []:
-        if list(question) != []:
-            question[0].commonQuestion += 1
-            question[0].save()
+    if list(user_question) != []:
+        if user_question[0].voteState == int(data['voteState'][0]):
+            return Response({'message':'this user can not do that'})
+        else:
+            user_question[0].voteState = int(data['voteState'][0])
+            if list(question) != []:
+                question[0].vote += int(data['voteState'][0])
+                question[0].save()
+                user_question[0].voteState = int(data['voteState'][0])
+                user_question[0].save()
     else:
+        user_question = User_Question.objects.create(user=user[0] , question=question[0] , voteState=data['voteState'][0])
         if list(question) != []:
-            question[0].commonQuestion -= 1
+            question[0].vote += int(data['voteState'][0])
             question[0].save()
-    if list(user_question) == []:
-        uq = User_Question.objects.create(user=user[0] , question=question[0])
-        uq.save()
-        return Response({'message':'commonQuestion it'})
-    else:
-        user_question[0].delete()
-        return Response({'message':'uncommonQuestion it'})
+    return Response({'message':'done it'})
 
 @api_view(['POST'])
 def ShowCommonQuestion(request):
