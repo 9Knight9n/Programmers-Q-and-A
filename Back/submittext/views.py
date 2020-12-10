@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from django.db.models import Q
 import datetime
 
+# import time 
+
 from .serializer import QuestionSerializer , AnswerSerializer , ShowUserProfileSerializer
 from .models import Answer , Question , Chatroom_User , User_Question , User_Answer
 from chatroom.models import Chatroom
@@ -95,7 +97,7 @@ def Sort(sub_li):
     sub_li.sort(key = lambda x: x[1]) 
     return sub_li[::-1]
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
     query = Q()
@@ -141,7 +143,7 @@ def GeneralSearch(request):
         # chatroom with more user
         # question with true answer
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def SeggestionChatroomSreach(request):
     searchText = request.data["searchText"]
     chatroom_value_list = []
@@ -162,7 +164,7 @@ def SeggestionChatroomSreach(request):
         data['chatroom_id'] = chatroom[0].id
         data['chatroom_name'] = chatroom[0].chatroomName
         data_list.append(data)
-
+    # time.sleep(2)
     return Response(data_list)
 
 

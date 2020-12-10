@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/search.css';
+import {request} from './requests';
 
 
 class Search extends Component {
@@ -9,20 +10,7 @@ class Search extends Component {
         panelOpened:false,
         searchInput:"",
         result:false,
-        sugestions:[
-            {
-                id:1,
-                label:"Channel 1"
-            },
-            {
-                id:2,
-                label:"Channel 2"
-            },
-            {
-                id:3,
-                label:"Channel 3"
-            }
-        ]
+        sugestions:[]
     }
 
 
@@ -49,6 +37,40 @@ class Search extends Component {
         
     }
 
+    handelInputChange=(event)=>{
+        let input = event.target.value;
+        this.setState({searchInput:input})
+        if (input.length >2)
+            this.loadSugestions(input);
+        else
+            this.setState({panelOpened:false})
+    }
+
+    loadSugestions= async (input)=>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/SeggestionChatroomSreach/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "searchText",
+            ],
+            formValue:[
+                input,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        console.log("outside",data)
+        if (data)
+        {
+            this.setState({sugestions:data,
+                panelOpened:true})
+            console.log("state set")
+        }
+    }
+
     
     render() { 
         return (  
@@ -63,15 +85,15 @@ class Search extends Component {
                                 <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                             </svg>
                         </button>
-                        <input value={this.state.searchInput} onChange={event => this.setState({searchInput:event.target.value})}
+                        <input value={this.state.searchInput} onChange={this.handelInputChange}
                             className="mr-sm-2 form-control" placeholder="Search" />
                     </div>
 
-                    <div id='panel' className={"mt-5 mr-2 ".concat(this.state.result?" active":"")}>
-                        <div className={"search-result".concat(this.state.result?" ":" display-none")}>
+                    <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
+                        <div className={"search-result".concat(this.state.panelOpened?" ":" display-none")}>
                             {this.state.sugestions.map(sug =>
-                            <div id="sugestion" key={sug.id} className="m-2 d-flex pl-3">
-                                <p className="mt-auto mb-auto">{sug.label}</p>
+                            <div id="sugestion" key={sug.chatroom_id} className="m-2 d-flex pl-3">
+                                <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
                             </div>    
                             )}
                         </div>
