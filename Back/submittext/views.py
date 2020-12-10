@@ -316,7 +316,7 @@ def VoteAnswer(request):
                 user_answer[0].isVoted = int(data['voteState'][0])
                 user_answer[0].save()
     else:
-        user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=int(data['voteState'][0]))
+        user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , voteState=int(data['voteState'][0]))
         if list(answer) != []:
             print("this is ISVOTED :" , user_answer.voteState)
             answer[0].vote += int(data['voteState'][0])
