@@ -128,12 +128,34 @@ def GeneralSearch(request):
     for i in valuelist:
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
+            data['chatroom'] = queryset[i[0]].chatroom
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
             else:
                 data['user'] = 'user does not exist'
             data_list.append(data)
-    return Response(data_list)
+    print(data_list[0]['id'])
+    chatroom_list = []
+    for i in data_list:
+        in_chatroom_list = False
+        for c in chatroom_list:
+            if c['ChatroomID'] == i["chatroom"]:
+                in_chatroom_list = True
+        if not in_chatroom_list:
+            if i["chatroom"] != None:
+                chatroom_data = {}
+                chatroom_data["ChatroomID"] = i['chatroom'].id
+                chatroom_data["image"] = open( str(i["chatroom"].chatroomAvatar), 'r').read()
+                chatroom_list.append(chatroom_data)
+        if i["chatroom"] == None:
+            i["chatroom"] = "not exist"
+        else:
+            print(i["chatroom"].id , "-----------------------------------")
+            i["chatroom"] = i["chatroom"].id
+        print(i["chatroom"])
+
+
+    return Response({"questions": data_list , "chatrooms": chatroom_list})
 
 #document :
     # realtime sreach (only on chatrooms)
