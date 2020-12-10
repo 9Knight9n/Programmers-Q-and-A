@@ -37,4 +37,4 @@ class User_Question(models.Model):
 class User_Answer(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer , on_delete=models.CASCADE)
-    isVoted = models.IntegerField(default=0)
+    voteState = models.IntegerField(default=0)

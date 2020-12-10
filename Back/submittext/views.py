@@ -302,28 +302,23 @@ def DeleteAnswer(request):
 @api_view(['POST'])
 def VoteAnswer(request):
     data = dict(request.POST)
-    print(data)
     answer = Answer.objects.filter(id=data['answer_id'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    print("this is vote :" , data['voteState'])
      
     user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
     if list(user_answer) != []:
-        if user_answer[0].isVoted == int(data['voteState'][0]):
+        if user_answer[0].voteState == int(data['voteState'][0]):
             return Response({'message':'this user can not do that'})
         else:
-            # user_answer[0].isVoted = int(data['voteState'][0])
             if list(answer) != []:
-                print("this is ISVOTED :" , user_answer[0].isVoted)
-                answer[0].vote += int(data['voteState'][0]) - user_answer[0].isVoted
+                answer[0].vote += int(data['voteState'][0]) - user_answer[0].voteState
                 answer[0].save()
                 user_answer[0].isVoted = int(data['voteState'][0])
                 user_answer[0].save()
     else:
         user_answer = User_Answer.objects.create(user=user[0] , answer=answer[0] , isVoted=int(data['voteState'][0]))
-        # user_answer = User_Question.objects.create(user=user[0] , answer=answer[0] , )
         if list(answer) != []:
-            print("this is ISVOTED :" , user_answer.isVoted)
+            print("this is ISVOTED :" , user_answer.voteState)
             answer[0].vote += int(data['voteState'][0])
             answer[0].save()
     return Response({'message':'done it'})
@@ -334,6 +329,6 @@ def ShowVoteAnswer(request):
     user = User.objects.filter(id=request.data['user_id'][0])
     user_answer = User_Answer.objects.filter(user=user[0] , answer=answer[0])
     if list(user_answer) != []:
-        return Response({'message': user_answer.isVoted})
+        return Response({'message': user_answer.voteState})
     else:
         return Response({'message':0})
