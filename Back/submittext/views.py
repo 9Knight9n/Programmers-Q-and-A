@@ -122,7 +122,9 @@ def GeneralSearch(request):
             numberOfUser = queryset[q].chatroom.numberOfUser
         else:
             numberOfUser = 0
-        valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)])
+        value = calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)
+        if value > 0:
+            valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)])
     valuelist = Sort(valuelist)
     data_list = []
     for i in valuelist:
@@ -134,7 +136,6 @@ def GeneralSearch(request):
             else:
                 data['user'] = 'user does not exist'
             data_list.append(data)
-    print(data_list[0]['id'])
     chatroom_list = []
     for i in data_list:
         in_chatroom_list = False
