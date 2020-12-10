@@ -65,8 +65,9 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
-    answers = models.IntegerField(default=0)
+    answeredAnswers = models.IntegerField(default=0)
     onlineTime = models.TimeField(null=True)
+    numberOfChatrooms = models.IntegerField(default=0)
     # theard page of profile
     description = models.TextField(max_length=100 , null=True)
     cvfile = models.FileField(upload_to="profile/cv",null=True)

@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.response import Response
+import datetime
 
 from .models import User
 from .serializer import AccountRegistrationSerializer, UserSigninSerializer
@@ -13,6 +14,8 @@ def signup(request):
     if serializer.is_valid():
         serializer.save()
         user = User.objects.get(email=request.data['email'])
+        user.active = True
+        user.last_login = datetime.datetime.now()
         data = {}
         data['id'] = user.id
         data['email'] = user.email
@@ -39,6 +42,8 @@ def signin(request):
             return Response({"message":"this email does not exist!"} )
         else:
             if check_user[0].check_password(post_data['password'][0]):
+                check_user[0].active = True
+                check_user[0].last_login = datetime.datetime.now()
                 serializer = UserSigninSerializer(check_user[0])
                 data = serializer.data
                 data['username'] = check_user[0].username
