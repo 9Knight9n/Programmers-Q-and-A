@@ -41,7 +41,8 @@
 }
 #search #panel.active{
     max-height: 35vh;
-    transition: height 0.5s ease-in-out;
+    overflow-y: auto;
+    transition: max-height 1s ease-in-out;
 }
 #search input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(200, 200, 200);
@@ -87,7 +88,7 @@
 /* #search-result #header{
     background-color: #0709137a
 } */
-#search #sugestion{
+#search #suggestion{
     height: 50px;
     background-color:#03506f ;
     border-radius: 7px;

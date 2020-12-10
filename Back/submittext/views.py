@@ -147,6 +147,7 @@ def GeneralSearch(request):
                 chatroom_data = {}
                 chatroom_data["ChatroomID"] = i['chatroom'].id
                 chatroom_data["image"] = open( str(i["chatroom"].chatroomAvatar), 'r').read()
+                chatroom_data["name"] = i['chatroom'].chatroomName
                 chatroom_list.append(chatroom_data)
         if i["chatroom"] == None:
             i["chatroom"] = "not exist"
