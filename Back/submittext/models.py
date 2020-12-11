@@ -33,7 +33,6 @@ class Chatroom_User(models.Model):
 class User_Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     question = models.ForeignKey(Question , on_delete=models.CASCADE)
-    voteState = models.IntegerField(default=0)
 
 class User_Answer(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)

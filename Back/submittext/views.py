@@ -25,9 +25,9 @@ def ShowQuestion(request):
             # print(i)
             user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
             if list(user_question) != []:
-                data["voteState"] = user_question[0].voteState
+                data['sameProblem']=True
             else:
-                data["voteState"] = 0
+                data['sameProblem']=False
             data['time']=i.time.ctime()
             if data['file']!=None:
                 data['file'] = 'http://127.0.0.1:8000' + data['file']
@@ -133,11 +133,11 @@ def GeneralSearch(request):
     for i in valuelist:
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
+            data['chatroom'] = queryset[i[0]].chatroom
             user_question = User_Question.objects.filter(user=user[0], question=queryset[i[0]])
             if list(user_question) == []:
                 return Response({'message':'user_question not found'})
             data['voteState'] = user_question[0].voteState
-            data['chatroom'] = queryset[i[0]].chatroom
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
             else:
@@ -159,7 +159,9 @@ def GeneralSearch(request):
         if i["chatroom"] == None:
             i["chatroom"] = "not exist"
         else:
+            print(i["chatroom"].id , "-----------------------------------")
             i["chatroom"] = i["chatroom"].id
+        print(i["chatroom"])
 
 
     return Response({"questions": data_list , "chatrooms": chatroom_list})
