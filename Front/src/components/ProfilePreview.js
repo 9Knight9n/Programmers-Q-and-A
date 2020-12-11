@@ -122,7 +122,7 @@ class ProfilePreview extends Component {
                             </div> 
                         </div>
                         <div className="ProfilePreview-bioBox">
-                            <label for="ProfilePreview-bio">Bio</label>
+                            <label for="ProfilePreview-bio">Bio :</label>
                             <div className="ProfilePreview-bio">
                                 <p>
                                     {this.state.userBio}
