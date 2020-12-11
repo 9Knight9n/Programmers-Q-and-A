@@ -136,8 +136,9 @@ def GeneralSearch(request):
             data['chatroom'] = queryset[i[0]].chatroom
             user_question = User_Question.objects.filter(user=user[0], question=queryset[i[0]])
             if list(user_question) == []:
-                return Response({'message':'user_question not found'})
-            data['voteState'] = user_question[0].voteState
+                data['voteState'] = 0
+            else:
+                data['voteState'] = user_question[0].voteState
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
             else:
