@@ -7,13 +7,19 @@
   margin: 6% 10% 10% 19%;
 }
 
+.chProfileOwner a {
+  color: #5555ff !important;
+  font-size: medium !important;
+}
+
 .chProfileOwner p {
+  color: #7474ab !important;
   font-size: medium !important;
 }
 
 .chProfileOwner label {
   font-size: large !important;
-  color: #6363d3;
+  color: #9d9dd1;
 }
 
 .chProfileOwner-profile {
@@ -220,6 +226,15 @@
   padding-left: 8%;
 }
 
+.chProfileOwner-deleteButton {
+  margin-top: 10%;
+}
+
+.chProfileOwner-deleteButton button {
+  /* outline: none; */
+  width: 100%;
+}
+
 .user-preview {
   width: 100%;
 }
@@ -315,4 +330,9 @@ div.container {
   color: #000203;
   width: 52%;
   margin-top: 30%;
+}
+
+/*abed*/
+.list-group-item {
+  border-radius: 0px !important;
 }

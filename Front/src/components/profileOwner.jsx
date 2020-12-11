@@ -109,8 +109,7 @@ class ProfileOwner extends Component {
                                             <div className="chProfileOwner-chLinkEditImg">{this.state.isOwner && !this.state.OwnerIsEditing ? <img src={editIcon} onClick={() => this.handleEditClick(3) } /> : ''}</div>
                                         </div>
                                         <div className="chProfileOwner-chLink">
-                                            {this.state.isOwner && this.state.OwnerIsEditingLink ? <input value={this.state.chatroomLink}></input> : <p>{this.state.chatroomLink}</p>}
-                                            
+                                            {this.state.isOwner && this.state.OwnerIsEditingLink ? <input value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">{this.state.chatroomLink}</a>}
                                         </div>
                                     </div>
                                 </div> 
@@ -124,9 +123,9 @@ class ProfileOwner extends Component {
                                     {this.state.isOwner && this.state.OwnerIsEditingDes ? <input value={this.state.chatroomDes}></input> : <p>{this.state.chatroomDes}</p>}
                                 </div>
                             </div>
-                            {/* <div className="chProfileOwner-deleteButton">
+                            <div className="chProfileOwner-deleteButton">
                                 <button>Delete Chatroom</button>
-                            </div> */}
+                            </div>
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
@@ -156,8 +155,7 @@ class ProfileOwner extends Component {
                             <li href="#" className="list-group-item text-left d-flex flex-row w-100">
                                 <img class="img-thumbnail" src="https://bootdey.com/img/Content/User_for_snippets.png"/>
                                 <label class="name w-75 ml-3 mt-auto mb-auto">
-                                    
-                                <p>Juan guillermo cuadrado</p>
+                                    Juan guillermo cuadrado
                                 </label>
                                 
                                
