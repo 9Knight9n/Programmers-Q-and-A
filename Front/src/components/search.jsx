@@ -9,8 +9,8 @@ class Search extends Component {
         focused:false,
         panelOpened:false,
         searchInput:"",
-        result:false,
-        sugestions:[]
+        // result:false,
+        suggestions:[]
     }
 
 
@@ -21,12 +21,12 @@ class Search extends Component {
             {
                 document.getElementById("goToSearchResultPage").click();
                 this.setState({searchInput:""});
-                this.setState({focused:false,})
+                this.setState({focused:false,panelOpened:false})
             }
                 
             else
             {
-
+                
             }
         }
         else
@@ -41,12 +41,15 @@ class Search extends Component {
         let input = event.target.value;
         this.setState({searchInput:input})
         if (input.length >2)
-            this.loadSugestions(input);
+        {
+            this.setState({panelOpened:true})
+            this.loadSuggestions(input);
+        }
         else
             this.setState({panelOpened:false})
     }
 
-    loadSugestions= async (input)=>{
+    loadSuggestions= async (input)=>{
         let config ={
             url:"http://127.0.0.1:8000/api/SeggestionChatroomSreach/",
             needToken:true,
@@ -62,11 +65,10 @@ class Search extends Component {
         // console.log("outside 0",data)
         data = await request(config)
         // console.log(await request(config))
-        console.log("outside",data)
+        // console.log("outside",data)
         if (data)
         {
-            this.setState({sugestions:data,
-                panelOpened:true})
+            this.setState({suggestions:data,})
             console.log("state set")
         }
     }
@@ -91,10 +93,15 @@ class Search extends Component {
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
                         <div className={"search-result".concat(this.state.panelOpened?" ":" display-none")}>
-                            {this.state.sugestions.map(sug =>
-                            <div id="sugestion" key={sug.chatroom_id} className="m-2 d-flex pl-3">
+                            {this.state.suggestions.map(sug =>
+                            <Link 
+                                to={"/cr"+sug.chatroom_id} 
+                                id="suggestion" 
+                                key={sug.chatroom_id} 
+                                className="m-2 d-flex pl-3"
+                                onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false})}>
                                 <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
-                            </div>    
+                            </Link>    
                             )}
                         </div>
                     </div>

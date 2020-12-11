@@ -8,35 +8,43 @@ class SearchResultPage extends Component {
     state = {
         selectedTab:1,
         searchInput:this.props.match.params.searchPhrase,
-        chatrooms:[
-            {
-                label:"chatroom 1",
-                id:1
-            },
-            {
-                label:"chatroom 2",
-                id:2
-            },
-            {
-                label:"chatroom 3",
-                id:3
-            },
-            {
-                label:"chatroom 4",
-                id:4
-            },
-        ],
+        chatrooms:[],
         questions:[]
     }
 
-    componentDidMount(){
-
+    componentDidMount=()=>{
+        
 
         document.getElementById("searchChatroomTab").click();
     }
 
+    loadData=async()=>{
+        let config ={
+            url:"http://127.0.0.1:8000/api/GeneralSearch/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "searchText",
+            ],
+            formValue:[
+                this.state.searchInput,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        // console.log("outside",data)
+        if (data)
+        {
+            this.setState({questions:data.questions,chatrooms:data.chatrooms})
+            console.log("state set")
+        }
+    }
+
+
     changeTab=(tab)=>{
-        this.setState({selectedTab:tab})
+        this.setState({chatrooms:tab})
     }
 
     render() { 
@@ -98,7 +106,7 @@ class SearchResultPage extends Component {
                                                 showMoreButton={true}
                                                 isAnswered={question.isAnswered}
                                                 Qid={question.id}
-                                                Cid={this.state.ChatroomID}/>
+                                                Cid={question.chatroom}/>
                                         ))}
                                     </Route>
                                 </Switch>
