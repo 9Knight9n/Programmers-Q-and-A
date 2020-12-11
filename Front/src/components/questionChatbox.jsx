@@ -9,6 +9,7 @@ import ReactTooltip from 'react-tooltip';
 import Texteditor from './texteditor';
 import {request} from './requests';
 import {Link} from 'react-router-dom';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 
@@ -374,15 +375,16 @@ class QuestionChatbox extends Component {
                                     <ShowMoreText
                                     /* Default options */
                                     lines={3}
-                                    more={<p className="ml-auto blue-on-hover" >Show more</p>}
-                                    less={<p className="ml-auto blue-on-hover">Show less</p>}
+                                    more={<p className="ml-auto show-more-less" >Show more</p>}
+                                    less={<p className="ml-auto show-more-less">Show less</p>}
                                     className='content-css'
                                     anchorClass='show-more-less d-flex flex-row'
                                     onClick={this.executeOnClick}
                                     expanded={false}>
-                                        {this.state.context}
+                                        {ReactHtmlParser(this.state.context)}
+                                        {/* {this.state.context} */}
                                     </ShowMoreText>:
-                                    this.state.context
+                                    ReactHtmlParser(this.state.context)
                                 }
                                 </div>
                                 <small className="ml-auto mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
