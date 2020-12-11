@@ -141,8 +141,10 @@ def GeneralSearch(request):
                 data['voteState'] = user_question[0].voteState
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
+                data['userid'] = queryset[i[0]].user.id
             else:
                 data['user'] = 'user does not exist'
+                data['userid'] = 'user does not exist'
             data_list.append(data)
     chatroom_list = []
     for i in data_list:
