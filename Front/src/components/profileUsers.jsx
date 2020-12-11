@@ -11,10 +11,10 @@ class ProfileUsers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: 'Sadegh',
-            lastName: 'Jafari',
-            // userEmail: 'sadegh@yahoo.com',
-            userName: 'SadeghJafari79',
+            // firstName: 'Sadegh',
+            // lastName: 'Jafari',
+            // // userEmail: 'sadegh@yahoo.com',
+            // userName: 'SadeghJafari79',
             userId: null,
             userBio: 'Hi! This is my bio. Thanks for visiting',
             userIntrests:'Java, Python, C++, PHP, HTML, CSS',
@@ -39,20 +39,24 @@ class ProfileUsers extends Component {
                             <div className="ProfilePreview-profileImg col">
                                 <img src={profileImg} />
                                 {/* src={sessionStorage.getItem(this.props.userid + ":avatar")} */}
-                            </div>
+                            </div><li></li>
+                            <p>profile Name</p>
+                            <p>chatroom title</p>
+                            <p>discription</p>
                             <div className="ProfilePreview-FirstName-LastName-email-userName col">
                                 <div className="ProfilePreview-FirstName-LastName">
                                     <p>{this.state.firstName} {this.state.lastName}</p>
                                 </div>
                                 <div className="ProfilePreview-email-userName">
                                     {/* <p>email : {this.state.userEmail}</p> */}
-                                    <p>username : {this.state.userName}</p>
+                                    {/* <p>username : {this.state.userName}</p> */}
                                 </div>
                                 
                             </div> 
                         </div>
                      
                     </div>
+                    <button className="btn btn-primary" onClick={this.handleSubmit}>leave chatroom</button>
                     <div className="user-preview"> <div class="main-container">
                 <div class="left-container container">
                     
@@ -90,6 +94,14 @@ class ProfileUsers extends Component {
                                 <label class="name w-75 ml-3 mt-auto mb-auto">
                                     
                                 <p>Juan guillermo cuadrado</p>
+                                </label>
+                                
+                               
+                            </li>
+                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
+                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
+                                <label class="name w-75 ml-3 mt-auto mb-auto">
+                                jo aderestand 
                                 </label>
                                 
                                
