@@ -1,6 +1,6 @@
 .chProfileOwner-main-box {
-  width: 65%;
-  height: 78vh;
+  width: 55%;
+  height: 65vh;
   background: #333b60;
   overflow: auto;
   border: 6px solid #5c6bc0;
@@ -14,6 +14,10 @@
 .chProfileOwner label {
   font-size: large !important;
   color: #6363d3;
+}
+
+.chProfileOwner-profile {
+  width: 100%;
 }
 
 .chProfileOwner-exitImg {
@@ -71,7 +75,7 @@
 }
 
 .chProfileOwner-profileImg {
-  width: 7vw;
+  width: 70%;
   margin-top: 2%;
   padding: 0%;
   margin-left: 4%;
@@ -83,6 +87,7 @@
 }
 
 .chProfileOwner-chName-chTitle-chLink {
+  width: 100%;
   margin-left: 10%;
   margin-top: 5%;
   padding: 0%;
@@ -107,6 +112,10 @@
   visibility: hidden;
 }
 
+.chProfileOwner-chNameBox {
+  width: 100%;
+}
+
 .chProfileOwner-chNameBox:hover .chProfileOwner-chNameEditImg {
   visibility: visible;
 }
@@ -128,6 +137,7 @@
 }
 
 .chProfileOwner-chTitle {
+  width: 100%;
   color: #9d9dd1;
 }
 

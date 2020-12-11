@@ -7,22 +7,57 @@ import {Link} from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import './CSS/profileOwner.css';
 import editIcon from '../img/edit.png'
-
+import Cookies from 'js-cookie';
 class ProfileOwner extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chatroomName: '404!Java',
-            chatroomTitle: 'Programming languages (Java)',
-            chatroomDes: 'Hi! Thanks for visiting',
-            chatroomLink: 'This is link',
-            isOwner: true,
+            chatroomName: '',
+            chatroomTitle: '',
+            chatroomDes: '',
+            chatroomLink: '',
             OwnerIsEditingName: false,
             OwnerIsEditingLink: false,
-            OwnerIsEditingdes: false
+            OwnerIsEditingdes: false,
+            chatroomAvatar: '',
         }; 
 
     }
+
+    componentDidMount = async () => {
+        this.loadData();
+    }
+
+    loadData = async () => {
+        // this.setState({loading:true})
+
+        let config = {
+            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                5
+            ]
+        };
+        let data = [];
+        data = await request(config);
+        if (data) {
+            this.setState({
+                chatroomName: data.chatroomName,
+                chatroomTitle: data.selectedTopic,
+                chatroomDes: data.Description,
+                chatroomLink: data.topicLink,
+                chatroomAvatar: data.chatroom_profile_image,
+                isOwner: Cookies.get("id") === data.owner,
+            });
+        }
+        console.log(data)
+        // this.setState({loading:false})
+    }
+
     handleEditClick = (id) =>{
         if (id == 1)
             this.setState({
@@ -53,18 +88,15 @@ class ProfileOwner extends Component {
                     <div  className="chProfileOwner-profile">
                             <div className="chProfileOwner-headerProfile row d-flex justify-content-center">
                                 <div className="chProfileOwner-profileImg col">
-                                    <img src={profileImg} />
-                                    {/* src={sessionStorage.getItem(this.props.userid + ":avatar")} */}
+                                    <img src={this.state.chatroomAvatar} />
                                 </div>
                                 <div className="chProfileOwner-chName-chTitle-chLink col">
                                     <div className="chProfileOwner-chNameBox">
                                         <div className="d-flex flex-row">
-                                            
                                             <div className="chProfileOwner-chNameEditImg">{this.state.isOwner && !this.state.OwnerIsEditingName ? <img onClick={() => this.handleEditClick(1) } src={editIcon} /> : ''}</div>
                                         </div>
                                         <div className="chProfileOwner-chName">
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
-                                           
                                         </div>
                                     </div>
                                     <div className="chProfileOwner-chTitle">
