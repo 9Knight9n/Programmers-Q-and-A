@@ -117,6 +117,9 @@ def GeneralSearch(request):
     queryset = Question.objects.filter(query)
     valuelist = []
     searchText = request.data["searchText"]
+    user = User.objects.filter(id=request.data['user_id']) 
+    if list(user) == []:
+        return Response({'message':'user not found'})
     for q in range(len(queryset)):
         if queryset[q].chatroom != None:
             numberOfUser = queryset[q].chatroom.numberOfUser
@@ -130,6 +133,10 @@ def GeneralSearch(request):
     for i in valuelist:
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
+            user_question = User_Question.objects.filter(user=user[0], question=queryset[i[0]])
+            if list(user_question) == []:
+                return Response({'message':'user_question not found'})
+            data['voteState'] = user_question[0].voteState
             data['chatroom'] = queryset[i[0]].chatroom
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
