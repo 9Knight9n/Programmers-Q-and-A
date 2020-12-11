@@ -8,7 +8,7 @@ class Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
     chatroom = models.ForeignKey(Chatroom , on_delete=models.SET_NULL , null=True)
     text = models.TextField()
-    time = models.DateTimeField(default=datetime.datetime.now())
+    time = models.DateTimeField()
     file = models.FileField(upload_to='question/file' , null=True)
     isAnswered = models.BooleanField(default=False)
     commonQuestion = models.IntegerField(default=0)
@@ -18,7 +18,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question , on_delete=models.SET_NULL , null=True)
     #parent_text = models.ForeignKey('self' , on_delete=models.CASCADE , null=True)
     text = models.TextField()
-    time = models.DateTimeField(default=datetime.datetime.now())
+    time = models.DateTimeField()
     file = models.FileField(upload_to='answer/file' , null=True)
     vote = models.IntegerField(default=0)
     isAccepted = models.BooleanField(default=False)
@@ -30,4 +30,12 @@ class Chatroom_User(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     chatroom = models.ForeignKey(Chatroom , on_delete=models.CASCADE)
 
+class User_Question(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    question = models.ForeignKey(Question , on_delete=models.CASCADE)
+    voteState = models.IntegerField(default=0)
 
+class User_Answer(models.Model):
+    user = models.ForeignKey(User , on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answer , on_delete=models.CASCADE)
+    isVoted = models.IntegerField(default=0)
