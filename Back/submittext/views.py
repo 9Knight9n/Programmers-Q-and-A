@@ -25,9 +25,9 @@ def ShowQuestion(request):
             # print(i)
             user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
             if list(user_question) != []:
-                data['sameProblem']=True
+                data["voteState"] = user_question[0].voteState
             else:
-                data['sameProblem']=False
+                data["voteState"] = 0
             data['time']=i.time.ctime()
             if data['file']!=None:
                 data['file'] = 'http://127.0.0.1:8000' + data['file']
@@ -151,9 +151,7 @@ def GeneralSearch(request):
         if i["chatroom"] == None:
             i["chatroom"] = "not exist"
         else:
-            print(i["chatroom"].id , "-----------------------------------")
             i["chatroom"] = i["chatroom"].id
-        print(i["chatroom"])
 
 
     return Response({"questions": data_list , "chatrooms": chatroom_list})
