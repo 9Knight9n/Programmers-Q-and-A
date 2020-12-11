@@ -24,10 +24,11 @@ def ShowQuestion(request):
             # print(usrequestUserer)
             # print(i)
             user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
-            if list(user_question) != []:
-                data['sameProblem']=True
+            print(user_question)
+            if list(user_question) == []:
+                data['sameProblem']=0
             else:
-                data['sameProblem']=False
+                data['sameProblem']=user_question[0].voteState
             data['time']=i.time.ctime()
             if data['file']!=None:
                 data['file'] = 'http://127.0.0.1:8000' + data['file']
@@ -290,7 +291,7 @@ def VoteQuestion(request):
                 user_question[0].voteState = int(data['voteState'][0])
                 user_question[0].save()
     else:
-        user_answer = User_Answer.objects.create(user=user[0] , question=question[0] , voteState=int(data['voteState'][0]))
+        user_question = User_Question.objects.create(user=user[0] , question=question[0] , voteState=int(data['voteState'][0]))
         if list(question) != []:
             question[0].vote += int(data['voteState'][0])
             question[0].save()

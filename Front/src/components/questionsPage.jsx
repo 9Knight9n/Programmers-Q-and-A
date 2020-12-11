@@ -189,7 +189,7 @@ class QuestionsPage extends Component {
                                         ref={refToDiv => this.state.ref[question.id] = refToDiv}>
                                         <QuestionChatbox
                                             loadQuestions={this.loadQuestions}
-                                            sameProblemCount={question.commonQuestion}
+                                            sameProblemCount={question.vote}
                                             sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}
