@@ -314,7 +314,7 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row ml-auto">
-                            <div className="d-flex pl-2 align-top w-10">
+                            <div className="d-flex pl-2 align-top">
                                 <p className="pt-1 d-flex align-items-center" style={{fontSize: "0.85rem"}}>
                                     {/* submitted by */}
                                 </p>

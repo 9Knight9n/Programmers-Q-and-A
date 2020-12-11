@@ -16,14 +16,18 @@
     width: 35vw;
     /* display: initial !important; */
 }
-#search .search-button{
+.transparent-button{
     /* outline: 0 !important; */
     /* border: none; */
     background-color: #00000000 !important;
-    outline: none;
+    outline: none !important;
+    height: 100% !important;
     
     /* width: 40px !important; */
     /* background-color: #00000000 !important; */
+}
+.transparent-button:focus{
+    border: none;
 }
 #search .form-control{
     color: white;

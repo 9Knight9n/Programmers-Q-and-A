@@ -107,7 +107,7 @@ class Search extends Component {
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto mr-4 d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>
                         
-                        <button onClick={this.handelSearch} className=" rounded-circle d-flex flex-row search-button">
+                        <button onClick={this.handelSearch} className=" rounded-circle d-flex flex-row transparent-button">
                             <svg width="30px" height="30px" viewBox="0 0 16 16" className="text-white bi bi-search align-self-center" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                                 <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -119,6 +119,10 @@ class Search extends Component {
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
                         <div className={"search-result".concat(this.state.panelOpened?" ":" display-none")}>
+                            <div className="m-2">
+                                {this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>}
+                            </div>
+                            
                             {this.state.suggestions.map(sug =>
                             <Link 
                                 to={"/cr"+sug.chatroom_id} 
