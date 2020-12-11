@@ -64,8 +64,13 @@
 #Question #left .active {
   background-color: green !important;
 }
-.blue-on-hover:hover {
-  color: blue;
+
+.show-more-less{
+  color: #007bff;
+}
+
+.show-more-less:hover {
+  color: rgb(0, 197, 181);
 }
 
 .checkbox {

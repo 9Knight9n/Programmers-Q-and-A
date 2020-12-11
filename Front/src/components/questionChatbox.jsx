@@ -9,6 +9,7 @@ import ReactTooltip from 'react-tooltip';
 import Texteditor from './texteditor';
 import {request} from './requests';
 import {Link} from 'react-router-dom';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 
@@ -40,14 +41,14 @@ class QuestionChatbox extends Component {
     componentDidMount=async()=>{
         // console.log(this.state.sameProblem,"________________________________")
         // console.log(this.state.isAnswered,"________________________________")
-        if(this.state.sameProblem === 'false')
-            this.setState({sameProblem:false})
-        else if(this.state.sameProblem === 'true')
-            this.setState({sameProblem:true})
-        if(this.state.isAnswered === 'false')
-            this.setState({isAnswered:false})
-        else if(this.state.isAnswered === 'true')
-            this.setState({isAnswered:true})
+        // if(this.state.sameProblem === 'false')
+        //     this.setState({sameProblem:false})
+        // else if(this.state.sameProblem === 'true')
+        //     this.setState({sameProblem:true})
+        // if(this.state.isAnswered === 'false')
+        //     this.setState({isAnswered:false})
+        // else if(this.state.isAnswered === 'true')
+        //     this.setState({isAnswered:true})
         // console.log(Cookies.get('id'))
         // console.log(this.props.senderId)
         // console.log("inside");
@@ -172,22 +173,28 @@ class QuestionChatbox extends Component {
         this.props.loadAnswers()
     }
 
-    handleSameProblemClicked=async()=>{
+    handleSameProblemClicked=async(voteState)=>{
+        if(this.state.sameProblem===voteState)
+            return
+        this.setState({sameProblem:this.state.sameProblem+voteState,
+            sameProblemCount:this.state.sameProblemCount+voteState})
 
         // console.log("chatroom id is :",this.props.Cid)
         this.setState({loading:true})
         //request to back to change same question status
         let config ={
-            url:"http://127.0.0.1:8000/api/CommonQuestion/",
+            url:"http://127.0.0.1:8000/api/VoteQuestion/",
             needToken:true,
             type:"post",
             formKey:[
                 "question_id",
                 "user_id",
+                'voteState'
             ],
             formValue:[
                 this.props.Qid,
                 Cookies.get("id"),
+                this.state.sameProblem+voteState
             ]
         }
         console.log(config)
@@ -201,11 +208,11 @@ class QuestionChatbox extends Component {
         // console.log("outside",data)
         // console.log(data)
         
-        if(this.state.sameProblem)
-                this.setState({sameProblemCount:this.state.sameProblemCount-1})
-        else
-            this.setState({sameProblemCount:this.state.sameProblemCount+1})
-        this.setState({sameProblem:!this.state.sameProblem})
+        // if(this.state.sameProblem)
+        //     this.setState({sameProblemCount:this.state.sameProblemCount-1})
+        // else
+        //     this.setState({sameProblemCount:this.state.sameProblemCount+1})
+        // this.setState({sameProblem:!this.state.sameProblem})
             
         this.setState({loading:false})
         
@@ -275,6 +282,7 @@ class QuestionChatbox extends Component {
   goToAnswerPage=()=>{
     sessionStorage.setItem('sameProblemCount',this.state.sameProblemCount);
     sessionStorage.setItem('sameProblem',this.state.sameProblem);
+    console.log("saved vote state",this.state.sameProblem)
     sessionStorage.setItem('senderId',this.state.senderId);
     sessionStorage.setItem('senderUsername',this.state.senderUsername);
     sessionStorage.setItem('senderAvatar',this.state.senderAvatar);
@@ -342,17 +350,28 @@ class QuestionChatbox extends Component {
                                 
                                 <button style={{outline:"none"}} className="ml-auto mr-auto pr-2 pl-2 mb-2 mt-2 clean-button"
                                     data-tip="Select this button if you have same problem!"
-                                    onClick={this.handleSameProblemClicked}>
-                                    {this.state.sameProblem?
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    onClick={()=>this.handleSameProblemClicked(1)}>
+                                    {this.state.sameProblem===1?
+                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
                                     </svg>:
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-caret-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
                                     </svg>}
                                 </button>
                                 <button style={{outline:"none"}} class="ml-auto mr-auto pr-2 pl-2 mt-1 clean-button" data-tip="Number of users with same problem!">
                                     {this.state.sameProblemCount}
+                                </button>
+                                <button style={{outline:"none"}} className="ml-auto mr-auto pr-2 pl-2 mb-2 mt-2 clean-button"
+                                    data-tip="Select this button if Question is wrong or irrelevant to chatroom topic!"
+                                    onClick={()=>this.handleSameProblemClicked(-1)}>
+                                    {this.state.sameProblem===-1?
+                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                    </svg>:
+                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-caret-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                                    </svg>}
                                 </button>
                                 {this.state.isAnswered?
                                 <svg style={{fill:"green"}} data-tip="This Question is answered"
@@ -374,15 +393,16 @@ class QuestionChatbox extends Component {
                                     <ShowMoreText
                                     /* Default options */
                                     lines={3}
-                                    more={<p className="ml-auto blue-on-hover" >Show more</p>}
-                                    less={<p className="ml-auto blue-on-hover">Show less</p>}
+                                    more={<p className="ml-auto show-more-less" >Show more</p>}
+                                    less={<p className="ml-auto show-more-less">Show less</p>}
                                     className='content-css'
                                     anchorClass='show-more-less d-flex flex-row'
                                     onClick={this.executeOnClick}
                                     expanded={false}>
-                                        {this.state.context}
+                                        {ReactHtmlParser(this.state.context)}
+                                        {/* {this.state.context} */}
                                     </ShowMoreText>:
-                                    this.state.context
+                                    ReactHtmlParser(this.state.context)
                                 }
                                 </div>
                                 <small className="ml-auto mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>

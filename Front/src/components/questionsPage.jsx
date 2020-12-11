@@ -97,7 +97,7 @@ class QuestionsPage extends Component {
         this.state = {
             loading:false,
             questions:[],
-            ChatroomID:this.props.ChatroomID
+            ChatroomID:parseInt(this.props.match.params.chatroomid)
         };
         this.componentDidMount=this.componentDidMount.bind(this)
         this.loadQuestions=this.loadQuestions.bind(this)
@@ -105,15 +105,18 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
-        console.log("Question page created with chatroom id ",this.props.ChatroomID)
+        // this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
+        console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
+        // console.log("Question page created with chatroom id ",this.props.ChatroomID)
         this.loadQuestions()
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.ChatroomID !== this.props.ChatroomID) {
-          this.setState({ChatroomID:this.props.ChatroomID})
+        console.log("something changed")
+        if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
+          this.setState({ChatroomID:this.props.match.params.chatroomid})
         this.loadQuestions()
-        console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
       }
 
@@ -130,7 +133,7 @@ class QuestionsPage extends Component {
                 "user_id"
             ],
             formValue:[
-                this.props.ChatroomID,
+                this.props.match.params.chatroomid,
                 Cookies.get("id")
             ]
         }
@@ -182,7 +185,7 @@ class QuestionsPage extends Component {
                                     <div key={question.id} className="mb-3">
                                         <QuestionChatbox
                                             loadQuestions={this.loadQuestions}
-                                            sameProblemCount={question.commonQuestion}
+                                            sameProblemCount={question.vote}
                                             sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}

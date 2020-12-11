@@ -25,16 +25,17 @@ class AnswersPage extends Component {
             loading:false,
             question: sessionStorage.getItem('context'),
             QuestionID: sessionStorage.getItem('QuestionID'),
-            commonQuestion: sessionStorage.getItem('sameProblemCount'),
-            sameProblem: sessionStorage.getItem('sameProblem'),
+            commonQuestion: parseInt(sessionStorage.getItem('sameProblemCount')),
+            sameProblem: parseInt(sessionStorage.getItem('sameProblem')),
             userid: sessionStorage.getItem('senderId'),
             user: sessionStorage.getItem('senderUsername'),
-            text: ReactHtmlParser(sessionStorage.getItem('context')),
+            text: sessionStorage.getItem('context'),
             time: sessionStorage.getItem('sentDate'),
             isAnswered: sessionStorage.getItem('isAnswered'),
             ChatroomID: sessionStorage.getItem('ChatroomID'), 
             answers:[],
         }
+        // console.log("receivied vote state is ",this.state.sameProblem)
     }
 
 
@@ -93,7 +94,7 @@ class AnswersPage extends Component {
             <div className="right h-100 empty-125">
                 <div className="d-flex flex-column h-100">
                     <div className="mt-auto">
-                        <Link to="/questionPage"><button className="backButton ">Back</button></Link>
+                        <Link to={'/cr'+this.state.ChatroomID}><button className="backButton ">Back</button></Link>
                     </div>
                 </div>
             </div>

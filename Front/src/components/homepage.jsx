@@ -18,7 +18,8 @@ import {
     Redirect,
     Link,
     useRouteMatch,
-    useParams
+    useParams,
+    useHistory 
   } from "react-router-dom";
 
 
@@ -45,8 +46,13 @@ class Homepage extends Component {
     componentDidMount=()=>{
         if(sessionStorage.getItem("targetURL"))
         {
-            document.getElementById("selectChatroom").click()
-            sessionStorage.removeItem("targetURL")
+            if(this.state.activeChatroom)
+            {
+                sessionStorage.removeItem("targetURL")
+                document.getElementById("selectChatroom").click()
+            }
+            
+            
         }
             
 
@@ -87,12 +93,10 @@ class Homepage extends Component {
                     <div style={{height:"91vh"}}>
                         {/* <p>{this.state.activeChatroom}</p> */}
 
-                        {this.state.activeChatroom? 
-                            <Route exact path={"/cr"+this.state.activeChatroom}>
-                                {/* {this.state.activeChatroom} */}
-                                <QuestionsPage ChatroomID={this.state.activeChatroom} />
-                            </Route> : ""
-                        }
+                        
+
+                        <Route path="/cr:chatroomid" component={QuestionsPage}/>
+                        <Link id="selectChatroom" to={'/cr'+this.state.activeChatroom}/>
                         
                         
                     </div>
