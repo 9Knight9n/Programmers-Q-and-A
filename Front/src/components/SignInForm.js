@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import './CSS/LoginSignUp.css';
 import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png'
 import passImg from '../img/password.png'

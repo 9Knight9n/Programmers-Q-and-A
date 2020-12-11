@@ -5,6 +5,11 @@
   width: 25%;
   height: 100%;
 }
+
+.setting-backButton {
+  border: none;
+}
+
 .setting-right {
   height: 100%;
   position: relative;

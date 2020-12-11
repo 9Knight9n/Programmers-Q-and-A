@@ -1,0 +1,140 @@
+.ProfilePreview label {
+  font-size: large;
+}
+
+.ProfilePreview p {
+  font-size: medium;
+}
+
+.ProfilePreview h1 {
+  font-size: larger;
+}
+
+.ProfilePreview-main-box {
+  width: 40%;
+  height: 80vh;
+  background: #333b60;
+  overflow: auto;
+  border: 6px solid #5c6bc0;
+  margin: 8% 10% 10% 28%;
+}
+
+.ProfilePreview-exitImg {
+  width: 2%;
+  position: absolute;
+  margin-left: 37%;
+  margin-top: 0.5%;
+  cursor: pointer;
+}
+
+.ProfilePreview-intrests {
+  width: 100%;
+  min-height: 10vh;
+  border-bottom: 1px solid #5c6bc0 !important;
+  /* background-color: #c0bed4; */
+  padding: 5%;
+  background-color: #181852;
+}
+
+.ProfilePreview-intrestsBox {
+  margin-top: 13%;
+}
+
+.ProfilePreview-intrestsBox label {
+  color: #6363d3;
+}
+
+.ProfilePreview-intrests p {
+  color: #9d9dd1;
+}
+
+.ProfilePreview-elements {
+  margin: 2%;
+}
+
+.ProfilePreview-profileImg {
+  width: 25%;
+  margin-top: 2%;
+  padding: 0%;
+  margin-left: 4%;
+}
+
+.ProfilePreview-profileImg img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.ProfilePreview-FirstName-LastName-email-userName {
+  margin-left: 10%;
+  margin-top: 5%;
+  padding: 0%;
+}
+
+.ProfilePreview-email-userName p {
+  margin-left: 0%;
+  color: #9d9dd1;
+}
+
+.ProfilePreview-email-userName label {
+  color: #6363d3;
+}
+
+.ProfilePreview-email-userName {
+  color: #9d9dd1;
+}
+
+.ProfilePreview-bioBox {
+  margin-top: 8%;
+  margin-left: 4%;
+}
+
+.ProfilePreview-bioBox label {
+  color: #6363d3;
+}
+
+.ProfilePreview-bio {
+  width: 100%;
+  min-height: 10vh;
+  border-bottom: 1px solid #5c6bc0 !important;
+  /* background-color: #c0bed4; */
+  padding: 3%;
+  background-color: #181852;
+}
+
+.ProfilePreview-bioBox p {
+  color: #9d9dd1;
+}
+
+.ProfilePreview-activity {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.ProfilePreview-activity p {
+  color: #9d9dd1;
+  margin: auto;
+  font-size: 25px;
+}
+/* .ProfilePreview-user-activity img {
+  width: 100%;
+} */
+
+.ProfilePreview-asked-questions {
+  width: 22%;
+  border-right: 1px solid #5c6bc0 !important;
+  padding-right: 8%;
+}
+
+.ProfilePreview-answered-questions {
+  width: 22%;
+  border-left: 1px solid #5c6bc0 !important;
+  padding-left: 8%;
+}
+
+.ProfilePreview-joined-chatrooms {
+  width: 14%;
+}
+
+.ProfilePreview-joined-chatrooms p {
+  margin-left: 7%;
+}

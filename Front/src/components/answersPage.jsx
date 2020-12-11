@@ -93,7 +93,15 @@ class AnswersPage extends Component {
             <div className="right h-100 empty-125">
                 <div className="d-flex flex-column h-100">
                     <div className="mt-auto">
-                        <Link to={'/cr'+this.state.ChatroomID}><button className="backButton ">Back</button></Link>
+                        <Link to="/questionPage">
+                        <button className="backButton w-100 pr-3 d-flex align-items-center justify-content-center btn btn-primary">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="mr-1 bi bi-chevron-double-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                            <path fillRule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        Back
+                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
