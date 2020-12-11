@@ -82,7 +82,7 @@ class SearchResultPage extends Component {
                             <div className='m-5'>
                                 {this.state.selectedTab===1?
                                 <React.Fragment>
-                                    <p>Found Chatrooms:</p>
+                                    {this.state.chatrooms.length>0?<p>Found Chatrooms:</p>:<p>No Chatroom Found</p>}
                                     {this.state.chatrooms.map(chatroom => 
                                     <Link key={chatroom.ChatroomID} 
                                         className=" m-4"
@@ -97,7 +97,8 @@ class SearchResultPage extends Component {
 
                                 {this.state.selectedTab===2?
                                 <React.Fragment>
-                                    <p>Found Questions:</p>
+                                    {this.state.questions.length>0?<p>Found Questions:</p>:<p>No Question Found</p>}
+                                    {/* <p>Found Questions:</p> */}
                                     {this.state.questions.map(question =>(
                                     <QuestionChatbox
                                         // loadQuestions={this.loadQuestions}

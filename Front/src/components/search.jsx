@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/search.css';
 import {request} from './requests';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 class Search extends Component {
@@ -10,7 +12,8 @@ class Search extends Component {
         panelOpened:false,
         searchInput:"",
         // result:false,
-        suggestions:[]
+        suggestions:[],
+        informed:false,
     }
 
 
@@ -22,11 +25,12 @@ class Search extends Component {
                 document.getElementById("goToSearchResultPage").click();
                 this.setState({searchInput:""});
                 this.setState({focused:false,panelOpened:false})
-            }
-                
+            }   
             else
             {
-                
+                    toast.dark("Enter at least 3 letters to search!", {
+                        toastId: "no-dup"});
+
             }
         }
         else
@@ -42,11 +46,22 @@ class Search extends Component {
         this.setState({searchInput:input})
         if (input.length >2)
         {
+            toast.dismiss()
             this.setState({panelOpened:true})
             this.loadSuggestions(input);
         }
         else
+        {
             this.setState({panelOpened:false})
+            if(!this.state.informed)
+            {
+                toast.dark("Enter at least 3 letters to search!", {
+                    toastId: "no-dup"});
+
+                this.setState({informed:true})
+            }
+            
+        }
     }
 
     loadSuggestions= async (input)=>{
@@ -77,6 +92,17 @@ class Search extends Component {
     render() { 
         return (  
             <React.Fragment>
+                <ToastContainer
+                    position="top-left"
+                    autoClose={false}
+                    hideProgressBar={true}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    />
                 <Link id="goToSearchResultPage" to={"/search/".concat(this.state.searchInput)}/>
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto mr-4 d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>
