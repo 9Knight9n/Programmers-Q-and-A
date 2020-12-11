@@ -25,66 +25,58 @@ class ProfileOwner extends Component {
     }
     render() { 
         return ( 
-            <div className="ProfilePreview-main-box ">
-                <ReactTooltip place="right" effect="solid" type="dark"/>
+            // <img src={profileImg} />
+            <div className="ProfilePreview-main-box " style={{overflowY:"hidden"}}>
+               <div style={{display:"none"}}> <ReactTooltip place="right" effect="solid" type="dark"/></div>
                 {/* <div className="ProfilePreview-exitImg">
                      <Link to="/"> 
                         <img src={exitImg} />
                      </Link> 
                 </div> */}
 
-                <div className="ProfilePreview-elements mb-3 d-flex justify-content-center">
-                    <div  className="ProfilePreview-profile">
-                        <div className="ProfilePreview-headerProfile row d-flex justify-content-center">
-                            <div className="ProfilePreview-profileImg col">
-                                <img src={profileImg} />
-                                {/* src={sessionStorage.getItem(this.props.userid + ":avatar")} */}
-                            </div><li></li>
-                            <p>profile Name</p>
-                            <p>chatroom title</p>
-                            <p>discription</p>
-                            <div className="ProfilePreview-FirstName-LastName-email-userName col">
-                                <div className="ProfilePreview-FirstName-LastName">
-                                    <p>{this.state.firstName} {this.state.lastName}</p>
-                                </div>
-                                <div className="ProfilePreview-email-userName">
-                                    {/* <p>email : {this.state.userEmail}</p> */}
-                                    {/* <p>username : {this.state.userName}</p> */}
-                                </div>
-                                
-                            </div> 
-                        </div>
+                    <div class="d-flex">
+                        <div className="w-100 h-100">
+
+                        <div class="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
+                        
+                    <div className="INPUT-FORM1">
                      
+                         <p>Name :</p>
+                        <input name="lastName" value={this.state.lastName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Last name"/><br></br>
+                        <p>Description :</p>
+                        <input name="Description" value={this.state.Description}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Description"/>
+                        {this.state.DescriptionError? <p className="pro-error">Description Must Be Full!</p> : <br/>}
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Save Changes</button>
+                        {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Delete Chatroom</button>
+                        {this.state.succeed? <p className="pro-success">Delete successfully!</p> : <br/>}
+                        
                     </div>
-                    <button className="btn btn-primary" onClick={this.handleSubmit}>leave chatroom</button>
-                    <div className="user-preview"> <div class="main-container">
-                <div class="left-container container">
-                    
-                    
-                </div>
-    
-              
-                <div class="middle-container container">
-                   
-                   
-                    
-                   
+                        
+                        
+                        
                 </div>
 
 
-                    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"/>
-                    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
-                    <div class="container bootstrap snippets bootdey">
 
-                        <div class="header">
-                            <h3 class="text-muted prj-name">
-                                
-                            </h3>
+
+
+
+
+
+
+
+
+
+
+
                         </div>
+                        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"/>
+                        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
 
 
-                        <div class="jumbotron list-content">
-                        <div href="#" class="list-group-item title">
+                        <div class="jumbotron list-content ml-auto ">
+                        <div href="#" class="list-group-item title w-100 ">
                                 Your friend zone
                             </div>
                             <ul class="list-group">
@@ -150,13 +142,13 @@ class ProfileOwner extends Component {
                         </div>
                     </div>              
 
-            </div>  </div>
+            </div>  
                     
-                </div>
+            
                           
               
         
-             </div>       
+                   
          );
     }
 }

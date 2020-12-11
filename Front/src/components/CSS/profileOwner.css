@@ -6,7 +6,7 @@ body {
 
 .ProfilePreview-main-box {
 	width: 65%;
-    height:77vh;
+    height:78vh;
     background: #333b60;
     overflow: auto;
     border: 6px solid #5c6bc0;
@@ -188,9 +188,10 @@ body {
 					   
 					   .jumbotron {
 						padding: 0rem;
-						margin-left: 56%;
-						width: 49%;
-						margin-top: -7%;
+                        width: 40%;
+                        height: 100%;
+                        margin-bottom: 0rem !important;
+						
 
 						}
 						.img-thumbnail {
@@ -221,4 +222,11 @@ body {
 							text-transform: uppercase;
 							line-height: 0;
 							border-radius: 8px;
-						}
+                        }
+                        .parisa-css .INPUT-FORM1, .msg textarea {
+                            background: transparent;
+                            border: 90%;
+                            color: #000203;
+                            width: 52%;
+                            margin-top: 30%;
+                        }
