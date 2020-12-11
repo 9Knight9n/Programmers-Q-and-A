@@ -78,11 +78,11 @@ class ProfileOwner extends Component {
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
                <div style={{display:"none"}}> <ReactTooltip place="right" effect="solid" type="dark"/>
                </div>
-                {/* <div className="chProfileOwner-exitImg">
+                <div className="chProfileOwner-exitImg">
                      <Link to="/"> 
                         <img src={exitImg} />
                      </Link> 
-                </div> */}
+                </div>
 
                 <div class="d-flex">
                     <div  className="chProfileOwner-profile">
