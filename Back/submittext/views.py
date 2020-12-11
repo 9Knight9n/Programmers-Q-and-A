@@ -145,6 +145,7 @@ def GeneralSearch(request):
             else:
                 data['user'] = 'user does not exist'
                 data['userid'] = 'user does not exist'
+            data['time']=queryset[i[0]].time.ctime()
             data_list.append(data)
     chatroom_list = []
     for i in data_list:

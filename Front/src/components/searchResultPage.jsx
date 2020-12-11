@@ -4,6 +4,8 @@ import { Link, Route } from 'react-router-dom';
 import './CSS/search.css';
 import QuestionChatbox from './questionChatbox';
 import {request} from './requests';
+import Cookies from 'js-cookie';
+
 
 
 class SearchResultPage extends Component {
@@ -28,9 +30,11 @@ class SearchResultPage extends Component {
             type:"post",
             formKey:[
                 "searchText",
+                "user_id",
             ],
             formValue:[
                 this.state.searchInput,
+                Cookies.get("id")
             ]
         }
         let data = []
@@ -102,8 +106,8 @@ class SearchResultPage extends Component {
                                     {this.state.questions.map(question =>(
                                     <QuestionChatbox
                                         // loadQuestions={this.loadQuestions}
-                                        sameProblemCount={question.commonQuestion}
-                                        sameProblem={question.sameProblem}
+                                        sameProblemCount={question.vote}
+                                        sameProblem={question.voteState}
                                         senderId={question.userid}
                                         senderUsername={question.user}
                                         context={question.text}

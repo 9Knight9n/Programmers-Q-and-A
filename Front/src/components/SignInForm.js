@@ -47,7 +47,7 @@ class SignInForm extends Component{
       if(sessionStorage.getItem("targetURL").split('/cr')[1])
       {
         console.log("detedcted")
-        toast.info("you should login first");
+        toast.dark("you should login first");
       }
 
     }
