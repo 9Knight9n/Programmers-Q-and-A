@@ -375,7 +375,7 @@ class QuestionChatbox extends Component {
                                     <ShowMoreText
                                     /* Default options */
                                     lines={3}
-                                    more={<p className="ml-auto show-more-less" >Show more</p>}
+                                    more={<p className="ml-auto show-more-less mt-3 mb-2" >Show more</p>}
                                     less={<p className="ml-auto show-more-less">Show less</p>}
                                     className='content-css'
                                     anchorClass='show-more-less d-flex flex-row'
@@ -387,7 +387,7 @@ class QuestionChatbox extends Component {
                                     ReactHtmlParser(this.state.context)
                                 }
                                 </div>
-                                <small className="ml-auto mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
+                                <small className="ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
 
                             </div>
 

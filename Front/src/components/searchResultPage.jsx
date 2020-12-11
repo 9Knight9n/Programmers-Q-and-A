@@ -85,12 +85,11 @@ class SearchResultPage extends Component {
                                     <p>Found Chatrooms:</p>
                                     {this.state.chatrooms.map(chatroom => 
                                     <Link key={chatroom.ChatroomID} 
-                                        className={"nav-link m-4".concat(this.state.activeChatroom===chatroom.ChatroomID? "active":"")} 
-                                        onClick={()=> this.handleTabClick(chatroom.ChatroomID)} 
+                                        className=" m-4"
                                         to={"/cr"+chatroom.ChatroomID} >
-                                        <div className="d-flex flex-row ">
-                                            <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.image} />
-                                            <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
+                                        <div className="d-flex flex-row result-chatroom">
+                                            <img className="d-flex mt-auto mb-auto mr-3" id="chatroom-img" src={chatroom.image} />
+                                            <div className="d-flex mt-auto mb-auto pr-5">{chatroom.name}</div>
                                         </div>
                                     </Link>)}
                                 </React.Fragment>
