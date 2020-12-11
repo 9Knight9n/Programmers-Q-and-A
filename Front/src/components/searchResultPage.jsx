@@ -3,6 +3,8 @@ import Switch from 'react-bootstrap/esm/Switch';
 import { Link, Route } from 'react-router-dom';
 import './CSS/search.css';
 import QuestionChatbox from './questionChatbox';
+import {request} from './requests';
+
 
 class SearchResultPage extends Component {
     state = {
@@ -13,12 +15,13 @@ class SearchResultPage extends Component {
     }
 
     componentDidMount=()=>{
-        
-
-        document.getElementById("searchChatroomTab").click();
+        // console.log("mounted------------------------")
+        // console.log("search input is:",this.state.searchInput)
+        this.loadData();
     }
 
     loadData=async()=>{
+        console.log("loading data")
         let config ={
             url:"http://127.0.0.1:8000/api/GeneralSearch/",
             needToken:true,
@@ -37,21 +40,20 @@ class SearchResultPage extends Component {
         // console.log("outside",data)
         if (data)
         {
+            console.log("found data is",data)
             this.setState({questions:data.questions,chatrooms:data.chatrooms})
-            console.log("state set")
+            
         }
     }
 
 
     changeTab=(tab)=>{
-        this.setState({chatrooms:tab})
+        this.setState({selectedTab:tab})
     }
 
     render() { 
         return (
             <React.Fragment>
-                <Link id="searchChatroomTab" 
-                    to={"/search/chatroom/"+this.state.searchInput}/>
                 <div className="w-100 h-100">
                     <div id="search-result" className="h-100 w-100 d-flex flex-column">
                         <div id="header" className="pt-3 pl-3 pr-3 d-flex flex-row w-100">
@@ -78,38 +80,43 @@ class SearchResultPage extends Component {
                         </div>
                         <div id="body" className="ml-3 mr-3 mb-3 h-100 rounded-bottom">
                             <div className='m-5'>
-                                <Switch>
-                                    <Route path="/search/chatroom/">
-                                        <p>Found Chatrooms:</p>
-                                        {this.state.chatrooms.map(chatroom => 
-                                        <Link key={chatroom.id} 
-                                            className={"nav-link m-4".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
-                                            onClick={()=> this.handleTabClick(chatroom.id)} 
-                                            to={"/cr"+chatroom.id} >
-                                            <div className="d-flex flex-row ">
-                                                <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
-                                                <div className="d-flex align-items-center pr-5">{chatroom.label}</div>
-                                            </div>
-                                        </Link>)}
-                                    </Route>
-                                    <Route path="/search/questions/">
-                                        <p>Found Questions:</p>
-                                        {this.state.questions.map(question =>(
-                                            <QuestionChatbox
-                                                // loadQuestions={this.loadQuestions}
-                                                sameProblemCount={question.commonQuestion}
-                                                sameProblem={question.sameProblem}
-                                                senderId={question.userid}
-                                                senderUsername={question.user}
-                                                context={question.text}
-                                                sentDate={question.time}
-                                                showMoreButton={true}
-                                                isAnswered={question.isAnswered}
-                                                Qid={question.id}
-                                                Cid={question.chatroom}/>
-                                        ))}
-                                    </Route>
-                                </Switch>
+                                {this.state.selectedTab===1?
+                                <React.Fragment>
+                                    <p>Found Chatrooms:</p>
+                                    {this.state.chatrooms.map(chatroom => 
+                                    <Link key={chatroom.ChatroomID} 
+                                        className={"nav-link m-4".concat(this.state.activeChatroom===chatroom.ChatroomID? "active":"")} 
+                                        onClick={()=> this.handleTabClick(chatroom.ChatroomID)} 
+                                        to={"/cr"+chatroom.ChatroomID} >
+                                        <div className="d-flex flex-row ">
+                                            <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.image} />
+                                            <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
+                                        </div>
+                                    </Link>)}
+                                </React.Fragment>
+                                :""}
+
+                                {this.state.selectedTab===2?
+                                <React.Fragment>
+                                    <p>Found Questions:</p>
+                                    {this.state.questions.map(question =>(
+                                    <QuestionChatbox
+                                        // loadQuestions={this.loadQuestions}
+                                        sameProblemCount={question.commonQuestion}
+                                        sameProblem={question.sameProblem}
+                                        senderId={question.userid}
+                                        senderUsername={question.user}
+                                        context={question.text}
+                                        sentDate={question.time}
+                                        showMoreButton={true}
+                                        isAnswered={question.isAnswered}
+                                        Qid={question.id}
+                                        Cid={question.chatroom}/>
+                                    ))}
+                                </React.Fragment>
+                                :""}
+
+
                             </div>
                         </div>
                     </div>
