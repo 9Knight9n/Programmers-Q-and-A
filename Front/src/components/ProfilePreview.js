@@ -14,8 +14,8 @@ class ProfilePreview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstName: 'Sadegh',
-            lastName: 'Jafari',
+            first_name: 'Sadegh',
+            last_name: 'Jafari',
             // userEmail: 'sadegh@yahoo.com',
             userName: 'SadeghJafari79',
             userId: null,
@@ -28,11 +28,42 @@ class ProfilePreview extends Component {
 
     }
 
-    // componentDidMount = async () =>{
-    //     if (!sessionStorage.getItem(this.state.userid + ":avatar")) {
-    //       await getUserAvatar(this.state.userid);  
-    //     }  
-    // }
+    componentDidMount = () => {
+        if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
+            await getUserAvatar(this.props.userid);  
+        }
+        this.loadData();
+    }
+
+    loadData = async () => {
+        // this.setState({loading:true})
+        let config = {
+            url:"http://127.0.0.1:8000/api/ShowUserProfile/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "user_id",
+            ],
+            formValue:[
+                "15"
+            ]
+        };
+        let data = [];
+        data = await request(config);
+        if (data) {
+            this.setState({
+                first_name: data.first_name,
+                last_name: data.last_name,
+                userName: data.userName,
+                userBio: data.description,
+                askedQ: data.askedQuestions,
+                answeredQuestions: data.answeredQuestions,
+                numOfChatroom: data.numberOfChatrooms
+            });
+        }
+        console.log(data)
+        // this.setState({loading:false})
+    }
 
     render() { 
         return ( 
@@ -50,9 +81,9 @@ class ProfilePreview extends Component {
                                 <img src={profileImg} />
                                 {/* src={sessionStorage.getItem(this.props.userid + ":avatar")} */}
                             </div>
-                            <div className="ProfilePreview-FirstName-LastName-email-userName col">
-                                <div className="ProfilePreview-FirstName-LastName">
-                                    <h1>{this.state.firstName} {this.state.lastName}</h1>
+                            <div className="ProfilePreview-first_name-last_name-email-userName col">
+                                <div className="ProfilePreview-first_name-last_name">
+                                    <h1>{this.state.first_name} {this.state.last_name}</h1>
                                 </div>
                                 <div className="ProfilePreview-email-userName d-flex">
                                     {/* <p>email : {this.state.userEmail}</p> */}

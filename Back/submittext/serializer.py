@@ -16,4 +16,4 @@ class AnswerSerializer(serializers.ModelSerializer):
 class ShowUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'askedQuestions' ,'answeredAnswers' , 'active' , 'numberOfChatrooms']
+        fields = ['username', 'askedQuestions' ,'answeredAnswers' , 'active' , 'numberOfChatrooms', 'description', 'interests', 'first_name', 'last_name']
