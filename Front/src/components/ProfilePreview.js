@@ -36,7 +36,8 @@ class ProfilePreview extends Component {
             userIntrests: [],
             askedQ: '',
             answeredQ: '',
-            numOfChatroom: ''
+            numOfChatroom: '',
+            profileAvatar: '',
         }; 
 
     }
@@ -58,7 +59,7 @@ class ProfilePreview extends Component {
                 "user_id",
             ],
             formValue:[
-                "15"
+                15
             ]
         };
         let data = [];
@@ -73,6 +74,7 @@ class ProfilePreview extends Component {
                 askedQ: data.askedQuestions,
                 answeredQ: data.answeredQuestions,
                 numOfChatroom: data.numberOfChatrooms,
+                profileAvatar: data.user_profile_image
                 // userIntrests: decodeList(options, "111111111")
             });
             let userIntrests = decodeList(options, data.interests)
@@ -91,7 +93,7 @@ class ProfilePreview extends Component {
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 <div className="ProfilePreview-exitImg">
                     {/* <Link to="/"> */}
-                        <img src={exitImg} />
+                        <img src={this.state.profileAvatar} />
                     {/* </Link> */}
                 </div>
                 <div className="ProfilePreview-elements mb-3">
@@ -99,7 +101,6 @@ class ProfilePreview extends Component {
                         <div className="ProfilePreview-headerProfile row d-flex justify-content-center">
                             <div className="ProfilePreview-profileImg col">
                                 <img src={profileImg} />
-                                {/* src={sessionStorage.getItem(this.props.userid + ":avatar")} */}
                             </div>
                             <div className="ProfilePreview-first_name-last_name-email-userName col">
                                 <div className="ProfilePreview-first_name-last_name">
