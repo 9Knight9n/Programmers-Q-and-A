@@ -15,6 +15,7 @@ import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
 import AnswerPage from './components/answersPage'
+import ProfileOwner from './components/profileOwner'
 import QuestionsPage from './components/questionsPage'
 import './index.css';
 
@@ -59,6 +60,9 @@ class App extends Component {
             <AnswerPage />
           </Route>
           <Route path="questionPage">
+            <QuestionsPage />
+          </Route> 
+          <Route path="profileOwner">
             <QuestionsPage />
           </Route> 
           <Route path="/setting">

@@ -1,0 +1,224 @@
+
+body {
+	background: #1f253d !important;
+	font-size: 2px;
+}
+
+.ProfilePreview-main-box {
+	width: 65%;
+    height:77vh;
+    background: #333b60;
+    overflow: auto;
+    border: 6px solid #5c6bc0;
+    margin: 6% 10% 10% 19%;
+
+  }
+  
+  .ProfilePreview-exitImg {
+	width: 1.5%;
+	position: absolute;
+	margin-left: 37.5%;
+	margin-top: 0.5%;
+	cursor: pointer;
+  }
+  
+  .ProfilePreview-intrests {
+	width: 100%;
+	min-height: 10vh;
+	border-bottom: 1px solid #5c6bc0 !important;
+	/* background-color: #c0bed4; */
+	padding: 5%;
+	background-color: #181852;
+  }
+  
+  .ProfilePreview-intrestsBox {
+	margin-top: 13%;
+  }
+  
+  .ProfilePreview-intrestsBox label {
+	color: #6363d3;
+  }
+  
+  .ProfilePreview-intrests p {
+	font-size: 14px;
+	color: #9d9dd1;
+  }
+  
+  .ProfilePreview-elements {
+	margin: 2%;
+  }
+  
+  .ProfilePreview-profileImg {
+	width: 25%;
+	margin-top: 2%;
+	padding: 0%;
+	margin-left: 4%;
+  }
+  
+  .ProfilePreview-profileImg img {
+	border-radius: 50%;
+	width: 100%;
+  }
+  
+  .ProfilePreview-FirstName-LastName-email-userName {
+	margin-left: 10%;
+	margin-top: 5%;
+	padding: 0%;
+	font-size: 20px;
+  }
+  
+  .ProfilePreview-email-userName p {
+	margin-left: 0%;
+	color: #9d9dd1;
+  }
+  
+  .ProfilePreview-email-userName {
+	font-size: 14px;
+	color: #9d9dd1;
+  }
+  
+  .ProfilePreview-bioBox {
+	margin-top: 8%;
+	margin-left: 4%;
+  }
+  
+  .ProfilePreview-bioBox label {
+	color: #6363d3;
+	font-size: 20px;
+  }
+  
+  .ProfilePreview-bio {
+	width: 100%;
+	min-height: 10vh;
+	border-bottom: 1px solid #5c6bc0 !important;
+	/* background-color: #c0bed4; */
+	padding: 3%;
+	background-color: #181852;
+  }
+  
+  .ProfilePreview-bioBox p {
+	font-size: 18px;
+	color: #9d9dd1;
+  }
+  
+  .ProfilePreview-activity {
+	width: 100%;
+	margin-top: 5%;
+  }
+  
+  .ProfilePreview-activity p {
+	color: #9d9dd1;
+	font-size: 20px;
+	margin: auto;
+  }
+  /* .ProfilePreview-user-activity img {
+	width: 100%;
+  } */
+  
+  .ProfilePreview-asked-questions {
+	width: 22%;
+	border-right: 1px solid #5c6bc0 !important;
+	padding-right: 8%;
+  }
+  
+  .ProfilePreview-answered-questions {
+	width: 22%;
+	border-left: 1px solid #5c6bc0 !important;
+	padding-left: 8%;
+  }
+  
+
+
+
+  .user-preview{
+	  width: 100%;
+  }
+
+					.list-group{
+						height: 67vh;
+						overflow-y: auto;
+						margin-top: -6%;
+
+					}
+
+					.list-content{
+						min-height:300px;
+					   }
+					   
+						.list-content .list-group .title {
+							background: #11a8ab;
+							border: 0px solid #DDDDDD;
+							font-weight: bold;
+							color: #FFFFFF;
+						
+					   }
+					   .list-group-item img {
+						height: 52px;
+						width: 52px;
+					
+					   }
+					   .list-group-item {
+						position: relative;
+						display: block;
+						padding: 1rem; 
+						background-color: #394264;
+						border: 1px solid rgba(0, 0, 0, 0.125);
+						height: 74px;
+					   }
+					   
+					   .list-group-item:first-child {
+						border-top-left-radius: inherit;
+						border-top-right-radius: inherit;
+						width: 97%;
+					   }
+					   .jumbotron .btn {
+						   padding: 5px 5px !important;
+						   font-size: 12px !important;
+					   }
+					   .prj-name {
+						   color:#5bc0de;    
+					   }
+					   .break{
+						   width:100%;
+						   margin:20px;
+					   }
+					   .name {
+						   color:#5bc0de;    
+					   }
+					   
+					   .jumbotron {
+						padding: 0rem;
+						margin-left: 56%;
+						width: 49%;
+						margin-top: -7%;
+
+						}
+						.img-thumbnail {
+							padding: 0rem;
+							background-color: #fff0;
+							border: 0px solid #dee2e600;
+							border-radius: 2rem;
+							max-width: 100%;
+							height: auto;
+						}
+						div.container {
+							width: 700px;
+							margin: 0em auto;
+							height: 12px;
+						}
+						.t297148c7-3536-4112-bfac-662ef88fd8fa {
+							color: #fdfdfd;
+							background: #2220;
+							border: 0px solid transparent;
+						}
+						.parisa-css  .btn-primary{
+							color: white;
+							background: rgba(9, 156, 167, 0.432) !important;
+							text-align: center;
+							padding: 15px;
+							border-radius: 5px;
+							cursor: pointer;
+							text-transform: uppercase;
+							line-height: 0;
+							border-radius: 8px;
+						}
