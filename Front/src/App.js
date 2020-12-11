@@ -14,8 +14,8 @@ import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
+import ProfileOwner from './components/profileOwner';
 import AnswerPage from './components/answersPage'
-import ProfileOwner from './components/profileOwner'
 import QuestionsPage from './components/questionsPage'
 import './index.css';
 
@@ -32,7 +32,8 @@ class App extends Component {
     {
       console.log(window.location.pathname)
       sessionStorage.setItem("targetURL",window.location.pathname)
-      document.getElementById("loginfirst").click()
+      // document.getElementById("loginfirst").click()
+      document.getElementById("1").click()
       
     }
       
@@ -49,9 +50,13 @@ class App extends Component {
     return (
       <Router>
           <Link id="loginfirst" to="/login"/>
+          <Link id="1" to="/profileOwner"/>
           <Switch>
           <Route path="/login">
             <SignInForm />
+          </Route>
+          <Route path="/profileOwner">
+            <ProfileOwner />
           </Route>
           <Route path="/signup">
             <SignUpForm />
@@ -60,9 +65,6 @@ class App extends Component {
             <AnswerPage />
           </Route>
           <Route path="questionPage">
-            <QuestionsPage />
-          </Route> 
-          <Route path="profileOwner">
             <QuestionsPage />
           </Route> 
           <Route path="/setting">

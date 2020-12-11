@@ -5,7 +5,7 @@ import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
 import {Link} from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
-import './CSS/ProfileOwner.css';
+import './CSS/profileOwner.css';
 
 class ProfileOwner extends Component {
     constructor(props) {
