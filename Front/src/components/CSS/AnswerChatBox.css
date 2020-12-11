@@ -141,3 +141,12 @@ button {
 .dropdown-item:hover {
   background-color: #9d9dd1;
 }
+
+.vote svg {
+  cursor: pointer;
+}
+
+.vote {
+  margin-left: -24%;
+}
+

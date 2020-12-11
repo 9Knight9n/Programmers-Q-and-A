@@ -9,8 +9,8 @@ import {
   useParams,
   useLocation
 } from "react-router-dom";
-import SignUpForm from './pages/SignUpForm';
-import SignInForm from './pages/SignInForm';
+import SignUpForm from './components/SignUpForm';
+import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
