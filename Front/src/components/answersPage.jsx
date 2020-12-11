@@ -93,7 +93,7 @@ class AnswersPage extends Component {
             <div className="right h-100 empty-125">
                 <div className="d-flex flex-column h-100">
                     <div className="mt-auto">
-                        <Link to="/questionPage"><button className="backButton ">Back</button></Link>
+                        <Link to={'/cr'+this.state.ChatroomID}><button className="backButton ">Back</button></Link>
                     </div>
                 </div>
             </div>
