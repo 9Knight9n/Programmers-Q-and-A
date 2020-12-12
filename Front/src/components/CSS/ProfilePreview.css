@@ -34,8 +34,8 @@
 .ProfilePreview-exitImg {
   width: 2%;
   position: absolute;
-  margin-left: 37%;
-  margin-top: 0.5%;
+  margin-left: 38.5%;
+  margin-top: -1%;
   cursor: pointer;
 }
 
@@ -68,9 +68,9 @@
   width: 100%;
 }
 
-.ProfilePreview-FirstName-LastName-email-userName {
+.ProfilePreview-first_name-last_name-email-userName {
   margin-left: 10%;
-  margin-top: 5%;
+  margin-top: 10%;
   padding: 0%;
 }
 .ProfilePreview-email-userName {
