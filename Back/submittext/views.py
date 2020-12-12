@@ -129,6 +129,7 @@ def GeneralSearch(request):
     valuelist = []
     searchText = request.data["searchText"]
     searchText = DetectStopWords(searchText)
+    print(searchText)
     user = User.objects.filter(id=request.data['user_id']) 
     if list(user) == []:
         return Response({'message':'user not found'})
@@ -146,6 +147,7 @@ def GeneralSearch(request):
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
             data['chatroom'] = queryset[i[0]].chatroom
+            data['time']=queryset[i[0]].time.ctime()
             user_question = User_Question.objects.filter(user=user[0], question=queryset[i[0]])
             if list(user_question) == []:
                 data['voteState'] = 0
