@@ -17,9 +17,9 @@ class ChatroomCreationOs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOs: Cookies.get("selected"),
-            selectedSubOs: Cookies.get("selectedSub"),
-            osDescription: Cookies.get("Description"),
+            selectedOs: Cookies.get("selected")? Cookies.get("selected") : null,
+            selectedSubOs: Cookies.get("selectedSub")? Cookies.get("selectedSub") : null,
+            osDescription: Cookies.get("Description")? Cookies.get("Description") : '',
             error1: false,
             error2: false,
 
