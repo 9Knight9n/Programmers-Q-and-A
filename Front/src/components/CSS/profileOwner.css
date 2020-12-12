@@ -23,6 +23,7 @@
 }
 
 .chProfileOwner-profile {
+  height: 100% !important;
   width: 100%;
 }
 
@@ -227,9 +228,9 @@
   padding-left: 8%;
 }
 
-.chProfileOwner-deleteButton {
+/* .chProfileOwner-deleteButton {
   margin-top: 12%;
-}
+} */
 
 .chProfileOwner-deleteButton button {
   outline: none;

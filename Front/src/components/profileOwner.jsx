@@ -8,6 +8,8 @@ import ReactTooltip from 'react-tooltip';
 import './CSS/profileOwner.css';
 import editIcon from '../img/edit.png'
 import Cookies from 'js-cookie';
+import SelectAvatar from './selectAvatar';
+
 class ProfileOwner extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +22,7 @@ class ProfileOwner extends Component {
             OwnerIsEditingLink: false,
             OwnerIsEditingdes: false,
             chatroomAvatar: '',
+            preview:null,
         }; 
 
     }
@@ -51,7 +54,7 @@ class ProfileOwner extends Component {
                 chatroomDes: data.Description,
                 chatroomLink: data.topicLink,
                 chatroomAvatar: data.chatroom_profile_image,
-                isOwner: Cookies.get("id") === data.owner,
+                isOwner: parseInt(Cookies.get("id")) === data.owner,
             });
         }
         console.log(data)
@@ -72,6 +75,43 @@ class ProfileOwner extends Component {
                 OwnerIsEditingDes: true,
             })
     }
+
+    onClose() {
+        this.setState({preview: null})
+      }
+      
+      onCrop(preview) {
+        this.setState({preview})
+        console.log(preview)
+      }
+    
+      async onSave(){
+        let src = this.state.preview
+        // console.log("save button pressed")
+        // console.log("current preview:",src)
+        // this.setState({avatarChanged:true,src})
+        // if(isExpired(Cookies.get("access")))
+        // {
+        //     console.log("renewing")
+        //     token=await renewToken()
+        // }
+        // let token = Cookies.get("access")
+        // token = "Bearer "+token;
+        // const form = new FormData()
+        // form.set("id",Cookies.get("id"))
+        // form.set("Base64",this.state.preview)
+        // const response3 =
+        // await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
+        // headers: { 'Content-Type': 'multipart/form-data',
+        //             'Authorization': token
+        // },
+        // })
+
+        // sessionStorage.setItem("avatar",this.state.preview)
+
+        console.log( this.state.src)
+      }
+    
     render() { 
         return ( 
             // <img src={profileImg} />
@@ -84,11 +124,16 @@ class ProfileOwner extends Component {
                      </Link> 
                 </div>
 
-                <div class="d-flex">
-                    <div  className="chProfileOwner-profile">
+                <div class="d-flex h-100">
+                    <div  className="chProfileOwner-profile d-flex flex-column">
                             <div className="chProfileOwner-headerProfile row d-flex justify-content-center">
                                 <div className="chProfileOwner-profileImg col">
-                                    <img src={this.state.chatroomAvatar} />
+                                    {this.state.isOwner? 
+                                    <SelectAvatar src={this.state.chatroomAvatar}
+                                    onCrop={this.onCrop}
+                                    onClose={this.onClose}
+                                    onSave={this.onSave} side="30" /> : <img src={this.state.chatroomAvatar} />
+                                    }
                                 </div>
                                 <div className="chProfileOwner-chName-chTitle-chLink col">
                                     <div className="chProfileOwner-chNameBox">
@@ -123,7 +168,7 @@ class ProfileOwner extends Component {
                                     {this.state.isOwner && this.state.OwnerIsEditingDes ? <input value={this.state.chatroomDes}></input> : <p>{this.state.chatroomDes}</p>}
                                 </div>
                             </div>
-                            <div className="chProfileOwner-deleteButton">
+                            <div className="chProfileOwner-deleteButton mt-auto">
                                 <button>Delete Chatroom</button>
                             </div>
                         </div>

@@ -32,8 +32,8 @@ class App extends Component {
     {
       console.log(window.location.pathname)
       sessionStorage.setItem("targetURL",window.location.pathname)
-      // document.getElementById("loginfirst").click()
-      document.getElementById("1").click()
+      document.getElementById("loginfirst").click()
+      // document.getElementById("1").click()
       
     }
       
