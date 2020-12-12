@@ -2,12 +2,24 @@
   font-size: large;
 }
 
+.ProfilePreview a {
+  color: #5555ff !important;
+  font-size: medium !important;
+}
+
 .ProfilePreview p {
-  font-size: medium;
+  color: #7474ab !important;
+  font-size: medium !important;
+}
+
+.ProfilePreview label {
+  font-size: large !important;
+  color: #9d9dd1 !important;
 }
 
 .ProfilePreview h1 {
-  font-size: larger;
+  font-size: large !important;
+  color: #9d9dd1;
 }
 
 .ProfilePreview-main-box {
@@ -30,22 +42,14 @@
 .ProfilePreview-intrests {
   width: 100%;
   min-height: 10vh;
-  border-bottom: 1px solid #5c6bc0 !important;
+  /* border-bottom: 1px solid #5c6bc0 !important; */
   /* background-color: #c0bed4; */
   padding: 5%;
-  background-color: #181852;
+  /* background-color: #181852; */
 }
 
 .ProfilePreview-intrestsBox {
   margin-top: 13%;
-}
-
-.ProfilePreview-intrestsBox label {
-  color: #6363d3;
-}
-
-.ProfilePreview-intrests p {
-  color: #9d9dd1;
 }
 
 .ProfilePreview-elements {
@@ -69,16 +73,6 @@
   margin-top: 5%;
   padding: 0%;
 }
-
-.ProfilePreview-email-userName p {
-  margin-left: 0%;
-  color: #9d9dd1;
-}
-
-.ProfilePreview-email-userName label {
-  color: #6363d3;
-}
-
 .ProfilePreview-email-userName {
   color: #9d9dd1;
 }
@@ -88,21 +82,13 @@
   margin-left: 4%;
 }
 
-.ProfilePreview-bioBox label {
-  color: #6363d3;
-}
-
 .ProfilePreview-bio {
   width: 100%;
   min-height: 10vh;
-  border-bottom: 1px solid #5c6bc0 !important;
+  /* border-bottom: 1px solid #5c6bc0 !important; */
   /* background-color: #c0bed4; */
   padding: 3%;
-  background-color: #181852;
-}
-
-.ProfilePreview-bioBox p {
-  color: #9d9dd1;
+  /* background-color: #181852; */
 }
 
 .ProfilePreview-activity {

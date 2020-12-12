@@ -28,7 +28,6 @@ yarn-error.log*
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
 media
 
 # Backup files # 
@@ -138,6 +137,6 @@ GitHub.sublime-settings
 !.vscode/tasks.json 
 !.vscode/launch.json 
 !.vscode/extensions.json 
-.history
-Back/db.sqlite3
+.historyd
+*.pyc
 *.pyc
