@@ -1,5 +1,5 @@
 .chProfileOwner-main-box {
-  width: 55%;
+  width: 53%;
   height: 65vh;
   background: #333b60;
   overflow: auto;
@@ -29,9 +29,10 @@
 .chProfileOwner-exitImg {
   width: 1.5%;
   position: absolute;
-  margin-left: 37.5%;
+  margin-left: 50.5%;
   margin-top: 0.5%;
   cursor: pointer;
+  z-index: 1;
 }
 
 .chProfileOwner-chLink {
@@ -227,11 +228,11 @@
 }
 
 .chProfileOwner-deleteButton {
-  margin-top: 10%;
+  margin-top: 12%;
 }
 
 .chProfileOwner-deleteButton button {
-  /* outline: none; */
+  outline: none;
   width: 100%;
 }
 
