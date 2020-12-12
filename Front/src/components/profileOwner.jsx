@@ -25,6 +25,7 @@ class ProfileOwner extends Component {
             OwnerIsEditingdes: false,
             chatroomAvatar: '',
             preview:null,
+            temp:'',
         }; 
 
     }
@@ -66,6 +67,7 @@ class ProfileOwner extends Component {
     handleEditClick = (id, e) =>{
         if (id === 1)
             this.setState({
+                temp: this.state.chatroomName,
                 OwnerIsEditingName : true,
             })
         if (id === 2)
@@ -79,6 +81,7 @@ class ProfileOwner extends Component {
         if(id === 4 && this.state.OwnerIsEditingName)
         {
             this.setState({
+                chatroomName: this.state.temp,
                 OwnerIsEditingName : false,
             })
         }
@@ -101,48 +104,57 @@ class ProfileOwner extends Component {
 
     }
 
-    handleInputs = () =>{
-
-    }
-
-    onClose() {
+    onClose = () => {
         this.setState({preview: null})
       }
       
-      onCrop(preview) {
+      onCrop = (preview) => {
         this.setState({preview})
         console.log(preview)
       }
     
-      async onSave(){
-        let src = this.state.preview
-        // console.log("save button pressed")
-        // console.log("current preview:",src)
-        // this.setState({avatarChanged:true,src})
-        // if(isExpired(Cookies.get("access")))
-        // {
-        //     console.log("renewing")
-        //     token=await renewToken()
-        // }
-        // let token = Cookies.get("access")
-        // token = "Bearer "+token;
-        // const form = new FormData()
-        // form.set("id",Cookies.get("id"))
-        // form.set("Base64",this.state.preview)
-        // const response3 =
-        // await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
-        // headers: { 'Content-Type': 'multipart/form-data',
-        //             'Authorization': token
-        // },
-        // })
+    onSave =  () => {
+        this.setState({
+            chatroomAvatar: this.state.preview
+        })
+        this.handleSaveEdits(this.state.preview)
+    }
 
-        // sessionStorage.setItem("avatar",this.state.preview)
-
-        console.log( this.state.src)
+      handleSaveEdits = async (input) => {
+            console.log("edited : " , input)
+            let sendElement;
+            if (input === this.state.chatroomLink)
+                sendElement = "topicLink";
+            if(input === this.state.chatroomName)
+                sendElement = "chatroomName";
+            if(input === this.state.chatroomDes)
+                sendElement = "Description";
+            if(input === this.state.preview)
+                sendElement = "chatroom_profile_image";
+            let config = {
+                url:"http://127.0.0.1:8000/api/EditChatroomProfile/",
+                needToken:false,
+                type:"post",
+                formKey:[
+                    "chatroomId",
+                    sendElement
+                ],
+                formValue:[
+                    5,
+                    input
+                ]
+            };
+            let data = [];
+            data = await request(config);
+            if (data) {
+                console.log("data catched")
+            }
+            console.log(data)
+            // this.setState({loading:false})
       }
 
 
-      handleInputChange = (e) => {
+      handleInputChange =  (e) => {
         let target = e.target;
         let value = target.value;
         let name = target.name;
@@ -174,14 +186,15 @@ class ProfileOwner extends Component {
                                     }
                                 </div>
                                 <div className="chProfileOwner-chName-chTitle-chLink col">
+
                                     <div className="chProfileOwner-chNameBox">
                                         <div className="d-flex flex-row">
                                             <div className="chProfileOwner-chNameEditImg">{this.state.isOwner && !this.state.OwnerIsEditingName ? 
                                                 <img onClick={() => this.handleEditClick(1) } alt="editIcon" data-tip="Edit" src={editIcon} /> : 
                                                 this.state.OwnerIsEditingName?
                                                 <div className="d-flex justify-content-center"> 
-                                                    <img className="mr-1" onClick={() => this.handleEditClick(4)} alt="cancelImg" data-tip="Cancel" data-tip="Save" alt="saveIcon" src={cancelIcon} />
-                                                    <img data-tip="Save" alt="saveIcon" src={saveIcon} />
+                                                    <img className="mr-1" onClick={() => this.handleEditClick(4)} alt="cancelImg" data-tip="cancel" alt="saveIcon" src={cancelIcon} />
+                                                    <img onClick={() => this.handleSaveEdits(this.state.chatroomName)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                                 </div> : '' }
                                             </div>
                                         </div>
@@ -190,10 +203,14 @@ class ProfileOwner extends Component {
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input  onChange={this.handleInputChange} onClick={() => this.handleEditClick(7)} name="chatroomName" type="text" value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
                                         </div>
                                     </div>
+
+
                                     <div className="chProfileOwner-chTitle">
                                         {/* <p>email : {this.state.userEmail}</p> */}
                                         <p>{this.state.chatroomTitle}</p>
                                     </div>
+
+
                                     <div className="chProfileOwner-chLinkBox">
                                         <div className="d-flex flex-row">
                                             <label for="chProfileOwner-chLink">Chatroom link : </label> 
@@ -202,7 +219,7 @@ class ProfileOwner extends Component {
                                                 this.state.OwnerIsEditingLink ?
                                                 <div className="d-flex justify-content-center">
                                                     <img className="mr-1" onClick={() => this.handleEditClick(5)} alt="cancelImg" data-tip="Cancel"  alt="cancelIcon" src={cancelIcon} />
-                                                    <img data-tip="Save" alt="saveIcon" src={saveIcon} />
+                                                    <img onClick={() => this.handleSaveEdits(this.state.chatroomLink)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                                 </div> : ''
                                                 }
                                             </div>
@@ -211,8 +228,12 @@ class ProfileOwner extends Component {
                                             {this.state.isOwner && this.state.OwnerIsEditingLink ? <input onChange={this.handleInputChange} name="chatroomLink" type="text" value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">{this.state.chatroomLink}</a>}
                                         </div>
                                     </div>
+
+
                                 </div> 
                             </div>
+
+
                             <div className="chProfileOwner-desBox">
                                 <div className="d-flex flex-row">
                                     <label for="chProfileOwner-des">Description :</label>
@@ -221,7 +242,7 @@ class ProfileOwner extends Component {
                                         this.state.OwnerIsEditingDes ?
                                         <div className="d-flex justify-content-center">
                                             <img className="mr-1" onClick={() => this.handleEditClick(6)} alt="cancelImg" data-tip="Cancel" src={cancelIcon} />
-                                            <img data-tip="Save" alt="saveIcon" src={saveIcon} />
+                                            <img onClick={() => this.handleSaveEdits(this.state.chatroomDes)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                         </div> : ''
                                         }
                                     </div>
@@ -230,9 +251,12 @@ class ProfileOwner extends Component {
                                     {this.state.isOwner && this.state.OwnerIsEditingDes ? <input onChange={this.handleInputChange} name="chatroomDes" type="text" value={this.state.chatroomDes}></input> : <p>{this.state.chatroomDes}</p>}
                                 </div>
                             </div>
-                            <div className="chProfileOwner-deleteButton mt-auto">
-                                <button>Delete Chatroom</button>
-                            </div>
+
+                            {this.state.isOwner?
+                                <div className="chProfileOwner-deleteButton mt-auto">
+                                    <button>Delete Chatroom</button>
+                                </div> : ''
+                            }
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">

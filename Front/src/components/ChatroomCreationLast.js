@@ -114,18 +114,18 @@ class ChatroomCreationLast extends Component {
         await axios.post('http://127.0.0.1:8000/api/createchatroom/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
                     'Authorization': token
-      },
-    })
-    Cookies.remove("selectedSub")
-    Cookies.remove("selected")
-    Cookies.remove("selectedTopic")
-    Cookies.remove("Description")
-    Cookies.remove("Link")
+          },
+        })
+        Cookies.remove("selectedSub")
+        Cookies.remove("selected")
+        Cookies.remove("selectedTopic")
+        Cookies.remove("Description")
+        Cookies.remove("Link")
 
-    this.props.hideModal()
+        this.props.hideModal()
 
 
-  }
+      }
 
     render() { 
         return ( 

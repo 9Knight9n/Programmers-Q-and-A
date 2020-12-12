@@ -137,6 +137,7 @@ def ShowChatroomProfile(request):
 @permission_classes([])
 def EditChatroomProfile(request):
     chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
+    print("////////////////////////////////////////////////hi" , request.data.keys())
     if list(chatroom) != []:
         chatroom = chatroom[0]
         serializer = ShowUChatroomProfileSerializer(chatroom)
@@ -150,10 +151,10 @@ def EditChatroomProfile(request):
 
         if 'topicLink' in request.data.keys() and chatroom.selectedTopic != 'OS':
             chatroom.Link = request.data['topicLink']
-
+        print("////////////////////////////////////////////////bye" , request.data.keys())
         if 'chatroom_profile_image' in request.data.keys():
             filepath = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
-            chatroom.Description = request.data['chatroom_profile_image']
+            print("//////////////////////////////////////////////////////////////////:::::" , filepath)
             file = open(filepath, 'w')
             file.write(request.POST['chatroom_profile_image'])
             file.close()
