@@ -185,7 +185,7 @@ class QuestionsPage extends Component {
                                     <div key={question.id} className="mb-3">
                                         <QuestionChatbox
                                             loadQuestions={this.loadQuestions}
-                                            sameProblemCount={question.commonQuestion}
+                                            sameProblemCount={question.vote}
                                             sameProblem={question.sameProblem}
                                             senderId={question.userid}
                                             senderUsername={question.user}

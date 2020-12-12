@@ -133,4 +133,33 @@ def ShowChatroomProfile(request):
         
     return Response({'message': 'Chatroom not found'})
 
+@api_view(['POST', ])
+@permission_classes([])
+def EditChatroomProfile(request):
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
+    if list(chatroom) != []:
+        chatroom = chatroom[0]
+        serializer = ShowUChatroomProfileSerializer(chatroom)
+        data = serializer.data
+
+        if 'chatroomName' in request.data.keys():
+            chatroom.chatroomName = request.data['chatroomName']
+
+        if 'Description' in request.data.keys():
+            chatroom.Description = request.data['Description']
+
+        if 'topicLink' in request.data.keys() and chatroom.selectedTopic != 'OS':
+            chatroom.Link = request.data['topicLink']
+
+        if 'chatroom_profile_image' in request.data.keys():
+            filepath = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
+            chatroom.Description = request.data['chatroom_profile_image']
+            file = open(filepath, 'w')
+            file.write(request.POST['chatroom_profile_image'])
+            file.close()
+        chatroom.save()
+        return Response({'message':'edit successfully'})
+        
+    return Response({'message': 'Chatroom not found'})
+
 
