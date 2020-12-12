@@ -140,7 +140,7 @@ class ProfilePreview extends Component {
                                     <p>{this.state.numOfChatroom}</p>
                                     </div>
                                 <div className="ProfilePreview-answered-questions d-flex justify-content-center">
-                                    <img src={answeredQImg} data-tip={this.state.userName + " asked " + this.state.askedQ +" questions"} /> 
+                                    <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.askedQ +" questions"} /> 
                                     <p>{this.state.answeredQ}</p>
                                 </div>
                             </div>
