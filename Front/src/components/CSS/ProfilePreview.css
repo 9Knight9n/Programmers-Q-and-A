@@ -3,8 +3,12 @@
 }
 
 .ProfilePreview a {
-  color: #5555ff !important;
+  color: #7a7aff73 !important;
   font-size: medium !important;
+} 
+
+.ProfilePreview a:hover {
+  color: #5151e9e7 !important;
 }
 
 .ProfilePreview p {
