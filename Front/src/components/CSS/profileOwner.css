@@ -7,6 +7,11 @@
   margin: 6% 10% 10% 19%;
 }
 
+.chProfileOwner-clearFix {
+  width: 1%;
+  height: 2vh;
+}
+
 .chProfileOwner a {
   color: #5555ff !important;
   font-size: medium !important;
@@ -78,6 +83,10 @@
   visibility: hidden;
 }
 
+.chProfileOwner-chLinkEditImg img {
+  margin-top: 50%;
+}
+
 .chProfileOwner-elements {
   margin: 2%;
 }
@@ -115,7 +124,7 @@
 .chProfileOwner-chNameEditImg {
   width: 5%;
   margin-left: auto;
-  margin-right: 15%;
+  margin-right: 17%;
   cursor: pointer;
   visibility: hidden;
 }
@@ -337,4 +346,12 @@ div.container {
 /*abed*/
 .list-group-item {
   border-radius: 0px !important;
+}
+
+.chProfileOwner-list-group-item {
+  padding: 10%;
+  background-color: #394264;
+}
+.list-group {
+  border-radius: 0%;
 }

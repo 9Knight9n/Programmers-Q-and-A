@@ -6,7 +6,8 @@ import {request} from './requests.jsx';
 import {Link} from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import './CSS/profileOwner.css';
-import editIcon from '../img/edit.png'
+import editIcon from '../img/edit2.png';
+import saveIcon from '../img/save.png';
 import Cookies from 'js-cookie';
 import SelectAvatar from './selectAvatar';
 
@@ -116,8 +117,7 @@ class ProfileOwner extends Component {
         return ( 
             // <img src={profileImg} />
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
-               <div style={{display:"none"}}> <ReactTooltip place="right" effect="solid" type="dark"/>
-               </div>
+               <ReactTooltip place="right" effect="solid" type="dark"/>
                 <div className="chProfileOwner-exitImg">
                      <Link to="/"> 
                         <img src={exitImg} />
@@ -138,8 +138,12 @@ class ProfileOwner extends Component {
                                 <div className="chProfileOwner-chName-chTitle-chLink col">
                                     <div className="chProfileOwner-chNameBox">
                                         <div className="d-flex flex-row">
-                                            <div className="chProfileOwner-chNameEditImg">{this.state.isOwner && !this.state.OwnerIsEditingName ? <img onClick={() => this.handleEditClick(1) } src={editIcon} /> : ''}</div>
+                                            <div className="chProfileOwner-chNameEditImg">{this.state.isOwner && !this.state.OwnerIsEditingName ? 
+                                                <img onClick={() => this.handleEditClick(1) } alt="editIcon" data-tip="Edit" src={editIcon} /> : 
+                                                this.state.OwnerIsEditingName? <img data-tip="Save" alt="saveIcon" src={saveIcon} /> : ''}
+                                            </div>
                                         </div>
+                                        <div className="chProfileOwner-clearFix"></div>
                                         <div className="chProfileOwner-chName">
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
                                         </div>
@@ -151,7 +155,11 @@ class ProfileOwner extends Component {
                                     <div className="chProfileOwner-chLinkBox">
                                         <div className="d-flex flex-row">
                                             <label for="chProfileOwner-chLink">Chatroom link : </label> 
-                                            <div className="chProfileOwner-chLinkEditImg">{this.state.isOwner && !this.state.OwnerIsEditing ? <img src={editIcon} onClick={() => this.handleEditClick(3) } /> : ''}</div>
+                                            <div className="chProfileOwner-chLinkEditImg">{this.state.isOwner && !this.state.OwnerIsEditingLink ? 
+                                                <img alt="editIcon" data-tip="Edit" src={editIcon} onClick={() => this.handleEditClick(3) } /> :
+                                                this.state.OwnerIsEditingLink ? <img data-tip="Save" alt="saveIcon" src={saveIcon} /> : ''
+                                                }
+                                            </div>
                                         </div>
                                         <div className="chProfileOwner-chLink">
                                             {this.state.isOwner && this.state.OwnerIsEditingLink ? <input value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">{this.state.chatroomLink}</a>}
@@ -162,7 +170,11 @@ class ProfileOwner extends Component {
                             <div className="chProfileOwner-desBox">
                                 <div className="d-flex flex-row">
                                     <label for="chProfileOwner-des">Description :</label>
-                                    <div className="chProfileOwner-desEditImg">{this.state.isOwner && !this.state.OwnerIsEditing ? <img src={editIcon} onClick={() => this.handleEditClick(4) } /> : ''}</div>
+                                    <div className="chProfileOwner-desEditImg">{this.state.isOwner && !this.state.OwnerIsEditingDes ? 
+                                        <img alt="editIcon" data-tip="Edit" src={editIcon} onClick={() => this.handleEditClick(4)} /> :
+                                        this.state.OwnerIsEditingDes ? <img alt="saveIcon" data-tip="Save" src={saveIcon} /> : ''
+                                        }
+                                    </div>
                                 </div>
                                 <div className="chProfileOwner-des">
                                     {this.state.isOwner && this.state.OwnerIsEditingDes ? <input value={this.state.chatroomDes}></input> : <p>{this.state.chatroomDes}</p>}
@@ -192,7 +204,7 @@ class ProfileOwner extends Component {
                         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"/>
                         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
                         <div className="jumbotron list-content ml-auto ">
-                            <div href="#" class="list-group-item title w-100 ">
+                            <div href="#" className="chProfileOwner-list-group-item title w-100 ">
                                     Your friend zone
                             </div>
                             <ul className="list-group">
