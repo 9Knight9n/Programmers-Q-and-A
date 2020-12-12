@@ -72,10 +72,12 @@ class ProfileOwner extends Component {
             })
         if (id === 2)
             this.setState({
+                temp: this.state.chatroomLink,
                 OwnerIsEditingLink: true,
             })
         if (id === 3)
             this.setState({
+                // temp: this.state.chatroomDes,
                 OwnerIsEditingDes: true,
             })
         if(id === 4 && this.state.OwnerIsEditingName)
@@ -88,12 +90,14 @@ class ProfileOwner extends Component {
         if(id === 5 && this.state.OwnerIsEditingLink)
         {
             this.setState({
+                chatroomLink: this.state.temp,
                 OwnerIsEditingLink : false,
             })
         }
         if(id === 6 && this.state.OwnerIsEditingDes)
         {
             this.setState({
+                // chatroomDes: this.state.temp,
                 OwnerIsEditingDes : false,
             })
         }
@@ -121,14 +125,32 @@ class ProfileOwner extends Component {
     }
 
       handleSaveEdits = async (input) => {
+          this.setState({
+
+          })
             console.log("edited : " , input)
             let sendElement;
-            if (input === this.state.chatroomLink)
+            if (input === this.state.chatroomLink){
                 sendElement = "topicLink";
-            if(input === this.state.chatroomName)
+                this.setState({
+                    chatroomLink: input,
+                    OwnerIsEditingLink: false
+                })
+            }
+            if(input === this.state.chatroomName){
                 sendElement = "chatroomName";
-            if(input === this.state.chatroomDes)
+                this.setState({
+                    chatroomName: input,
+                    OwnerIsEditingName: false
+                })
+            }     
+            if(input === this.state.chatroomDes){
                 sendElement = "Description";
+                this.setState({
+                    chatroomDes: input,
+                    OwnerIsEditingDes: false
+                })
+            }   
             if(input === this.state.preview)
                 sendElement = "chatroom_profile_image";
             let config = {
@@ -213,7 +235,7 @@ class ProfileOwner extends Component {
 
                                     <div className="chProfileOwner-chLinkBox">
                                         <div className="d-flex flex-row">
-                                            <label for="chProfileOwner-chLink">Chatroom link : </label> 
+                                            <label for="chProfileOwner-chLink">Context link : </label> 
                                             <div className="chProfileOwner-chLinkEditImg">{this.state.isOwner && !this.state.OwnerIsEditingLink ? 
                                                 <img alt="editIcon" data-tip="Edit" src={editIcon} onClick={() => this.handleEditClick(2) } /> :
                                                 this.state.OwnerIsEditingLink ?
