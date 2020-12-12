@@ -93,14 +93,14 @@ class ProfilePreview extends Component {
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 <div className="ProfilePreview-exitImg">
                     {/* <Link to="/"> */}
-                        <img src={this.state.profileAvatar} />
+                        <img src={exitImg} />
                     {/* </Link> */}
                 </div>
                 <div className="ProfilePreview-elements mb-3">
                     <div  className="ProfilePreview-profile">
                         <div className="ProfilePreview-headerProfile row d-flex justify-content-center">
                             <div className="ProfilePreview-profileImg col">
-                                <img src={profileImg} />
+                                <img src={this.state.profileAvatar} />
                             </div>
                             <div className="ProfilePreview-first_name-last_name-email-userName col">
                                 <div className="ProfilePreview-first_name-last_name">
