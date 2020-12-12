@@ -22,21 +22,12 @@ class SearchResultPage extends Component {
     
 
     componentDidMount=()=>{
+        sessionStorage.setItem("search",this.state.searchInput)
         // console.log("mounted------------------------")
         // console.log("search input is:",this.state.searchInput)
         this.loadData();
     }
 
-    componentDidUpdate(prevProps) {
-        // console.log("inside componentDidUpdate",this.props.location)
-        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
-            // console.log("inside 1",prevProps.location.state)
-            if (prevProps.location.state.tab !== this.props.location.state.tab)
-            {
-                console.log("inside 1")
-                this.setState({selectedTab:this.props.location.state.tab})
-            }
-      }
 
     loadData=async()=>{
         console.log("loading data")
@@ -93,15 +84,16 @@ class SearchResultPage extends Component {
                                 <button onClick={()=>this.changeTab(1)} 
                                     className={"nav-link w-25 d-flex transparent-button".concat(this.state.selectedTab===1?" active":"")}>
                                     <p style={{width:"fit-content"}} className="ml-auto mr-auto mt-auto mb-auto">
-                                        Chatroom
+                                        Questions
                                     </p>
                                 </button>
                                 <button onClick={()=>this.changeTab(2)} 
                                     className={"nav-link w-25 d-flex transparent-button".concat(this.state.selectedTab===2?" active":"")}>
                                     <p style={{width:"fit-content"}} className="ml-auto mr-auto mt-auto mb-auto">
-                                        Questions
+                                        Chatroom
                                     </p>
                                 </button>
+                                
                                 <button onClick={this.showFilter} className='mt-2 mb-2 ml-auto mr-2 p-1 rounded'>
                                     <div className="ml-auto mr-auto mt-auto mb-auto d-flex flex-row">
                                         Filters 
@@ -113,7 +105,7 @@ class SearchResultPage extends Component {
                             </div>
                             <div id="body" className=" rounded-bottom h-90">
                                 <div className=' ml-5 h-100'>
-                                    {this.state.selectedTab===1?
+                                    {this.state.selectedTab===2?
                                     <div className="d-flex flex-column h-100">
                                         <div className="pt-4 pb-4 h-10">
                                             {this.state.chatrooms.length>0?<p>Found Chatrooms:</p>:<p>No Chatroom Found</p>}
@@ -135,7 +127,7 @@ class SearchResultPage extends Component {
                                     </div>
                                     :""}
 
-                                    {this.state.selectedTab===2?
+                                    {this.state.selectedTab===1?
                                     <div className="d-flex flex-column h-100">
                                         <div className="pt-4 pb-4 h10">
                                             {this.state.questions.length>0?<p>Found Questions:</p>:<p>No Question Found</p>}
