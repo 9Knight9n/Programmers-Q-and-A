@@ -23,17 +23,16 @@ class AnswersPage extends Component {
         super(props)
         this.state = {
             loading:false,
-            calledFromSearch:this.props.location.state.calledFromSearch,
-            question: this.props.location.state.context,
-            QuestionID: parseInt(this.props.match.params.questionid),
-            commonQuestion: this.props.location.state.sameProblemCount,
-            sameProblem: this.props.location.state.sameProblem,
-            userid: this.props.location.state.senderId,
-            user: this.props.location.state.senderUsername,
-            text: this.props.location.state.context,
-            time: this.props.location.state.sentDate,
-            isAnswered: this.props.location.state.isAnswered,
-            ChatroomID: this.props.location.state.ChatroomID, 
+            question: sessionStorage.getItem('context'),
+            QuestionID: sessionStorage.getItem('QuestionID'),
+            commonQuestion: parseInt(sessionStorage.getItem('sameProblemCount')),
+            sameProblem: parseInt(sessionStorage.getItem('sameProblem')),
+            userid: sessionStorage.getItem('senderId'),
+            user: sessionStorage.getItem('senderUsername'),
+            text: sessionStorage.getItem('context'),
+            time: sessionStorage.getItem('sentDate'),
+            isAnswered: sessionStorage.getItem('isAnswered'),
+            ChatroomID: sessionStorage.getItem('ChatroomID'), 
             answers:[],
         }
         // console.log("receivied vote state is ",this.state.sameProblem)
@@ -95,13 +94,7 @@ class AnswersPage extends Component {
             <div className="right h-100 empty-125">
                 <div className="d-flex flex-column h-100">
                     <div className="mt-auto">
-                        <Link to={this.state.calledFromSearch?
-                            "/search/"+this.state.calledFromSearch:
-                            '/cr'+this.state.ChatroomID}>
-                            <button className="backButton ">
-                                Back
-                            </button>
-                        </Link>
+                        <Link to={'/cr'+this.state.ChatroomID}><button className="backButton ">Back</button></Link>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import SearchFilter from './searchFilters';
 
 class SearchResultPage extends Component {
     state = {
+        filters:{},
         showFilter:false,
         selectedTab:1,
         searchInput:this.props.match.params.searchPhrase,
@@ -25,6 +26,17 @@ class SearchResultPage extends Component {
         // console.log("search input is:",this.state.searchInput)
         this.loadData();
     }
+
+    componentDidUpdate(prevProps) {
+        // console.log("inside componentDidUpdate",this.props.location)
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+            // console.log("inside 1",prevProps.location.state)
+            if (prevProps.location.state.tab !== this.props.location.state.tab)
+            {
+                console.log("inside 1")
+                this.setState({selectedTab:this.props.location.state.tab})
+            }
+      }
 
     loadData=async()=>{
         console.log("loading data")
@@ -62,14 +74,18 @@ class SearchResultPage extends Component {
     showFilter = () => {
         this.setState({ showFilter: true });
     };
-    hideFilter = () => {
+    hideFilter = (apply) => {
         this.setState({ showFilter: false });
+        if(apply)
+        {
+            this.loadData();
+        }
     };
 
     render() { 
         return (
             <React.Fragment>
-                <SearchFilter hideFilter={this.hideFilter} showFilter={this.state.showFilter}/>
+                <SearchFilter filters={this.state.filters} hideFilter={this.hideFilter} showFilter={this.state.showFilter}/>
                 <div className="w-100 h-100">
                     <div id="search-result" className=" w-100 d-flex flex-column h-100">
                         <div className="p-3 h-100">
@@ -128,7 +144,7 @@ class SearchResultPage extends Component {
                                         <div className="pr-5 mb-3 h-90" style={{overflowY:"auto"}}>
                                             {/* <p>Found Questions:</p> */}
                                             {this.state.questions.map(question =>(
-                                            <div className="pt-3">
+                                            <div className="pt-3" key={question.id}>
                                                 <QuestionChatbox
                                                     // loadQuestions={this.loadQuestions}
                                                     searchPhrase={this.state.searchInput}

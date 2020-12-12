@@ -55,7 +55,9 @@ class App extends Component {
           <Route path="/signup">
             <SignUpForm />
           </Route>
-          <Route path="/question:questionid" component={AnswerPage}/>
+          <Route path="/answerPage">
+            <AnswerPage />
+          </Route>
           <Route path="/questionPage">
             <QuestionsPage />
           </Route> 

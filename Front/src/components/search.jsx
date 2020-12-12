@@ -24,7 +24,7 @@ class Search extends Component {
             {
                 document.getElementById("goToSearchResultPage").click();
                 this.setState({searchInput:""});
-                this.setState({focused:false,panelOpened:false})
+                this.setState({focused:false,panelOpened:false,suggestions:[]})
             }   
             else
             {
@@ -109,7 +109,7 @@ class Search extends Component {
                     draggable
                     pauseOnHover
                     />
-                <Link id="goToSearchResultPage" to={"/search/".concat(this.state.searchInput)}/>
+                <Link id="goToSearchResultPage" to={{pathname:"/search/"+this.state.searchInput,state:{tab:1}}}/>
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto mr-4 d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>
                         
@@ -124,9 +124,9 @@ class Search extends Component {
                     </div>
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
-                        <div className="m-3">
-                                {this.state.searchInput.length<3?<p>Enter at least 3 letters!</p>:(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
-                            </div>
+                        <div className={"m-3".concat(this.state.panelOpened?" ":" display-none")}>
+                            {this.state.searchInput.length<3?<p>Enter at least 3 letters!</p>:(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
+                        </div>
                         <div className={"search-result".concat(this.state.suggestions.length>0?" active":"")}>
                             
                             
