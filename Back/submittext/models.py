@@ -1,4 +1,3 @@
-
 from django.db import models
 from registeration.models import User
 from chatroom.models import Chatroom
@@ -11,12 +10,11 @@ class Question(models.Model):
     time = models.DateTimeField()
     file = models.FileField(upload_to='question/file' , null=True)
     isAnswered = models.BooleanField(default=False)
-    commonQuestion = models.IntegerField(default=0)
+    vote = models.IntegerField(default=0)
 
 class Answer(models.Model):
     user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
     question = models.ForeignKey(Question , on_delete=models.SET_NULL , null=True)
-    #parent_text = models.ForeignKey('self' , on_delete=models.CASCADE , null=True)
     text = models.TextField()
     time = models.DateTimeField()
     file = models.FileField(upload_to='answer/file' , null=True)
@@ -33,8 +31,9 @@ class Chatroom_User(models.Model):
 class User_Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     question = models.ForeignKey(Question , on_delete=models.CASCADE)
+    voteState = models.IntegerField(default=0)
 
 class User_Answer(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
     answer = models.ForeignKey(Answer , on_delete=models.CASCADE)
-    isVoted = models.IntegerField(default=0)
+    voteState = models.IntegerField(default=0)
