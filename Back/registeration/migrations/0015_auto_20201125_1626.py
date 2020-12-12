@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.RenameField(
             model_name='user',
             old_name='repliedQuestions',
-            new_name='answeredAnswers',
+            new_name='answeredQuestions',
         ),
     ]

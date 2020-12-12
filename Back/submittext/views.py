@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from django.db.models import Q
 import datetime
 import nltk
+from nltk.corpus import stopwords  
+from nltk.tokenize import word_tokenize 
 
 # import time 
 
@@ -53,7 +55,6 @@ def ShowAnswer(request):
         for i in answers:
             serializer = AnswerSerializer(i)
             data = serializer.data
-            print(request.data.keys())
             user_answer = User_Answer.objects.filter(user=request.data['user_id'] , answer=i)
             if list(user_answer) != []:
                 data["voteState"] = user_answer[0].isVoted
@@ -88,8 +89,8 @@ def ShowUserProfile(request):
 
 def calculateSearchOrder(searchText , QuestionText , chatroomValue):
     value = chatroomValue * 0.0001
-    searchTextList = searchText.split()
-    for word in searchTextList:
+    #searchTextList = searchText.split()
+    for word in searchText:
         if word in QuestionText:
             value += 1
     return value
@@ -97,6 +98,15 @@ def calculateSearchOrder(searchText , QuestionText , chatroomValue):
 def Sort(sub_li): 
     sub_li.sort(key = lambda x: x[1]) 
     return sub_li[::-1]
+
+def DetectStopWords(text):
+    stop_words = set(stopwords.words('english'))  
+    
+    word_tokens = word_tokenize(text)  
+    
+    filtered_sentence = [w for w in word_tokens if not w in stop_words]
+    return filtered_sentence
+  
 
 @api_view(['POST' , ])
 def GeneralSearch(request):
@@ -118,6 +128,7 @@ def GeneralSearch(request):
     queryset = Question.objects.filter(query)
     valuelist = []
     searchText = request.data["searchText"]
+    searchText = DetectStopWords(searchText)
     user = User.objects.filter(id=request.data['user_id']) 
     if list(user) == []:
         return Response({'message':'user not found'})
@@ -147,27 +158,22 @@ def GeneralSearch(request):
                 data['user'] = 'user does not exist'
                 data['userid'] = 'user does not exist'
             data_list.append(data)
+    chatroom_id_list = []
     chatroom_list = []
     for i in data_list:
-        in_chatroom_list = False
-        for c in chatroom_list:
-            if c['ChatroomID'] == i["chatroom"]:
-                in_chatroom_list = True
-        if not in_chatroom_list:
+        if not i['chatroom'] in chatroom_id_list:
+            chatroom_id_list.append(i['chatroom'])
             if i["chatroom"] != None:
                 chatroom_data = {}
                 chatroom_data["ChatroomID"] = i['chatroom'].id
-                chatroom_data["image"] = open( str(i["chatroom"].chatroomAvatar), 'r').read()
                 chatroom_data["name"] = i['chatroom'].chatroomName
+                chatroom_data["image"] = open( str(i["chatroom"].chatroomAvatar), 'r').read()
                 chatroom_list.append(chatroom_data)
         if i["chatroom"] == None:
             i["chatroom"] = "not exist"
         else:
-            print(i["chatroom"].id , "-----------------------------------")
             i["chatroom"] = i["chatroom"].id
-        print(i["chatroom"])
-
-
+            
     return Response({"questions": data_list , "chatrooms": chatroom_list})
 
 #document :
@@ -181,14 +187,18 @@ def GeneralSearch(request):
 @api_view(['POST' , ])
 def SeggestionChatroomSreach(request):
     searchText = request.data["searchText"]
+    searchTextlist = DetectStopWords(searchText)
+    print(searchText)
     chatroom_value_list = []
     number_of_chatroom = 0
     for chatroom in Chatroom.objects.all():
-        chatroom_value_list.append([chatroom , 0])
-        number_of_chatroom += 1
+        similarty_of_chatroom_name = nltk.edit_distance(searchText, chatroom.chatroomName)
+        if similarty_of_chatroom_name < 3:
+            chatroom_value_list.append([chatroom , 0])
+            number_of_chatroom += 1
         
-        for question in Question.objects.filter(chatroom=chatroom):
-            chatroom_value_list[-1][1] += calculateSearchOrder(searchText , question.text ,0)
+            for question in Question.objects.filter(chatroom=chatroom):
+                chatroom_value_list[-1][1] += calculateSearchOrder(searchTextlist , question.text ,0)
 
     chatroom_value_list = Sort(chatroom_value_list)
     if number_of_chatroom > 10:
@@ -199,7 +209,6 @@ def SeggestionChatroomSreach(request):
         data['chatroom_id'] = chatroom[0].id
         data['chatroom_name'] = chatroom[0].chatroomName
         data_list.append(data)
-    # time.sleep(2)
     return Response(data_list)
 
 
