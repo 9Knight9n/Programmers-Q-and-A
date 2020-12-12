@@ -117,7 +117,8 @@ class ProfileOwner extends Component {
         return ( 
             // <img src={profileImg} />
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
-               <ReactTooltip place="right" effect="solid" type="dark"/>
+               <div style={{display:"none"}}> <ReactTooltip place="right" effect="solid" type="dark"/>
+               </div>
                 <div className="chProfileOwner-exitImg">
                      <Link to="/"> 
                         <img src={exitImg} />
