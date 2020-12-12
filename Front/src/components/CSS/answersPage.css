@@ -19,6 +19,7 @@ button {
 }
 
 .backButton {
+  height: 4vh !important;
   width: 100%;
   margin-top: 381%;
 }

@@ -65,7 +65,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=30 , null=True , unique=True) # must be unique
     # second page of profile
     askedQuestions = models.IntegerField(default=0)
-    answeredAnswers = models.IntegerField(default=0)
+    answeredQuestions = models.IntegerField(default=0)
     onlineTime = models.TimeField(null=True)
     numberOfChatrooms = models.IntegerField(default=0)
     # theard page of profile

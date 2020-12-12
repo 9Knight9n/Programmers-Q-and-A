@@ -100,7 +100,7 @@ class SearchResultPage extends Component {
                                                 className=" m-4"
                                                 to={"/cr"+chatroom.ChatroomID} >
                                                 <div className="d-flex flex-row result-chatroom">
-                                                    <img className="d-flex mt-auto mb-auto mr-3" id="chatroom-img" src={chatroom.image} />
+                                                    <img className="d-flex mt-auto mb-auto mr-3 ml-3" id="chatroom-img" src={chatroom.image} />
                                                     <div className="d-flex mt-auto mb-auto pr-5">{chatroom.name}</div>
                                                 </div>
                                             </Link>)}
@@ -121,6 +121,7 @@ class SearchResultPage extends Component {
                                             <div className="pt-3">
                                                 <QuestionChatbox
                                                     // loadQuestions={this.loadQuestions}
+                                                    searchPhrase={this.state.searchInput}
                                                     sameProblemCount={question.vote}
                                                     sameProblem={question.voteState}
                                                     senderId={question.userid}

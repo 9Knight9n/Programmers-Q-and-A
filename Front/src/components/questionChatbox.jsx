@@ -18,6 +18,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            calledFromSearch:this.props.searchPhrase,
             isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,
             loading:false,
@@ -31,6 +32,7 @@ class QuestionChatbox extends Component {
             showMoreButton:this.props.showMoreButton,
             editorContent:this.props.context,
             QuestionID:this.props.Qid,
+            ChatroomID:this.props.Cid,
             editorVisible:false,
             editorContentAnswer:"",
             editing:false
@@ -280,17 +282,6 @@ class QuestionChatbox extends Component {
 
 
   goToAnswerPage=()=>{
-    sessionStorage.setItem('sameProblemCount',this.state.sameProblemCount);
-    sessionStorage.setItem('sameProblem',this.state.sameProblem);
-    console.log("saved vote state",this.state.sameProblem)
-    sessionStorage.setItem('senderId',this.state.senderId);
-    sessionStorage.setItem('senderUsername',this.state.senderUsername);
-    sessionStorage.setItem('senderAvatar',this.state.senderAvatar);
-    sessionStorage.setItem('isAnswered',this.state.isAnswered);
-    sessionStorage.setItem('context',this.state.context);
-    sessionStorage.setItem('sentDate',this.state.sentDate);
-    sessionStorage.setItem('QuestionID',this.state.QuestionID);
-    sessionStorage.setItem('ChatroomID',this.props.Cid);
     document.getElementById("goToAnswerPage").click()
   }
   
@@ -431,7 +422,22 @@ class QuestionChatbox extends Component {
                             </div>
                             
                         </div>
-                        <Link id="goToAnswerPage" to="/answerPage"></Link>
+    {/* sessionStorage.setItem('senderAvatar',this.state.senderAvatar); */}
+                        <Link id="goToAnswerPage" to={{
+                            pathname:'/question'+this.state.QuestionID,
+                            state:{
+                                calledFromSearch:this.state.calledFromSearch,
+                                sameProblemCount:this.state.sameProblemCount,
+                                sameProblem:this.state.sameProblem,
+                                senderId:this.state.senderId,
+                                senderUsername:this.state.senderUsername,
+                                senderAvatar:this.state.senderAvatar,
+                                isAnswered:this.state.isAnswered,
+                                context:this.state.context,
+                                sentDate:this.state.sentDate,
+                                ChatroomID:this.props.Cid
+                            }
+                        }}></Link>
                 </div>
             </React.Fragment>
         );
