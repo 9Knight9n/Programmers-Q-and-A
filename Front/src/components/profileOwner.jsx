@@ -26,6 +26,10 @@ class ProfileOwner extends Component {
             chatroomAvatar: '',
             preview:null,
             temp:'',
+            chatroomLinkMsg: "Put a link for context",
+            linkError: false,
+            chatroomNameMsg: "Choose a name for your chatroom",
+            nameError: false,
         }; 
 
     }
@@ -77,12 +81,13 @@ class ProfileOwner extends Component {
             })
         if (id === 3)
             this.setState({
-                // temp: this.state.chatroomDes,
+                temp: this.state.chatroomDes,
                 OwnerIsEditingDes: true,
             })
         if(id === 4 && this.state.OwnerIsEditingName)
         {
             this.setState({
+                nameError:false,
                 chatroomName: this.state.temp,
                 OwnerIsEditingName : false,
             })
@@ -90,6 +95,7 @@ class ProfileOwner extends Component {
         if(id === 5 && this.state.OwnerIsEditingLink)
         {
             this.setState({
+                linkError:false,
                 chatroomLink: this.state.temp,
                 OwnerIsEditingLink : false,
             })
@@ -97,13 +103,9 @@ class ProfileOwner extends Component {
         if(id === 6 && this.state.OwnerIsEditingDes)
         {
             this.setState({
-                // chatroomDes: this.state.temp,
+                chatroomDes: this.state.temp,
                 OwnerIsEditingDes : false,
             })
-        }
-
-        if(id ===7){
-            
         }
 
     }
@@ -131,6 +133,16 @@ class ProfileOwner extends Component {
             console.log("edited : " , input)
             let sendElement;
             if (input === this.state.chatroomLink){
+                if(!this.state.chatroomLink){
+                    this.setState({
+                        linkError: true,
+                    })
+                    return ;
+                }else {
+                    this.setState({
+                        linkError: false,
+                    })
+                }
                 sendElement = "topicLink";
                 this.setState({
                     chatroomLink: input,
@@ -138,6 +150,16 @@ class ProfileOwner extends Component {
                 })
             }
             if(input === this.state.chatroomName){
+                if(!this.state.chatroomName){
+                    this.setState({
+                        nameError: true,
+                    })
+                    return ;
+                }else {
+                    this.setState({
+                        nameError: false,
+                    })
+                }
                 sendElement = "chatroomName";
                 this.setState({
                     chatroomName: input,
@@ -215,7 +237,7 @@ class ProfileOwner extends Component {
                                                 <img onClick={() => this.handleEditClick(1) } alt="editIcon" data-tip="Edit" src={editIcon} /> : 
                                                 this.state.OwnerIsEditingName?
                                                 <div className="d-flex justify-content-center"> 
-                                                    <img className="mr-1" onClick={() => this.handleEditClick(4)} alt="cancelImg" data-tip="cancel" alt="saveIcon" src={cancelIcon} />
+                                                    <img className="mr-2" onClick={() => this.handleEditClick(4)} alt="cancelImg" data-tip="cancel" alt="saveIcon" src={cancelIcon} />
                                                     <img onClick={() => this.handleSaveEdits(this.state.chatroomName)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                                 </div> : '' }
                                             </div>
@@ -223,6 +245,7 @@ class ProfileOwner extends Component {
                                         <div className="chProfileOwner-clearFix"></div>
                                         <div className="chProfileOwner-chName">
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input  onChange={this.handleInputChange} onClick={() => this.handleEditClick(7)} name="chatroomName" type="text" value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
+                                            {this.state.nameError? <span className="error">{this.state.chatroomNameMsg}</span> : ''}
                                         </div>
                                     </div>
 
@@ -240,7 +263,7 @@ class ProfileOwner extends Component {
                                                 <img alt="editIcon" data-tip="Edit" src={editIcon} onClick={() => this.handleEditClick(2) } /> :
                                                 this.state.OwnerIsEditingLink ?
                                                 <div className="d-flex justify-content-center">
-                                                    <img className="mr-1" onClick={() => this.handleEditClick(5)} alt="cancelImg" data-tip="Cancel"  alt="cancelIcon" src={cancelIcon} />
+                                                    <img className="mr-2" onClick={() => this.handleEditClick(5)} alt="cancelImg" data-tip="Cancel"  alt="cancelIcon" src={cancelIcon} />
                                                     <img onClick={() => this.handleSaveEdits(this.state.chatroomLink)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                                 </div> : ''
                                                 }
@@ -248,6 +271,7 @@ class ProfileOwner extends Component {
                                         </div>
                                         <div className="chProfileOwner-chLink">
                                             {this.state.isOwner && this.state.OwnerIsEditingLink ? <input onChange={this.handleInputChange} name="chatroomLink" type="text" value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">{this.state.chatroomLink}</a>}
+                                            {this.state.linkError? <span className="error">{this.state.chatroomLinkMsg}</span> : ''}
                                         </div>
                                     </div>
 
@@ -263,7 +287,7 @@ class ProfileOwner extends Component {
                                         <img alt="editIcon" data-tip="Edit" src={editIcon} onClick={() => this.handleEditClick(3)} /> :
                                         this.state.OwnerIsEditingDes ?
                                         <div className="d-flex justify-content-center">
-                                            <img className="mr-1" onClick={() => this.handleEditClick(6)} alt="cancelImg" data-tip="Cancel" src={cancelIcon} />
+                                            <img className="mr-2" onClick={() => this.handleEditClick(6)} alt="cancelImg" data-tip="Cancel" src={cancelIcon} />
                                             <img onClick={() => this.handleSaveEdits(this.state.chatroomDes)} data-tip="Save" alt="saveIcon" src={saveIcon} />
                                         </div> : ''
                                         }
