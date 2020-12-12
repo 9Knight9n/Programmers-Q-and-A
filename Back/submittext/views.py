@@ -87,9 +87,8 @@ def ShowUserProfile(request):
         return Response(data)
     return Response({'message' : 'User not found'})
 
-def calculateSearchOrder(searchText , QuestionText , chatroomValue):
-    value = chatroomValue * 0.0001
-    #searchTextList = searchText.split()
+def calculateSearchOrder(searchText , QuestionText):
+    value = 0
     for word in searchText:
         if word in QuestionText:
             value += 1
@@ -107,40 +106,56 @@ def DetectStopWords(text):
     filtered_sentence = [w for w in word_tokens if not w in stop_words]
     return filtered_sentence
   
+def TimeFilter(index):
+    time = datetime.datetime.now()
+    print('now' , time)
+    if index == 1:
+        time -= datetime.timedelta(days=730)
+    elif index == 2:
+        time -= datetime.timedelta(days=365)
+    elif index == 3:
+        time -= datetime.timedelta(days=180)
+    elif index == 4:
+        time -= datetime.timedelta(days=90)
+    elif index == 5:
+        time -= datetime.timedelta(days=7)
+    return time
 
 @api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
+    time_list = []
     query = Q()
-    if 'UpPeriod' in request.data.keys():
-        # filter time
-        pass
-    if 'DownPeriod' in request.data.keys():
-        # filter time
-        pass
+    if 'timePeriod' in request.data.keys():
+        time_filter = TimeFilter(int(request.data['timePeriod'][0]))
+        query = query & Q(time__gte=time_filter)
+
     if 'isAnswered' in request.data.keys():
         query = query & Q(isAnswered=True)
+
     if 'chatroomID' in request.data.keys():
         query = query & Q(chatroom=request.data['chatroomID'])
-    chatroomValue = 0
-    if 'chatroomMember' in request.data.keys():
-        chatroomValue = 1
+
+    no_member_dic = {0:10 , 1:100 , 2:1000 , 3:5000 , 4:10000 , 5:0}
     queryset = Question.objects.filter(query)
     valuelist = []
     searchText = request.data["searchText"]
     searchText = DetectStopWords(searchText)
-    print(searchText)
     user = User.objects.filter(id=request.data['user_id']) 
     if list(user) == []:
         return Response({'message':'user not found'})
     for q in range(len(queryset)):
+        numberOfUser = 0
         if queryset[q].chatroom != None:
             numberOfUser = queryset[q].chatroom.numberOfUser
-        else:
-            numberOfUser = 0
-        value = calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)
-        if value > 0:
-            valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)])
+
+        if 'chatroomMember' in request.data.keys():
+            if int(request.data['chatroomMember']) > 5:
+                return Response({'message':'index of chatroomMember is not valid'})
+            if numberOfUser >= no_member_dic[int(request.data['chatroomMember'])]:
+                value = calculateSearchOrder(searchText , queryset[q].text)
+                if value > 0:
+                    valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text)])
     valuelist = Sort(valuelist)
     data_list = []
     for i in valuelist:
@@ -200,7 +215,7 @@ def SeggestionChatroomSreach(request):
             number_of_chatroom += 1
         
             for question in Question.objects.filter(chatroom=chatroom):
-                chatroom_value_list[-1][1] += calculateSearchOrder(searchTextlist , question.text ,0)
+                chatroom_value_list[-1][1] += calculateSearchOrder(searchTextlist , question.text)
 
     chatroom_value_list = Sort(chatroom_value_list)
     if number_of_chatroom > 10:
