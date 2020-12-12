@@ -5,11 +5,13 @@ import './CSS/search.css';
 import QuestionChatbox from './questionChatbox';
 import {request} from './requests';
 import Cookies from 'js-cookie';
+import SearchFilter from './searchFilters';
 
 
 
 class SearchResultPage extends Component {
     state = {
+        showFilter:false,
         selectedTab:1,
         searchInput:this.props.match.params.searchPhrase,
         chatrooms:[],
@@ -57,9 +59,17 @@ class SearchResultPage extends Component {
         this.setState({selectedTab:tab})
     }
 
+    showFilter = () => {
+        this.setState({ showFilter: true });
+    };
+    hideFilter = () => {
+        this.setState({ showFilter: false });
+    };
+
     render() { 
         return (
             <React.Fragment>
+                <SearchFilter hideFilter={this.hideFilter} showFilter={this.state.showFilter}/>
                 <div className="w-100 h-100">
                     <div id="search-result" className=" w-100 d-flex flex-column h-100">
                         <div className="p-3 h-100">
@@ -76,7 +86,7 @@ class SearchResultPage extends Component {
                                         Questions
                                     </p>
                                 </button>
-                                <button className='mt-2 mb-2 ml-auto mr-2 p-1  rounded'>
+                                <button onClick={this.showFilter} className='mt-2 mb-2 ml-auto mr-2 p-1 rounded'>
                                     <div className="ml-auto mr-auto mt-auto mb-auto d-flex flex-row">
                                         Filters 
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-filter" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
