@@ -64,7 +64,9 @@ class ChatroomCreationApp extends Component {
                         </div>
                     </div>
                     <Link to="/chatroomCreationFirst">
-                        <button className="backButtonApp" type="button">Back</button>
+                        <button className="backButtonApp" type="button">
+                            Back
+                        </button>
                     </Link>
                     <Link to={!this.state.appLink ? "/chatroomCreationApp": "/chatroomCreationLast"} onClick={this.handleClick}>
                         <button className="nextButtonApp" type="button">Next</button>

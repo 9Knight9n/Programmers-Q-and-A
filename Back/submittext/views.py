@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from django.db.models import Q
 import datetime
 
@@ -71,9 +71,10 @@ def ShowAnswer(request):
         return Response(data_list)
     return Response({'message' : 'Question not found'})
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
+@permission_classes([])
 def ShowUserProfile(request):
-    user = User.objects.filter(username=request.data['username'])
+    user = User.objects.filter(id=request.data['user_id'])
     if list(user) != []:
         user = user[0]
         serializer = ShowUserProfileSerializer(user)
