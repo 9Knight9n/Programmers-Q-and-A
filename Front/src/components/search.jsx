@@ -28,8 +28,8 @@ class Search extends Component {
             }   
             else
             {
-                    toast.dark("Enter at least 3 letters to search!", {
-                        toastId: "no-dup"});
+                    // toast.dark("Enter at least 3 letters to search!", {
+                    //     toastId: "no-dup"});
 
             }
         }
@@ -46,20 +46,26 @@ class Search extends Component {
         this.setState({searchInput:input})
         if (input.length >2)
         {
-            toast.dismiss()
+            // toast.dismiss()
             this.setState({panelOpened:true})
             this.loadSuggestions(input);
         }
         else
         {
-            this.setState({panelOpened:false})
-            if(!this.state.informed)
-            {
-                toast.dark("Enter at least 3 letters to search!", {
-                    toastId: "no-dup"});
-
-                this.setState({informed:true})
+            if (input.length >0){
+                this.setState({panelOpened:true,suggestions:[]})
             }
+            else{
+                this.setState({panelOpened:false})
+            }
+            // this.setState({panelOpened:false})
+            // if(!this.state.informed)
+            // {
+            //     toast.dark("Enter at least 3 letters to search!", {
+            //         toastId: "no-dup"});
+
+            //     this.setState({informed:true})
+            // }
             
         }
     }
@@ -118,10 +124,11 @@ class Search extends Component {
                     </div>
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
-                        <div className={"search-result".concat(this.state.panelOpened?" ":" display-none")}>
-                            <div className="m-2">
-                                {this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>}
+                        <div className="m-3">
+                                {this.state.searchInput.length<3?<p>Enter at least 3 letters!</p>:(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
                             </div>
+                        <div className={"search-result".concat(this.state.suggestions.length>0?" active":"")}>
+                            
                             
                             {this.state.suggestions.map(sug =>
                             <Link 
