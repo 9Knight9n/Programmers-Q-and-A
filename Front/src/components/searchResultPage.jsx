@@ -7,35 +7,14 @@ import {request} from './requests';
 import Cookies from 'js-cookie';
 import SearchFilter from './searchFilters';
 
-const times = [
-    { value: 0, label: 'All time' },
-    { value: 1, label: 'last 2 years' },
-    { value: 2, label: 'last year' },
-    { value: 3, label: 'last 6 months' },
-    { value: 4, label: 'last 3 months' },
-    { value: 5, label: 'last month' },
-    { value: 6, label: 'last week' },
-]
-const members = [
-    { value: 5, label: 'no limit'},
-    { value: 0, label: '10' },
-    { value: 1, label: '100' },
-    { value: 2, label: '1000' },
-    { value: 3, label: '5000' },
-    { value: 4, label: 'more than 10000' },
-]
-const sorts = [
-    { value: 0, label: 'time'},
-    { value: 1, label: 'Number of Upvotes' },
 
-]
 
 class SearchResultPage extends Component {
     state = {
-        onlyAnswered:false,
-        time:times[0],
-        member:members[0],
-        sort:sorts[0],
+        onlyAnswered:0,
+        time:0,
+        member:5,
+        sort:0,
 
 
         showFilter:false,
@@ -51,11 +30,11 @@ class SearchResultPage extends Component {
         sessionStorage.setItem("search",this.state.searchInput)
         // console.log("mounted------------------------")
         // console.log("search input is:",this.state.searchInput)
-        this.loadData();
+        this.loadData(null);
     }
 
 
-    loadData=async()=>{
+    loadData=async(filters)=>{
         console.log("loading data")
         let config ={
             url:"http://127.0.0.1:8000/api/GeneralSearch/",
@@ -64,10 +43,18 @@ class SearchResultPage extends Component {
             formKey:[
                 "searchText",
                 "user_id",
+                'timePeriod',
+                'isAnswered',
+                'chatroomMember',
+                'sort'
             ],
             formValue:[
                 this.state.searchInput,
-                Cookies.get("id")
+                Cookies.get("id"),
+                filters?filters.time:this.state.time,
+                filters?filters.onlyAnswered: this.state.onlyAnswered,
+                filters?filters.member: this.state.member,
+                filters?filters.sort: this.state.sort
             ]
         }
         let data = []
@@ -77,6 +64,7 @@ class SearchResultPage extends Component {
         // console.log("outside",data)
         if (data)
         {
+            console.log(config)
             console.log("found data is",data)
             this.setState({questions:data.questions,chatrooms:data.chatrooms})
             
@@ -95,18 +83,24 @@ class SearchResultPage extends Component {
         this.setState({ showFilter: false });
         if(apply)
         {
+            console.log("let's check filters:",filters)
             this.setState({onlyAnswered:filters.onlyAnswered,
                 time:filters.time,
                 member:filters.member,
                 sort:filters.sort})
-            this.loadData();
+            this.loadData(filters);
         }
     };
 
     render() { 
         return (
             <React.Fragment>
-                <SearchFilter showFilter={this.state.showFilter} hideFilter={this.hideFilter} members={members} times={times} sorts={sorts} />
+                <SearchFilter onlyAnswered={this.state.onlyAnswered}
+                    showFilter={this.state.showFilter} 
+                    hideFilter={this.hideFilter} 
+                    time={this.state.time}
+                    member={this.state.member}
+                    sort={this.state.sort} />
                 <div className="w-100 h-100">
                     <div id="search-result" className=" w-100 d-flex flex-column h-100">
                         <div className="p-3 h-100">

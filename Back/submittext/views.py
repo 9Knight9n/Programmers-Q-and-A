@@ -126,6 +126,7 @@ def TimeFilter(index):
 @api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
+    print(request.data)
     time_list = []
     query = Q()
     if 'timePeriod' in request.data.keys():
@@ -134,7 +135,8 @@ def GeneralSearch(request):
             query = query & Q(time__gte=time_filter)
 
     if 'isAnswered' in request.data.keys():
-        query = query & Q(isAnswered=True)
+        if request.data['isAnswered'][0] == '1':
+            query = query & Q(isAnswered=True)
 
     if 'chatroomID' in request.data.keys():
         query = query & Q(chatroom=request.data['chatroomID'])
