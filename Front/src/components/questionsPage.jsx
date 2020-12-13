@@ -108,6 +108,7 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
+        sessionStorage.removeItem("search")
         // this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
         console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
