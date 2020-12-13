@@ -128,8 +128,9 @@ def GeneralSearch(request):
     time_list = []
     query = Q()
     if 'timePeriod' in request.data.keys():
-        time_filter = TimeFilter(int(request.data['timePeriod'][0]))
-        query = query & Q(time__gte=time_filter)
+        if int(request.data['timePeriod'][0]) != 0:
+            time_filter = TimeFilter(int(request.data['timePeriod'][0]))
+            query = query & Q(time__gte=time_filter)
 
     if 'isAnswered' in request.data.keys():
         query = query & Q(isAnswered=True)
