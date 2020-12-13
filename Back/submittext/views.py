@@ -140,7 +140,10 @@ def GeneralSearch(request):
         query = query & Q(chatroom=request.data['chatroomID'])
 
     no_member_dic = {0:10 , 1:100 , 2:1000 , 3:5000 , 4:10000 , 5:0}
-    queryset = Question.objects.filter(query)
+    if 'sort' in request.data.keys():
+        if request.data['sort'] == 0:
+            queryset = Question.objects.filter(query).order_by('time')
+    # queryset = Question.objects.filter(query)
     valuelist = []
     searchText = request.data["searchText"]
     searchText = DetectStopWords(searchText)

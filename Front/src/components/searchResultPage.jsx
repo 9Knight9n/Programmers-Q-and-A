@@ -34,7 +34,7 @@ class SearchResultPage extends Component {
     state = {
         onlyAnswered:false,
         time:times[0],
-        member:members[5],
+        member:members[0],
         sort:sorts[0],
 
 

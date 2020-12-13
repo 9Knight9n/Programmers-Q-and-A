@@ -7,7 +7,7 @@ class SearchFilter extends Component {
     state = {
         onlyAnswered:false,
         time:this.props.times[0],
-        member:this.props.members[5],
+        member:this.props.members[0],
         sort:this.props.sorts[0],
     }
 
