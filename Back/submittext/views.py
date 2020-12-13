@@ -108,7 +108,6 @@ def DetectStopWords(text):
   
 def TimeFilter(index):
     time = datetime.datetime.now()
-    print('now' , time)
     if index == 1:
         time -= datetime.timedelta(days=730)
     elif index == 2:
@@ -118,6 +117,8 @@ def TimeFilter(index):
     elif index == 4:
         time -= datetime.timedelta(days=90)
     elif index == 5:
+        time -= datetime.timedelta(days=30)
+    elif index == 6:
         time -= datetime.timedelta(days=7)
     return time
 
