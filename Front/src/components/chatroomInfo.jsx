@@ -150,7 +150,7 @@ class ChatroomInfo extends Component {
                 editorVisible={this.state.editorVisible}/>
                 {/* <ReactTooltip place="bottom" effect="solid" type="dark"/> */}
                 <div className="infoElements d-flex flex-row">
-                    <div style={{cursor:"pointer"}} onClick={this.showModal} className="infoImg">
+                    <div style={{cursor:"pointer"}} onClick={this.showModal} className="chatroomInfo-infoImg">
                         <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
                     </div>
                     <div className="chatroomInfo-userInfo">

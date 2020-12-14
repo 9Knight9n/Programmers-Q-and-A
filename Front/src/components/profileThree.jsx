@@ -120,6 +120,7 @@ class profileThree extends Component {
         console.log(token)
         const form = new FormData()
         form.set('id', Cookies.get("id"))
+        // if(this.state.bio!=="")
         form.set('description',this.state.bio)
         form.set('interests',encodeList(options,this.state.selectedOptions))
         form.set('cvfile',this.state.selectedFile)

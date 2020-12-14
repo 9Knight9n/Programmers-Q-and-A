@@ -10,6 +10,7 @@ import Texteditor from './texteditor';
 import {request} from './requests';
 import {Link} from 'react-router-dom';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ProfilePreview from './ProfilePreview';
 
 
 
@@ -18,6 +19,8 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showProfilePreview:false,
+            showProfilePreviewUserid:null,
             show: false,
             isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,
@@ -49,10 +52,10 @@ class QuestionChatbox extends Component {
         // console.log(Cookies.get('id'))
         // console.log(this.props.senderId)
         // console.log("inside");
-        if(!sessionStorage.getItem(this.state.senderId+":avatar"))
-        {
+        // if(!sessionStorage.getItem(this.state.senderId+":avatar"))
+        // {
             await getUserAvatar(this.state.senderId);
-        }
+        // }
         this.setState({senderAvatar:sessionStorage.getItem(this.state.senderId+":avatar")})
 
         
@@ -291,22 +294,24 @@ class QuestionChatbox extends Component {
     document.getElementById("goToAnswerPage").click()
   }
 
-showModal = (submit) => {
-    this.setState({ submit: submit });
-    this.setState({ show: true });
+
+showProfilePreview = (userid) => {
+    // this.setState({ showProfilePreview: submit });
+    this.setState({ showProfilePreview: true ,});
     // console.log(this.state.submit)
 
 };
 
-hideModal = () => {
-    this.setState({ show: false });
-    this.setState({ submit: -2 });
-    this.loadChatrooms()
+hideProfilePreview = () => {
+    this.setState({ showProfilePreview: false });
+    // this.setState({ submit: -2 });
+    // this.loadChatrooms()
 };
 
     render() { 
         return (  
             <React.Fragment>
+                <ProfilePreview userid={this.state.senderId} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
                 <Texteditor 
                     content={this.state.editing?this.state.editorContent:""} 
                     updateContent={this.updateContent} 
@@ -327,9 +332,11 @@ hideModal = () => {
                                 </p>
                             </div>
                             <div className="d-flex pl-2 align-top w-80 ml-3" id="profile">
-                                <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
-                                    src={this.state.senderAvatar}/></div>
-                                <p onClick={this.showModal} className="pt-1 h5 d-flex align-items-center pr-4 ">{this.state.senderUsername}</p>
+                                <div style={{cursor:"pointer"}} className="d-flex align-items-center mr-2" onClick={this.showProfilePreview}>
+                                    <img  id="profile-img" 
+                                    src={this.state.senderAvatar}/>
+                                </div>
+                                <p style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="pt-1 h5 d-flex align-items-center pr-4 ">{this.state.senderUsername}</p>
                             </div>
                             <div id="options" className="ml-auto">
                                 <Dropdown>
