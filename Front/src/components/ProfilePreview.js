@@ -65,7 +65,7 @@ class ProfilePreview extends Component {
         let data = [];
         data = await request(config);
         if (data) {
-            console.log("LOADING......")
+            console.log("LOADING......",)
             this.setState({
                 first_name: data.first_name,
                 last_name: data.last_name,

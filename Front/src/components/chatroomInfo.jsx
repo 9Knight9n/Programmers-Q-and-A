@@ -178,7 +178,7 @@ class ChatroomInfo extends Component {
                     {this.state.showChatroomProfile?
                     <div onClick={() => this.hideModal()} className="modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ProfileOwner hideModal={this.hideModal}/>
+                            <ProfileOwner Cid={this.state.chatroomId} hideModal={this.hideModal}/>
                         </section>
                     </div>
                     :""}

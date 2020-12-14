@@ -16,6 +16,7 @@ class ProfileOwner extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            Cid:this.props.Cid,
             chatroomName: '',
             chatroomTitle: '',
             chatroomDes: '',
@@ -49,7 +50,7 @@ class ProfileOwner extends Component {
                 "chatroomId",
             ],
             formValue:[
-                5
+                this.state.Cid
             ]
         };
         let data = [];
@@ -184,7 +185,7 @@ class ProfileOwner extends Component {
                     sendElement
                 ],
                 formValue:[
-                    5,
+                    this.state.Cid,
                     input
                 ]
             };
