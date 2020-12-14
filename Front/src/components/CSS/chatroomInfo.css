@@ -1,11 +1,20 @@
 .chatroomInfo-infoImg {
-  width: 7% !important;
+  width: 13% !important;
 }
 
 .chatroomInfo button {
   outline: none !important;
   border: none !important;
   border-radius: 0px !important;
+}
+
+.chatroomInfo-userInfo {
+  margin-top: 1%;
+}
+
+.chatroomInfo-button {
+  width: 50%;
+  height: 10vh;
 }
 
 .chatroomInfo-infoImg img {
@@ -15,7 +24,8 @@
 }
 
 .chatroomInfo-infoElements {
-  padding-top: 1%;
+  margin-top: 1%;
+  height: 11vh;
 }
 
 .chatroomInfo-infoBox {
@@ -44,23 +54,29 @@
   position: fixed;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
 
 #showChatroomProfile .modal .modal-main {
-  position:fixed;
+  position: fixed;
   background: #33415c;
   width: 53%;
   height: 65vh;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .chatroomInfo-submiteAnswerButton {
   height: 60%;
   width: 10vw;
   background-color: #5c6bc0;
+}
+
+.chatroomInfo-avatar-name-contexet-link {
+  width: 50%;
+  height: 10vh;
+  margin-left: 2%;
 }

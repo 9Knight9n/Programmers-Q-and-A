@@ -419,7 +419,7 @@ hideProfilePreview = () => {
                                     ReactHtmlParser(this.state.context)
                                 }
                                 </div>
-                                <small className="ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
+                                <small className="date ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
 
                             </div>
 

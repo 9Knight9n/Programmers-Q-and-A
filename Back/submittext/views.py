@@ -77,7 +77,6 @@ def ShowAnswer(request):
     return Response({'message' : 'Question not found'})
 
 @api_view(['POST' , ])
-@permission_classes([])
 def ShowUserProfile(request):
     user = User.objects.filter(id=request.data['user_id'])
     if list(user) != []:
@@ -264,6 +263,8 @@ def AddQuestion(request):
         if 'file' in request.FILES.keys():
             question.file = request.FILES['file']
         question.save()
+        user[0].askedQuestions += 1
+        user[0].save()
         return Response({'message': 'New question created'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'User not found'})
 
@@ -283,6 +284,8 @@ def AddAnswer(request):
         if 'file' in request.FILES.keys():
             answer.file = request.FILES['file']
         answer.save()
+        user[0].answeredQuestions += 1
+        user[0].save()
         return Response({'message': 'New answer created'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'User not found'})
 
@@ -312,6 +315,9 @@ def DeleteQuestion(request):
     question = Question.objects.filter(id=data['id'][0] , user=user[0] , chatroom=chatroom[0])
     if list(question) != []:
         question.delete()
+        if list(user) != []:
+            user[0].askedQuestions -= 1
+            user[0].save()
         return Response({'message':'delete complete'})
     else:
         return Response({'message':'you can`t delete'})
@@ -382,6 +388,11 @@ def DeleteAnswer(request):
     answer = Answer.objects.filter(id=request.data['id'] , user=user[0] , question=question[0])
     if list(answer) != []:
         answer.delete()
+        print("salas", user[0].answeredQuestions)
+        if list(user) != []:
+            user[0].answeredQuestions -= 1
+            user[0].save()
+        print("salas", user[0].answeredQuestions)
         return Response({'message':'delete complete'})
     else:
         return Response({'message':'you can`t delete'})

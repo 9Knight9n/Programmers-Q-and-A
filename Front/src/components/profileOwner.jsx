@@ -44,7 +44,7 @@ class ProfileOwner extends Component {
 
         let config = {
             url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
-            needToken:false,
+            needToken:true,
             type:"post",
             formKey:[
                 "chatroomId",

@@ -53,7 +53,7 @@ class ProfilePreview extends Component {
         console.log('entred loadData....')
         let config = {
             url:"http://127.0.0.1:8000/api/ShowUserProfile/",
-            needToken:false,
+            needToken:true,
             type:"post",
             formKey:[
                 "user_id",
@@ -150,7 +150,7 @@ class ProfilePreview extends Component {
                                             <p>{this.state.numOfChatroom}</p>
                                             </div>
                                         <div className="ProfilePreview-answered-questions d-flex justify-content-center">
-                                            <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.askedQ +" questions"} /> 
+                                            <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.answeredQ +" questions"} /> 
                                             <p>{this.state.answeredQ}</p>
                                         </div>
                                     </div>

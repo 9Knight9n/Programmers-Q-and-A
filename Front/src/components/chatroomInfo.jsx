@@ -142,36 +142,38 @@ class ChatroomInfo extends Component {
 
     render() { 
         return (  
-            <div className="w-100 chatroomInfo-infoBox">
+            <div className="chatroomInfo w-100 chatroomInfo-infoBox">
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
                 hideEditor={this.hideEditor}
                 editorVisible={this.state.editorVisible}/>
                 {/* <ReactTooltip place="bottom" effect="solid" type="dark"/> */}
-                <div className="infoElements d-flex flex-row">
-                    <div style={{cursor:"pointer"}} onClick={this.showModal} className="chatroomInfo-infoImg">
-                        <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
-                    </div>
-                    <div className="chatroomInfo-userInfo">
-                        <div className="d-flex flex-row">
-                            <h2 style={{cursor:"pointer"}} onClick={this.showModal} className="">{this.state.chatroomName}</h2>
-                            <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
-                                <div className=" d-flex flex-row">
-                                    
-                                    <img src={linkImg} className="h-100"
-                                        data-tip={this.state.copied?"Copied":"Click to copy"} />
-                                    <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
-                                </div>
-                                
-                                
-                            </CopyToClipboard>
-                            
+                <div className="chatroomInfo-infoElements d-flex flex-row">
+                    <div className="chatroomInfo-avatar-name-contexet-link d-flex flex-row">
+                        <div style={{cursor:"pointer"}} onClick={this.showModal} className="chatroomInfo-infoImg">
+                            <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
                         </div>
-                        <h3>{this.state.selectedTopic}</h3>
+                        <div className="chatroomInfo-userInfo">
+                            <div className="d-flex flex-row">
+                                <h2 style={{cursor:"pointer"}} onClick={this.showModal} className="">{this.state.chatroomName}</h2>
+                                <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
+                                    <div className=" d-flex flex-row">
+                                        
+                                        <img src={linkImg} className="h-100"
+                                            data-tip={this.state.copied?"Copied":"Click to copy"} />
+                                        <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
+                                    </div>
+                                    
+                                    
+                                </CopyToClipboard>
+                                
+                            </div>
+                            <h3>{this.state.selectedTopic}</h3>
+                        </div>
                     </div>
-                    <div className="chatroomInfo buttons d-flex flex-column bd-highlight ml-auto mr-2">
-                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro chatroomInfo-submiteAnswerButton">Submit Question</button>
+                    <div className="chatroomInfo-button d-flex flex-row-reverse">
+                        <button style={{outline:"none"}} onClick={this.showEditor} className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">Submit Question</button>
                     </div>
                 </div>
                 <div id="showChatroomProfile">

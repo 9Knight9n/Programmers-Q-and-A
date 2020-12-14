@@ -70,6 +70,11 @@
   border: none !important;
   border-radius: 0px !important;
 }
+
+#Question .date {
+  color: #9d9dd1 !important;
+}
+
 .blue-on-hover:hover {
   color: blue;
 }

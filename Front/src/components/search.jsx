@@ -136,7 +136,7 @@ class Search extends Component {
                                 id="suggestion" 
                                 key={sug.chatroom_id} 
                                 className="m-2 d-flex pl-3"
-                                onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false})}>
+                                onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false,suggestions:[]})}>
                                 <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
                             </Link>    
                             )}
