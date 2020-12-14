@@ -33,8 +33,18 @@ class SearchResultPage extends Component {
         this.loadData(null);
     }
 
+    componentDidUpdate(prevProps) {
+        // console.log("inside componentDidUpdate")
+        // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+        if (prevProps !== this.props) {
 
-    loadData=async(filters)=>{
+            this.setState({searchInput:this.props.match.params.searchPhrase,})
+            // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
+            this.loadData(this.props.match.params.searchPhrase,null)   
+        }
+      }
+
+    loadData=async(input,filters)=>{
         console.log("loading data")
         let config ={
             url:"http://127.0.0.1:8000/api/GeneralSearch/",
@@ -49,7 +59,7 @@ class SearchResultPage extends Component {
                 'sort'
             ],
             formValue:[
-                this.state.searchInput,
+                input,
                 Cookies.get("id"),
                 filters?filters.time:this.state.time,
                 filters?filters.onlyAnswered: this.state.onlyAnswered,
@@ -88,7 +98,7 @@ class SearchResultPage extends Component {
                 time:filters.time,
                 member:filters.member,
                 sort:filters.sort})
-            this.loadData(filters);
+            this.loadData(this.state.searchInput,filters);
         }
     };
 
