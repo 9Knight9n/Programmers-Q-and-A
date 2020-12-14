@@ -58,7 +58,7 @@ def ShowAnswer(request):
             data = serializer.data
             user_answer = User_Answer.objects.filter(user=request.data['user_id'] , answer=i)
             if list(user_answer) != []:
-                data["voteState"] = user_answer[0].isVoted
+                data["voteState"] = user_answer[0].voteState
             else:
                 data["voteState"] = 0
             data['time']=i.time.ctime()
