@@ -145,7 +145,7 @@ class LeftMenu extends Component {
                     </div>
                 </div> */}
             </div>
-            <NewChatroom hideModal={this.hideModal} show={this.state.show} />
+                <NewChatroom hideModal={this.hideModal} show={this.state.show} />
             </div>
         );
     }

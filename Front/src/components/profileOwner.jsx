@@ -213,9 +213,7 @@ class ProfileOwner extends Component {
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
                
                 <div className="chProfileOwner-exitImg">
-                     <Link to="/"> 
-                        <img src={exitImg} />
-                     </Link> 
+                        <img onClick={this.props.hideModal} src={exitImg} />
                 </div>
 
                 <div class="d-flex h-100">
@@ -243,7 +241,7 @@ class ProfileOwner extends Component {
                                             </div>
                                         </div>
                                         <div className="chProfileOwner-clearFix"></div>
-                                        <div className="chProfileOwner-chName">
+                                        <div className="chProfileOwner-chName mr-3">
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input  onChange={this.handleInputChange} onClick={() => this.handleEditClick(7)} name="chatroomName" type="text" value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
                                             {this.state.nameError? <span className="error">{this.state.chatroomNameMsg}</span> : ''}
                                         </div>
@@ -270,7 +268,7 @@ class ProfileOwner extends Component {
                                             </div>
                                         </div>
                                         <div className="chProfileOwner-chLink">
-                                            {this.state.isOwner && this.state.OwnerIsEditingLink ? <input onChange={this.handleInputChange} name="chatroomLink" type="text" value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">{this.state.chatroomLink}</a>}
+                                            {this.state.isOwner && this.state.OwnerIsEditingLink ? <input onChange={this.handleInputChange} name="chatroomLink" type="text" value={this.state.chatroomLink}></input> : <a href={this.state.chatroomLink} target="blank">Click here!</a>}
                                             {this.state.linkError? <span className="error">{this.state.chatroomLinkMsg}</span> : ''}
                                         </div>
                                     </div>
@@ -298,11 +296,11 @@ class ProfileOwner extends Component {
                                 </div>
                             </div>
 
-                            {this.state.isOwner?
+                            {/* {this.state.isOwner?
                                 <div className="chProfileOwner-deleteButton mt-auto">
                                     <button>Delete Chatroom</button>
                                 </div> : ''
-                            }
+                            } */}
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
