@@ -21,7 +21,8 @@ button {
 .backButton {
   height: 4vh !important;
   width: 100%;
-  margin-top: 381%;
+  outline: none;
+  border: none;
 }
 
 .LinkButtons {

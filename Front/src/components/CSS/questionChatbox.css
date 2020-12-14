@@ -65,12 +65,13 @@
   background-color: green !important;
 }
 
-.show-more-less{
-  color: #007bff;
+#Question button {
+  outline: none !important;
+  border: none !important;
+  border-radius: 0px !important;
 }
-
-.show-more-less:hover {
-  color: rgb(0, 197, 181);
+.blue-on-hover:hover {
+  color: blue;
 }
 
 .checkbox {
@@ -85,4 +86,10 @@
   outline: none;
   /* background-color: none !important; */
   background: transparent !important;
+}
+
+.Question-showAnswerButton {
+  border-radius: 0px;
+  border: none;
+  background-color: #5c6bc0;
 }

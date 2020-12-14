@@ -18,6 +18,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            show: false,
             isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,
             loading:false,
@@ -289,9 +290,19 @@ class QuestionChatbox extends Component {
     sessionStorage.setItem('ChatroomID',this.props.Cid);
     document.getElementById("goToAnswerPage").click()
   }
-  
 
+showModal = (submit) => {
+    this.setState({ submit: submit });
+    this.setState({ show: true });
+    // console.log(this.state.submit)
 
+};
+
+hideModal = () => {
+    this.setState({ show: false });
+    this.setState({ submit: -2 });
+    this.loadChatrooms()
+};
 
     render() { 
         return (  
@@ -318,7 +329,7 @@ class QuestionChatbox extends Component {
                             <div className="d-flex pl-2 align-top w-80 ml-3" id="profile">
                                 <div className="d-flex align-items-center mr-2"><img  id="profile-img" 
                                     src={this.state.senderAvatar}/></div>
-                                <p className="pt-1 h5 d-flex align-items-center pr-4">{this.state.senderUsername}</p>
+                                <p onClick={this.showModal} className="pt-1 h5 d-flex align-items-center pr-4 ">{this.state.senderUsername}</p>
                             </div>
                             <div id="options" className="ml-auto">
                                 <Dropdown>
@@ -420,8 +431,8 @@ class QuestionChatbox extends Component {
 
                             <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
                                 {this.state.showMoreButton?
-                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
-                                <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
+                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="Question-showAnswerButton pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
+                                <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px",border:"none"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
                                 }
                                  
                             </div>

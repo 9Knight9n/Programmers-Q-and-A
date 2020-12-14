@@ -1,31 +1,37 @@
-.infoImg {
+.chatroomInfo-infoImg {
   width: 7% !important;
 }
 
-.infoImg img {
+.chatroomInfo button {
+  outline: none !important;
+  border: none !important;
+  border-radius: 0px !important;
+}
+
+.chatroomInfo-infoImg img {
   border-radius: 50%;
   width: 70%;
   margin-left: 15%;
 }
 
-.infoElements {
+.chatroomInfo-infoElements {
   padding-top: 1%;
 }
 
-.infoBox {
+.chatroomInfo-infoBox {
   background-color: #000753;
   height: 11vh;
 }
 
-.userInfo h2 {
+.chatroomInfo-userInfo h2 {
   font-size: 20px;
 }
 
-.userInfo h3 {
+.chatroomInfo-userInfo h3 {
   color: #9d9dd1;
 }
 
-.userInfo img {
+.chatroomInfo-userInfo img {
   cursor: pointer;
   /* position: absolute; */
   width: 6%;
@@ -51,4 +57,10 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+}
+
+.chatroomInfo-submiteAnswerButton {
+  height: 60%;
+  width: 10vw;
+  background-color: #5c6bc0;
 }

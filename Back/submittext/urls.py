@@ -18,3 +18,4 @@ urlpatterns = [
     path("DeleteQuestion/", views.DeleteQuestion, name="DeleteQuestion"),
     path("DeleteAnswer/", views.DeleteAnswer, name="DeleteAnswer"),
 ]
+ 
