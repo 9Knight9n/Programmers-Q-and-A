@@ -15,6 +15,7 @@ import {request} from "./requests.jsx";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Texteditor from './texteditor';
 import LoadingPage from './loading';
+import ProfilePreview from './ProfilePreview';
 
 
 
@@ -22,6 +23,7 @@ class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            showProfilePreview:false,
             loading:false,
             PactiveVote:this.props.voteState === 1,
             NactiveVote:this.props.voteState === -1,
@@ -245,10 +247,27 @@ class AnswerChatBox  extends Component {
         this.props.loadAnswers()
     }
 
+
+    showProfilePreview = (userid) => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showProfilePreview: true ,});
+        // console.log(this.state.submit)
+    
+    };
+    
+    hideProfilePreview = () => {
+        this.setState({ showProfilePreview: false });
+        // this.setState({ submit: -2 });
+        // this.loadChatrooms()
+    };
+
+
+
     render() { 
         return ( 
             
                 <div id="answer" style={{ width:this.props.width+"vw",}} className="d-flex flex-column">
+                    <ProfilePreview userid={this.props.userid} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
                     {this.state.loading?<LoadingPage/>: ""}
                     <Texteditor 
                         content={this.state.answer} 
@@ -258,8 +277,8 @@ class AnswerChatBox  extends Component {
                         />
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
-                            <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
-                            <label className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
+                            <img style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                            <label style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown className="dropDownMain">
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">

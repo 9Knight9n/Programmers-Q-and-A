@@ -20,7 +20,7 @@ class QuestionChatbox extends Component {
         super(props);
         this.state = {
             showProfilePreview:false,
-            showProfilePreviewUserid:null,
+            // showProfilePreviewUserid:null,
             show: false,
             isOwner:this.props.senderId===parseInt(Cookies.get("id")),
             isAnswered:this.props.isAnswered,

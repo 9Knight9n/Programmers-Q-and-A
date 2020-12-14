@@ -78,7 +78,7 @@ class ProfilePreview extends Component {
                 // userIntrests: decodeList(options, "111111111")
             });
             let userIntrests = decodeList(options, data.interests)
-            console.log("user intersting:  ", userIntrests)
+            // console.log("user intersting:  ", userIntrests)
             this.setState({
                 userIntrests
             })
