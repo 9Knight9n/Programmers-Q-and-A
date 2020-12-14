@@ -10,7 +10,7 @@
   
 #editor .modal .modal-main {
     position:fixed;
-    background: #33415c;
+    background: #121b2b;
     width: 80%;
     height: auto;
     top:50%;
@@ -22,12 +22,28 @@
   }
 
 .jodit-wysiwyg {
-    background-color: #292929 !important;
+    background-color: #e9dddd !important;
 }
 .jodit-toolbar__box {
 
     background: #292929 !important;
 }
 .jodit-toolbar__box svg{
-    fill: #ffffff !important;
+    fill: #92efff !important;
+}
+
+.jodit-toolbar-editor-collection_size_middle.jodit-toolbar-editor-collection_mode_horizontal {
+
+  background-image: repeating-linear-gradient(#00a1ff17,#00a1ff70 37px,#00c4ff 38px);
+}
+
+.jodit-workplace+.jodit-status-bar:not(:empty) {
+  border-top: 1px solid #84f5f0;
+  background-image: repeating-linear-gradient(#00a1ff17,#00a1ff70 37px,#00c4ff 38px);
+}
+.jodit_theme_dark .jodit-placeholder {
+  color: hsl(0deg 5% 24% / 80%);
+}
+.jodit_theme_dark .jodit-toolbar-button__button:hover:not([disabled]) {
+  background-color: #1c4177;
 }
