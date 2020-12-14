@@ -112,6 +112,7 @@ def show_chatrooms(request):
 
 
 @api_view(['POST', ])
+@permission_classes([])
 def ShowChatroomProfile(request):
     chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     if list(chatroom) != []:
@@ -121,7 +122,7 @@ def ShowChatroomProfile(request):
         filename = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         data['chatroom_profile_image'] = open(filename, 'rb').read()
         data['chatroomLink'] = 'http://127.0.0.1:8000/ShowChatroomByLink/chatroom' + str(chatroom.id) + '/'
-
+        data['topicLink'] = chatroom.Link
         if data['selectedTopic'] == "PL":
             data['selectedTopic'] = "Programing Language(" + chatroom.selected + ")" 
         elif data['selectedTopic'] == "App":
@@ -129,6 +130,36 @@ def ShowChatroomProfile(request):
         elif data['selectedTopic'] == "OS":
             data['selectedTopic'] = "Operating System(" + chatroom.selected + ")"
         return Response(data)
+        
+    return Response({'message': 'Chatroom not found'})
+
+@api_view(['POST', ])
+@permission_classes([])
+def EditChatroomProfile(request):
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
+    print("////////////////////////////////////////////////hi" , request.data.keys())
+    if list(chatroom) != []:
+        chatroom = chatroom[0]
+        serializer = ShowUChatroomProfileSerializer(chatroom)
+        data = serializer.data
+
+        if 'chatroomName' in request.data.keys():
+            chatroom.chatroomName = request.data['chatroomName']
+
+        if 'Description' in request.data.keys():
+            chatroom.Description = request.data['Description']
+
+        if 'topicLink' in request.data.keys() and chatroom.selectedTopic != 'OS':
+            chatroom.Link = request.data['topicLink']
+        print("////////////////////////////////////////////////bye" , request.data.keys())
+        if 'chatroom_profile_image' in request.data.keys():
+            filepath = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
+            print("//////////////////////////////////////////////////////////////////:::::" , filepath)
+            file = open(filepath, 'w')
+            file.write(request.POST['chatroom_profile_image'])
+            file.close()
+        chatroom.save()
+        return Response({'message':'edit successfully'})
         
     return Response({'message': 'Chatroom not found'})
 
