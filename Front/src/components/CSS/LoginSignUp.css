@@ -46,6 +46,7 @@ html {
   border-width: 0px;
   color: black !important;
   font-size: 16px !important;
+  outline: none !important;
 }
 
 .Abed-css a {
@@ -193,8 +194,7 @@ html {
   position: relative;
   padding: 4% 14%;
   margin-left: 22%;
-  margin-top: 2%;
-  margin-top: 1%;
+  margin-top: 6%;
   /* border-radius: 18px; */
 }
 /*2 for signUp*/
@@ -209,8 +209,7 @@ html {
   position: relative;
   padding: 4% 16%;
   margin-left: 24%;
-  margin-top: 2%;
-  margin-top: 1%;
+  margin-top: 6%;
   /* border-radius: 18px; */
 }
 
@@ -286,4 +285,12 @@ html {
   margin-top: -8%;
   margin-left: 15%;
   font-size: 13px;
+}
+
+.Abed-css .Toast button {
+  background-color: transparent !important;
+}
+.Toastify__toast--dark {
+  background: #626588 !important;
+  color: #fff !important;
 }

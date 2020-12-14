@@ -192,6 +192,7 @@ class SignInForm extends Component{
         return (
           <div className="Abed-css">
             <ToastContainer
+              className="Toast"
               position="top-right"
               autoClose={5000}
               hideProgressBar={false}

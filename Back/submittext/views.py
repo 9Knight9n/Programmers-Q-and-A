@@ -227,9 +227,10 @@ def SeggestionChatroomSreach(request):
     chatroom_value_list = []
     number_of_chatroom = 0
     for chatroom in Chatroom.objects.all():
-        similarty_of_chatroom_name = nltk.edit_distance(searchText, chatroom.chatroomName)
+        x = min(len(searchText), len(chatroom.chatroomName))
+        similarty_of_chatroom_name = nltk.edit_distance(searchText[:x], chatroom.chatroomName[:x])
         print(similarty_of_chatroom_name)
-        if similarty_of_chatroom_name < len(searchText)/2 + 2:
+        if similarty_of_chatroom_name < 3:
             chatroom_value_list.append([chatroom , 0])
             number_of_chatroom += 1
         

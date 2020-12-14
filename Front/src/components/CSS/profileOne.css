@@ -1,3 +1,7 @@
+.parisa-css button {
+  outline: none !important;
+}
+
 .parisa-css .profile {
   position: absolute;
   top: 80%;
@@ -66,6 +70,7 @@
 .parisa-css .pro-success {
   color: #00ff00 !important;
   font-size: smaller;
+  margin-top: 1%;
 }
 
 @media screen and (max-width: 600px) {

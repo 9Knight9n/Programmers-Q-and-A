@@ -120,14 +120,15 @@ class Search extends Component {
                             </svg>
                         </button>
                         <input value={this.state.searchInput} onChange={this.handelInputChange}
-                            className="mr-sm-2 form-control" placeholder="Search" />
+                            className="mr-sm-2 form-control" placeholder="Search" 
+                        />
                     </div>
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
                         <div className={"m-3".concat(this.state.panelOpened?" ":" display-none")}>
                             {this.state.searchInput.length<3?<p>Enter at least 3 letters!</p>:(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
                         </div>
-                        <div className={"search-result".concat(this.state.suggestions.length>0?" active":"")}>
+                        <div className={"search-result".concat(this.state.suggestions.length>0 && this.state.searchInput !== ""?" active":"")}>
                             
                             
                             {this.state.suggestions.map(sug =>

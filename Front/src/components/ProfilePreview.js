@@ -116,6 +116,7 @@ class ProfilePreview extends Component {
                                         <div className="ProfilePreview-first_name-last_name">
                                             <h1>{this.state.first_name} {this.state.last_name}</h1>
                                         </div>
+                                        <div className="ProfilePreview-clearFix"></div>
                                         <div className="ProfilePreview-email-userName d-flex">
                                             {/* <p>email : {this.state.userEmail}</p> */}
                                             <label for="ProfilePreview-userName-P">username : </label>
