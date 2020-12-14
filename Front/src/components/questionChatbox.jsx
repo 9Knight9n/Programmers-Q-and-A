@@ -41,14 +41,10 @@ class QuestionChatbox extends Component {
     componentDidMount=async()=>{
         // console.log(this.state.sameProblem,"________________________________")
         // console.log(this.state.isAnswered,"________________________________")
-        // if(this.state.sameProblem === 'false')
-        //     this.setState({sameProblem:false})
-        // else if(this.state.sameProblem === 'true')
-        //     this.setState({sameProblem:true})
-        // if(this.state.isAnswered === 'false')
-        //     this.setState({isAnswered:false})
-        // else if(this.state.isAnswered === 'true')
-        //     this.setState({isAnswered:true})
+        if(this.state.isAnswered === 'false')
+            this.setState({isAnswered:false})
+        else if(this.state.isAnswered === 'true')
+            this.setState({isAnswered:true})
         // console.log(Cookies.get('id'))
         // console.log(this.props.senderId)
         // console.log("inside");
@@ -314,7 +310,7 @@ class QuestionChatbox extends Component {
                     className="d-flex flex-column">
 
                         <div id="header" className="d-flex flex-row ml-auto">
-                            <div className="d-flex pl-2 align-top w-10">
+                            <div className="d-flex pl-2 align-top">
                                 <p className="pt-1 d-flex align-items-center" style={{fontSize: "0.85rem"}}>
                                     {/* submitted by */}
                                 </p>
@@ -393,7 +389,7 @@ class QuestionChatbox extends Component {
                                     <ShowMoreText
                                     /* Default options */
                                     lines={3}
-                                    more={<p className="ml-auto show-more-less" >Show more</p>}
+                                    more={<p className="ml-auto show-more-less mt-3 mb-2" >Show more</p>}
                                     less={<p className="ml-auto show-more-less">Show less</p>}
                                     className='content-css'
                                     anchorClass='show-more-less d-flex flex-row'
@@ -405,7 +401,7 @@ class QuestionChatbox extends Component {
                                     ReactHtmlParser(this.state.context)
                                 }
                                 </div>
-                                <small className="ml-auto mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
+                                <small className="ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
 
                             </div>
 

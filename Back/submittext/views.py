@@ -3,6 +3,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.db.models import Q
 import datetime
+import nltk
+from nltk.corpus import stopwords  
+from nltk.tokenize import word_tokenize 
+
+# import time 
 
 from .serializer import QuestionSerializer , AnswerSerializer , ShowUserProfileSerializer
 from .models import Answer , Question , Chatroom_User , User_Question , User_Answer
@@ -51,7 +56,6 @@ def ShowAnswer(request):
         for i in answers:
             serializer = AnswerSerializer(i)
             data = serializer.data
-            print(request.data.keys())
             user_answer = User_Answer.objects.filter(user=request.data['user_id'] , answer=i)
             if list(user_answer) != []:
                 data["voteState"] = user_answer[0].isVoted
@@ -84,10 +88,9 @@ def ShowUserProfile(request):
         return Response(data)
     return Response({'message' : 'User not found'})
 
-def calculateSearchOrder(searchText , QuestionText , chatroomValue):
-    value = chatroomValue * 0.0001
-    searchTextList = searchText.split()
-    for word in searchTextList:
+def calculateSearchOrder(searchText , QuestionText):
+    value = 0
+    for word in searchText:
         if word in QuestionText:
             value += 1
     return value
@@ -96,43 +99,117 @@ def Sort(sub_li):
     sub_li.sort(key = lambda x: x[1]) 
     return sub_li[::-1]
 
-@api_view(['GET' , ])
+def DetectStopWords(text):
+    stop_words = set(stopwords.words('english'))  
+    
+    word_tokens = word_tokenize(text)  
+    
+    filtered_sentence = [w for w in word_tokens if not w in stop_words]
+    return filtered_sentence
+  
+def TimeFilter(index):
+    time = datetime.datetime.now()
+    if index == 1:
+        time -= datetime.timedelta(days=730)
+    elif index == 2:
+        time -= datetime.timedelta(days=365)
+    elif index == 3:
+        time -= datetime.timedelta(days=180)
+    elif index == 4:
+        time -= datetime.timedelta(days=90)
+    elif index == 5:
+        time -= datetime.timedelta(days=30)
+    elif index == 6:
+        time -= datetime.timedelta(days=7)
+    return time
+
+@api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
+    print(request.data)
+    time_list = []
     query = Q()
-    if 'UpPeriod' in request.data.keys():
-        # filter time
-        pass
-    if 'DownPeriod' in request.data.keys():
-        # filter time
-        pass
+    if 'timePeriod' in request.data.keys():
+        if int(request.data['timePeriod'][0]) != 0:
+            time_filter = TimeFilter(int(request.data['timePeriod'][0]))
+            query = query & Q(time__gte=time_filter)
+
     if 'isAnswered' in request.data.keys():
-        query = query & Q(isAnswered=True)
+        if request.data['isAnswered'][0] == '1':
+            query = query & Q(isAnswered=True)
+
     if 'chatroomID' in request.data.keys():
         query = query & Q(chatroom=request.data['chatroomID'])
-    chatroomValue = 0
-    if 'chatroomMember' in request.data.keys():
-        chatroomValue = 1
-    queryset = Question.objects.filter(query)
+
+    no_member_dic = {0:10 , 1:100 , 2:1000 , 3:5000 , 4:10000 , 5:0}
+    queryset = []
+    if 'sort' in request.data.keys():
+        if request.data['sort'] == '0':
+            # newest
+            queryset = Question.objects.filter(query).order_by('time')
+        elif request.data['sort'] == '1':
+            #oldest
+            queryset = Question.objects.filter(query).order_by('time').reverse()
+        elif request.data['sort'] == '2':
+            # vote
+            queryset = Question.objects.filter(query).order_by('vote')
+    else:
+        queryset = Question.objects.filter(query)
     valuelist = []
     searchText = request.data["searchText"]
+    searchText = DetectStopWords(searchText)
+    user = User.objects.filter(id=request.data['user_id']) 
+    if list(user) == []:
+        return Response({'message':'user not found'})
     for q in range(len(queryset)):
+        numberOfUser = 0
         if queryset[q].chatroom != None:
             numberOfUser = queryset[q].chatroom.numberOfUser
-        else:
-            numberOfUser = 0
-        valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text , numberOfUser * chatroomValue)])
+
+        if 'chatroomMember' in request.data.keys():
+            if int(request.data['chatroomMember']) > 5:
+                return Response({'message':'index of chatroomMember is not valid'})
+            if numberOfUser >= no_member_dic[int(request.data['chatroomMember'])]:
+                value = calculateSearchOrder(searchText , queryset[q].text)
+                if value > 0:
+                    valuelist.append([q , calculateSearchOrder(searchText , queryset[q].text)])
     valuelist = Sort(valuelist)
     data_list = []
     for i in valuelist:
         if i[1] > 0:
             data = QuestionSerializer(queryset[i[0]]).data
+            data['chatroom'] = queryset[i[0]].chatroom
+            data['time']=queryset[i[0]].time.ctime()
+            user_question = User_Question.objects.filter(user=user[0], question=queryset[i[0]])
+            if list(user_question) == []:
+                data['voteState'] = 0
+            else:
+                data['voteState'] = user_question[0].voteState
             if queryset[i[0]].user != None:
                 data['user'] = queryset[i[0]].user.username
+                data['userid'] = queryset[i[0]].user.id
             else:
                 data['user'] = 'user does not exist'
+                data['userid'] = 'user does not exist'
+            data['time']=queryset[i[0]].time.ctime()
             data_list.append(data)
-    return Response(data_list)
+    chatroom_id_list = []
+    chatroom_list = []
+    for i in data_list:
+        if not i['chatroom'] in chatroom_id_list:
+            chatroom_id_list.append(i['chatroom'])
+            if i["chatroom"] != None:
+                chatroom_data = {}
+                chatroom_data["ChatroomID"] = i['chatroom'].id
+                chatroom_data["name"] = i['chatroom'].chatroomName
+                chatroom_data["image"] = open( str(i["chatroom"].chatroomAvatar), 'r').read()
+                chatroom_list.append(chatroom_data)
+        if i["chatroom"] == None:
+            i["chatroom"] = "not exist"
+        else:
+            i["chatroom"] = i["chatroom"].id
+            
+    return Response({"questions": data_list , "chatrooms": chatroom_list})
 
 #document :
     # realtime sreach (only on chatrooms)
@@ -142,17 +219,21 @@ def GeneralSearch(request):
         # chatroom with more user
         # question with true answer
 
-@api_view(['GET' , ])
+@api_view(['POST' , ])
 def SeggestionChatroomSreach(request):
     searchText = request.data["searchText"]
+    searchTextlist = DetectStopWords(searchText)
+    print(searchText)
     chatroom_value_list = []
     number_of_chatroom = 0
     for chatroom in Chatroom.objects.all():
-        chatroom_value_list.append([chatroom , 0])
-        number_of_chatroom += 1
+        similarty_of_chatroom_name = nltk.edit_distance(searchText, chatroom.chatroomName)
+        if similarty_of_chatroom_name < 3:
+            chatroom_value_list.append([chatroom , 0])
+            number_of_chatroom += 1
         
-        for question in Question.objects.filter(chatroom=chatroom):
-            chatroom_value_list[-1][1] += calculateSearchOrder(searchText , question.text ,0)
+            for question in Question.objects.filter(chatroom=chatroom):
+                chatroom_value_list[-1][1] += calculateSearchOrder(searchTextlist , question.text)
 
     chatroom_value_list = Sort(chatroom_value_list)
     if number_of_chatroom > 10:
@@ -163,7 +244,6 @@ def SeggestionChatroomSreach(request):
         data['chatroom_id'] = chatroom[0].id
         data['chatroom_name'] = chatroom[0].chatroomName
         data_list.append(data)
-
     return Response(data_list)
 
 

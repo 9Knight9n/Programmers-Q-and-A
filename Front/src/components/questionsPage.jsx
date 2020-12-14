@@ -7,6 +7,8 @@ import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
 import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
+import scrollToComponent from 'react-scroll-to-component';
+import { ScrollTo,scroll } from "react-scroll-to";
 
 
 class QuestionsPage extends Component {
@@ -95,6 +97,7 @@ class QuestionsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ref:[],
             loading:false,
             questions:[],
             ChatroomID:parseInt(this.props.match.params.chatroomid)
@@ -105,6 +108,7 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
+        sessionStorage.removeItem("search")
         // this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
         console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
@@ -182,7 +186,8 @@ class QuestionsPage extends Component {
                             <div className="questions-box">
                                 <div className="mr-5 mb-2">
                                     {this.state.questions.map(question =>
-                                    <div key={question.id} className="mb-3">
+                                    <div key={question.id} className="mb-3"
+                                        ref={refToDiv => this.state.ref[question.id] = refToDiv}>
                                         <QuestionChatbox
                                             loadQuestions={this.loadQuestions}
                                             sameProblemCount={question.vote}
