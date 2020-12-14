@@ -30,7 +30,7 @@ class SearchResultPage extends Component {
         sessionStorage.setItem("search",this.state.searchInput)
         // console.log("mounted------------------------")
         // console.log("search input is:",this.state.searchInput)
-        this.loadData(null);
+        this.loadData(this.state.searchInput);
     }
 
     componentDidUpdate(prevProps) {
