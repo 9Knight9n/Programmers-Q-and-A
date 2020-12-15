@@ -32,9 +32,9 @@ class ChatroomCreationFirst extends Component {
 
     render() { 
         return ( 
-                <div class="main-box">
-                    <div class="elements">
-                        <div class="contextKinds">
+                <div className="main-box">
+                    <div className="elements">
+                        <div className="contextKinds">
                             <label for="contextKinds"><h1>Choose a context for your chatroom:</h1></label>
                             <div className="contextLogo">
                                 <div className="osBox">
