@@ -259,7 +259,7 @@ select:focus button:focus {
 .abed-css .subOs {
   width: 50%;
   margin-left: 53%;
-  margin-top: -7.7%;
+  margin-top: -9.7%;
 }
 
 .abed-css .osLink {
@@ -336,14 +336,14 @@ select:focus button:focus {
 
 .abed-css .backButtonOs {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 7%;
   margin-left: -7%;
 }
 
 .abed-css .nextButtonOs {
   position: absolute;
   margin-left: 57%;
-  margin-top: 10%;
+  margin-top: 7%;
 }
 
 .abed-css .descriptionOs {
@@ -365,12 +365,12 @@ select:focus button:focus {
 .abed-css .nextButtonApp {
   position: absolute;
   margin-left: 57%;
-  margin-top: 7%;
+  margin-top: 4%;
 }
 
 .abed-css .backButtonApp {
   position: absolute;
-  margin-top: 7%;
+  margin-top: 4%;
   margin-left: -7%;
 }
 
@@ -441,7 +441,7 @@ select:focus button:focus {
 }
 
 .abed-css .plLink label {
-  margin-top: 9%;
+  margin-top: 3%;
   margin-left: 8%;
   font-size: 16px;
 }
