@@ -9,7 +9,8 @@ import  askedQImg from '../img/askedQuestion.png';
 import  answeredQImg from '../img/answeredQuestion.png';
 import groupChat from '../img/group.png';
 import ReactTooltip from 'react-tooltip';
-import {decodeList} from './util'
+import {decodeList} from './util';
+import NumberFormat from 'react-number-format';
 
 const options = [
     { value: 'java', label: 'java' },
@@ -93,6 +94,12 @@ class ProfilePreview extends Component {
         return false;
       }
 
+    numberFormatter(num) {
+        return Math.abs(num) > 999 && Math.abs(num) < 1000000? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' :
+        Math.abs(num) > 9999 ?  Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'm' :
+        Math.sign(num)*Math.abs(num)
+    }
+
     render() { 
         return ( 
             <div id="profilePreview">
@@ -144,15 +151,15 @@ class ProfilePreview extends Component {
                                     <div className="ProfilePreview-user-activity d-flex justify-content-around">
                                         <div className="ProfilePreview-asked-questions d-flex justify-content-center">
                                             <img src={askedQImg} data-tip={this.state.userName + " asked " + this.state.askedQ +" questions"} /> 
-                                            <p>{this.state.askedQ}</p> 
+                                            <p>{this.numberFormatter(this.state.askedQ)}</p>
                                         </div>
                                         <div className="ProfilePreview-joined-chatrooms d-flex justify-content-center">
                                             <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numOfChatroom +" chatrooms"} /> 
-                                            <p>{this.state.numOfChatroom}</p>
+                                            <p>{this.numberFormatter(this.state.numOfChatroom)}</p>
                                             </div>
                                         <div className="ProfilePreview-answered-questions d-flex justify-content-center">
                                             <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.answeredQ +" questions"} /> 
-                                            <p>{this.state.answeredQ}</p>
+                                            <p>{this.numberFormatter(this.state.answeredQ)}</p>
                                         </div>
                                     </div>
                                 </div>
