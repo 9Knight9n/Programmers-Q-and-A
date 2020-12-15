@@ -33,6 +33,8 @@ class ChatroomCreationPl extends Component {
             plLink: Cookies.get("link"),
             error1: false,
             error2: false,
+            pageCount:0,
+            charsPerPageCount:1,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -64,6 +66,15 @@ class ChatroomCreationPl extends Component {
         this.setState({
           [name]: value,
         });
+        if (name === "plDescription"){
+            let currentText = e.target.value;
+            //Now we need to recalculate the number of characters that have been typed in so far
+            let characterCount = currentText.length;
+            let charsPerPageCount = this.state.charsPerPage;
+            let unitCount = Math.round(characterCount/charsPerPageCount);
+            this.setState({pageCount: unitCount});
+           }
+
         if (name === "plLink" && value !== '') {
             
             this.setState({
@@ -107,6 +118,9 @@ class ChatroomCreationPl extends Component {
                         <textarea name="plDescription" value="plDescription" className="textarea" value={this.state.plDescription} maxlength="175" rows="4" cols="53" onChange={this.handleChange}>
                             {this.state.plDescription}
                         </textarea>
+                        <span className="textCounterPl">
+                            {this.state.pageCount} of 175
+                        </span>
                     </div>
                     <Link to="/chatroomCreationFirst">
                         <button className="backButtonPl" type="button">Back</button>

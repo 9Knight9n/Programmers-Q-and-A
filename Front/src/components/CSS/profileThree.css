@@ -98,6 +98,7 @@
   height: 41%;
   border: 3px solid #5c6bc0;
   resize: none;
+  color: black;
 }
 
 .bioBox button {
@@ -117,4 +118,12 @@
 
 .parisa-css .bio:focus {
   outline: none;
+}
+
+.parisa-css .textCounter {
+  position: absolute;
+  margin-top: 12%;
+  margin-left: 48%;
+  font-size: small;
+  color: #8a7f7f;
 }

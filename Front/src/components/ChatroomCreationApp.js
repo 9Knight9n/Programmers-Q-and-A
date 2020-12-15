@@ -10,6 +10,9 @@ class ChatroomCreationApp extends Component {
             appLink: Cookies.get("link"),
             appDescription: Cookies.get("description"),
             error: false,
+            pageCount:0,
+            charsPerPageCount:1,
+
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -21,6 +24,15 @@ class ChatroomCreationApp extends Component {
         this.setState({
           [name]: value,
         });
+
+        if (name === "appDescription"){
+            let currentText = e.target.value;
+            //Now we need to recalculate the number of characters that have been typed in so far
+            let characterCount = currentText.length;
+            let charsPerPageCount = this.state.charsPerPage;
+            let unitCount = Math.round(characterCount/charsPerPageCount);
+            this.setState({pageCount: unitCount});
+           }
      
         if (name === "appLink" && value !== '') {
 
@@ -61,6 +73,9 @@ class ChatroomCreationApp extends Component {
                             <textarea name="appDescription" value={this.state.appDescription} onChange={this.handleChange} className="textarea" maxLength="175" rows="4" cols="53">
                                 {this.state.appDescription}
                             </textarea>
+                            <span className="textCounterApp">
+                                {this.state.pageCount} of 175
+                            </span>
                         </div>
                     </div>
                     <Link to="/chatroomCreationFirst">

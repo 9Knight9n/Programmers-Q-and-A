@@ -8,14 +8,12 @@
   color: blue;
 }
 
-
-
 .abed-css button {
   color: white;
-  background-color: #39b7dd;
+  background-color: #3f51b5;
+  height: 5vh;
+  outline: none !important;
   border: 0px;
-  border-radius: 10px;
-  height: 9%;
   width: 20%;
 }
 
@@ -57,7 +55,7 @@ select:focus button:focus {
   height: 100%;
   background: #333b60;
   overflow: auto;
-  border: 6px solid rgba(9, 156, 167, 0.432);
+  border: 2px solid #5c6bc0;
   /* border-radius: 60px; */
 }
 
@@ -119,23 +117,24 @@ select:focus button:focus {
 .abed-css .createButtonLast {
   position: absolute;
   margin-left: 57%;
-  margin-top: 6%;
+  margin-top: 5%;
 }
 .abed-css .backButtonLast {
   position: absolute;
-  margin-top: 6%;
+  margin-top: 5%;
   margin-left: -7%;
 }
 
 .abed-css .LastError {
   position: absolute;
   margin-left: 8%;
-  color: red;
+  margin-top: 1%;
+  color: #ff7070;
 }
 
 .abed-css .description textarea {
   background-color: #bab9f7;
-  margin-top: 0%;
+  margin-top: 2%;
   line-height: 31px;
   font-family: Arial, Helvetica, Sans-serif;
   padding-left: 3%;
@@ -234,17 +233,19 @@ select:focus button:focus {
 .osError {
   position: absolute;
   margin-left: 6%;
-  color: red;
+  margin-top: 1%;
+  color: #ff7070;
 }
 
 .subOsError {
   position: absolute;
   margin-left: 35%;
-  color: red;
+  margin-top: 1%;
+  color: #ff7070;
 }
 
 .abed-css .osKinds {
-  width: 77%;
+  width: 86%;
   margin-top: 6%;
   margin-left: 8%;
 }
@@ -256,7 +257,7 @@ select:focus button:focus {
 .abed-css .subOs {
   width: 50%;
   margin-left: 53%;
-  margin-top: -9.7%;
+  margin-top: -8%;
 }
 
 .abed-css .osLink {
@@ -333,14 +334,14 @@ select:focus button:focus {
 
 .abed-css .backButtonOs {
   position: absolute;
-  margin-top: 7%;
+  margin-top: 9%;
   margin-left: -7%;
 }
 
 .abed-css .nextButtonOs {
   position: absolute;
   margin-left: 57%;
-  margin-top: 7%;
+  margin-top: 9%;
 }
 
 .abed-css .descriptionOs {
@@ -356,23 +357,24 @@ select:focus button:focus {
 .appError {
   position: absolute;
   margin-left: 4%;
-  color: red;
+  margin-top: 1%;
+  color: #ff7070;
 }
 
 .abed-css .nextButtonApp {
   position: absolute;
   margin-left: 57%;
-  margin-top: 4%;
+  margin-top: 7%;
 }
 
 .abed-css .backButtonApp {
   position: absolute;
-  margin-top: 4%;
+  margin-top: 7%;
   margin-left: -7%;
 }
 
 .abed-css .descriptionApp textarea {
-  margin-top: 0%;
+  margin-top: 2%;
   margin-left: 2%;
 }
 
@@ -389,7 +391,7 @@ select:focus button:focus {
 }
 
 .abed-css .linkFieldApp input {
-  width: 79%;
+  width: 87%;
   height: 4%;
   border-color: #91bfeb;
   border-top: 0px;
@@ -417,11 +419,12 @@ select:focus button:focus {
 .abed-css .plError {
   position: absolute;
   margin-left: 6%;
-  color: red;
+  margin-top: 1%;
+  color: #ff7070;
 }
 
 .abed-css .plLink input {
-  width: 79%;
+  width: 87%;
 
   border-top: 0px;
   border-right: 0px;
@@ -438,12 +441,12 @@ select:focus button:focus {
 }
 
 .abed-css .plLink label {
-  margin-top: 3%;
+  margin-top: 5%;
   margin-left: 8%;
   font-size: 16px;
 }
 .abed-css .plKinds {
-  width: 79%;
+  width: 87%;
   margin-top: 6%;
   margin-left: 8%;
 }
@@ -463,23 +466,47 @@ select:focus button:focus {
 
 .abed-css .backButtonPl {
   position: absolute;
-  margin-top: 1%;
+  margin-top: 4%;
   margin-left: -7%;
 }
 
 .abed-css .nextButtonPl {
   position: absolute;
   margin-left: 57%;
-  margin-top: 1%;
+  margin-top: 4%;
 }
 
 .abed-css .descriptionPl {
-  margin-top: 4%;
+  margin-top: 5%;
   margin-left: 8%;
 }
 /* first */
 .abed-css .backButtonFirst {
   position: absolute;
-  margin-top: 13%;
+  margin-top: 14%;
   margin-left: -7%;
+}
+
+.abed-css .textCounterOS {
+  position: absolute;
+  margin-top: 15%;
+  margin-left: -8%;
+  font-size: small;
+  color: #8a7f7f;
+}
+
+.abed-css .textCounterPl {
+  position: absolute;
+  margin-top: 15%;
+  margin-left: -8%;
+  font-size: small;
+  color: #8a7f7f;
+}
+
+.abed-css .textCounterApp {
+  position: absolute;
+  margin-top: 15%;
+  margin-left: -8%;
+  font-size: small;
+  color: #8a7f7f;
 }

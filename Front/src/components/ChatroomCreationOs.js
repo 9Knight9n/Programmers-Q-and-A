@@ -22,6 +22,9 @@ class ChatroomCreationOs extends Component {
             osDescription: Cookies.get("Description")? Cookies.get("Description") : '',
             error1: false,
             error2: false,
+            charsPerPage: 1,
+            pageCount: 0,
+
 
             OS: [
                     {
@@ -111,6 +114,14 @@ class ChatroomCreationOs extends Component {
         this.setState({
           [name]: value,
         });
+        if (name === "osDescription"){
+            let currentText = e.target.value;
+            //Now we need to recalculate the number of characters that have been typed in so far
+            let characterCount = currentText.length;
+            let charsPerPageCount = this.state.charsPerPage;
+            let unitCount = Math.round(characterCount/charsPerPageCount);
+            this.setState({pageCount: unitCount});
+           }
 
         if (name === "selectedSubOs" && value !== "Select a distro") {
             this.setState({
@@ -155,7 +166,7 @@ class ChatroomCreationOs extends Component {
       
     render() { 
         return ( 
-            <div className="main-box">
+            <div className="abed-css main-box">
                 <form className="elements">
                     <div className="osKinds">
                         <div className="mainOs black-text">
@@ -217,6 +228,9 @@ class ChatroomCreationOs extends Component {
                         <textarea name="osDescription" value={this.state.osDescription} onChange={this.handleChange} className="textarea" maxLength="175" rows="4" cols="53">
                             {this.state.osDescription}
                         </textarea>
+                        <span className="textCounterOS">
+                            {this.state.pageCount} of 175
+                        </span>
                     </div>
                         <Link to="/chatroomCreationFirst">
                             <button className="backButtonOs" type="button">Back</button>
