@@ -490,7 +490,7 @@ select:focus button:focus {
 .abed-css .textCounterOS {
   position: absolute;
   margin-top: 15%;
-  margin-left: -8%;
+  margin-left: -9%;
   font-size: small;
   color: #8a7f7f;
 }
@@ -498,7 +498,7 @@ select:focus button:focus {
 .abed-css .textCounterPl {
   position: absolute;
   margin-top: 15%;
-  margin-left: -8%;
+  margin-left: -9%;
   font-size: small;
   color: #8a7f7f;
 }
@@ -506,7 +506,7 @@ select:focus button:focus {
 .abed-css .textCounterApp {
   position: absolute;
   margin-top: 15%;
-  margin-left: -8%;
+  margin-left: -9%;
   font-size: small;
   color: #8a7f7f;
 }

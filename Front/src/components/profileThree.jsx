@@ -191,7 +191,7 @@ class profileThree extends Component {
                                     defaultValue={this.state.selectedOptions}
                                     name="colors"
                                     options={options}
-                                    className="basic-multi-select"
+                                    className="select basic-multi-select"
                                     classNamePrefix="select"
                                 />:""}
                             </div>

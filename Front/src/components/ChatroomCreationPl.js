@@ -34,7 +34,7 @@ class ChatroomCreationPl extends Component {
             error1: false,
             error2: false,
             pageCount:0,
-            charsPerPageCount:1,
+            charsPerPage:1,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);

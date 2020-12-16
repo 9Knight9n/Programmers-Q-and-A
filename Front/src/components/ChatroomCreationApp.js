@@ -11,7 +11,7 @@ class ChatroomCreationApp extends Component {
             appDescription: Cookies.get("description"),
             error: false,
             pageCount:0,
-            charsPerPageCount:1,
+            charsPerPage:1,
 
         };
         this.handleChange = this.handleChange.bind(this);

@@ -120,21 +120,25 @@ class ProfilePreview extends Component {
                                         <img src={this.state.profileAvatar} />
                                     </div>
                                     <div className="ProfilePreview-first_name-last_name-email-userName col">
-                                        <div className="ProfilePreview-first_name-last_name">
-                                            <h1>{this.state.first_name} {this.state.last_name}</h1>
-                                        </div>
-                                        <div className="ProfilePreview-clearFix"></div>
-                                        <div className="ProfilePreview-email-userName d-flex">
-                                            {/* <p>email : {this.state.userEmail}</p> */}
-                                            <label for="ProfilePreview-userName-P">username : </label>
-                                            <p className="ProfilePreview-userName-P ml-1">{this.state.userName}</p>
+                                        <div className="ProfilePreview-first_name-last_name-username">
+                                            <div className="ProfilePreview-first_name-last_name">
+                                                <h1>{this.state.first_name} {this.state.last_name}</h1>
+                                            </div>
+                                            <div className="ProfilePreview-clearFix"></div>
+                                            <div className="ProfilePreview-email-userName d-flex">
+                                                {/* <p>email : {this.state.userEmail}</p> */}
+                                                <label for="ProfilePreview-userName-P">username : </label>
+                                                <p className="ProfilePreview-userName-P ml-1">{this.state.userName}</p>
+                                            </div>
                                         </div>
                                         <div className="ProfilePreview-intrestsBox">
                                             <label for="ProfilePreview-intrests">Intrested In : </label> 
-                                            <div className="ProfilePreview-intrests">
-                                                <p>
-                                                    {this.state.userIntrests.map(ui => ui.value + "  ,  ")}
-                                                </p>
+                                            <div className="ProfilePreview-intrests d-flex flex-col">
+                                                    {this.state.userIntrests.map(ui =>
+                                                        <div className="ProfilePreview-intrests-design" key={1}>
+                                                            {ui.value} 
+                                                        </div>
+                                                    )}
                                             </div>
                                         </div>
                                     </div> 
