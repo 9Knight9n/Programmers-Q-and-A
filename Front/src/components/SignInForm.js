@@ -191,18 +191,21 @@ class SignInForm extends Component{
     render() {
         return (
           <div className="Abed-css">
-            <ToastContainer
-              className="Toast"
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              />
+            <div id="warning">
+              <ToastContainer
+                className="Toast"
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
+            </div>
+            
             <img className="logo" src={logo} alt="Logo" />
             <div className="emailField">
               <img className="emailImg" src={emailImg} />
