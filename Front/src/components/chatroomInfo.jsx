@@ -13,9 +13,21 @@ import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
 import Texteditor from './texteditor';
 import ProfileOwner from './profileOwner';
+import JoinChatroom from './joinChatroom';
+import Modal from 'react-modal';
 
-
-
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)',
+      padding               : '0%',
+      width                 : '35%'
+    }
+};
 class ChatroomInfo extends Component {
     state = {
         showChatroomProfile: false,
@@ -26,7 +38,8 @@ class ChatroomInfo extends Component {
         copied:false,
         editorContent:null,
         editorVisible:false,
-        chatroomId: this.props.Cid
+        chatroomId: this.props.Cid,
+        showJoinChatroom: false,
     }
 
     componentDidUpdate(prevProps) {
@@ -48,15 +61,15 @@ class ChatroomInfo extends Component {
         this.setState({copied:true})
     }
 
-      showEditor = () => {
+    showEditor = () => {
     this.setState({ editorVisible: true });
   };
-  hideEditor = (submit) => {
+    hideEditor = (submit) => {
       this.setState({ editorVisible: false });
       if(submit)
         this.handleSubmitQuestion()
   };
-  updateContent = (value) => {
+    updateContent = (value) => {
     this.setState({editorContent:value})
   };
 
@@ -113,9 +126,21 @@ class ChatroomInfo extends Component {
                 Description: data.Description,
                 chatroom_profile_image: data.chatroom_profile_image,
                 chatroomLink: "http://localhost:3000/cr"+this.state.chatroomId,
+                isJoined: false,
             });
         }
         // console.log(data.chatroom_profile_image)
+    }
+
+    handleJoin = (id) =>{
+        if(id === 1)
+            this.setState({
+                showJoinChatroom: true,
+            })
+        if(id === 2)
+            this.setState({
+                showJoinChatroom: false,
+            })
     }
 
 
@@ -137,7 +162,7 @@ class ChatroomInfo extends Component {
         // e.preventDefault();
         e.stopPropagation();
         return false;
-      }
+    }
     
 
     render() { 
@@ -173,8 +198,21 @@ class ChatroomInfo extends Component {
                         </div>
                     </div>
                     <div className="chatroomInfo-button d-flex flex-row-reverse">
-                        <button style={{outline:"none"}} onClick={this.showEditor} className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">Submit Question</button>
+                        <button style={{outline:"none"}} 
+                            onClick={this.state.isJoined? this.showEditor :() => this.handleJoin(1)}   
+                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">Submit Question
+                        </button>
                     </div>
+                    <Modal
+                        isOpen={this.state.showJoinChatroom}
+                        // onAfterOpen={this.state.showJoinChatroom}
+                        onRequestClose={this.state.showJoinChatroom}
+                        style={customStyles}
+                        contentLabel="JoinChatroom Modal"
+                        shouldCloseOnOverlayClick={true}
+                    >
+                        <JoinChatroom showJoinChatroom={this.state.showJoinChatroom}/>
+                    </Modal>
                 </div>
                 <div id="showChatroomProfile">
                     {this.state.showChatroomProfile?
@@ -184,17 +222,14 @@ class ChatroomInfo extends Component {
                         </section>
                     </div>
                     :""}
-                    
                 </div>
             </div>
-          
         );
-        
+                
     }
     
-
-    
 }
+
 
 
  

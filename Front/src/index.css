@@ -88,4 +88,8 @@ code {
   ::-webkit-scrollbar-thumb:hover {
 	background: rgb(69, 93, 163);
   }
+
+ .ReactModal__Overlay {
+    background-color: #232323b5 !important;
+ }
   

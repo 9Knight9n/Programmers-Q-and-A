@@ -14,8 +14,9 @@ import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
-import AnswerPage from './components/answersPage'
-import QuestionsPage from './components/questionsPage'
+import AnswerPage from './components/answersPage';
+import QuestionsPage from './components/questionsPage';
+import JoinChatroom from './components/joinChatroom';
 import './index.css';
 
 
@@ -50,6 +51,7 @@ class App extends Component {
         <Link id="loginfirst" to="/login"/>
         <Switch>
           <Route path="/login">
+            {/* <JoinChatroom /> */}
             <SignInForm />
           </Route>
           <Route path="/signup">
