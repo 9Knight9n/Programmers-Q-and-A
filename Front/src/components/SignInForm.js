@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import './CSS/LoginSignUp.css';
 import SignUpForm from './SignUpForm';
 import emailImg from '../img/email.png'
 import passImg from '../img/password.png'
@@ -7,6 +7,8 @@ import axios from 'axios';
 import logo from '../img/backgr.jpg';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // axios.interceptors.request.use(
@@ -35,6 +37,22 @@ class SignInForm extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount(){
+    console.log("did mount")
+    if(sessionStorage.getItem("targetURL"))
+    {
+      console.log("targetURL valid")
+      if(sessionStorage.getItem("targetURL").split('/cr')[1])
+      {
+        console.log("detedcted")
+        toast.dark("you should login first");
+      }
+
+    }
+      
+
   }
 
   handleChange(e) {
@@ -173,6 +191,18 @@ class SignInForm extends Component{
     render() {
         return (
           <div className="Abed-css">
+            <ToastContainer
+              className="Toast"
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              />
             <img className="logo" src={logo} alt="Logo" />
             <div className="emailField">
               <img className="emailImg" src={emailImg} />

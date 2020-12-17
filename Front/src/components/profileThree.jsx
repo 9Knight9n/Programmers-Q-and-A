@@ -37,6 +37,8 @@ class profileThree extends Component {
             selectedFile:null,
             selectedOptions: [],
             bio:"",
+            pageCount: 0,
+            charsPerPage: 1
           };
     
         this.handleSave = this.handleSave.bind(this);
@@ -51,6 +53,14 @@ class profileThree extends Component {
            this.setState({
             [name]:value
            });
+           if (name === "bio"){
+            let currentText = e.target.value;
+            //Now we need to recalculate the number of characters that have been typed in so far
+            let characterCount = currentText.length;
+            let charsPerPageCount = this.state.charsPerPage;
+            let unitCount = Math.round(characterCount/charsPerPageCount);
+            this.setState({pageCount: unitCount});
+           }
       }
 
 
@@ -120,6 +130,7 @@ class profileThree extends Component {
         console.log(token)
         const form = new FormData()
         form.set('id', Cookies.get("id"))
+        // if(this.state.bio!=="")
         form.set('description',this.state.bio)
         form.set('interests',encodeList(options,this.state.selectedOptions))
         form.set('cvfile',this.state.selectedFile)
@@ -180,7 +191,7 @@ class profileThree extends Component {
                                     defaultValue={this.state.selectedOptions}
                                     name="colors"
                                     options={options}
-                                    className="basic-multi-select"
+                                    className="select basic-multi-select"
                                     classNamePrefix="select"
                                 />:""}
                             </div>
@@ -208,12 +219,15 @@ class profileThree extends Component {
                         <div>
                             <h3>Bio :</h3>
                         </div>
-                        <div className="parisa-css bioField black-text d-flex justify-content-center">
+                        <div className="parisa-css bioField d-flex justify-content-center">
                             <textarea name="bio" value={this.state.bio}  onChange={this.handleChange}  className="" maxlength="175" rows="4" cols="53">
                                 
                             </textarea>
+                            <span className="textCounter">
+                                {this.state.pageCount} of 175
+                            </span>
                         </div>
-                        <button class="btn btn-primary" onClick={this.handleSave}>Save</button>
+                        <button class="profile-saveButton btn btn-primary" onClick={this.handleSave}>Save</button>
                         {this.state.succeed? <p className="d-flex justify-content-center pro-success">Saved successfully!</p> : <br/>}
                     </div>
 

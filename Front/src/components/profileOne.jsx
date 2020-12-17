@@ -146,7 +146,7 @@ class ProfileOne extends Component {
                             <p>Email :</p>
                             <input name="emailProfile" value={this.state.emailProfile}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Email"/>
                             {this.state.emailError? <p className="pro-error">Email is not valid or already registered!</p> : <br/>}
-                            <button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
+                            <button className="profile-savebutton btn btn-primary" onClick={this.handleSubmit}>Save</button>
                             {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
                         </div>
                             

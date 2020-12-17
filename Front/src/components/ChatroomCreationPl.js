@@ -2,6 +2,27 @@ import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Select from 'react-select';
+
+const options = [
+    { value: 'java', label: 'java' },
+    { value: 'php', label: 'php' },
+    { value: 'python', label: 'python' },
+    { value: 'c', label: 'c' },
+    { value: 'c++', label: 'c++' },
+    { value: 'c#', label: 'c#' },
+    { value: 'html', label: 'html' },
+    { value: 'css', label: 'css' },
+    { value: 'java-script', label: 'java script' }
+]
+
+const customStyles = {
+    menuList:(provided, state) => ({
+        ...provided,
+        height:"200px",
+        zIndex:"5"
+    })
+} 
 
 class ChatroomCreationPl extends Component {
     constructor(props) {
@@ -12,12 +33,15 @@ class ChatroomCreationPl extends Component {
             plLink: Cookies.get("link"),
             error1: false,
             error2: false,
+            pageCount:0,
+            charsPerPage:1,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
     
     handleClick() {
+        console.log(this.state.selectedPl)
         if (!this.state.selectedPl && !this.state.error1) {
             this.setState({
                 error1: true,
@@ -42,12 +66,15 @@ class ChatroomCreationPl extends Component {
         this.setState({
           [name]: value,
         });
-        if (name === "selectedPl" && value !== "Select a programming language") {
-            
-            this.setState({
-                error1: false,//select
-            });
-        }
+        if (name === "plDescription"){
+            let currentText = e.target.value;
+            //Now we need to recalculate the number of characters that have been typed in so far
+            let characterCount = currentText.length;
+            let charsPerPageCount = this.state.charsPerPage;
+            let unitCount = Math.round(characterCount/charsPerPageCount);
+            this.setState({pageCount: unitCount});
+           }
+
         if (name === "plLink" && value !== '') {
             
             this.setState({
@@ -55,24 +82,30 @@ class ChatroomCreationPl extends Component {
             });
         }
      }
+
+     handleChangeSelect = (selectedPl) => {
+        this.setState({ selectedPl });
+        this.setState({
+            error1: false,//select
+        });
+      }
+
     render() { 
         return ( 
             <div className="main-box">
                 <div className="elements">
-                <div className="plKinds">
-                        <label for="plKinds"><h1>Choose a programming language:</h1></label>
-                        <select name="selectedPl" value={this.state.selectedPl} onChange={this.handleChange}>
-                            <option value="Select a programming language">Select a programming language </option>
-                            <option value="Java">Java</option>
-                            <option value="Python">Python</option>
-                            <option value="Php">Php</option>
-                            <option value="Csharp">Csharp</option>
-                            <option value="C">C</option>
-                            <option value="C++">C++</option>
-                            <option value="JavaScript">JavaScript</option>
-                            <option value="Html">Html</option>
-                            <option value="Css">Css</option>
-                        </select>
+                <div className="black-text plKinds">
+                        <Select
+                        value={this.state.selectedPl} 
+                        onChange={this.handleChangeSelect}
+                        styles={customStyles}
+                        defaultValue={this.state.selectedPl}
+                        name="selectedPl"
+                        options={options}
+                        classNamePrefix="select"
+                        placeholder="Select a Programming language ..."
+                        >
+                        </Select>
                     </div>
                     {this.state.error1 ? <div className="plError">Please select a programming language.</div> : ''}
                     <div className="plLink">
@@ -85,6 +118,9 @@ class ChatroomCreationPl extends Component {
                         <textarea name="plDescription" value="plDescription" className="textarea" value={this.state.plDescription} maxlength="175" rows="4" cols="53" onChange={this.handleChange}>
                             {this.state.plDescription}
                         </textarea>
+                        <span className="textCounterPl">
+                            {this.state.pageCount} of 175
+                        </span>
                     </div>
                     <Link to="/chatroomCreationFirst">
                         <button className="backButtonPl" type="button">Back</button>

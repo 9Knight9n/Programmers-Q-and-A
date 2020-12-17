@@ -9,8 +9,8 @@ import {
   useParams,
   useLocation
 } from "react-router-dom";
-import SignUpForm from './pages/SignUpForm';
-import SignInForm from './pages/SignInForm';
+import SignUpForm from './components/SignUpForm';
+import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import Cookies from 'js-cookie';
@@ -47,8 +47,8 @@ class App extends Component {
   render(){
     return (
       <Router>
-          <Link id="loginfirst" to="/login"/>
-          <Switch>
+        <Link id="loginfirst" to="/login"/>
+        <Switch>
           <Route path="/login">
             <SignInForm />
           </Route>
@@ -58,7 +58,7 @@ class App extends Component {
           <Route path="/answerPage">
             <AnswerPage />
           </Route>
-          <Route path="questionPage">
+          <Route path="/questionPage">
             <QuestionsPage />
           </Route> 
           <Route path="/setting">

@@ -64,6 +64,17 @@
 #Question #left .active {
   background-color: green !important;
 }
+
+#Question button {
+  outline: none !important;
+  border: none !important;
+  border-radius: 0px !important;
+}
+
+#Question .date {
+  color: #9d9dd1 !important;
+}
+
 .blue-on-hover:hover {
   color: blue;
 }
@@ -80,4 +91,10 @@
   outline: none;
   /* background-color: none !important; */
   background: transparent !important;
+}
+
+.Question-showAnswerButton {
+  border-radius: 0px;
+  border: none;
+  background-color: #5c6bc0;
 }

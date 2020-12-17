@@ -11,6 +11,7 @@ import './CSS/homepage.css';
 import j_logo from "../img/java-logo.png";
 import p_logo from "../img/python-logo.png";
 import QuestionsPage from './questionsPage';
+import SearchResultPage from './searchResultPage';
 import {
     BrowserRouter as Router,
     Switch,
@@ -18,8 +19,10 @@ import {
     Redirect,
     Link,
     useRouteMatch,
-    useParams
+    useParams,
+    useHistory 
   } from "react-router-dom";
+
 
 
 class Homepage extends Component {
@@ -45,8 +48,12 @@ class Homepage extends Component {
     componentDidMount=()=>{
         if(sessionStorage.getItem("targetURL"))
         {
-            document.getElementById("selectChatroom").click()
-            sessionStorage.removeItem("targetURL")
+            if(this.state.activeChatroom)
+            {
+                sessionStorage.removeItem("targetURL")
+                document.getElementById("selectChatroom").click()
+            }
+            
         }
             
 
@@ -87,12 +94,11 @@ class Homepage extends Component {
                     <div style={{height:"91vh"}}>
                         {/* <p>{this.state.activeChatroom}</p> */}
 
-                        {this.state.activeChatroom? 
-                            <Route exact path={"/cr"+this.state.activeChatroom}>
-                                {/* {this.state.activeChatroom} */}
-                                <QuestionsPage ChatroomID={this.state.activeChatroom} />
-                            </Route> : ""
-                        }
+                        <Switch>
+                            <Route path="/cr:chatroomid" component={QuestionsPage}/>
+                            <Route path="/search/:searchPhrase" component={SearchResultPage}/>
+                        </Switch>
+                        
                         
                         
                     </div>
