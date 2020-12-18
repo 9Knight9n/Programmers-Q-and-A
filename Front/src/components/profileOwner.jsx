@@ -324,7 +324,7 @@ class ProfileOwner extends Component {
                         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
                         <div className="jumbotron list-content ml-auto ">
                             <div href="#" className="chProfileOwner-list-group-item title w-100 ">
-                                    Your friend zone
+                                   Members
                             </div>
                             <ul className="list-group">
                            

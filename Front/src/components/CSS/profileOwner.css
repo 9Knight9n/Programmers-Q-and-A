@@ -14,6 +14,8 @@
 .chProfileOwner a {
   color: #7a7aff73 !important;
   font-size: medium !important;
+  margin-left: -3%;
+
 } 
 
 .chProfileOwner a:hover {
@@ -28,6 +30,8 @@
 .chProfileOwner label {
   font-size: large !important;
   color: #9d9dd1;
+  margin-top: 9%;
+ 
 }
 
 .chProfileOwner-profile {
@@ -108,7 +112,7 @@
 
 .chProfileOwner-chName-chTitle-chLink {
   width: 100%;
-  margin-left: 10%;
+  margin-left: -2%;
   margin-top: 5%;
   padding: 0%;
 }
