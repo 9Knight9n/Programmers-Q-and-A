@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'userprofile.apps.UserprofileConfig',
     'django_cleanup',
     'chatroom.apps.ChatroomConfig',
+    'channels',
+    'generalchatroom.apps.GeneralchatroomConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +89,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+ASGI_APPLICATION = 'mysite.asgi.application'
 
 
 # Database
