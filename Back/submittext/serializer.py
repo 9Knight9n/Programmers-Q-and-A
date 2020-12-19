@@ -6,7 +6,7 @@ from registeration.models import User
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['id' , 'user', 'chatroom', 'text' , 'time' , 'file' , 'isAnswered' , 'commonQuestion']
+        fields = ['id' , 'user', 'chatroom', 'text' , 'time' , 'file' , 'isAnswered' , 'vote']
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,4 +16,4 @@ class AnswerSerializer(serializers.ModelSerializer):
 class ShowUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'askedQuestions' ,'answeredAnswers' , 'active' , 'numberOfChatrooms']
+        fields = ['username', 'askedQuestions' ,'answeredQuestions' , 'active' , 'numberOfChatrooms', 'description', 'interests', 'first_name', 'last_name']

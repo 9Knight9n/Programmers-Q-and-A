@@ -15,6 +15,7 @@ import {request} from "./requests.jsx";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Texteditor from './texteditor';
 import LoadingPage from './loading';
+import ProfilePreview from './ProfilePreview';
 
 
 
@@ -22,9 +23,10 @@ class AnswerChatBox  extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            showProfilePreview:false,
             loading:false,
-            PactiveVote:false,
-            NactiveVote:false,
+            PactiveVote:this.props.voteState === 1,
+            NactiveVote:this.props.voteState === -1,
             answer: this.props.answer,
             trueAnswer: this.props.trueAnswer,
             voteState: this.props.voteState,
@@ -106,39 +108,52 @@ class AnswerChatBox  extends Component {
         }
       }
 
-    handleVote = async (e) => {
+      handleVote = async (up) => {
 
-        this.setState({loading:true})
-
-            if (e.target.className === "positiveVoteImg" && this.state.voteState === 0) {
+        let voteState = null;
+            if (up && this.state.voteState === 0) {
+                voteState = 1;
                 this.setState({
                     voteState:1,
                     vote: this.state.vote + 1,
                     PactiveVote: true,
                 })
-            }else if (e.target.className === "positiveVoteImg" && this.state.voteState === 1) {
-
-            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === 1) {
+                this.setState({loading:true})
+                console.log(" vote 1 : " , this.state.voteState)
+            }else if (up && this.state.voteState === 1) {
+                // voteState = 1;
+                return ;
+            }else if (!up && this.state.voteState === 1) {
+                voteState = 0;
                 this.setState({
                     voteState:0,
                     vote: this.state.vote - 1,
                     PactiveVote: false,
                 })
-            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === 0) {
+                this.setState({loading:true})
+                console.log(" vote 3 : " , this.state.voteState)
+            }else if (!up && this.state.voteState === 0) {
+                voteState = -1;
                 this.setState({
                     voteState:-1,
                     vote: this.state.vote - 1,
                     NactiveVote: true,
                 })
-            }else if (e.target.className === "negativeVoteImg" && this.state.voteState === -1) {
-   
-            }else if (e.target.className === "positiveVoteImg" && this.state.voteState === -1) {
+                this.setState({loading:true})
+                console.log(" vote 4 : " , this.state.vote)
+            }else if (!up && this.state.voteState === -1) {
+                // voteState = -1;
+                return ;
+            }else if (up && this.state.voteState === -1) {
+                voteState = 0;
                 this.setState({
                     voteState:0,
                     vote: this.state.vote + 1,
                     NactiveVote: false,
                 })
+                this.setState({loading:true})
             }
+
             let config ={
                 url:"http://127.0.0.1:8000/api/VoteAnswer/",
                 needToken:true,
@@ -146,12 +161,14 @@ class AnswerChatBox  extends Component {
                 formKey:[
                     "answer_id",
                     "user_id",
-                    "voteState"
+                    "voteState",
+                    "vote"
                 ],
                 formValue:[
                     this.state.answerId,
                     Cookies.get("id"),
-                    this.state.voteState
+                    voteState,
+                    this.state.vote
                     
                 ]
             }
@@ -230,10 +247,27 @@ class AnswerChatBox  extends Component {
         this.props.loadAnswers()
     }
 
+
+    showProfilePreview = (userid) => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showProfilePreview: true ,});
+        // console.log(this.state.submit)
+    
+    };
+    
+    hideProfilePreview = () => {
+        this.setState({ showProfilePreview: false });
+        // this.setState({ submit: -2 });
+        // this.loadChatrooms()
+    };
+
+
+
     render() { 
         return ( 
             
                 <div id="answer" style={{ width:this.props.width+"vw",}} className="d-flex flex-column">
+                    <ProfilePreview userid={this.props.userid} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
                     {this.state.loading?<LoadingPage/>: ""}
                     <Texteditor 
                         content={this.state.answer} 
@@ -243,8 +277,8 @@ class AnswerChatBox  extends Component {
                         />
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
-                            <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
-                            <label className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
+                            <img style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                            <label style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown className="dropDownMain">
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">
@@ -275,20 +309,28 @@ class AnswerChatBox  extends Component {
                                     <img data-tip="This answer is true" src={greenCheckMark} /> : "" }
                                     
                                 </div>
-                                <div className="d-flex flex-column bd-highlight">
-                                    <div onClick={this.handleVote} >
-                                        {!this.state.PactiveVote?
-                                        <img className="positiveVoteImg" data-tip="This answer is useful" className="positiveVoteImg" src={positiveVoteImg} />:
-                                        <img className="positiveVoteImg" data-tip="This answer is useful" className="positiveVoteImg" src={lockedPositiveVoteImg} />}
+                                <div className="vote d-flex flex-column bd-highlight">
+                                    <div className="positiveVoteImg" onClick={() => this.handleVote(true)} >
+                                        {this.state.PactiveVote?
+                                        <svg width="2em" height="2em" viewBox="0 0 16 16" className="positiveVoteImg bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                                        </svg>:
+                                        <svg width="2em" height="2em" viewBox="0 0 16 16" className=" bi bi-caret-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M3.204 11L8 5.519 12.796 11H3.204zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+                                        </svg>}
                                     </div>
                                     <div className="">
                                         <p className="voteCount" >{this.state.vote}</p>
                                     </div>
 
-                                    <div onClick={this.handleVote} >
-                                    {!this.state.NactiveVote?
-                                        <img className="negativeVoteImg" data-tip="This answer is not useful" src={negativeVoteImg} />:
-                                        <img className="negativeVoteImg" data-tip="This answer is not useful" src={lockedNegativeVoteImg} />}
+                                    <div className="negativeVoteImg" onClick={() => this.handleVote(false)} >
+                                    {this.state.NactiveVote?
+                                        <svg width="2em" height="2em" viewBox="0 0 16 16" className="negativeVoteImg bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                        </svg>:
+                                        <svg width="2em" height="2em" viewBox="0 0 16 16" className="negativeVoteImg bi bi-caret-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                                        </svg>}
                                     </div>
                                 </div>
                             </div>

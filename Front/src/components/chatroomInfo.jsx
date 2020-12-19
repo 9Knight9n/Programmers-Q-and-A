@@ -11,13 +11,14 @@ import Cookies from 'js-cookie';
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
-import Texteditor from './texteditor'
-
+import Texteditor from './texteditor';
+import ProfileOwner from './profileOwner';
 
 
 
 class ChatroomInfo extends Component {
     state = {
+        showChatroomProfile: false,
         chatroomName: 'chatroom name',
         selectedTopic: 'Title',
         chatroom_profile_image: null,
@@ -117,41 +118,73 @@ class ChatroomInfo extends Component {
         // console.log(data.chatroom_profile_image)
     }
 
+
+    showModal = () => {
+        // this.setState({ submit: submit });
+        this.setState({ showChatroomProfile: true });
+        console.log("modal clicked")
+        // console.log(this.state.submit)
+
+    };
+
+    hideModal = () => {
+        this.setState({ showChatroomProfile: false });
+        this.loadData()
+        // this.setState({ submit: -2 });
+        // this.loadChatrooms()
+    };
+    modalClick = (e) => {
+        // e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
     
 
     render() { 
         return (  
-            <div className="w-100 infoBox">
+            <div className="chatroomInfo w-100 chatroomInfo-infoBox">
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
                 hideEditor={this.hideEditor}
                 editorVisible={this.state.editorVisible}/>
                 {/* <ReactTooltip place="bottom" effect="solid" type="dark"/> */}
-                <div className="infoElements d-flex flex-row">
-                    <div className="infoImg">
-                        <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
-                    </div>
-                    <div className="userInfo">
-                        <div className="d-flex flex-row">
-                            <h2 className="">{this.state.chatroomName}</h2>
-                            <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
-                                <div className=" d-flex flex-row">
-                                    
-                                    <img src={linkImg} className="h-100"
-                                        data-tip={this.state.copied?"Copied":"Click to copy"} />
-                                    <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
-                                </div>
-                                
-                                
-                            </CopyToClipboard>
-                            
+                <div className="chatroomInfo-infoElements d-flex flex-row">
+                    <div className="chatroomInfo-avatar-name-contexet-link d-flex flex-row">
+                        <div style={{cursor:"pointer"}} onClick={this.showModal} className="chatroomInfo-infoImg">
+                            <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
                         </div>
-                        <h3>{this.state.selectedTopic}</h3>
+                        <div className="chatroomInfo-userInfo">
+                            <div className="d-flex flex-row">
+                                <h2 style={{cursor:"pointer"}} onClick={this.showModal} className="">{this.state.chatroomName}</h2>
+                                <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
+                                    <div className=" d-flex flex-row">
+                                        
+                                        <img src={linkImg} className="h-100"
+                                            data-tip={this.state.copied?"Copied":"Click to copy"} />
+                                        <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
+                                    </div>
+                                    
+                                    
+                                </CopyToClipboard>
+                                
+                            </div>
+                            <h3>{this.state.selectedTopic}</h3>
+                        </div>
                     </div>
-                    <div className="parisa-css buttons d-flex flex-column bd-highlight ml-auto mr-2">
-                        <button style={{outline:"none"}} onClick={this.showEditor} className="btn-pro answerButton">Submit Question</button>
+                    <div className="chatroomInfo-button d-flex flex-row-reverse">
+                        <button style={{outline:"none"}} onClick={this.showEditor} className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">Submit Question</button>
                     </div>
+                </div>
+                <div id="showChatroomProfile">
+                    {this.state.showChatroomProfile?
+                    <div onClick={() => this.hideModal()} className="modal">
+                        <section onClick={this.modalClick} className="modal-main d-flex flex-column">
+                            <ProfileOwner Cid={this.state.chatroomId} hideModal={this.hideModal}/>
+                        </section>
+                    </div>
+                    :""}
+                    
                 </div>
             </div>
           
