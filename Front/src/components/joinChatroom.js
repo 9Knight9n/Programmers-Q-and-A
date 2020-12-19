@@ -79,7 +79,7 @@ class joinChatroom extends Component {
     //     Math.sign(num)*Math.abs(num)
     // }
 
-    closejoinChatroom = () =>{
+    handleCloseModal = () =>{
         this.props.showJoinChatroom = false;
     }
 
@@ -88,7 +88,7 @@ class joinChatroom extends Component {
             <div id="joinChatroom">
                     <div className="joinChatroom joinChatroom-main-box">
                         <div className="joinChatroom-exitImg">
-                            <img onClick={() => this.props.closejoinChatroom()} src={exitImg} />
+                            <img onClick={this.handleCloseModal} src={exitImg} />
                         </div>
                         <div className="joinChatroom-elements">
                             <div className="d-flex h-100 align-items-center flex-column">
@@ -102,7 +102,7 @@ class joinChatroom extends Component {
                                 </div>
                                 <div className="joinChatroom-buttons d-flex flex-row mt-auto">
                                     <button className="joinButton">Join</button>
-                                    <button className="notNowButton">Not now</button>
+                                    <button onClick={this.handleCloseModal} className="notNowButton">Not now</button>
                                 </div>
                             </div>
                         </div>
