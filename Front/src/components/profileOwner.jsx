@@ -11,6 +11,50 @@ import saveIcon from '../img/save.png';
 import cancelIcon from '../img/cancel.png';
 import Cookies from 'js-cookie';
 import SelectAvatar from './selectAvatar';
+import Badge from '@material-ui/core/Badge';
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '',
+  
+  
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }))(Badge);
+  
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
 
 class ProfileOwner extends Component {
     constructor(props) {
@@ -297,11 +341,11 @@ class ProfileOwner extends Component {
                                 </div>
                             </div>
 
-                            {/* {this.state.isOwner?
-                                <div className="chProfileOwner-deleteButton mt-auto">
-                                    <button>Delete Chatroom</button>
+                            {!this.state.isOwner?
+                                <div className="chProfileOwner-leaveButton mt-auto">
+                                    <button onClick={this.props.hideModal}>Leave Chatroom</button>
                                 </div> : ''
-                            } */}
+                            }
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
@@ -334,7 +378,6 @@ class ProfileOwner extends Component {
                                     Juan guillermo cuadrado
                                 </label>
                                 
-                               
                             </li>
                             <li href="#" className="list-group-item text-left d-flex flex-row w-100">
                                 <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
