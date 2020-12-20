@@ -142,8 +142,8 @@ class SearchResultPage extends Component {
                                 <div className=' ml-5 h-100'>
                                     {this.state.selectedTab===2?
                                     <div className="d-flex flex-column h-100">
-                                        <div className="pt-4 pb-4 h-10">
-                                            {this.state.chatrooms.length>0?<p>Found Chatrooms:</p>:<p>No Chatroom Found</p>}
+                                        <div className="pt-4 pb-4 h-10 mb-2">
+                                            {this.state.chatrooms.length>0?<p>Found Chatrooms for <Link className="ml-1 mr-1 h4">{this.state.searchInput}</Link>:</p>:<p>No Chatroom Found</p>}
                                         </div>
                                     
                                         <div className="pr-5 mb-3 h-90" style={{overflowY:"auto"}}>
@@ -165,7 +165,7 @@ class SearchResultPage extends Component {
                                     {this.state.selectedTab===1?
                                     <div className="d-flex flex-column h-100">
                                         <div className="pt-4 pb-4 h10">
-                                            {this.state.questions.length>0?<p>Found Questions:</p>:<p>No Question Found</p>}
+                                            {this.state.questions.length>0?<p>Found Questions for <Link className="ml-1 mr-1 h4">{this.state.searchInput}</Link>:</p>:<p>No Question Found</p>}
                                         </div>
                                         
                                         <div className="pr-5 mb-3 h-90" style={{overflowY:"auto"}}>
