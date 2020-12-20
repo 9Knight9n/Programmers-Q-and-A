@@ -7,7 +7,6 @@ import {renewToken} from './requests';
 import axios from 'axios';
 import {encodeList , decodeList} from './util';
 
-
 const options = [
                     { value: 'java', label: 'java' },
                     { value: 'php', label: 'php' },
@@ -61,6 +60,13 @@ class profileThree extends Component {
             let unitCount = Math.round(characterCount/charsPerPageCount);
             this.setState({pageCount: unitCount});
            }
+      }
+
+      handleEnterPress = (e) => {
+        if (e.keyCode == 13) { 
+            document.getElementById("PtextArea").innerHTML = "Triggered enter+shift"; 
+        } 
+
       }
 
 
@@ -220,7 +226,7 @@ class profileThree extends Component {
                             <h3>Bio :</h3>
                         </div>
                         <div className="parisa-css bioField d-flex justify-content-center">
-                            <textarea name="bio" value={this.state.bio}  onChange={this.handleChange}  className="" maxlength="175" rows="4" cols="53">
+                            <textarea id="PtextArea" name="bio" onkeypress={this.handleEnterPress} value={this.state.bio}  onChange={this.handleChange}  className="profileBio" maxlength="175" rows="4" cols="53">
                                 
                             </textarea>
                             <span className="textCounter">
