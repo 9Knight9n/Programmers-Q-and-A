@@ -280,7 +280,7 @@ class ProfileOwner extends Component {
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
                
                 <div className="chProfileOwner-exitImg">
-                        <img onClick={this.props.hideModal} src={exitImg} />
+                        <img onClick={this.props.hideChatroomProfile} src={exitImg} />
                 </div>
 
                 <div class="d-flex h-100">

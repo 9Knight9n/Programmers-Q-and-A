@@ -79,36 +79,43 @@ class joinChatroom extends Component {
     //     Math.sign(num)*Math.abs(num)
     // }
 
-    handleCloseModal = () =>{
-        this.props.showJoinChatroom = false;
-    }
+
+    modalClick = (e) => {
+        // e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
 
     render() { 
         return ( 
             <div id="joinChatroom">
-                    <div className="joinChatroom joinChatroom-main-box">
-                        <div className="joinChatroom-exitImg">
-                            <img onClick={this.handleCloseModal} src={exitImg} />
-                        </div>
-                        <div className="joinChatroom-elements">
-                            <div className="d-flex h-100 align-items-center flex-column">
-                                <div className="joinChatroom-lable">
-                                    <label>You must join the chatroom to ask question</label>
-                                </div>
-                                <div className="joinChatroom-text">
-                                    <p>
-                                        Ask and answer questions then enjoy!
-                                    </p>
-                                </div>
-                                <div className="joinChatroom-buttons d-flex flex-row mt-auto">
-                                    <button className="joinButton">Join</button>
-                                    <button onClick={this.handleCloseModal} className="notNowButton">Not now</button>
+                {this.props.showJoinChatroom ?
+                    <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
+                        <section onClick={this.modalClick} className="modal-main d-flex flex-column">
+                            <div className="joinChatroom-exitImg">
+                                <img onClick={() => this.props.hideJoinChatroom()} src={exitImg} />
+                            </div>
+                            <div className="joinChatroom-elements">
+                                <div className="d-flex h-100 align-items-center flex-column">
+                                    <div className="joinChatroom-lable">
+                                        <label>You must join the chatroom to ask question</label>
+                                    </div>
+                                    <div className="joinChatroom-text">
+                                        <p>
+                                            Ask and answer questions then enjoy!
+                                        </p>
+                                    </div>
+                                    <div className="joinChatroom-buttons d-flex flex-row mt-auto">
+                                        <button className="joinButton">Join</button>
+                                        <button onClick={() => this.props.hideJoinChatroom()} className="notNowButton">Not now</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                         {/* <ReactTooltip place="right" effect="solid" type="dark"/> */}
-                    </div>
-        </div>
+                    </div> : ''
+                }
+            </div>
         );
     }
 }

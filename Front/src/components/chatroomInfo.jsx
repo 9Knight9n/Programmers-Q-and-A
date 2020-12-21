@@ -40,6 +40,9 @@ class ChatroomInfo extends Component {
         editorVisible:false,
         chatroomId: this.props.Cid,
         showJoinChatroom: false,
+        hideJoinChatroom:false,
+        userid: Cookies.get("id"),
+        isJoined: true,
     }
 
     componentDidUpdate(prevProps) {
@@ -132,42 +135,53 @@ class ChatroomInfo extends Component {
         // console.log(data.chatroom_profile_image)
     }
 
-    handleJoin = (id) =>{
-        if(id === 1)
-            this.setState({
-                showJoinChatroom: true,
-            })
-        if(id === 2)
-            this.setState({
-                showJoinChatroom: false,
-            })
-    }
 
-
-    showModal = () => {
-        // this.setState({ submit: submit });
-        this.setState({ showChatroomProfile: true });
-        console.log("modal clicked")
+    showJoinChatroom = () => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showJoinChatroom: true });
         // console.log(this.state.submit)
-
+    
+    };
+    
+    hideJoinChatroom = () => {
+        this.setState({ showJoinChatroom: false });
     };
 
-    hideModal = () => {
+    showChatroomProfile = () => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showChatroomProfile: true });
+        // console.log(this.state.submit)
+    
+    };
+    
+    hideChatroomProfile = () => {
         this.setState({ showChatroomProfile: false });
-        this.loadData()
-        // this.setState({ submit: -2 });
-        // this.loadChatrooms()
     };
+
+    
     modalClick = (e) => {
         // e.preventDefault();
         e.stopPropagation();
         return false;
-    }
+      }
+
+      handleJoinClick = () => {
+        if(!this.state.isJoined) {
+            this.showEditor()
+        }else{
+            this.showJoinChatroom()
+        }
+      }
+
+    // hideChatroomProfile = () => {
+
+    // }
     
 
     render() { 
         return (  
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
+                <JoinChatroom hideJoinChatroom={this.hideJoinChatroom} showJoinChatroom={this.state.showJoinChatroom} />
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
@@ -176,12 +190,12 @@ class ChatroomInfo extends Component {
                 {/* <ReactTooltip place="bottom" effect="solid" type="dark"/> */}
                 <div className="chatroomInfo-infoElements d-flex flex-row">
                     <div className="chatroomInfo-avatar-name-contexet-link d-flex flex-row">
-                        <div style={{cursor:"pointer"}} onClick={this.showModal} className="chatroomInfo-infoImg">
+                        <div style={{cursor:"pointer"}} onClick={this.showChatroomProfile} className="chatroomInfo-infoImg">
                             <img src={this.state.chatroom_profile_image} alt="chatroom profile image"/>
                         </div>
                         <div className="chatroomInfo-userInfo">
                             <div className="d-flex flex-row">
-                                <h2 style={{cursor:"pointer"}} onClick={this.showModal} className="">{this.state.chatroomName}</h2>
+                                <h2 style={{cursor:"pointer"}} onClick={this.showChatroomProfile} className="">{this.state.chatroomName}</h2>
                                 <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
                                     <div className=" d-flex flex-row">
                                         
@@ -199,26 +213,17 @@ class ChatroomInfo extends Component {
                     </div>
                     <div className="chatroomInfo-button d-flex flex-row-reverse">
                         <button style={{outline:"none"}} 
-                            onClick={this.state.isJoined? this.showEditor :() => this.handleJoin(1)}   
-                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">Submit Question
+                            onClick={this.handleJoinClick}   
+                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
+                            Submit Question
                         </button>
                     </div>
-                    <Modal
-                        isOpen={this.state.showJoinChatroom}
-                        // onAfterOpen={this.state.showJoinChatroom}
-                        onRequestClose={this.state.showJoinChatroom}
-                        style={customStyles}
-                        contentLabel="JoinChatroom Modal"
-                        shouldCloseOnOverlayClick={true}
-                    >
-                        <JoinChatroom showJoinChatroom={this.state.showJoinChatroom}/>
-                    </Modal>
                 </div>
                 <div id="showChatroomProfile">
                     {this.state.showChatroomProfile?
-                    <div onClick={() => this.hideModal()} className="modal">
+                    <div onClick={() => this.hideChatroomProfile()} className="modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ProfileOwner Cid={this.state.chatroomId} hideModal={this.hideModal}/>
+                            <ProfileOwner Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
                         </section>
                     </div>
                     :""}
