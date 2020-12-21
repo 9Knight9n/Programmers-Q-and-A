@@ -327,63 +327,14 @@ class ProfileOwner extends Component {
                                    Members
                             </div>
                             <ul className="list-group">
-                           
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail" src="https://bootdey.com/img/Content/User_for_snippets.png"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                    Juan guillermo cuadrado
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                jo aderestand 
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                jo aderestand 
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Sara Bencallin 
-                                </label>
-                               
-                               
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Emili  
-                                </label>
-                                
-                                <div class="break"></div>
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Amorina 
-                                </label>
-                               
-                                <div class="break"></div>
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_2.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                    Weide 
-                                </label>
-                                
-                                <div class="break"></div>
-                            </li>
+                                {this.state.users.map(u => 
+                                        <li key={u.id}>
+                                            <img className="img-thumbnail" src={u.avatar} />
+                                            <label className="name w-75 ml-3 mt-auto mb-auto">
+                                                {u.username}
+                                            </label>
+                                        </li>
+                                    )}
                             </ul>
                         </div>
                     </div>    
