@@ -31,6 +31,28 @@ class ProfileOwner extends Component {
             linkError: false,
             chatroomNameMsg: "Choose a name for your chatroom",
             nameError: false,
+            users: [
+                {
+                    id:1,
+                    avatar: profileImg,
+                    username: "Ali",
+                },
+                {
+                    id:2,
+                    avatar: profileImg,
+                    username: "Sajjad",
+                },
+                {
+                    id:3,
+                    avatar: profileImg,
+                    username: "Hani",
+                },
+                {
+                    id:4,
+                    avatar: profileImg,
+                    username: "Abbas",
+                },
+            ]
         }; 
 
     }
@@ -205,6 +227,7 @@ class ProfileOwner extends Component {
         let name = target.name;
         this.setState({
           [name]: value,
+         
         });
       }
     
@@ -328,7 +351,7 @@ class ProfileOwner extends Component {
                             </div>
                             <ul className="list-group">
                                 {this.state.users.map(u => 
-                                        <li key={u.id}>
+                                        <li className ="d-flex justify-content-start" key={u.id} >
                                             <img className="img-thumbnail" src={u.avatar} />
                                             <label className="name w-75 ml-3 mt-auto mb-auto">
                                                 {u.username}

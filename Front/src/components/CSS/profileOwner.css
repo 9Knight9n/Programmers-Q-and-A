@@ -364,6 +364,19 @@ div.container {
   padding: 10%;
   background-color: #394264;
 }
-.list-group {
-  border-radius: 0%;
+
+  .list-group {
+    border-radius: 0%;
+    margin-top: 0%;
+    background-color: #394264;
+}
+.img-thumbnail {
+  padding: 0rem;
+  background-color: #fff0;
+  border: 0px solid #dee2e600;
+  border-radius: 2rem;
+  max-width: 22%;
+  height: auto;
+  margin-left: 3%;
+  margin-top: 4%;
 }
