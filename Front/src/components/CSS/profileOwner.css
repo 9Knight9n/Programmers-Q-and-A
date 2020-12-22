@@ -14,9 +14,7 @@
 .chProfileOwner a {
   color: #7a7aff73 !important;
   font-size: medium !important;
-  margin-left: -3%;
-
-} 
+}
 
 .chProfileOwner a:hover {
   color: #5151e9e7 !important;
@@ -30,8 +28,6 @@
 .chProfileOwner label {
   font-size: large !important;
   color: #9d9dd1;
-  margin-top: 9%;
- 
 }
 
 .chProfileOwner-profile {
@@ -83,11 +79,12 @@
 }
 
 .chProfileOwner-chLinkEditImg {
-  width: 5%;
-  margin-left: auto;
-  margin-right: 17%;
+  width: 4%;
+  position: absolute;
   cursor: pointer;
   visibility: hidden;
+  margin-left: 77%;
+  margin-top: 8%;
 }
 
 .chProfileOwner-chLinkEditImg img {
@@ -113,12 +110,12 @@
 .chProfileOwner-chName-chTitle-chLink {
   width: 100%;
   margin-left: -2%;
-  margin-top: 5%;
+  margin-top: 2%;
   padding: 0%;
 }
 /* ##181852856b */
 .chProfileOwner-chName input {
-  width: 85%;
+  width: 90%;
   border-bottom: 1px solid #5c6bc0 !important;
   /* background-color: #c0bed4; */
   padding: 2%;
@@ -129,15 +126,21 @@
 }
 
 .chProfileOwner-chNameEditImg {
-  width: 5%;
-  margin-left: auto;
-  margin-right: 17%;
+  width: 4%;
+  position: absolute;
   cursor: pointer;
   visibility: hidden;
+  margin-left: 77%;
+  margin-top: 6%;
 }
 
 .chProfileOwner-chNameBox {
   width: 100%;
+  height: 5vh;
+}
+
+.chNameLable {
+  visibility: hidden;
 }
 
 .chProfileOwner-chNameBox:hover .chProfileOwner-chNameEditImg {
@@ -162,6 +165,7 @@
 
 .chProfileOwner-chTitle {
   width: 100%;
+  margin-top: 5%;
   color: #9d9dd1;
 }
 
@@ -184,19 +188,23 @@
 
 .chProfileOwner-des {
   width: 94%;
+  padding: 3% !important;
   min-height: 10vh;
   /* background-color: #c0bed4; */
 }
 
-.chProfileOwner-desBox input {
+.chProfileOwner-desBox textarea {
+  outline: none;
   width: 100%;
-  min-height: 6vh;
+  min-height: 8vh;
+  max-height: 15vh;
   padding-left: 1%;
   /* background-color: #c0bed4; */
   background-color: #18185285;
-  margin-left: 0%;
   color: #9d9dd1;
   outline: none;
+  border-bottom: 1px solid #5c6bc0 !important;
+  resize: none;
 }
 
 .chProfileOwner-desBox p {
@@ -205,14 +213,12 @@
 }
 
 .chProfileOwner-desEditImg {
-  width: 2.3%;
-  /* margin-left: 41%;
-  margin-top: -4.5%;
-  position: absolute; */
+  width: 1.5%;
+  position: absolute;
   cursor: pointer;
   visibility: hidden;
-  margin-left: auto;
-  margin-right: 7%;
+  margin-left: 59.3%;
+  margin-top: 4.5%;
 }
 
 .chProfileOwner-desBox:hover .chProfileOwner-desEditImg {
@@ -248,9 +254,10 @@
   margin-top: 12%;
 } */
 
-.chProfileOwner-deleteButton button {
+.chProfileOwner-leaveButton button {
   outline: none;
   width: 100%;
+  height: 5vh;
 }
 
 .error {
@@ -317,14 +324,6 @@
   height: 100%;
   margin-bottom: 0rem !important;
 }
-.img-thumbnail {
-  padding: 0rem;
-  background-color: #fff0;
-  border: 0px solid #dee2e600;
-  border-radius: 2rem;
-  max-width: 100%;
-  height: auto;
-}
 div.container {
   width: 700px;
   margin: 0em auto;
@@ -365,18 +364,23 @@ div.container {
   background-color: #394264;
 }
 
-  .list-group {
-    border-radius: 0%;
-    margin-top: 0%;
-    background-color: #394264;
+.list-group {
+  border-radius: 0%;
+  margin-top: 0%;
+  background-color: #394264;
 }
 .img-thumbnail {
   padding: 0rem;
   background-color: #fff0;
   border: 0px solid #dee2e600;
   border-radius: 2rem;
-  max-width: 22%;
+  max-width: 18%;
   height: auto;
+  margin-left: 3%;
+  margin-top: 4%;
+}
+
+.MuiBadge-root {
   margin-left: 3%;
   margin-top: 4%;
 }
