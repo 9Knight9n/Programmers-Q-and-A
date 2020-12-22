@@ -11,50 +11,6 @@ import saveIcon from '../img/save.png';
 import cancelIcon from '../img/cancel.png';
 import Cookies from 'js-cookie';
 import SelectAvatar from './selectAvatar';
-import Badge from '@material-ui/core/Badge';
-import Avatar from '@material-ui/core/Avatar';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-
-const StyledBadge = withStyles((theme) => ({
-    badge: {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '',
-  
-  
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }))(Badge);
-  
-  
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
 
 class ProfileOwner extends Component {
     constructor(props) {
@@ -96,7 +52,7 @@ class ProfileOwner extends Component {
                     avatar: profileImg,
                     username: "Abbas",
                 },
-            ]     
+            ]
         }; 
 
     }
@@ -271,6 +227,7 @@ class ProfileOwner extends Component {
         let name = target.name;
         this.setState({
           [name]: value,
+         
         });
       }
     
@@ -280,7 +237,7 @@ class ProfileOwner extends Component {
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
                
                 <div className="chProfileOwner-exitImg">
-                        <img onClick={this.props.hideChatroomProfile} src={exitImg} />
+                        <img onClick={this.props.hideModal} src={exitImg} />
                 </div>
 
                 <div class="d-flex h-100">
@@ -363,11 +320,11 @@ class ProfileOwner extends Component {
                                 </div>
                             </div>
 
-                            {!this.state.isOwner?
-                                <div className="chProfileOwner-leaveButton mt-auto">
-                                    <button onClick={this.props.hideModal}>Leave Chatroom</button>
+                            {/* {this.state.isOwner?
+                                <div className="chProfileOwner-deleteButton mt-auto">
+                                    <button>Delete Chatroom</button>
                                 </div> : ''
-                            }
+                            } */}
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
@@ -390,11 +347,11 @@ class ProfileOwner extends Component {
                         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
                         <div className="jumbotron list-content ml-auto ">
                             <div href="#" className="chProfileOwner-list-group-item title w-100 ">
-                                    Members
+                                   Members
                             </div>
                             <ul className="list-group">
                                 {this.state.users.map(u => 
-                                        <li key={u.id}>
+                                        <li className ="d-flex justify-content-start" key={u.id} >
                                             <img className="img-thumbnail" src={u.avatar} />
                                             <label className="name w-75 ml-3 mt-auto mb-auto">
                                                 {u.username}

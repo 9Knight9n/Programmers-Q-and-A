@@ -451,13 +451,13 @@ select:focus button:focus {
   margin-left: 8%;
 }
 
-.abed-css .plKinds select {
+/* .abed-css .plKinds select {
   font-size: 14px;
   margin-left: 1%;
   width: 47%;
   height: 4vh;
   overflow: auto !important;
-}
+} */
 
 .abed-css .plKinds label {
   margin-left: -2%;

@@ -294,3 +294,7 @@ html {
   background: #626588 !important;
   color: #fff !important;
 }
+#warning .Toastify__toast--dark {
+  background: #cc3300 !important;
+  color: #fff !important;
+}
