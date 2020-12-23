@@ -1,11 +1,10 @@
 from django.db import models
-
-class Room(models.Model):
-    name = models.TextField()
-    label = models.SlugField(unique=True)
+from registeration.models import User
+from chatroom.models import Chatroom
 
 class Message(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    handle = models.TextField()
-    message = models.TextField()
-    timestamp = models.DateTimeField(db_index=True)
+    chatroom = models.ForeignKey(Chatroom, on_delete=models.CASCADE)
+    user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True)
+    text = models.TextField()
+    parentMessage = models.ForeignKey("self" , null=True , on_delete=models.SET_NULL)
+    time = models.DateTimeField(db_index=True)

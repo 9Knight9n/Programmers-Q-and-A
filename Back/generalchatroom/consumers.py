@@ -1,5 +1,12 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
+import datetime
+from channels.db import database_sync_to_async
+
+from .models import Message
+from chatroom.models import Chatroom
+from registeration.models import User
+from .serializer import MessageSerializer
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -24,22 +31,33 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+        text_data_json['type'] = 'chat_message'
+        await self.create_message(event=text_data_json)
 
         # Send message to room group
         await self.channel_layer.group_send(
             self.room_group_name,
-            {
-                'type': 'chat_message',
-                'message': message
-            }
+            text_data_json,
         )
 
     # Receive message from room group
     async def chat_message(self, event):
         message = event['message']
-
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'message': message
         }))
+    @database_sync_to_async
+    def create_message(self , event):
+        chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
+        user = User.objects.filter(id=event['user_id'])
+        message = Message.objects.create(
+            chatroom=chatroom[0],
+            user=user[0],
+            message=event['message'],
+            time = datetime.datetime.now()
+        )
+        message.save()
+        serializer = MessageSerializer(message)
+        data = serializer.data
+        data["time"] = message.time.ctime()
