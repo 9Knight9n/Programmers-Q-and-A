@@ -10,7 +10,7 @@ from nltk.tokenize import word_tokenize
 # import time 
 
 from .serializer import QuestionSerializer , AnswerSerializer , ShowUserProfileSerializer
-from .models import Answer , Question , Chatroom_User , User_Question , User_Answer
+from .models import Answer , Question , User_Question , User_Answer
 from chatroom.models import Chatroom
 from registeration.models import User
 

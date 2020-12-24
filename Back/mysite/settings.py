@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'userprofile.apps.UserprofileConfig',
     'django_cleanup',
     'chatroom.apps.ChatroomConfig',
+    'join',
 ]
 
 MIDDLEWARE = [
