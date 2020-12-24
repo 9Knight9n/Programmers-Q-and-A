@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a98b209-b7ef-43ae-8c8a-dc94d2f2f702" name="Default Changelist" comment="" />
+    <list default="true" id="8a98b209-b7ef-43ae-8c8a-dc94d2f2f702" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/join/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/join/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,10 +67,18 @@
       <workItem from="1608237509211" duration="1096000" />
       <workItem from="1608239162839" duration="347000" />
       <workItem from="1608313569433" duration="409000" />
+      <workItem from="1608793366968" duration="345000" />
+      <workItem from="1608793717489" duration="1382000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1608793711277">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608793711277" />
   </component>
 </project>
