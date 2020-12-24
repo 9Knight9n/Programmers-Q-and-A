@@ -31,28 +31,29 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        #text_data_json['type'] = 'chat_message'
-        if text_data_json['type'] = 'chat_message'
-        await self.create_message(event=text_data_json)
+        text_data_json['type'] = 'chat_message'
+        data = {}
+        if text_data_json['order_type'] == 'create_message':
+            data = await self.create_message(event=text_data_json)
+        elif text_data_json['order_type'] == 'delete_message':
+            data = await self.delete_message(event=text_data_json)
 
         # Send message to room group
         await self.channel_layer.group_send(
             self.room_group_name,
-            text_data_json,
+            data,
         )
 
     # Receive message from room group
     async def chat_message(self, event):
-        message = event['message']
+        print(event)
+        #message = event['text']
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({
-            'message': message
-        }))
+        await self.send(text_data=json.dumps(event))
     @database_sync_to_async
     def create_message(self , event):
         chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
         user = User.objects.filter(id=event['user_id'])
-        print(event['message'])
         message = Message.objects.create(
             chatroom=chatroom[0],
             user=user[0],
@@ -63,3 +64,31 @@ class ChatConsumer(AsyncWebsocketConsumer):
         serializer = MessageSerializer(message)
         data = serializer.data
         data["time"] = message.time.ctime()
+        # for detect type of data
+        data['type'] = 'chat_message'
+        data['order_type'] = 'create_message'
+        data['message_id'] = message.id
+        return data
+
+    @database_sync_to_async
+    def delete_message(self , event):
+        data = {}
+        chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
+        user = User.objects.filter(id=event['user_id'])
+        if user[0] == chatroom[0].owner:
+            message = Message.objects.filter(
+                id=event['message_id']
+            )
+            if list(message) == []:
+                data['message'] = 'message not found'
+            else:
+                message[0].delete()
+                data['message'] = 'message delete successfully'
+                
+        else:
+            data['message'] = 'user is not owner'
+        data['type'] = 'chat_message'
+        data['order_type'] = 'delete_message'
+        print(data)
+        return data
+    

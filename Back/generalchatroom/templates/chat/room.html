@@ -41,8 +41,10 @@
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
+                'order_type' : 'delete_message',
+                'message_id' : 25,
                 'chatroom_id':6,
-                'user_id': 15,
+                'user_id': 12,
                 'message': message,
             }));
             messageInputDom.value = '';
