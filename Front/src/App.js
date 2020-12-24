@@ -51,7 +51,7 @@ class App extends Component {
         <Link id="loginfirst" to="/login"/>
         <Switch>
           <Route path="/login">
-            <SignInForm />
+            {/* <SignInForm /> */}<MessageBox />
           </Route>
           <Route path="/signup">
             <SignUpForm />
