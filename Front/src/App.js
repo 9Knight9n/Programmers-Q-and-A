@@ -17,6 +17,7 @@ import MessageBox from './components/messageBox';
 import Cookies from 'js-cookie';
 import AnswerPage from './components/answersPage'
 import QuestionsPage from './components/questionsPage'
+import Test from './components/test';
 import './index.css';
 
 
@@ -51,7 +52,7 @@ class App extends Component {
         <Link id="loginfirst" to="/login"/>
         <Switch>
           <Route path="/login">
-            <SignInForm />
+            <Test />
           </Route>
           <Route path="/signup">
             <SignUpForm />
