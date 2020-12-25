@@ -22,6 +22,7 @@ import {
     useParams,
     useHistory 
   } from "react-router-dom";
+import GeneralChatroom from './generalChatroom';
 
 
 
@@ -96,6 +97,7 @@ class Homepage extends Component {
 
                         <Switch>
                             <Route path="/cr:chatroomid" component={QuestionsPage}/>
+                            <Route path="/gcr:chatroomid" component={GeneralChatroom}/>
                             <Route path="/search/:searchPhrase" component={SearchResultPage}/>
                         </Switch>
                         
