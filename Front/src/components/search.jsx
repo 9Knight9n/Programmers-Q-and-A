@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 class Search extends Component {
     state = {
+        minError:false,
         focused:false,
         panelOpened:false,
         searchInput:"",
@@ -24,13 +25,11 @@ class Search extends Component {
             {
                 document.getElementById("goToSearchResultPage").click();
                 this.setState({searchInput:""});
-                this.setState({focused:false,panelOpened:false,suggestions:[]})
+                this.setState({focused:false,panelOpened:false,suggestions:[],minError:false})
             }   
             else
             {
-                    // toast.dark("Enter at least 3 letters to search!", {
-                    //     toastId: "no-dup"});
-
+                this.setState({panelOpened:true,minError:true})
             }
         }
         else
@@ -51,23 +50,7 @@ class Search extends Component {
             this.loadSuggestions(input);
         }
         else
-        {
-            if (input.length >0){
-                this.setState({panelOpened:true,suggestions:[]})
-            }
-            else{
-                this.setState({panelOpened:false})
-            }
-            // this.setState({panelOpened:false})
-            // if(!this.state.informed)
-            // {
-            //     toast.dark("Enter at least 3 letters to search!", {
-            //         toastId: "no-dup"});
-
-            //     this.setState({informed:true})
-            // }
-            
-        }
+            this.setState({panelOpened:false,suggestions:[]})
     }
 
     loadSuggestions= async (input)=>{
@@ -126,7 +109,7 @@ class Search extends Component {
 
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
                         <div className={"m-3".concat(this.state.panelOpened?" ":" display-none")}>
-                            {this.state.searchInput.length<3?<p>Enter at least 3 letters!</p>:(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
+                            {this.state.searchInput.length<3?(this.state.minError?<p>Enter at least 3 letters!</p>:""):(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
                         </div>
                         <div className={"search-result".concat(this.state.suggestions.length>0 && this.state.searchInput !== ""?" active":"")}>
                             

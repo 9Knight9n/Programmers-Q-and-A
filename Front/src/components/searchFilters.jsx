@@ -79,34 +79,32 @@ class SearchFilter extends Component {
                             <div className="border-bottom">
                                 <p className="ml-2 mb-2 h3">Filters</p>
                             </div>
-                            <div className="mt-3 d-flex flex-row">
-                                <div className="w-50 mt-2">
-                                    <input className=""
-                                        name="onlyAnsweredCheckBox"
-                                        type="checkbox" 
-                                        onClick={()=>this.setState({onlyAnswered:!this.state.onlyAnswered})} 
-                                        checked={this.state.onlyAnswered}/>
-                                    <label for="onlyAnsweredCheckBox" className="ml-2">Show answered Questions only.</label>
-                                </div>
-                                <div className="d-flex flex-row w-50">
-                                    <p className="mt-2">sort by :</p>
-                                    <div className="black-text w-75 ml-auto">
-                                        <Select
-                                            onChange={(value)=>this.setState({sort:value})}
-                                            className="basic-single"
-                                            classNamePrefix="select"
-                                            defaultValue={this.state.sort}
-                                            isLoading={false}
-                                            // isClearable={true}
-                                            isRtl={false}
-                                            isSearchable={false}
-                                            options={sorts}
-                                        />
-                                    </div>
+                            <div className="mt-2">
+                                <input className=""
+                                    name="onlyAnsweredCheckBox"
+                                    type="checkbox" 
+                                    onClick={()=>this.setState({onlyAnswered:!this.state.onlyAnswered})} 
+                                    checked={this.state.onlyAnswered}/>
+                                <label for="onlyAnsweredCheckBox" className="ml-2">Show answered Questions only.</label>
+                            </div>
+                            <div className="d-flex flex-row mt-4">
+                                <p className="mt-2">sort by :</p>
+                                <div className="black-text w-50 ml-auto">
+                                    <Select
+                                        onChange={(value)=>this.setState({sort:value})}
+                                        className="basic-single"
+                                        classNamePrefix="select"
+                                        defaultValue={this.state.sort}
+                                        isLoading={false}
+                                        // isClearable={true}
+                                        isRtl={false}
+                                        isSearchable={false}
+                                        options={sorts}
+                                    />
                                 </div>
                             </div>
                             <div className="d-flex flex-row mt-4">
-                                <p className="mt-2">Find questions submitted in :</p>
+                                <p className="mt-2">Questions submitted in :</p>
                                 <div className="black-text w-50 ml-auto">
                                     <Select
                                         onChange={(value)=>this.setState({time:value})}
@@ -122,7 +120,7 @@ class SearchFilter extends Component {
                                 </div>
                             </div>
                             <div className="d-flex flex-row mt-4">
-                                <p className="mt-2">Find chatrooms having members more than :</p>
+                                <p className="mt-2">Minimum Users in Chatroom  :</p>
                                 <div className="black-text w-50 ml-auto">
                                     <Select
                                         onChange={(value)=>this.setState({member:value})}
