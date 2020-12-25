@@ -1,26 +1,40 @@
-import React, { Component } from "react";
-import { ScrollTo } from "react-scroll-to";
- 
-export default class Test extends Component {
-  myRef = React.createRef();
- 
-  render() {
-    return (
-      <React.Fragment>
-        <div className="black-text">
+import React, { Component } from 'react';
+import {connect,listen,send} from './socket';
 
-        
-        <ScrollTo>
-          {({ scroll }) => (
-            <a onClick={() => scroll({ ref: this.myRef, x: 20, y: 500 })}>
-              Scroll to Bottom
-            </a>
-          )}
-        </ScrollTo>
- 
-        <div ref={this.myRef}>My Element</div>
-        </div>
-        </React.Fragment>
-    );
+class Test extends Component {
+  state = { time:"", }
+
+  setMessage=(message)=>{
+    console.log("received info:",message)
+    let data = JSON.parse(message.data);
+      console.log(data);
+      if (data.message)
+    this.setState({time:data.message})
+  }
+  async componentWillMount(){
+    await connect("ws://127.0.0.1:8000/ws/api/generalchatroom/kidding/");
+    await listen("message",this.setMessage);
+    
+  }
+  async sayHello(){
+    await send({"message" : "Hi man!"});
+  }
+
+  render() { 
+    return ( 
+      <React.Fragment>
+        <div className="App black-text">
+            <header className="App-header">
+              <React.Fragment>
+                {/* <Event event='message' handler={this.onMessage} /> */}
+                <p>Server Time is {this.state.time}</p>
+                <button onClick={this.sayHello}>Say Hi to server</button>
+              </React.Fragment>
+            </header>
+          </div>
+      </React.Fragment>
+     );
   }
 }
+ 
+export default Test;
