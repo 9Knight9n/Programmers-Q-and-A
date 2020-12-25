@@ -49,12 +49,15 @@ class ChatroomInfo extends Component {
         // console.log("inside componentDidUpdate")
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         if (prevProps.Cid !== this.props.Cid) {
-            
             this.setState({chatroomId:this.props.Cid})
             console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
             this.loadData()
             
         }
+        if (prevProps.isJoined !== this.props.isJoined) {
+            this.setState({isJoined:this.props.isJoined})  
+        }
+
       }
 
 
@@ -129,7 +132,6 @@ class ChatroomInfo extends Component {
                 Description: data.Description,
                 chatroom_profile_image: data.chatroom_profile_image,
                 chatroomLink: "http://localhost:3000/cr"+this.state.chatroomId,
-                isJoined: false,
             });
         }
         // console.log(data.chatroom_profile_image)
@@ -166,7 +168,7 @@ class ChatroomInfo extends Component {
       }
 
       handleJoinClick = () => {
-        if(!this.state.isJoined) {
+        if(this.state.isJoined) {
             this.showEditor()
         }else{
             this.showJoinChatroom()
@@ -181,7 +183,7 @@ class ChatroomInfo extends Component {
     render() { 
         return (  
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
-                <JoinChatroom hideJoinChatroom={this.hideJoinChatroom} showJoinChatroom={this.state.showJoinChatroom} />
+                <JoinChatroom isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideJoinChatroom={this.hideJoinChatroom} showJoinChatroom={this.state.showJoinChatroom} />
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
@@ -223,7 +225,7 @@ class ChatroomInfo extends Component {
                     {this.state.showChatroomProfile?
                     <div onClick={() => this.hideChatroomProfile()} className="modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ProfileOwner Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
+                            <ProfileOwner isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
                         </section>
                     </div>
                     :""}

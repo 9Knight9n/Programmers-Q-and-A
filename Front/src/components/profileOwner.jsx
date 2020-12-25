@@ -76,6 +76,7 @@ class ProfileOwner extends Component {
             chatroomNameMsg: "Choose a name for your chatroom",
             nameError: false,
             isOnline:true,
+            isJoined: this.props.isJoined,
             users: [
                 {
                     id:1,
@@ -276,6 +277,35 @@ class ProfileOwner extends Component {
          
         });
       }
+
+      handleLeave = async () =>{
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/Left/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "id",
+                "chatroomId",
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.state.Cid,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data.message === "chatroom_User deleted") {
+            console.log("user left");
+            // this.props.isJoined: false
+            this.setState({
+                isJoined: false,
+            });
+        }else{
+            console.log("leave failed")
+        }
+      }
     
     render() { 
         return ( 
@@ -366,11 +396,11 @@ class ProfileOwner extends Component {
                                 </div>
                             </div>
 
-                            {/* {this.state.isOwner?
-                                <div className="chProfileOwner-deleteButton mt-auto">
-                                    <button>Delete Chatroom</button>
+                            {this.state.isJoined?
+                                <div className="chProfileOwner-leaveButton mt-auto">
+                                    <button onClick={this.handleLeave}>Leave Chatroom</button>
                                 </div> : ''
-                            } */}
+                            }
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">

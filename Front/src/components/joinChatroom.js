@@ -8,6 +8,7 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
+import Cookies from 'js-cookie';
 
 const options = [
     { value: 'java', label: 'java' },
@@ -25,7 +26,8 @@ class joinChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            Cid: this.props.Cid,
+            isJoined: this.props.isJoined
         }; 
 
     }
@@ -86,6 +88,36 @@ class joinChatroom extends Component {
         return false;
       }
 
+      handleJoin = async () => {
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/Join/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "id",
+                "chatroomId",
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.state.Cid,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data.message === "New chatroom_User created") {
+            console.log("user Joined");
+            // this.props.isJoined = true
+            this.setState({
+                isJoined: true,
+            })
+        }else{
+            console.log("user is already Joined")
+        }
+
+      }
+
     render() { 
         return ( 
             <div id="joinChatroom">
@@ -106,7 +138,7 @@ class joinChatroom extends Component {
                                         </p>
                                     </div>
                                     <div className="joinChatroom-buttons d-flex flex-row mt-auto">
-                                        <button className="joinButton">Join</button>
+                                        <button onClick={this.handleJoin} className="joinButton">Join</button>
                                         <button onClick={() => this.props.hideJoinChatroom()} className="notNowButton">Not now</button>
                                     </div>
                                 </div>
