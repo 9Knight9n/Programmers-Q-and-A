@@ -79,7 +79,7 @@ class welcomeChatroom extends Component {
     render() { 
         return ( 
             <div id="welcomeChatroom">
-                {this.props.hideWelcomeChatroom ?
+                {this.props.hideWelcomeChatroom?
                     <div onClick={() => this.props.hideWelcomeChatroom()} className="welcomeChatroom welcomeChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
                             <div className="welcomeChatroom-exitImg">
