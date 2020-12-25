@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path , include
-from registeration import views as v
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_simplejwt import views as jwt_views
@@ -14,5 +13,6 @@ urlpatterns = [
     path('api/token/refresh/' , jwt_views.TokenRefreshView.as_view()),
     path('api/' , include("userprofile.urls")),
     path('api/' , include("chatroom.urls")),
+    path('api/', include('generalchatroom.urls')),
 ]
 urlpatterns = urlpatterns + static('media' , document_root='media')
