@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CSS/joinChatroom.css';
+import './CSS/welcomeChatroom.css';
 import exitImg from '../img/exit.png'
 import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
@@ -9,15 +9,13 @@ import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
 import Cookies from 'js-cookie';
-import welcomeChatroom from './welcomeChatroom'
 
-class joinChatroom extends Component {
+class welcomeChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Cid: this.props.Cid,
-            isJoined: this.props.isJoined,
-            showWelcomeChatroom: this.props.showWelcomeChatroom
+            isJoined: this.props.isJoined
         }; 
 
     }
@@ -78,61 +76,24 @@ class joinChatroom extends Component {
         return false;
       }
 
-      handleJoin = async () => {
-        console.log("enter enter enter")
-        let config ={
-            url:"http://127.0.0.1:8000/api/Join/",
-            needToken:false,
-            type:"post",
-            formKey:[
-                "id",
-                "chatroomId",
-            ],
-            formValue:[
-                Cookies.get('id'),
-                this.state.Cid,
-            ]
-        }
-        let data = []
-        // console.log("outside 0",data)
-        data = await request(config)
-        if (data.message === "New chatroom_User created") {
-            console.log("user Joined");
-            // this.props.isJoined = true
-            this.setState({
-                isJoined: true,
-                showWelcomeChatroom: true,
-                showJoinChatroom: false,
-            })
-        }else{
-            console.log("user is already Joined")
-        }
-
-      }
-
     render() { 
         return ( 
-            <div id="joinChatroom">
-                <welcomeChatroom hideWelcomeChatroom={this.props.hideWelcomeChatroom} showWelcomeChatroom={this.state.showWelcomeChatroom} />
-                {this.props.showJoinChatroom ?
-                    <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
+            <div id="welcomeChatroom">
+                {this.props.hideWelcomeChatroom ?
+                    <div onClick={() => this.props.hideWelcomeChatroom()} className="welcomeChatroom welcomeChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <div className="joinChatroom-exitImg">
-                                <img onClick={() => this.props.hideJoinChatroom()} src={exitImg} />
+                            <div className="welcomeChatroom-exitImg">
+                                <img onClick={() => this.props.hideWelcomeChatroom()} src={exitImg} />
                             </div>
-                            <div className="joinChatroom-elements">
+                            <div className="welcomeChatroom-elements">
                                 <div className="d-flex h-100 align-items-center flex-column">
-                                    <div className="joinChatroom-lable">
-                                        <label>You must join the chatroom to ask question</label>
+                                    <div className="welcomeChatroom-lable">
+                                        <label>Welcome to the chatroom</label>
                                     </div>
-                                    <div className="joinChatroom-text">
+                                    <div className="welcomeChatroom-text">
                                         <p>
                                             Ask and answer questions then enjoy!
                                         </p>
-                                    </div>
-                                    <div className="joinChatroom-buttons d-flex flex-row mt-auto">
-                                        <button onClick={this.handleJoin} className="joinButton">Join</button>
-                                        <button onClick={() => this.props.hideJoinChatroom()} className="notNowButton">Not now</button>
                                     </div>
                                 </div>
                             </div>
@@ -145,4 +106,4 @@ class joinChatroom extends Component {
     }
 }
  
-export default joinChatroom;
+export default welcomeChatroom;

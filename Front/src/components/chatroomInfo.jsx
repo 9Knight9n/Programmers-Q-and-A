@@ -42,7 +42,8 @@ class ChatroomInfo extends Component {
         showJoinChatroom: false,
         hideJoinChatroom:false,
         userid: Cookies.get("id"),
-        isJoined: true,
+        isJoined: false,
+        showWelcomeChatroom: false,
     }
 
     componentDidUpdate(prevProps) {
@@ -149,12 +150,24 @@ class ChatroomInfo extends Component {
         this.setState({ showJoinChatroom: false });
     };
 
+    showWelcomeChatroom = () => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showWelcomeChatroom: true });
+        // console.log(this.state.submit)
+    
+    };
+
+    hideWelcomeChatroom = () => {
+        this.setState({ showWelcomeChatroom: false });
+    }
+
     showChatroomProfile = () => {
         // this.setState({ showProfilePreview: submit });
         this.setState({ showChatroomProfile: true });
         // console.log(this.state.submit)
     
     };
+
     
     hideChatroomProfile = () => {
         this.setState({ showChatroomProfile: false });
@@ -183,7 +196,14 @@ class ChatroomInfo extends Component {
     render() { 
         return (  
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
-                <JoinChatroom isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideJoinChatroom={this.hideJoinChatroom} showJoinChatroom={this.state.showJoinChatroom} />
+                <JoinChatroom 
+                  isJoined={this.state.isJoined}
+                  Cid={this.state.chatroomId}
+                  hideJoinChatroom={this.hideJoinChatroom}
+                  showJoinChatroom={this.state.showJoinChatroom}
+                  showWelcomeChatroom={this.state.showWelcomeChatroom}
+                  hideWelcomeChatroom={this.hideWelcomeChatroom}
+                />
                 <Texteditor 
                 content={this.state.content} 
                 updateContent={this.updateContent} 
