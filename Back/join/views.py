@@ -21,6 +21,8 @@ def Join(request):
         return Response({'message': 'User has joined'})
     chatroom_user = Chatroom_User.objects.create(user=user[0], chatroom=chatroom[0])
     chatroom_user.save()
+    chatroom[0].numberOfUser += 1
+    chatroom[0].save()
     return Response({'message': 'New chatroom_User created'}, status=status.HTTP_201_CREATED)
 
 
@@ -36,6 +38,8 @@ def Left(request):
     if list(chatroom_user) == []:
         return Response({'message': 'User has not joined'})
     chatroom_user.delete()
+    chatroom[0].numberOfUser -= 1
+    chatroom[0].save()
     return Response({'message': 'chatroom_User deleted'}, status=status.HTTP_201_CREATED)
 
 
