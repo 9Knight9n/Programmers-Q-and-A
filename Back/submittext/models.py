@@ -24,9 +24,7 @@ class Answer(models.Model):
 #'question feilds : owner — time — linkOfFile — picture — text — chatroom — IsAnswered -- CommonQuestion'
                                                  #'?'
 
-class Chatroom_User(models.Model):
-    user = models.ForeignKey(User , on_delete=models.CASCADE)
-    chatroom = models.ForeignKey(Chatroom , on_delete=models.CASCADE)
+
 
 class User_Question(models.Model):
     user = models.ForeignKey(User , on_delete=models.CASCADE)
