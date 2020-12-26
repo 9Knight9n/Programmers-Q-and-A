@@ -1,6 +1,7 @@
 import React from 'react'
 import { MessageBox as MB } from 'react-chat-elements'
 import { Avatar } from 'react-chat-elements'
+import { getUserAvatar } from './util';
 // CE CSS
 import 'react-chat-elements/dist/main.css';
 // MessageBox component
@@ -9,6 +10,7 @@ import './CSS/messageBox.css';
 
 class MessageBox extends React.Component {
 	state={
+		userid:this.props.userid,
 		avatarSrc:this.props.avatarSrc,
 		title:this.props.title,
 		text:this.props.text,
@@ -16,6 +18,11 @@ class MessageBox extends React.Component {
 		isReply:this.props.isReply,
 		titleRep:this.props.titleRep,
 		messageRep:this.props.messageRep
+	}
+
+	async componentDidMount(){
+		await getUserAvatar(this.state.userid);
+        this.setState({avatarSrc:sessionStorage.getItem(this.state.userid+":avatar")})
 	}
 
 	render() {

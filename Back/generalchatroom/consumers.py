@@ -68,6 +68,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data['type'] = 'chat_message'
         data['order_type'] = 'create_message'
         data['message_id'] = message.id
+        data['username'] = user[0].username
+        if message.parentMessage != None:
+            data['replyTo'] = message.parentMessage
         return data
 
     @database_sync_to_async

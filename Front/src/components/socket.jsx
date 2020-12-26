@@ -17,9 +17,9 @@ export const connect= async (url)=>{
     rws = new ReconnectingWebSocket(url,[],options);
 
 }
-export const listen= async (evt,func)=>{
+export const listen= async (evtName,func)=>{
     
-    rws.addEventListener(evt,data => func(data));
+    rws.addEventListener(evtName,evt => func(JSON.parse(evt.data)));
 }
 
 export const send= async (obj)=>{

@@ -52,7 +52,7 @@ class App extends Component {
         <Link id="loginfirst" to="/login"/>
         <Switch>
           <Route path="/login">
-            <Test />
+            <SignInForm />
           </Route>
           <Route path="/signup">
             <SignUpForm />
