@@ -3,7 +3,10 @@ import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
 import MessageBox from './messageBox';
 import {connect,listen,send} from './socket';
-import { Input,Button } from 'react-chat-elements'
+import { Input } from 'react-chat-elements'
+import { isExpired } from "react-jwt";
+import {renewToken} from './requests'
+import Cookies from 'js-cookie';
 
 
 class GeneralChatroom extends Component {
@@ -14,6 +17,7 @@ class GeneralChatroom extends Component {
         this.state = {
             inputValue:"",
             loading:false,
+            inputRef:React.createRef(),
             chats:[
                 {
                     user:12,
@@ -154,13 +158,19 @@ class GeneralChatroom extends Component {
         
     }
 
-    sendMessage=()=>{
+    sendMessage=async()=>{
+        let token = Cookies.get("access")
+        if(isExpired(Cookies.get("access"))){
+        token=await renewToken()
+        }
         send({
             'order_type' : 'create_message',
             'chatroom_id':this.state.ChatroomID,
-            'user_id': sessionStorage.getItem("id"),
+            'token': token,
             'message': this.state.inputValue,
         })
+        this.state.inputRef.clear();
+        this.setState({inputRef:""})
     }
 
 
@@ -196,18 +206,19 @@ class GeneralChatroom extends Component {
                         </div>
                         <div id="sendOnEnter">
                             <Input
-                                    onChange={this.inputOnChange}
-                                    placeholder="Type here..."
-                                    multiline={false}
-                                    rightButtons={
-                                        <button
-                                            className="p-2 rounded"
-                                            onClick={this.sendMessage}
-                                            id="generalChatroomSendButton"
-                                            style={{backgroundColor:'black',color:'white'}}>
-                                                Send
-                                            </button>
-                                    }/>
+                                ref={el => (this.state.inputRef = el)}
+                                onChange={this.inputOnChange}
+                                placeholder="Type here..."
+                                multiline={false}
+                                rightButtons={
+                                    <button
+                                        className="p-2 rounded"
+                                        onClick={this.sendMessage}
+                                        id="generalChatroomSendButton"
+                                        style={{backgroundColor:'black',color:'white'}}>
+                                            Send
+                                        </button>
+                                }/>
                         </div>
                     </div>
                 </div>

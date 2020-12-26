@@ -60,3 +60,6 @@
     color: #ecb4ff;
     /* font-size: large; */
 }
+.rce-mbox-body{
+    max-width: 60vw !important;
+}

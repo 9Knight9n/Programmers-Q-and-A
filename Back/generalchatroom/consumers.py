@@ -7,6 +7,7 @@ from .models import Message
 from chatroom.models import Chatroom
 from registeration.models import User
 from .serializer import MessageSerializer
+import jwt
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -32,6 +33,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
         text_data_json['type'] = 'chat_message'
+        decodedPayload = jwt.decode(text_data_json['token'],None,None)
+        text_data_json['user_id'] = decodedPayload['user_id']
+        # print(decodedPayload)
         data = {}
         if text_data_json['order_type'] == 'create_message':
             data = await self.create_message(event=text_data_json)
