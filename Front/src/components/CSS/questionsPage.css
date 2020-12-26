@@ -24,3 +24,7 @@
   height: calc(83vh - 55px);
   overflow-y: auto;
 }
+.messages-box {
+  height: calc(83vh - 91px);
+  overflow-y: auto;
+}

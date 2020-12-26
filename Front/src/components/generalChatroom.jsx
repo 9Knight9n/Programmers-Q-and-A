@@ -3,6 +3,7 @@ import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
 import MessageBox from './messageBox';
 import {connect,listen,send} from './socket';
+import { Input,Button } from 'react-chat-elements'
 
 
 class GeneralChatroom extends Component {
@@ -75,10 +76,10 @@ class GeneralChatroom extends Component {
         this.loadQuestions=this.loadQuestions.bind(this)
     }
     newMessage=(message)=>{
-        console.log("received info:",message.data)
-        console.log("old chats:",this.state.chats)
         this.setState({chats:[...this.state.chats,message]})
-        console.log("new chats:",this.state.chats)
+        // console.log("received info:",message.data)
+        // console.log("old chats:",this.state.chats)
+        // console.log("new chats:",this.state.chats)
         // let data = JSON.parse(message.data);
         //   console.log(data);
         //   if (data.message)
@@ -163,7 +164,7 @@ class GeneralChatroom extends Component {
                                 Cid={this.state.ChatroomID}  />
                         </div>
                         <div className="mt-1 mb-1 ml-5 h-100">
-                            <div className="questions-box">
+                            <div className="messages-box" >
                                 <div className="mr-5 mb-2">
                                     {this.state.chats.map(chat =>
                                     <div key={chat.message_id} className="mb-3">
@@ -180,6 +181,15 @@ class GeneralChatroom extends Component {
                                 </div>
                             </div>
                         </div>
+                        <Input
+                                placeholder="Type here..."
+                                multiline={true}
+                                rightButtons={
+                                    <Button
+                                        color='white'
+                                        backgroundColor='black'
+                                        text='Send'/>
+                                }/>
                     </div>
                 </div>
                 
