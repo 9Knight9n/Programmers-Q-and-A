@@ -29,21 +29,8 @@ import GeneralChatroom from './generalChatroom';
 class Homepage extends Component {
 //chatrooms id must be non negetive
     state = {
-        activeChatroom : sessionStorage.getItem("targetURL")?sessionStorage.getItem("targetURL").split('cr')[1]:null,
-        // chatrooms:[
-        //     {
-        //         id:1,
-        //         ButtonName:'Java',
-        //         img:j_logo
-        //     },
-        //     {
-        //         id:2,
-        //         ButtonName:'Python',
-        //         img:p_logo
-    
-        //     },
-            
-        // ]
+        activeChatroom : sessionStorage.getItem("targetURL")?sessionStorage.getItem("targetURL").split('cr')[1]:-1,
+        refToLeftMenu:React.createRef(),
     }
 
     componentDidMount=()=>{
@@ -64,6 +51,7 @@ class Homepage extends Component {
 
     chatroomClicked = (id) =>{
         this.setState({activeChatroom:id})
+        console.log("called--------------------")
         // let chatrooms = [...this.state.chatrooms];
         // for (let i = 0; i < chatrooms.length; i++)
         //     if (chatrooms[i].id===id)
@@ -75,9 +63,9 @@ class Homepage extends Component {
         //     else
         //         chatrooms[i].isActive = false;
         // this.setState({chatrooms}); 
-        console.log("__________________________________________________________")     
-        console.log("chatroom ",id," selected")
-        this.forceUpdate()
+        // console.log("__________________________________________________________")     
+        // console.log("chatroom ",id," selected")
+        // this.forceUpdate()
         // document.getElementById("selectChatroom").HTML(<QuestionsPage ChatroomID={id} />)
     }
 
@@ -88,15 +76,16 @@ class Homepage extends Component {
             <div className="bg">
                 <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/>
                 <div className="LeftColumn">
-                    <LeftMenu refToSelectComponent={this.props.refToSelectComponent} chatrooms={this.state.chatrooms} chatroomClicked={this.chatroomClicked}/>
+                    <LeftMenu chatrooms={this.state.chatrooms} selectedTab={this.state.activeChatroom} selectTab={this.chatroomClicked}/>
                 </div>
                 <div className="RightColumn">
                     <Navbar />
                     <div style={{height:"91vh"}}>
+                        {/* <button onClick={()=>this.state.refToLeftMenu.current.selectTab(5)}></button> */}
                         {/* <p>{this.state.activeChatroom}</p> */}
 
                         <Switch>
-                            <Route path="/cr:chatroomid" component={QuestionsPage}/>
+                            <Route path="/cr:chatroomid" component={(props) => <QuestionsPage {...props} selectTab={this.chatroomClicked}/>}/>
                             <Route path="/gcr:chatroomid" component={GeneralChatroom}/>
                             <Route path="/search/:searchPhrase" component={SearchResultPage}/>
                         </Switch>

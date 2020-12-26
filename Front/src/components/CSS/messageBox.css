@@ -7,6 +7,9 @@
     min-width: 200px;
     
 }
+.rce-input{
+    line-height: normal !important;
+}
 .rce-mbox-left-notch {
     position: absolute;
     left: -14px;

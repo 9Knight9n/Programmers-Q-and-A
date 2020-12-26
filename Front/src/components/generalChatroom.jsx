@@ -209,7 +209,8 @@ class GeneralChatroom extends Component {
                                 ref={el => (this.state.inputRef = el)}
                                 onChange={this.inputOnChange}
                                 placeholder="Type here..."
-                                multiline={false}
+                                multiline={true}
+                                autoHeight={false}
                                 rightButtons={
                                     <button
                                         className="p-2 rounded"

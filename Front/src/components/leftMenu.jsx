@@ -17,18 +17,24 @@ class LeftMenu extends Component {
     state = {  
         show: false,
         chatrooms:[],
-        activeChatroom:-1
+        activeChatroom:parseInt(this.props.selectedTab)
     }
 
-    handleTabClick = (id) =>{
-        // console.log(sessionStorage.getItem("avatar"))
-        // console.log(window.$avatar)
-        this.props.chatroomClicked(id)
+    selectTab = (id) =>{
         this.setState({activeChatroom:id})
+        // console.log(id ,":",this.state.activeChatroom)
+        // document.getElementById("goToSelectedChatroom"+id).click()
     }
 
     componentDidMount(){
         this.loadChatrooms()
+    }
+
+    componentDidUpdate(preprops){
+        if(preprops.selectedTab !== this.props.selectedTab)
+        {
+            this.setState({activeChatroom:parseInt(this.props.selectedTab)})
+        }
     }
 
     loadChatrooms=async()=>{
@@ -93,9 +99,9 @@ class LeftMenu extends Component {
                     <div className="nav d-flex flex-column nav-pills fill">
                         <div>
                             {this.state.chatrooms.map(chatroom => 
-                            <Link key={chatroom.id} 
+                            <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
-                                onClick={()=> this.handleTabClick(chatroom.id)} 
+                                onClick={()=> this.selectTab(chatroom.id)} 
                                 to={"/cr"+chatroom.id} >
                                 <div className="d-flex flex-row ">
                                     <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
