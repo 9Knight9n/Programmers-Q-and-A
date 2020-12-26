@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SubmitField from './submitField'
 import {request} from './requests';
-import Cookies from 'js-cookie';
+ 
 import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
@@ -138,7 +138,7 @@ class QuestionsPage extends Component {
             ],
             formValue:[
                 this.props.match.params.chatroomid,
-                Cookies.get("id")
+                sessionStorage.getItem("id")
             ]
         }
         let data = []

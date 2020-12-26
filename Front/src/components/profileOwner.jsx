@@ -9,7 +9,7 @@ import './CSS/profileOwner.css';
 import editIcon from '../img/edit2.png';
 import saveIcon from '../img/save.png';
 import cancelIcon from '../img/cancel.png';
-import Cookies from 'js-cookie';
+ 
 import SelectAvatar from './selectAvatar';
 
 class ProfileOwner extends Component {
@@ -62,7 +62,7 @@ class ProfileOwner extends Component {
                 chatroomDes: data.Description,
                 chatroomLink: data.topicLink,
                 chatroomAvatar: data.chatroom_profile_image,
-                isOwner: parseInt(Cookies.get("id")) === data.owner,
+                isOwner: parseInt(sessionStorage.getItem("id")) === data.owner,
             });
         }
         console.log(data)

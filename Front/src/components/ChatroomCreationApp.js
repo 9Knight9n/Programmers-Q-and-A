@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
-import Cookies from 'js-cookie';
+ 
 
 class ChatroomCreationApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            appLink: Cookies.get("link"),
-            appDescription: Cookies.get("description"),
+            appLink: sessionStorage.getItem("link"),
+            appDescription: sessionStorage.getItem("description"),
             error: false,
             pageCount:0,
             charsPerPage:1,
@@ -49,8 +49,8 @@ class ChatroomCreationApp extends Component {
             });
         }
         if (this.state.appLink) {
-            Cookies.set("Link" , this.state.appLink);
-            Cookies.set("Description" , this.state.appDescription);
+            sessionStorage.setItem("Link" , this.state.appLink);
+            sessionStorage.setItem("Description" , this.state.appDescription);
         }
     }
 

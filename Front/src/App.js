@@ -14,7 +14,7 @@ import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import MessageBox from './components/messageBox';
-import Cookies from 'js-cookie';
+ 
 import AnswerPage from './components/answersPage'
 import QuestionsPage from './components/questionsPage'
 import Test from './components/test';

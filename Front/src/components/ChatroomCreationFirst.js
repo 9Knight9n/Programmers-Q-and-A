@@ -8,7 +8,7 @@ import './CSS/ChatroomCreation.css';
 import osImg from '../img/operating-system.png';
 import appImg from '../img/mobile-app.png';
 import prLangImg from '../img/coding-language.png';
-import Cookies from 'js-cookie';
+ 
 
 
 class ChatroomCreationFirst extends Component {
@@ -27,7 +27,7 @@ class ChatroomCreationFirst extends Component {
         }
 
         handleClick(input) {
-            Cookies.set("selectedTopic" , input);
+            sessionStorage.setItem("selectedTopic" , input);
         }
 
     render() { 

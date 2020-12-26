@@ -6,7 +6,7 @@ import {connect,listen,send} from './socket';
 import { Input } from 'react-chat-elements'
 import { isExpired } from "react-jwt";
 import {renewToken} from './requests'
-import Cookies from 'js-cookie';
+ 
 
 
 class GeneralChatroom extends Component {
@@ -133,7 +133,7 @@ class GeneralChatroom extends Component {
         //     ],
         //     formValue:[
         //         this.props.match.params.chatroomid,
-        //         Cookies.get("id")
+        //         sessionStorage.getItem
         //     ]
         // }
         // let data = []
@@ -159,8 +159,8 @@ class GeneralChatroom extends Component {
     }
 
     sendMessage=async()=>{
-        let token = Cookies.get("access")
-        if(isExpired(Cookies.get("access"))){
+        let token = sessionStorage.getItem
+        if(isExpired(sessionStorage.getItem('id'))){
         token=await renewToken()
         }
         send({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/profileThree.css';
 import Select from 'react-select';
-import Cookies from 'js-cookie';
+ 
 import { isExpired } from "react-jwt";
 import {renewToken} from './requests';
 import axios from 'axios';
@@ -73,8 +73,8 @@ class profileThree extends Component {
       async loadFields(){
 
 
-        let token = Cookies.get("access")
-        if(isExpired(Cookies.get("access")))
+        let token = sessionStorage.getItem("access")
+        if(isExpired(sessionStorage.getItem("access")))
         {
             console.log("renewing")
             token=await renewToken()
@@ -84,7 +84,7 @@ class profileThree extends Component {
         token = "Bearer "+token;
         console.log(token)
         const form = new FormData()
-        form.set('id', Cookies.get("id"))
+        form.set('id', sessionStorage.getItem("id"))
         const response =
         await axios.post('http://127.0.0.1:8000/api/show_interests/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
@@ -118,8 +118,8 @@ class profileThree extends Component {
 
 
       async handleSave(){
-        let token = Cookies.get("access")
-         if(isExpired(Cookies.get("access")))
+        let token = sessionStorage.getItem("access")
+         if(isExpired(sessionStorage.getItem("access")))
         {
             console.log("renewing")
             token=await renewToken()
@@ -129,7 +129,7 @@ class profileThree extends Component {
         token = "Bearer "+token;
         console.log(token)
         const form = new FormData()
-        form.set('id', Cookies.get("id"))
+        form.set('id', sessionStorage.getItem("id"))
         // if(this.state.bio!=="")
         form.set('description',this.state.bio)
         form.set('interests',encodeList(options,this.state.selectedOptions))

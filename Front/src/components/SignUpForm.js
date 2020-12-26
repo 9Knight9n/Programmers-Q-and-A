@@ -6,7 +6,7 @@ import passImg from '../img/password.png';
 import confirmImg from '../img/confirm.png';
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
-import Cookies from 'js-cookie';
+ 
 
 class SignUpForm extends Component{
     constructor(props) {
@@ -106,22 +106,22 @@ class SignUpForm extends Component{
     console.log(response)
     if(response.data.message ==="New user created" )
     {
-      Cookies.set("email",this.state.emailSignUp)
-      Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("email",this.state.emailSignUp)
       sessionStorage.setItem("username",response.data.user.username)
-      Cookies.set("id",response.data.user.id)
+      sessionStorage.setItem("username",response.data.user.username)
+      sessionStorage.setItem("id",response.data.user.id)
       const response2 =
       await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
       console.log(response2);
-      Cookies.set("refresh",response2.data.refresh)
-      Cookies.set("access",response2.data.access)
+      sessionStorage.setItem("refresh",response2.data.refresh)
+      sessionStorage.setItem("access",response2.data.access)
 
-      let token = Cookies.get("access")
+      let token = sessionStorage.getItem("access")
       token = "Bearer "+token;
-      form.set("id",Cookies.get("id"))
+      form.set("id",sessionStorage.getItem("id"))
       const response3 =
       await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',

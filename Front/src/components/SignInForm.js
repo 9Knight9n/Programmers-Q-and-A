@@ -6,7 +6,7 @@ import passImg from '../img/password.png'
 import axios from 'axios';
 import logo from '../img/backgr.jpg';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+ 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -113,10 +113,10 @@ class SignInForm extends Component{
 
     if(response.data.message==="wellcome")
     {
-      Cookies.set("email",this.state.email)
-      Cookies.set("username",response.data.user.username)
+      sessionStorage.setItem("email",this.state.email)
       sessionStorage.setItem("username",response.data.user.username)
-      Cookies.set("id",response.data.user.id)
+      sessionStorage.setItem("username",response.data.user.username)
+      sessionStorage.setItem("id",response.data.user.id)
       sessionStorage.setItem("id",response.data.user.id)
       console.log(form.get("email"))
       console.log(form.get("password"))
@@ -126,15 +126,15 @@ class SignInForm extends Component{
       },
     })
 
-      Cookies.set("refresh",response2.data.refresh)
-      Cookies.set("access",response2.data.access)
+      sessionStorage.setItem("refresh",response2.data.refresh)
+      sessionStorage.setItem("access",response2.data.access)
 
 
 
-      let token = Cookies.get("access")
+      let token = sessionStorage.getItem("access")
       token = "Bearer "+token;
       console.log(token)
-      form.set("id",Cookies.get("id"))
+      form.set("id",sessionStorage.getItem("id"))
       const response3 =
       await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',

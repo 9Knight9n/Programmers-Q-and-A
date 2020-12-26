@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
-import Cookies from 'js-cookie';
+ 
 import {renewToken} from './requests';
 import { isExpired } from "react-jwt";
 import axios from 'axios';
@@ -21,7 +21,7 @@ class LeftMenu extends Component {
     }
 
     handleTabClick = (id) =>{
-        // console.log(Cookies.get("avatar"))
+        // console.log(sessionStorage.getItem("avatar"))
         // console.log(window.$avatar)
         this.props.chatroomClicked(id)
         this.setState({activeChatroom:id})
@@ -85,7 +85,7 @@ class LeftMenu extends Component {
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                             src={sessionStorage.getItem("avatar")} /></div>
-                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{Cookies.get("username")}</h1>
+                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{sessionStorage.getItem("username")}</h1>
                     </div>
 
 

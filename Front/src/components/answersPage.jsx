@@ -7,7 +7,7 @@ import './CSS/chatroomInfo.css';
 import AnswerChatBox from './AnswerChatBox';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
-import Cookies from 'js-cookie';
+ 
 import {request} from "./requests.jsx";
 import ReactTooltip from 'react-tooltip';
 import ChatroomInfo from './chatroomInfo';
@@ -72,7 +72,7 @@ class AnswersPage extends Component {
             formValue:[
             //    this.props.QuestionID
                 this.state.QuestionID,
-                Cookies.get("id")
+                sessionStorage.getItem("id")
             ]
         };
         let data = [];

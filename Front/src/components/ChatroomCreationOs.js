@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
-import Cookies from 'js-cookie';
+ 
 import {renewToken} from './requests';
 import Select from 'react-select';     
 
@@ -17,9 +17,9 @@ class ChatroomCreationOs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedOs: Cookies.get("selected")? Cookies.get("selected") : null,
-            selectedSubOs: Cookies.get("selectedSub")? Cookies.get("selectedSub") : null,
-            osDescription: Cookies.get("Description")? Cookies.get("Description") : '',
+            selectedOs: sessionStorage.getItem("selected")? sessionStorage.getItem("selected") : null,
+            selectedSubOs: sessionStorage.getItem("selectedSub")? sessionStorage.getItem("selectedSub") : null,
+            osDescription: sessionStorage.getItem("Description")? sessionStorage.getItem("Description") : '',
             error1: false,
             error2: false,
             charsPerPage: 1,
@@ -101,9 +101,9 @@ class ChatroomCreationOs extends Component {
         }
 
         if (this.state.selectedOs && this.state.selectedSubOs) {
-            Cookies.set("selected" , this.state.selectedOs);
-            Cookies.set("selectedSub" , this.state.selectedSubOs);
-            Cookies.set("Description" , this.state.osDescription);
+            sessionStorage.setItem("selected" , this.state.selectedOs);
+            sessionStorage.setItem("selectedSub" , this.state.selectedSubOs);
+            sessionStorage.setItem("Description" , this.state.osDescription);
         }
     }
 

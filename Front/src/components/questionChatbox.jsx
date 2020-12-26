@@ -3,7 +3,7 @@ import ShowMoreText from 'react-show-more-text';
 import { Dropdown } from 'react-bootstrap';
 import LoadingPage from './loading';
 import './CSS/questionChatbox.css';
-import Cookies from 'js-cookie';
+ 
 import { getUserAvatar } from './util';
 import ReactTooltip from 'react-tooltip';
 import Texteditor from './texteditor';
@@ -22,7 +22,7 @@ class QuestionChatbox extends Component {
             showProfilePreview:false,
             // showProfilePreviewUserid:null,
             show: false,
-            isOwner:this.props.senderId===parseInt(Cookies.get("id")),
+            isOwner:this.props.senderId===parseInt(sessionStorage.getItem("id")),
             isAnswered:this.props.isAnswered,
             loading:false,
             sameProblem:this.props.sameProblem,
@@ -49,7 +49,7 @@ class QuestionChatbox extends Component {
             this.setState({isAnswered:false})
         else if(this.state.isAnswered === 'true')
             this.setState({isAnswered:true})
-        // console.log(Cookies.get('id'))
+        // console.log(sessionStorage.getItem('id'))
         // console.log(this.props.senderId)
         // console.log("inside");
         // if(!sessionStorage.getItem(this.state.senderId+":avatar"))
@@ -109,7 +109,7 @@ class QuestionChatbox extends Component {
     }
 
     handleEdit=async()=>{
-        // Cookies.set('id','6')
+        // sessionStorage.setItem('id','6')
         this.setState({loading:true})
         let config ={
             url:"http://127.0.0.1:8000/api/EditQuestion/",
@@ -123,7 +123,7 @@ class QuestionChatbox extends Component {
             ],
             formValue:[
                 this.props.Cid,
-                Cookies.get("id"),
+                sessionStorage.getItem("id"),
                 this.props.Qid,
                 this.state.editorContent,
             ]
@@ -156,7 +156,7 @@ class QuestionChatbox extends Component {
                 "text"
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.state.QuestionID,
                 this.state.editorContentAnswer
             ]
@@ -193,7 +193,7 @@ class QuestionChatbox extends Component {
             ],
             formValue:[
                 this.props.Qid,
-                Cookies.get("id"),
+                sessionStorage.getItem("id"),
                 this.state.sameProblem+voteState
             ]
         }
@@ -231,7 +231,7 @@ class QuestionChatbox extends Component {
             ],
             formValue:[
                 this.props.Cid,
-                Cookies.get("id"),
+                sessionStorage.getItem("id"),
                 this.props.Qid,
             ]
         }

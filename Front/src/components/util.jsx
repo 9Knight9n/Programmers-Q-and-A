@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+ 
 import {request} from './requests';
 export const encodeList=(list,selected)=>{
     

@@ -1,17 +1,17 @@
-import Cookies from 'js-cookie';
+ 
 import axios from 'axios';
 import { isExpired } from "react-jwt";
 
 
 export const renewToken= async ()=>{
     console.log("Renewing Token")
-    if (!Cookies.get("refresh"))
+    if (!sessionStorage.getItem("refresh"))
     {
       console.log("Can't renew Token:no Refresh token found maybe try loging in first!")
       return false
     }
     const form = new FormData()
-    form.set('refresh', Cookies.get("refresh"));
+    form.set('refresh', sessionStorage.getItem("refresh"));
     const response = await axios.post('http://localhost:8000/api/token/refresh/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
@@ -52,8 +52,8 @@ export const handleError= async (error)=>{
 export const request= async (config)=>{
   let token = null;
   if(config.needToken){
-    token = Cookies.get("access")
-    if(isExpired(Cookies.get("access"))){
+    token = sessionStorage.getItem("access")
+    if(isExpired(sessionStorage.getItem("access"))){
       console.log("token expired")
       token=await renewToken()
       // console.log("received token:",token)

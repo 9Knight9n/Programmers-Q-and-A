@@ -4,7 +4,7 @@ import ProfileOne from './profileOne';
 import ProfileTwo from './profileTwo';
 import ProfileThree from './profileThree';
 import './CSS/myAccount.css';
-import Cookies from 'js-cookie';
+ 
 import { isExpired } from "react-jwt";
 import {renewToken} from './requests';
 import axios from 'axios';
@@ -60,15 +60,15 @@ class MyAccount extends Component {
         console.log("save button pressed")
         console.log("current preview:",src)
         this.setState({avatarChanged:true,src})
-        if(isExpired(Cookies.get("access")))
+        if(isExpired(sessionStorage.getItem("access")))
         {
             console.log("renewing")
             token=await renewToken()
         }
-        let token = Cookies.get("access")
+        let token = sessionStorage.getItem("access")
         token = "Bearer "+token;
         const form = new FormData()
-        form.set("id",Cookies.get("id"))
+        form.set("id",sessionStorage.getItem("id"))
         form.set("Base64",this.state.preview)
         const response3 =
         await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
@@ -98,8 +98,8 @@ class MyAccount extends Component {
                                 onSave={this.onSave} side="20" />
                         </div>
                         <div className="w-75 d-flex flex-column justify-content-center">
-                            <p className="h1">{Cookies.get("username")}</p>
-                            <p>{Cookies.get("email")}</p>
+                            <p className="h1">{sessionStorage.getItem("username")}</p>
+                            <p>{sessionStorage.getItem("email")}</p>
                         </div>
                         {this.state.tabs.map(tab =>
                             <li key={tab.id} className="pl-1 pr-1 nav-item d-flex align-items-end">
