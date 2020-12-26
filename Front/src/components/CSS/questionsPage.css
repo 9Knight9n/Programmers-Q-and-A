@@ -25,6 +25,11 @@
   overflow-y: auto;
 }
 .messages-box {
-  height: calc(83vh - 91px);
+  height: calc(83vh - 94px);
+  /* height: 100%; */
+  /* flex-grow: 1; */
   overflow-y: auto;
+}
+.fill-remaining{
+  flex-grow: 1;
 }

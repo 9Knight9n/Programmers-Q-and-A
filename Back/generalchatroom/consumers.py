@@ -52,6 +52,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps(event))
     @database_sync_to_async
     def create_message(self , event):
+        print(event)
         chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
         user = User.objects.filter(id=event['user_id'])
         message = Message.objects.create(

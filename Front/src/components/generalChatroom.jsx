@@ -12,7 +12,7 @@ class GeneralChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // ref:[],
+            inputValue:"",
             loading:false,
             chats:[
                 {
@@ -94,7 +94,17 @@ class GeneralChatroom extends Component {
 
     componentDidMount(){
         sessionStorage.removeItem("search")
-        // this.loadQuestions()
+        // var msg = document.getElementById("message"); 
+        let button = document.getElementById("generalChatroomSendButton"); 
+        let textBox = document.getElementById("sendOnEnter"); 
+  
+        // This event is fired when button is clicked 
+  
+        textBox.addEventListener("keyup", function (event) { 
+            if (event.keyCode == 13) { 
+                button.click();  
+            } 
+        }); 
     }
 
     componentDidUpdate(prevProps) {
@@ -137,18 +147,21 @@ class GeneralChatroom extends Component {
     }
 
 
-    showModal = (submit) => {
-        this.setState({ submit: submit });
-        this.setState({ show: true });
-        // console.log(this.state.submit)
+    inputOnChange=(e)=>{
+        let target = e.target;
+        let value = target.value;
+        this.setState({inputValue:value})
+        
+    }
 
-    };
-
-    hideModal = () => {
-        this.setState({ show: false });
-        this.setState({ submit: -2 });
-        // this.loadChat();
-    };
+    sendMessage=()=>{
+        send({
+            'order_type' : 'create_message',
+            'chatroom_id':this.state.ChatroomID,
+            'user_id': sessionStorage.getItem("id"),
+            'message': this.state.inputValue,
+        })
+    }
 
 
 
@@ -164,7 +177,7 @@ class GeneralChatroom extends Component {
                                 Cid={this.state.ChatroomID}  />
                         </div>
                         <div className="mt-1 mb-1 ml-5 h-100">
-                            <div className="messages-box" >
+                            <div className="messages-box">
                                 <div className="mr-5 mb-2">
                                     {this.state.chats.map(chat =>
                                     <div key={chat.message_id} className="mb-3">
@@ -181,15 +194,21 @@ class GeneralChatroom extends Component {
                                 </div>
                             </div>
                         </div>
-                        <Input
-                                placeholder="Type here..."
-                                multiline={true}
-                                rightButtons={
-                                    <Button
-                                        color='white'
-                                        backgroundColor='black'
-                                        text='Send'/>
-                                }/>
+                        <div id="sendOnEnter">
+                            <Input
+                                    onChange={this.inputOnChange}
+                                    placeholder="Type here..."
+                                    multiline={false}
+                                    rightButtons={
+                                        <button
+                                            className="p-2 rounded"
+                                            onClick={this.sendMessage}
+                                            id="generalChatroomSendButton"
+                                            style={{backgroundColor:'black',color:'white'}}>
+                                                Send
+                                            </button>
+                                    }/>
+                        </div>
                     </div>
                 </div>
                 
