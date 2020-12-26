@@ -61,6 +61,12 @@ class ChatroomInfo extends Component {
 
       }
 
+    updateJoinState = (joinState) =>{
+        this.setState({
+            isJoined: joinState,
+        })
+    }
+
 
     handleCopy=(e)=>{
         // copyToClipboard('Text to copy');
@@ -150,17 +156,6 @@ class ChatroomInfo extends Component {
         this.setState({ showJoinChatroom: false });
     };
 
-    showWelcomeChatroom = () => {
-        // this.setState({ showProfilePreview: submit });
-        this.setState({ showWelcomeChatroom: true });
-        // console.log(this.state.submit)
-    
-    };
-
-    hideWelcomeChatroom = () => {
-        this.setState({ showWelcomeChatroom: false });
-    }
-
     showChatroomProfile = () => {
         // this.setState({ showProfilePreview: submit });
         this.setState({ showChatroomProfile: true });
@@ -203,6 +198,7 @@ class ChatroomInfo extends Component {
                   showJoinChatroom={this.state.showJoinChatroom}
                   showWelcomeChatroom={this.state.showWelcomeChatroom}
                   hideWelcomeChatroom={this.hideWelcomeChatroom}
+                  updateJoinState={this.updateJoinState}
                 />
                 <Texteditor 
                 content={this.state.content} 
@@ -245,7 +241,7 @@ class ChatroomInfo extends Component {
                     {this.state.showChatroomProfile?
                     <div onClick={() => this.hideChatroomProfile()} className="modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ProfileOwner isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
+                            <ProfileOwner updateJoinState={this.updateJoinState} isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
                         </section>
                     </div>
                     :""}

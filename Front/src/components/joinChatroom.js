@@ -9,15 +9,15 @@ import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
 import Cookies from 'js-cookie';
-import welcomeChatroom from './welcomeChatroom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class joinChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Cid: this.props.Cid,
-            isJoined: this.props.isJoined,
-            showWelcomeChatroom: this.props.showWelcomeChatroom
+            isJoined: this.props.isJoined
         }; 
 
     }
@@ -78,6 +78,14 @@ class joinChatroom extends Component {
         return false;
       }
 
+      componentDidUpdate(prevProps) {
+        console.log("something changed")
+        if (prevProps.isJoined !== this.props.isJoined) {
+          this.setState({isJoined: this.props.isJoined})
+        console.log("Updated")
+        }
+      }
+
       handleJoin = async () => {
         console.log("enter enter enter")
         let config ={
@@ -101,9 +109,11 @@ class joinChatroom extends Component {
             // this.props.isJoined = true
             this.setState({
                 isJoined: true,
-                showWelcomeChatroom: true,
                 showJoinChatroom: false,
             })
+            this.props.updateJoinState(true)
+            this.props.hideJoinChatroom()
+            toast.dark("Welcom to the chatroom");
         }else{
             console.log("user is already Joined")
         }
@@ -113,7 +123,18 @@ class joinChatroom extends Component {
     render() { 
         return ( 
             <div id="joinChatroom">
-                <welcomeChatroom hideWelcomeChatroom={this.props.hideWelcomeChatroom} showWelcomeChatroom={this.state.showWelcomeChatroom} />
+                {/* <ToastContainer
+                className="Toast"
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                /> */}
                 {this.props.showJoinChatroom ?
                     <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
