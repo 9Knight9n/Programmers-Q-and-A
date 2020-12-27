@@ -123,18 +123,6 @@ class joinChatroom extends Component {
     render() { 
         return ( 
             <div id="joinChatroom">
-                {/* <ToastContainer
-                className="Toast"
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                /> */}
                 {this.props.showJoinChatroom ?
                     <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">

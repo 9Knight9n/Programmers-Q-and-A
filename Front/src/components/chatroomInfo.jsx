@@ -42,8 +42,7 @@ class ChatroomInfo extends Component {
         showJoinChatroom: false,
         hideJoinChatroom:false,
         userid: Cookies.get("id"),
-        isJoined: false,
-        showWelcomeChatroom: false,
+        isJoined: '',
     }
 
     componentDidUpdate(prevProps) {
@@ -116,6 +115,7 @@ class ChatroomInfo extends Component {
 
     componentDidMount = () => {
         this.loadData();
+        this.loadJoinState();
     }
 
     loadData = async () => {
@@ -184,7 +184,37 @@ class ChatroomInfo extends Component {
     }
 
     loadJoinState = async () =>{
-        
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/checkJoin/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "id",
+                "chatroomId",
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.props.Cid
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data.message === "User has joined") {
+            // this.props.isJoined = true
+            this.setState({
+                isJoined: true,
+            })
+            this.updateJoinState(true)
+            // this.props.hideJoinChatroom()
+            // toast.dark("Welcom to the chatroom");
+        }else if(data.message === "user is not joined yet"){
+            this.setState({
+                isJoined: false,
+            })
+            this.updateJoinState(false)
+        }
     }
     
 

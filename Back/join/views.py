@@ -12,8 +12,7 @@ from .serializer import JoinSerializer
 @permission_classes([])
 def Join(request):
     data = dict(request.POST)
-    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])chatroom[0].numberOfUser += 1
-    chatroom[0
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     user = User.objects.filter(id=data['id'][0])
     if list(user) == [] or list(chatroom) == []:
         return Response({'message': 'User or chatroom not found'})
@@ -22,17 +21,10 @@ def Join(request):
         return Response({'message': 'User has joined'})
     chatroom_user = Chatroom_User.objects.create(user=user[0], chatroom=chatroom[0])
     chatroom_user.save()
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ].save()
-=======
-=======
->>>>>>> 243c268c9e6822df30ae4c945f1225a6a171c137
     user[0].numberOfChatrooms +=1
     user[0].save()
     chatroom[0].numberOfUser += 1
     chatroom[0].save()
->>>>>>> 243c268c9e6822df30ae4c945f1225a6a171c137
     return Response({'message': 'New chatroom_User created'}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -43,6 +35,7 @@ def checkJoin(request):
     user = User.objects.filter(id=data['id'][0])
     if list(user) == [] or list(chatroom) == []:
         return Response({'message': 'User or chatroom not found'})
+    print("gg")
     chatroom_user = Chatroom_User.objects.filter(user=user[0], chatroom=chatroom[0])
     if list(chatroom_user) != []:
         return Response({'message': 'User has joined'})
@@ -50,7 +43,7 @@ def checkJoin(request):
 
 @api_view(['POST'])
 @permission_classes([])
-def Left(request):
+def Left(request)#fff
     data = dict(request.POST)
     chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     user = User.objects.filter(id=data['id'][0])
