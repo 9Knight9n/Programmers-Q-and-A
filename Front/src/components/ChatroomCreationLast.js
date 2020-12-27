@@ -3,7 +3,7 @@ import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
 import { isExpired } from "react-jwt";
 import SelectAvatar from './selectAvatar';
-import Cookies from 'js-cookie';
+ 
 import axios from 'axios';
 import {renewToken} from './requests';
 
@@ -29,7 +29,7 @@ class ChatroomCreationLast extends Component {
       }
 
       handleBack() {
-        return "/chatroomCreation" + Cookies.get("selectedTopic");
+        return "/chatroomCreation" + sessionStorage.getItem("selectedTopic");
       }
 
       onClose() {
@@ -69,11 +69,11 @@ class ChatroomCreationLast extends Component {
                 error: true,
             });
         }
-        console.log(Cookies.get("id"))
-        Cookies.set("topic" , this.state.chatroomName);
-        Cookies.set("chatroomName" , this.state.chatroomName);
-        let token = Cookies.get("access")
-        if(isExpired(Cookies.get("access"))){
+        console.log(sessionStorage.getItem("id"))
+        sessionStorage.setItem("topic" , this.state.chatroomName);
+        sessionStorage.setItem("chatroomName" , this.state.chatroomName);
+        let token = sessionStorage.getItem("access")
+        if(isExpired(sessionStorage.getItem("access"))){
         console.log("renewing")
         token=await renewToken()
         }
@@ -83,31 +83,31 @@ class ChatroomCreationLast extends Component {
         const form = new FormData()
         if(this.state.avatarChanged)
           form.set('Base64',this.state.src)
-        if (Cookies.get("selectedTopic") === "OS") {
-          form.set('selectedTopic', Cookies.get("selectedTopic"))
-          form.set('chatroomName', Cookies.get("chatroomName"))
-          form.set('owner', Cookies.get("id"))
-          form.set('selected', Cookies.get("selected"))
-          form.set('selectedSub', Cookies.get("selectedSub"))
-          form.set('Description', Cookies.get("Description"))
+        if (sessionStorage.getItem("selectedTopic") === "OS") {
+          form.set('selectedTopic', sessionStorage.getItem("selectedTopic"))
+          form.set('chatroomName', sessionStorage.getItem("chatroomName"))
+          form.set('owner', sessionStorage.getItem("id"))
+          form.set('selected', sessionStorage.getItem("selected"))
+          form.set('selectedSub', sessionStorage.getItem("selectedSub"))
+          form.set('Description', sessionStorage.getItem("Description"))
         }
 
-        if (Cookies.get("selectedTopic") === "PL") {
-          let selected = Cookies.get("selected")
-          form.set('selectedTopic', Cookies.get("selectedTopic"))
-          form.set('chatroomName', Cookies.get("chatroomName"))
-          form.set('owner', Cookies.get("id"))
-          form.set('selected', Cookies.get("selected") )
-          form.set('Link', Cookies.get("Link"))
-          form.set('Description', Cookies.get("selected"))
+        if (sessionStorage.getItem("selectedTopic") === "PL") {
+          let selected = sessionStorage.getItem("selected")
+          form.set('selectedTopic', sessionStorage.getItem("selectedTopic"))
+          form.set('chatroomName', sessionStorage.getItem("chatroomName"))
+          form.set('owner', sessionStorage.getItem("id"))
+          form.set('selected', sessionStorage.getItem("selected") )
+          form.set('Link', sessionStorage.getItem("Link"))
+          form.set('Description', sessionStorage.getItem("selected"))
         }
 
-        if (Cookies.get("selectedTopic") === "App") {
-          form.set('selectedTopic', Cookies.get("selectedTopic"))
-          form.set('chatroomName', Cookies.get("chatroomName"))
-          form.set('owner', Cookies.get("id"))
-          form.set('Link', Cookies.get("Link"))
-          form.set('Description', Cookies.get("Description"))
+        if (sessionStorage.getItem("selectedTopic") === "App") {
+          form.set('selectedTopic', sessionStorage.getItem("selectedTopic"))
+          form.set('chatroomName', sessionStorage.getItem("chatroomName"))
+          form.set('owner', sessionStorage.getItem("id"))
+          form.set('Link', sessionStorage.getItem("Link"))
+          form.set('Description', sessionStorage.getItem("Description"))
         }
 
         const response =
@@ -116,11 +116,11 @@ class ChatroomCreationLast extends Component {
                     'Authorization': token
           },
         })
-        Cookies.remove("selectedSub")
-        Cookies.remove("selected")
-        Cookies.remove("selectedTopic")
-        Cookies.remove("Description")
-        Cookies.remove("Link")
+        sessionStorage.removeItem("selectedSub")
+        sessionStorage.removeItem("selected")
+        sessionStorage.removeItem("selectedTopic")
+        sessionStorage.removeItem("Description")
+        sessionStorage.removeItem("Link")
 
         this.props.hideModal()
 

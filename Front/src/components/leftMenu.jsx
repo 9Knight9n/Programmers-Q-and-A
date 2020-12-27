@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
-import Cookies from 'js-cookie';
+ 
 import {renewToken} from './requests';
 import { isExpired } from "react-jwt";
 import axios from 'axios';
@@ -17,18 +17,24 @@ class LeftMenu extends Component {
     state = {  
         show: false,
         chatrooms:[],
-        activeChatroom:-1
+        activeChatroom:parseInt(this.props.selectedTab)
     }
 
-    handleTabClick = (id) =>{
-        // console.log(Cookies.get("avatar"))
-        // console.log(window.$avatar)
-        this.props.chatroomClicked(id)
+    selectTab = (id) =>{
         this.setState({activeChatroom:id})
+        // console.log(id ,":",this.state.activeChatroom)
+        // document.getElementById("goToSelectedChatroom"+id).click()
     }
 
     componentDidMount(){
         this.loadChatrooms()
+    }
+
+    componentDidUpdate(preprops){
+        if(preprops.selectedTab !== this.props.selectedTab)
+        {
+            this.setState({activeChatroom:parseInt(this.props.selectedTab)})
+        }
     }
 
     loadChatrooms=async()=>{
@@ -85,7 +91,7 @@ class LeftMenu extends Component {
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                             src={sessionStorage.getItem("avatar")} /></div>
-                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{Cookies.get("username")}</h1>
+                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{sessionStorage.getItem("username")}</h1>
                     </div>
 
 
@@ -93,9 +99,9 @@ class LeftMenu extends Component {
                     <div className="nav d-flex flex-column nav-pills fill">
                         <div>
                             {this.state.chatrooms.map(chatroom => 
-                            <Link key={chatroom.id} 
+                            <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
-                                onClick={()=> this.handleTabClick(chatroom.id)} 
+                                onClick={()=> this.selectTab(chatroom.id)} 
                                 to={"/cr"+chatroom.id} >
                                 <div className="d-flex flex-row ">
                                     <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />

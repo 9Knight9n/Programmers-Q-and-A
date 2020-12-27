@@ -9,7 +9,7 @@ import greenCheckMark from '../img/greenCheckMark.png';
 import blueCheckMark from '../img/blueCheckMark.png';
 import { Dropdown } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
-import Cookies from 'js-cookie';
+ 
 import { getUserAvatar } from './util';
 import {request} from "./requests.jsx";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
@@ -35,8 +35,8 @@ class AnswerChatBox  extends Component {
             Qid: this.props.Qid,
             profileImg: null,
             answerSubmiteDate: this.props.answerSubmiteDate,
-            isQOwner: this.props.QsenderId === Cookies.get('id'),
-            isOwner: this.props.userid === parseInt(Cookies.get('id')),
+            isQOwner: this.props.QsenderId === sessionStorage.getItem('id'),
+            isOwner: this.props.userid === parseInt(sessionStorage.getItem('id')),
             editorContent:null,
             editorVisible:false,
         }
@@ -71,7 +71,7 @@ class AnswerChatBox  extends Component {
                 "id"
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.state.Qid,
                 this.state.editorContent,
                 this.state.answerId
@@ -89,8 +89,8 @@ class AnswerChatBox  extends Component {
     }
 
     componentDidMount = async () =>{
-        console.log("hey this is answer id : " , this.props.QsenderId , parseInt(Cookies.get('id')))
-        console.log(this.props.Qid , " "  , parseInt(Cookies.get('id')))
+        console.log("hey this is answer id : " , this.props.QsenderId , parseInt(sessionStorage.getItem('id')))
+        console.log(this.props.Qid , " "  , parseInt(sessionStorage.getItem('id')))
         if (!sessionStorage.getItem(this.props.userid + ":avatar")) {
           await getUserAvatar(this.props.userid);  
         }
@@ -166,7 +166,7 @@ class AnswerChatBox  extends Component {
                 ],
                 formValue:[
                     this.state.answerId,
-                    Cookies.get("id"),
+                    sessionStorage.getItem("id"),
                     voteState,
                     this.state.vote
                     
@@ -198,7 +198,7 @@ class AnswerChatBox  extends Component {
             ],
             formValue:[
                 this.state.Qid,
-                Cookies.get("id"),
+                sessionStorage.getItem("id"),
                 this.state.answerId,
             ]
         }
@@ -227,7 +227,7 @@ class AnswerChatBox  extends Component {
                 "id"
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.state.Qid,
                 !this.state.trueAnswer,
                 this.state.answerId

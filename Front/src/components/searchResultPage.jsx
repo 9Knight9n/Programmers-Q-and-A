@@ -4,7 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import './CSS/search.css';
 import QuestionChatbox from './questionChatbox';
 import {request} from './requests';
-import Cookies from 'js-cookie';
+ 
 import SearchFilter from './searchFilters';
 
 
@@ -60,7 +60,7 @@ class SearchResultPage extends Component {
             ],
             formValue:[
                 input,
-                Cookies.get("id"),
+                sessionStorage.getItem("id"),
                 filters?filters.time:this.state.time,
                 filters?filters.onlyAnswered: this.state.onlyAnswered,
                 filters?filters.member: this.state.member,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CSS/profileOne.css';
 import { isExpired } from "react-jwt";
 import {renewToken} from './requests';
-import Cookies from 'js-cookie';
+ 
 import axios from 'axios';
 
 
@@ -47,8 +47,8 @@ class ProfileOne extends Component {
 
     async loadData()
     {
-        let token = Cookies.get("access")
-        if(isExpired(Cookies.get("access")))
+        let token = sessionStorage.getItem("access")
+        if(isExpired(sessionStorage.getItem("access")))
         {
             console.log("renewing")
             token=await renewToken()
@@ -58,7 +58,7 @@ class ProfileOne extends Component {
         token = "Bearer "+token;
         console.log(token)
         const form = new FormData()
-        form.set('id', Cookies.get("id"))
+        form.set('id', sessionStorage.getItem("id"))
         const response =
         await axios.post('http://127.0.0.1:8000/api/showpersonalinfo/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
@@ -75,13 +75,13 @@ class ProfileOne extends Component {
 
 
         async handleSubmit(){
-            if(this.state.username.startsWith("user-") && this.state.username!=="user-"+Cookies.get("id"))
+            if(this.state.username.startsWith("user-") && this.state.username!=="user-"+sessionStorage.getItem("id"))
                 return this.setState({usernameError:true,emailError:false,succeed:false})
             var validator = require("email-validator");
             if(!validator.validate(this.state.emailProfile))
                 return this.setState({usernameError:false,emailError:true,succeed:false})
-            let token = Cookies.get("access")
-            if(isExpired(Cookies.get("access")))
+            let token = sessionStorage.getItem("access")
+            if(isExpired(sessionStorage.getItem("access")))
             {
                 console.log("renewing")
                 token=await renewToken()
@@ -90,7 +90,7 @@ class ProfileOne extends Component {
             token = "Bearer "+token;
             console.log(token)
             const form = new FormData()
-            form.set('id', Cookies.get("id"))
+            form.set('id', sessionStorage.getItem("id"))
             form.set('first_name', this.state.firstName)
             form.set('last_name', this.state.lastName)
             form.set('username', this.state.username)
@@ -121,8 +121,8 @@ class ProfileOne extends Component {
                 this.setState({emailError:false})
                 this.setState({usernameError:false})
                 this.setState({succeed:true})
-                Cookies.set("email",this.state.emailProfile)
-                Cookies.set("username",this.state.username)
+                sessionStorage.setItem("email",this.state.emailProfile)
+                sessionStorage.setItem("username",this.state.username)
                 
             }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/ChatroomCreation.css';
 import {Link} from 'react-router-dom';
-import Cookies from 'js-cookie';
+ 
 import Select from 'react-select';
 
 const options = [
@@ -28,9 +28,9 @@ class ChatroomCreationPl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedPl: Cookies.get("selected"),
-            plDescription: Cookies.get("description"),
-            plLink: Cookies.get("link"),
+            selectedPl: sessionStorage.getItem("selected"),
+            plDescription: sessionStorage.getItem("description"),
+            plLink: sessionStorage.getItem("link"),
             error1: false,
             error2: false,
             pageCount:0,
@@ -53,9 +53,9 @@ class ChatroomCreationPl extends Component {
             });
         }
         if (this.state.selectedPl && this.state.plLink) {
-            Cookies.set("selected" , this.state.selectedPl);
-            Cookies.set("Link" , this.state.plLink);
-            Cookies.set("Description" , this.state.plDescription);
+            sessionStorage.setItem("selected" , this.state.selectedPl);
+            sessionStorage.setItem("Link" , this.state.plLink);
+            sessionStorage.setItem("Description" , this.state.plDescription);
         }
     }
 

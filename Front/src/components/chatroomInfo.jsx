@@ -7,7 +7,7 @@ import MyAccount from './myAccount';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
-import Cookies from 'js-cookie';
+ 
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
@@ -72,7 +72,7 @@ class ChatroomInfo extends Component {
                 "text"
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.state.chatroomId,
                 this.state.editorContent
             ]

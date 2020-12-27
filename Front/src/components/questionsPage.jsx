@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SubmitField from './submitField'
 import {request} from './requests';
-import Cookies from 'js-cookie';
+ 
 import axios from 'axios';
 import './CSS/questionsPage.css';
 import QuestionChatbox from './questionChatbox';
@@ -112,13 +112,17 @@ class QuestionsPage extends Component {
         // this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
         console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
+        // this.props.chatroomClicked(this.state.ChatroomID)
         this.loadQuestions()
     }
+
+
 
     componentDidUpdate(prevProps) {
         console.log("something changed")
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
           this.setState({ChatroomID:this.props.match.params.chatroomid})
+          this.props.selectTab(this.props.match.params.chatroomid)
         this.loadQuestions()
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
@@ -138,7 +142,7 @@ class QuestionsPage extends Component {
             ],
             formValue:[
                 this.props.match.params.chatroomid,
-                Cookies.get("id")
+                sessionStorage.getItem("id")
             ]
         }
         let data = []
