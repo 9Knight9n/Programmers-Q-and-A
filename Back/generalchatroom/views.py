@@ -18,7 +18,6 @@ def room(request, room_name):
 
 
 @api_view(['POST'])
-@permission_classes([])
 def show_Message(request):
     chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
     message = Message.objects.filter(chatroom=chatroom[0])
@@ -32,6 +31,7 @@ def show_Message(request):
             'time': message[i].time.ctime(),
         }
         if message[i].parentMessage:
-            data['replyTo'] = message[i].parentMessage.id
+            if message[i].id == None:
+                data['replyTo'] = message[i].parentMessage.id
         datalist.append(data)
     return Response(datalist, status=status.HTTP_200_OK)

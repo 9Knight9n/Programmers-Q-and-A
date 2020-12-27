@@ -5,7 +5,7 @@ import MessageBox from './messageBox';
 import {connect,listen,send} from './socket';
 import { Input } from 'react-chat-elements'
 import { isExpired } from "react-jwt";
-import {renewToken} from './requests'
+import {renewToken,request} from './requests'
  
 
 
@@ -18,66 +18,67 @@ class GeneralChatroom extends Component {
             inputValue:"",
             loading:false,
             inputRef:React.createRef(),
-            chats:[
-                {
-                    user:12,
-                    message_id:100,
-                    username:'sajad',
-                    text:<a>Hello there!</a>,
-                    time:new Date().toLocaleString(),
-                },
-                {
-                    user:12,
-                    message_id:200,
-                    username:'sadegh',
-                    text:<a>Hi! </a>,
-                    time:new Date().toLocaleString(),
-                    replyTo:100
-                },
-                {
-                    user:12,
-                    message_id:300,
-                    username:'sajad',
-                    text:<a>I have problem with socket, some error saying socket closed before connection established,any suggestions? </a>,
-                    time:new Date().toLocaleString(),
-                },
-                {
-                    user:12,
-                    message_id:400,
-                    username:'sadegh',
-                    text:<a>what are you using to call connect function? componentdidmount ?</a>,
-                    time:new Date().toLocaleString(),
-                    replyTo:300
-                },
-                {
-                    user:12,
-                    message_id:500,
-                    username:'sajad',
-                    text:"yes exactly whats the problem with that?",
-                    time:new Date().toLocaleString(),
-                    replyTo:400
-                },
-                {
-                    user:12,
-                    message_id:600,
-                    username:'sadegh',
-                    text:"you shouldn't use componentdidmount for socket as it will be intrupted use componentwillmount, that should fix your problem!",
-                    time:new Date().toLocaleString(),
-                    replyTo:500
-                },
-                {
-                    user:12,
-                    message_id:700,
-                    username:'Abed',
-                    text:"you can call connect in constructor as well !",
-                    time:new Date().toLocaleString(),
-                    replyTo:500
-                },
-            ],
+            chats:[],
+            // chats:[
+            //     {
+            //         user:12,
+            //         message_id:100,
+            //         username:'sajad',
+            //         text:<a>Hello there!</a>,
+            //         time:new Date().toLocaleString(),
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:200,
+            //         username:'sadegh',
+            //         text:<a>Hi! </a>,
+            //         time:new Date().toLocaleString(),
+            //         replyTo:100
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:300,
+            //         username:'sajad',
+            //         text:<a>I have problem with socket, some error saying socket closed before connection established,any suggestions? </a>,
+            //         time:new Date().toLocaleString(),
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:400,
+            //         username:'sadegh',
+            //         text:<a>what are you using to call connect function? componentdidmount ?</a>,
+            //         time:new Date().toLocaleString(),
+            //         replyTo:300
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:500,
+            //         username:'sajad',
+            //         text:"yes exactly whats the problem with that?",
+            //         time:new Date().toLocaleString(),
+            //         replyTo:400
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:600,
+            //         username:'sadegh',
+            //         text:"you shouldn't use componentdidmount for socket as it will be intrupted use componentwillmount, that should fix your problem!",
+            //         time:new Date().toLocaleString(),
+            //         replyTo:500
+            //     },
+            //     {
+            //         user:12,
+            //         message_id:700,
+            //         username:'Abed',
+            //         text:"you can call connect in constructor as well !",
+            //         time:new Date().toLocaleString(),
+            //         replyTo:500
+            //     },
+            // ],
             ChatroomID:parseInt(this.props.match.params.chatroomid)
         };
         this.componentDidMount=this.componentDidMount.bind(this)
-        this.loadQuestions=this.loadQuestions.bind(this)
+        // this.loadQuestions=this.loadQuestions.bind(this)
     }
     newMessage=(message)=>{
         this.setState({chats:[...this.state.chats,message]})
@@ -109,45 +110,45 @@ class GeneralChatroom extends Component {
                     button.click();  
                 } 
             }); 
+
+        this.loadChats()
     }
 
     componentDidUpdate(prevProps) {
         console.log("something changed")
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
           this.setState({ChatroomID:this.props.match.params.chatroomid})
-        // this.loadQuestions()
+        this.loadChats()
         }
       }
 
 
-    async loadQuestions(){
-        // this.setState({loading:true})
-        // console.log("fetching Questions")
-        // let config ={
-        //     url:"http://127.0.0.1:8000/api/ShowQuestion/",
-        //     needToken:true,
-        //     type:"post",
-        //     formKey:[
-        //         "ChatroomID",
-        //         "user"
-        //     ],
-        //     formValue:[
-        //         this.props.match.params.chatroomid,
-        //         sessionStorage.getItem
-        //     ]
-        // }
-        // let data = []
-        // // console.log("outside 0",data)
-        // data = await request(config)
-        // // console.log(await request(config))
-        // console.log("outside",data)
-        // if (data)
-        // {
-        //     this.setState({questions:data})
-        //     console.log("state set")
-        // }
-        // this.setState({loading:false})
-        // // console.log(data)
+    loadChats=async()=>{
+        this.setState({loading:true})
+        console.log("fetching Questions")
+        let config ={
+            url:"http://127.0.0.1:8000/api/show_Message/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                this.props.match.params.chatroomid,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        // console.log(await request(config))
+        console.log("outside",data)
+        if (data)
+        {
+            this.setState({chats:data})
+            console.log("state set")
+        }
+        this.setState({loading:false})
+        // console.log(data)
     }
 
 
