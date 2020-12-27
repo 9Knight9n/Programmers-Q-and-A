@@ -3,37 +3,43 @@
 //
 
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
- 
-import {renewToken} from './requests';
-import { isExpired } from "react-jwt";
-import axios from 'axios';
 import {request} from './requests';
-// import pro from "../img/";
 
 class LeftMenu extends Component {
     state = {  
         show: false,
         chatrooms:[],
-        activeChatroom:parseInt(this.props.selectedTab)
-    }
-
-    selectTab = (id) =>{
-        this.setState({activeChatroom:id})
-        // console.log(id ,":",this.state.activeChatroom)
-        // document.getElementById("goToSelectedChatroom"+id).click()
+        activeChatroom:this.props.activeChatroom,
+        activeNav:this.props.activeNav,
     }
 
     componentDidMount(){
+        console.log("leftmenu state =>",this.state)
+        // console.log(this.props.activeNav, "===", 1)
+        // if ( this.props.activeNav === 1)
+        // {
+        //     this.setState({preAddress:"qanda"})
+        // }
+            
+        // else
+        //     this.setState({preAddress:"discussion"})
         this.loadChatrooms()
+        // for (let i = 0;i<this.state.chatrooms.length;i++)
+        //     if (this.state.chatrooms[i].id === this.state.activeChatroom)
+        //         document.getElementById("goToSelectedChatroom"+this.state.activeChatroom).click()
     }
 
     componentDidUpdate(preprops){
-        if(preprops.selectedTab !== this.props.selectedTab)
+        if(preprops.activeChatroom !== this.props.activeChatroom)
         {
-            this.setState({activeChatroom:parseInt(this.props.selectedTab)})
+            this.setState({activeChatroom:this.props.activeChatroom})
+        }
+        if(preprops.activeNav !== this.props.activeNav)
+        {
+            this.setState({activeNav:this.props.activeNav})
         }
     }
 
@@ -101,8 +107,8 @@ class LeftMenu extends Component {
                             {this.state.chatrooms.map(chatroom => 
                             <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
                                 className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
-                                onClick={()=> this.selectTab(chatroom.id)} 
-                                to={"/cr"+chatroom.id} >
+                                onClick={()=> this.props.changeChatroom(chatroom.id)} 
+                                to={"/"+this.state.activeNav+chatroom.id} >
                                 <div className="d-flex flex-row ">
                                     <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
                                     <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
@@ -124,7 +130,7 @@ class LeftMenu extends Component {
                         </Link>
                         
                         <div className="w-100 d-flex flex-row">
-                            <Link className="leftMenu-buttons-logOut w-50  p-0" to="/login" onClick={()=>sessionStorage.removeItem("avatar")}>
+                            <Link className="leftMenu-buttons-logOut w-50  p-0" to="/login" onClick={()=>sessionStorage.removeItem("id")}>
                             {/* onClick={() => this.handleLogOutClick()} */}
                                 <button  className=" w-100 d-flex align-items-center justify-content-center">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-door-open-fill m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +156,7 @@ class LeftMenu extends Component {
                         <h2>Select a chatroom</h2>
                     </div>
                 </div> */}
-            </div>
+            </div>                
                 <NewChatroom hideModal={this.hideModal} show={this.state.show} />
             </div>
         );

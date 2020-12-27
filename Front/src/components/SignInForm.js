@@ -40,16 +40,9 @@ class SignInForm extends Component{
   }
 
   componentDidMount(){
-    console.log("did mount")
     if(sessionStorage.getItem("targetURL"))
     {
-      console.log("targetURL valid")
-      if(sessionStorage.getItem("targetURL").split('/cr')[1])
-      {
-        console.log("detedcted")
-        toast.dark("you should login first");
-      }
-
+      toast.dark("you should login first");
     }
       
 
@@ -115,8 +108,6 @@ class SignInForm extends Component{
     {
       sessionStorage.setItem("email",this.state.email)
       sessionStorage.setItem("username",response.data.user.username)
-      sessionStorage.setItem("username",response.data.user.username)
-      sessionStorage.setItem("id",response.data.user.id)
       sessionStorage.setItem("id",response.data.user.id)
       console.log(form.get("email"))
       console.log(form.get("password"))
@@ -223,7 +214,7 @@ class SignInForm extends Component{
               {this.state.passwordCheckMassage.active ? this.state.passwordCheckMassage.massage:""}
             </div>
             <div className="signInTransfer">
-            <Link id="GoHomepageFromSignin" to="/"></Link>
+            <Link id="GoHomepageFromSignin" to={sessionStorage.getItem("targetURL")}></Link>
             <button name= "signInButton" type="button" onClick={this.handleSubmit}>Sign In</button>
               <br />
             </div>

@@ -103,12 +103,12 @@ class GeneralChatroom extends Component {
         let textBox = document.getElementById("sendOnEnter"); 
   
         // This event is fired when button is clicked 
-  
-        textBox.addEventListener("keyup", function (event) { 
-            if (event.keyCode == 13) { 
-                button.click();  
-            } 
-        }); 
+        if(this.state.ChatroomID!==-1)
+            textBox.addEventListener("keyup", function (event) { 
+                if (event.keyCode === 13 && event.shiftKey) { 
+                    button.click();  
+                } 
+            }); 
     }
 
     componentDidUpdate(prevProps) {
@@ -178,52 +178,55 @@ class GeneralChatroom extends Component {
     render() { 
         return (
             <React.Fragment>
-                {this.state.loading?<LoadingPage/>: ""}
-                <div className="w-100 h-100 p-2">
-                    <div id="question-page" className="d-flex flex-column h-100 w-100">
-                        <div id="chatroom-info" className=" d-flex flex-row">
-                            <ChatroomInfo 
-                                loadQuestions={this.loadQuestions}
-                                Cid={this.state.ChatroomID}  />
-                        </div>
-                        <div className="mt-1 mb-1 ml-5 h-100">
-                            <div className="messages-box">
-                                <div className="mr-5 mb-2">
-                                    {this.state.chats.map(chat =>
-                                    <div key={chat.message_id} className="mb-3">
-                                        <MessageBox
-                                        userid={chat.user}
-                                        title={chat.username}
-                                        text={chat.text}
-                                        dateString={chat.time}
-                                        isReply={chat.replyTo}
-                                        titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
-                                        messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                {this.state.ChatroomID!==-1?
+                <React.Fragment>
+                    {this.state.loading?<LoadingPage/>: ""}
+                    <div className="w-100 h-100 p-2">
+                        <div id="question-page" className="d-flex flex-column h-100 w-100">
+                            <div id="chatroom-info" className=" d-flex flex-row">
+                                <ChatroomInfo 
+                                    loadQuestions={this.loadQuestions}
+                                    Cid={this.state.ChatroomID}  />
+                            </div>
+                            <div className="mt-1 mb-1 ml-5 h-100">
+                                <div className="messages-box">
+                                    <div className="mr-5 mb-2">
+                                        {this.state.chats.map(chat =>
+                                        <div key={chat.message_id} className="mb-3">
+                                            <MessageBox
+                                            userid={chat.user}
+                                            title={chat.username}
+                                            text={chat.text}
+                                            dateString={chat.time}
+                                            isReply={chat.replyTo}
+                                            titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
+                                            messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                        </div>
+                                        )}
                                     </div>
-                                    )}
                                 </div>
                             </div>
-                        </div>
-                        <div id="sendOnEnter">
-                            <Input
-                                ref={el => (this.state.inputRef = el)}
-                                onChange={this.inputOnChange}
-                                placeholder="Type here..."
-                                multiline={true}
-                                autoHeight={false}
-                                rightButtons={
-                                    <button
-                                        className="p-2 rounded"
-                                        onClick={this.sendMessage}
-                                        id="generalChatroomSendButton"
-                                        style={{backgroundColor:'black',color:'white'}}>
-                                            Send
-                                        </button>
-                                }/>
+                            <div id="sendOnEnter">
+                                <Input
+                                    ref={el => (this.state.inputRef = el)}
+                                    onChange={this.inputOnChange}
+                                    minHeight={100}
+                                    placeholder="Type here..."
+                                    multiline={true}
+                                    autoHeight={false}
+                                    rightButtons={
+                                        <button
+                                            className="p-2 rounded"
+                                            onClick={this.sendMessage}
+                                            id="generalChatroomSendButton"
+                                            style={{backgroundColor:'black',color:'white'}}>
+                                                Send
+                                            </button>
+                                    }/>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
+                </React.Fragment>:""}
             </React.Fragment>
         );
     }

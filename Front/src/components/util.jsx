@@ -55,3 +55,18 @@ export const getUserAvatar= async (id)=>{
     // console.log("received : ",data.Base64)
     // console.log(sessionStorage.getItem(id+":avatar"))
 }
+export const getActiveNav= ()=>{
+    if(window.location.pathname.includes("qanda"))
+        return "qanda"
+    if(window.location.pathname.includes("discussion"))
+        return "discussion"
+    else 
+    return "qanda"
+}
+export const getActiveChannel= ()=>{
+    let temp = window.location.pathname.split(getActiveNav());
+    if(temp[1])
+        return parseInt(temp[1]);
+    else
+        return -1
+}

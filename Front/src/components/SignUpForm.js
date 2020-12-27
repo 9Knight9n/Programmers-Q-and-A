@@ -249,7 +249,7 @@ class SignUpForm extends Component{
                     </div>
 
                   <div className="signUpTransfer2">
-                    <Link id="GoHomepageFromSignup" to="/"></Link>
+                    <Link id="GoHomepageFromSignup" to={sessionStorage.getItem("targetURL")}></Link>
                     <button name= "signUpButton2" type="button" onClick={this.handleSubmit} >Sign Up</button>
                     <br />
                   </div>
