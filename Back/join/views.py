@@ -23,8 +23,11 @@ def Join(request):
     chatroom_user = Chatroom_User.objects.create(user=user[0], chatroom=chatroom[0])
     chatroom_user.save()
 <<<<<<< HEAD
+<<<<<<< HEAD
     ].save()
 =======
+=======
+>>>>>>> 243c268c9e6822df30ae4c945f1225a6a171c137
     user[0].numberOfChatrooms +=1
     user[0].save()
     chatroom[0].numberOfUser += 1
