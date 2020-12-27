@@ -77,36 +77,23 @@ class ProfileOwner extends Component {
             nameError: false,
             isOnline:true,
             isJoined: this.props.isJoined,
-            users: [
-                {
-                    id:1,
-                    avatar: profileImg,
-                    username: "Ali",
-                },
-                {
-                    id:2,
-                    avatar: profileImg,
-                    username: "Sajjad",
-                },
-                {
-                    id:3,
-                    avatar: profileImg,
-                    username: "Hani",
-                },
-                {
-                    id:4,
-                    avatar: profileImg,
-                    username: "Abbas",
-                },
-            ]
+            users: []
         }; 
 
     }
 
     componentDidMount = async () => {
-        console.log(this.state.isOnline)
         this.loadData();
+        this.loadUserData();
     }
+
+    componentDidUpdate(prevProps) {
+        console.log("something changed")
+        if (prevProps.isJoined !== this.props.isJoined) {
+          this.setState({isJoined: this.props.isJoined})
+        console.log("Updated")
+        }
+      }
 
     loadData = async () => {
         // this.setState({loading:true})
@@ -278,6 +265,32 @@ class ProfileOwner extends Component {
         });
       }
 
+      loadUserData = async () =>{
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/show_Users/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                this.state.Cid,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data) {
+            console.log(data) 
+            this.setState({
+                users: data
+            })
+        }else{
+          console.log("Error to load data")  
+        }
+      }
+
       handleLeave = async () =>{
         console.log("enter enter enter")
         let config ={
@@ -285,12 +298,12 @@ class ProfileOwner extends Component {
             needToken:false,
             type:"post",
             formKey:[
-                "id",
                 "chatroomId",
+                "id"
             ],
             formValue:[
-                Cookies.get('id'),
                 this.state.Cid,
+                Cookies.get('id'),
             ]
         }
         let data = []
@@ -302,8 +315,9 @@ class ProfileOwner extends Component {
             this.setState({
                 isJoined: false,
             });
+            this.props.updateJoinState(false)
         }else{
-            console.log("leave failed")
+            console.log(data)
         }
       }
     
@@ -437,13 +451,13 @@ class ProfileOwner extends Component {
                                                 }}
                                                 variant="dot"
                                                 >
-                                                    <Avatar alt="Avatar" src={u.avatar} />
+                                                    <Avatar alt="Avatar" src={profileImg} />
                                                 </StyledBadge> :    
-                                                    <img className="img-thumbnail" src={u.avatar} />
+                                                    <img className="img-thumbnail" src={profileImg} />
                                             }
                                             
                                             <label className="name w-75 ml-3 mt-auto mb-auto">
-                                                {u.username}
+                                                {u.name}
                                             </label>
                                         </li>
                                     )}

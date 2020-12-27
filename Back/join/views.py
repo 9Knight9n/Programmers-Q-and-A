@@ -22,7 +22,14 @@ def Join(request):
         return Response({'message': 'User has joined'})
     chatroom_user = Chatroom_User.objects.create(user=user[0], chatroom=chatroom[0])
     chatroom_user.save()
+<<<<<<< HEAD
     ].save()
+=======
+    user[0].numberOfChatrooms +=1
+    user[0].save()
+    chatroom[0].numberOfUser += 1
+    chatroom[0].save()
+>>>>>>> 243c268c9e6822df30ae4c945f1225a6a171c137
     return Response({'message': 'New chatroom_User created'}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
@@ -50,6 +57,8 @@ def Left(request):
     if list(chatroom_user) == []:
         return Response({'message': 'User has not joined'})
     chatroom_user.delete()
+    user[0].numberOfChatrooms -=1
+    user[0].save()
     chatroom[0].numberOfUser -= 1
     chatroom[0].save()
     return Response({'message': 'chatroom_User deleted'}, status=status.HTTP_201_CREATED)
@@ -62,7 +71,7 @@ def show_Users(request):
     chatroom_user = Chatroom_User.objects.filter(chatroom=chatroom[0])
     data = []
     for i in range(len(chatroom_user)):
-        data.append({'id': chatroom_user[i].user.id, 'name': chatroom_user[i].user.username})
+        data.append({'id': chatroom_user[i].user.id, 'name': chatroom_user[i].user.username, 'number_of_chatroom' : chatroom_user[i].user.numberOfChatrooms})
     return Response(data, status=status.HTTP_200_OK)
 
 
