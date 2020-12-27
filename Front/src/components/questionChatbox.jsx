@@ -14,6 +14,7 @@ import ProfilePreview from './ProfilePreview';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import JoinChatroom from './joinChatroom';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -82,6 +83,8 @@ class QuestionChatbox extends Component {
             editorContentAnswer:"",
             editing:false,
             isOnline: true,
+            isJoined: '',
+            showJoinChatroom: false,
         };
 
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -89,6 +92,7 @@ class QuestionChatbox extends Component {
     componentDidMount=async()=>{
         // console.log(this.state.sameProblem,"________________________________")
         // console.log(this.state.isAnswered,"________________________________")
+        this.loadJoinState()
         if(this.state.isAnswered === 'false')
             this.setState({isAnswered:false})
         else if(this.state.isAnswered === 'true')
@@ -109,9 +113,12 @@ class QuestionChatbox extends Component {
     componentDidUpdate(prevProps) {
         // console.log("inside componentDidUpdate")
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
-        if (prevProps.context !== this.props.context) {
+        if (prevProps.context !== this.props.context || prevProps.isJoined !== this.props.isJoined) {
             
-            this.setState({context:this.props.context})
+            this.setState({
+                context:this.props.context,
+                isJoined: this.props.isJoined
+            })
             // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
             // this.loadData()
             
@@ -149,208 +156,274 @@ class QuestionChatbox extends Component {
 
 
     loadData=()=>{
-        //request to load data from backend
+            //request to load data from backend
     }
 
     handleEdit=async()=>{
-        // Cookies.set('id','6')
-        this.setState({loading:true})
-        let config ={
-            url:"http://127.0.0.1:8000/api/EditQuestion/",
-            needToken:true,
-            type:"post",
-            formKey:[
-                "chatroom",
-                "user_id",
-                "id",
-                "text",
-            ],
-            formValue:[
-                this.props.Cid,
-                Cookies.get("id"),
-                this.props.Qid,
-                this.state.editorContent,
-            ]
-        }
-        console.log(config)
-        let data = []
-        // console.log("outside 0",data)
+            // Cookies.set('id','6')
+            this.setState({loading:true})
+            let config ={
+                url:"http://127.0.0.1:8000/api/EditQuestion/",
+                needToken:true,
+                type:"post",
+                formKey:[
+                    "chatroom",
+                    "user_id",
+                    "id",
+                    "text",
+                ],
+                formValue:[
+                    this.props.Cid,
+                    Cookies.get("id"),
+                    this.props.Qid,
+                    this.state.editorContent,
+                ]
+            }
+            console.log(config)
+            let data = []
+            // console.log("outside 0",data)
 
 
-        data = await request(config)
-        // console.log(await request(config))
-        // console.log("outside",data)
-        // this.setState({editorContent:null})
-        this.setState({loading:false})
-        this.props.loadQuestions()
-        
+            data = await request(config)
+            // console.log(await request(config))
+            // console.log("outside",data)
+            // this.setState({editorContent:null})
+            this.setState({loading:false})
+            this.props.loadQuestions()
+            
 
     }
 
     handleSubmitAnswer = async () =>{
-        this.setState({loading:true})
-        console.log(this.state.QuestionID)
-        let config ={
-            url:"http://127.0.0.1:8000/api/AddAnswer/",
-            needToken:true,
-            type:"post",
-            formKey:[
-                "user_id",
-                "question",
-                "text"
-            ],
-            formValue:[
-                Cookies.get('id'),
-                this.state.QuestionID,
-                this.state.editorContentAnswer
-            ]
-        }
-        let data = []
-        // console.log("outside 0",data)
-        data = await request(config)
-        // console.log(await request(config))
-        // console.log("outside",data)
-        // console.log(data)
-        console.log(data)
-        this.setState({editorContentAnswer:null})
-        this.setState({loading:false})
-        this.props.loadAnswers()
+            this.setState({loading:true})
+            console.log(this.state.QuestionID)
+            let config ={
+                url:"http://127.0.0.1:8000/api/AddAnswer/",
+                needToken:true,
+                type:"post",
+                formKey:[
+                    "user_id",
+                    "question",
+                    "text"
+                ],
+                formValue:[
+                    Cookies.get('id'),
+                    this.state.QuestionID,
+                    this.state.editorContentAnswer
+                ]
+            }
+            let data = []
+            // console.log("outside 0",data)
+            data = await request(config)
+            // console.log(await request(config))
+            // console.log("outside",data)
+            // console.log(data)
+            console.log(data)
+            this.setState({editorContentAnswer:null})
+            this.setState({loading:false})
+            this.props.loadAnswers()
     }
 
     handleSameProblemClicked=async(voteState)=>{
-        if(this.state.sameProblem===voteState)
-            return
-        this.setState({sameProblem:this.state.sameProblem+voteState,
-            sameProblemCount:this.state.sameProblemCount+voteState})
+            if(this.state.sameProblem===voteState)
+                return
+            this.setState({sameProblem:this.state.sameProblem+voteState,
+                sameProblemCount:this.state.sameProblemCount+voteState})
 
-        // console.log("chatroom id is :",this.props.Cid)
-        this.setState({loading:true})
-        //request to back to change same question status
-        let config ={
-            url:"http://127.0.0.1:8000/api/VoteQuestion/",
-            needToken:true,
-            type:"post",
-            formKey:[
-                "question_id",
-                "user_id",
-                'voteState'
-            ],
-            formValue:[
-                this.props.Qid,
-                Cookies.get("id"),
-                this.state.sameProblem+voteState
-            ]
-        }
-        console.log(config)
-        let data = []
-        // console.log("outside 0",data)
-        data = await request(config)
+            // console.log("chatroom id is :",this.props.Cid)
+            this.setState({loading:true})
+            //request to back to change same question status
+            let config ={
+                url:"http://127.0.0.1:8000/api/VoteQuestion/",
+                needToken:true,
+                type:"post",
+                formKey:[
+                    "question_id",
+                    "user_id",
+                    'voteState'
+                ],
+                formValue:[
+                    this.props.Qid,
+                    Cookies.get("id"),
+                    this.state.sameProblem+voteState
+                ]
+            }
+            console.log(config)
+            let data = []
+            // console.log("outside 0",data)
+            data = await request(config)
 
 
-        console.log(data)
-        // console.log(await request(config))
-        // console.log("outside",data)
-        // console.log(data)
-        
-        // if(this.state.sameProblem)
-        //     this.setState({sameProblemCount:this.state.sameProblemCount-1})
-        // else
-        //     this.setState({sameProblemCount:this.state.sameProblemCount+1})
-        // this.setState({sameProblem:!this.state.sameProblem})
+            console.log(data)
+            // console.log(await request(config))
+            // console.log("outside",data)
+            // console.log(data)
             
-        this.setState({loading:false})
-        
+            // if(this.state.sameProblem)
+            //     this.setState({sameProblemCount:this.state.sameProblemCount-1})
+            // else
+            //     this.setState({sameProblemCount:this.state.sameProblemCount+1})
+            // this.setState({sameProblem:!this.state.sameProblem})
+                
+            this.setState({loading:false})
+            
     }
 
     handleDelete = async()=>{
-        this.setState({loading:true})
-        let config ={
-            url:"http://127.0.0.1:8000/api/DeleteQuestion/",
-            needToken:true,
-            type:"post",
-            formKey:[
-                "chatroom",
-                "user_id",
-                "id",
-            ],
-            formValue:[
-                this.props.Cid,
-                Cookies.get("id"),
-                this.props.Qid,
-            ]
-        }
-        console.log(config)
-        let data = []
-        // console.log("outside 0",data)
-        data = await request(config)
-        // console.log(await request(config))
-        // console.log("outside",data)
-        console.log(data)
-        this.setState({loading:false})
-        this.props.loadQuestions()
+            this.setState({loading:true})
+            let config ={
+                url:"http://127.0.0.1:8000/api/DeleteQuestion/",
+                needToken:true,
+                type:"post",
+                formKey:[
+                    "chatroom",
+                    "user_id",
+                    "id",
+                ],
+                formValue:[
+                    this.props.Cid,
+                    Cookies.get("id"),
+                    this.props.Qid,
+                ]
+            }
+            console.log(config)
+            let data = []
+            // console.log("outside 0",data)
+            data = await request(config)
+            // console.log(await request(config))
+            // console.log("outside",data)
+            console.log(data)
+            this.setState({loading:false})
+            this.props.loadQuestions()
     }
 
 
 
     showEditor = () => {
-        
-    this.setState({ editorVisible: true });
-  };
-  hideEditor = (submit) => {
-    this.setState({ editorVisible: false, });
-      if (submit) {
-        if (!this.state.editing){
-            this.handleSubmitAnswer();
-        }else{
-            // console.log("editing")
-            this.handleEdit()
+            
+        this.setState({ editorVisible: true });
+    };
+    hideEditor = (submit) => {
+        this.setState({ editorVisible: false, });
+        if (submit) {
+            if (!this.state.editing){
+                this.handleSubmitAnswer();
+            }else{
+                // console.log("editing")
+                this.handleEdit()
+            }
+            this.setState({ editing: false, });
         }
-        this.setState({ editing: false, });
-      }
 
-      
-  };
-  updateContent = (value) => {
-        if(this.state.editing)
-            this.setState({editorContent:value})
-        else
-            this.setState({editorContentAnswer:value})
-  };
+        
+    };
+    updateContent = (value) => {
+            if(this.state.editing)
+                this.setState({editorContent:value})
+            else
+                this.setState({editorContentAnswer:value})
+    };
 
-  startEditing=()=>{
-      this.setState({editing:true})
-      this.showEditor()
-  }
+    startEditing=()=>{
+        this.setState({editing:true})
+        this.showEditor()
+    }
 
 
-  goToAnswerPage=()=>{
-    sessionStorage.setItem('sameProblemCount',this.state.sameProblemCount);
-    sessionStorage.setItem('sameProblem',this.state.sameProblem);
-    console.log("saved vote state",this.state.sameProblem)
-    sessionStorage.setItem('senderId',this.state.senderId);
-    sessionStorage.setItem('senderUsername',this.state.senderUsername);
-    sessionStorage.setItem('senderAvatar',this.state.senderAvatar);
-    sessionStorage.setItem('isAnswered',this.state.isAnswered);
-    sessionStorage.setItem('context',this.state.context);
-    sessionStorage.setItem('sentDate',this.state.sentDate);
-    sessionStorage.setItem('QuestionID',this.state.QuestionID);
-    sessionStorage.setItem('ChatroomID',this.props.Cid);
-    document.getElementById("goToAnswerPage").click()
-  }
+    goToAnswerPage=()=>{
+        sessionStorage.setItem('sameProblemCount',this.state.sameProblemCount);
+        sessionStorage.setItem('sameProblem',this.state.sameProblem);
+        console.log("saved vote state",this.state.sameProblem)
+        sessionStorage.setItem('senderId',this.state.senderId);
+        sessionStorage.setItem('senderUsername',this.state.senderUsername);
+        sessionStorage.setItem('senderAvatar',this.state.senderAvatar);
+        sessionStorage.setItem('isAnswered',this.state.isAnswered);
+        sessionStorage.setItem('context',this.state.context);
+        sessionStorage.setItem('sentDate',this.state.sentDate);
+        sessionStorage.setItem('QuestionID',this.state.QuestionID);
+        sessionStorage.setItem('ChatroomID',this.props.Cid);
+        document.getElementById("goToAnswerPage").click()
+    }
 
 
-showProfilePreview = (userid) => {
-    // this.setState({ showProfilePreview: submit });
-    this.setState({ showProfilePreview: true ,});
-    // console.log(this.state.submit)
+    showProfilePreview = (userid) => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showProfilePreview: true ,});
+        // console.log(this.state.submit)
 
-};
+    };
 
-hideProfilePreview = () => {
-    this.setState({ showProfilePreview: false });
-    // this.setState({ submit: -2 });
-    // this.loadChatrooms()
-};
+    hideProfilePreview = () => {
+        this.setState({ showProfilePreview: false });
+        // this.setState({ submit: -2 });
+        // this.loadChatrooms()
+    };
+
+    loadJoinState = async () =>{
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/checkJoin/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "id",
+                "chatroomId",
+            ],
+            formValue:[
+                Cookies.get('id'),
+                this.props.Cid
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data.message === "User has joined") {
+            // this.props.isJoined = true
+            this.setState({
+                isJoined: true,
+            })
+            this.updateJoinState(true)
+            // this.props.hideJoinChatroom()
+            // toast.dark("Welcom to the chatroom");
+        }else if(data.message === "user is not joined yet"){
+            this.setState({
+                isJoined: false,
+            })
+            this.updateJoinState(false)
+        }
+    }
+
+    showJoinChatroom = () => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showJoinChatroom: true });
+        // console.log(this.state.submit)
+    
+    };
+
+    handleJoinClick = () => {
+        if(this.state.isJoined) {
+            this.showEditor()
+        }else{
+            this.showJoinChatroom()
+        }
+    }
+
+    showJoinChatroom = () => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showJoinChatroom: true });
+        // console.log(this.state.submit)
+    
+    };
+    
+    hideJoinChatroom = () => {
+        this.setState({ showJoinChatroom: false });
+    };
+
+    updateJoinState = (joinState) =>{
+        this.setState({
+            isJoined: joinState,
+        })
+    }
 
     render() { 
         return (  
@@ -362,6 +435,14 @@ hideProfilePreview = () => {
                     hideEditor={this.hideEditor}
                     editorVisible={this.state.editorVisible}/>
                 <ReactTooltip place="right" effect="solid" type="dark"/>
+
+                <JoinChatroom 
+                  isJoined={this.state.isJoined}
+                  Cid={this.state.chatroomId}
+                  hideJoinChatroom={this.hideJoinChatroom}
+                  showJoinChatroom={this.state.showJoinChatroom}
+                  updateJoinState={this.updateJoinState}
+                />
                 {this.state.loading?<LoadingPage/>: ""}
                 <div id="Question"
                     style={{ 
@@ -495,8 +576,9 @@ hideProfilePreview = () => {
 
                             <div className="ml-auto mr-2 mb-auto mt-auto parisa-css">
                                 {this.state.showMoreButton?
-                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="Question-showAnswerButton pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>: 
-                                <button onClick={this.showEditor} style={{outline:"none",borderRadius:"5px",border:"none"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
+                                    <button onClick={this.goToAnswerPage} style={{outline:"none",borderRadius:"5px"}} className="Question-showAnswerButton pr-2 pl-2 m-1 btn-sm btn btn-primary">Show answers</button>
+                                    :
+                                    <button onClick={this.handleJoinClick} style={{outline:"none",borderRadius:"5px",border:"none"}} className="pr-2 pl-2 m-1 btn-sm btn btn-primary">Answer this Question</button>
                                 }
                                  
                             </div>

@@ -38,7 +38,7 @@ class ProfilePreview extends Component {
             userIntrests: [],
             askedQ: '',
             answeredQ: '',
-            numOfChatroom: '',
+            numberOfChatrooms: '',
             profileAvatar: '',
         }; 
 
@@ -75,7 +75,7 @@ class ProfilePreview extends Component {
                 userBio: data.description,
                 askedQ: data.askedQuestions,
                 answeredQ: data.answeredQuestions,
-                numOfChatroom: data.numberOfChatrooms,
+                numberOfChatrooms: data.numberOfChatrooms,
                 profileAvatar: data.user_profile_image
                 // userIntrests: decodeList(options, "111111111")
             });
@@ -159,8 +159,8 @@ class ProfilePreview extends Component {
                                             <p>{this.numberFormatter(this.state.askedQ)}</p>
                                         </div>
                                         <div className="ProfilePreview-joined-chatrooms d-flex justify-content-center">
-                                            <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numOfChatroom +" chatrooms"} /> 
-                                            <p>{this.numberFormatter(this.state.numOfChatroom)}</p>
+                                            <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numberOfChatrooms +" chatrooms"} /> 
+                                            <p>{this.numberFormatter(this.state.numberOfChatrooms)}</p>
                                             </div>
                                         <div className="ProfilePreview-answered-questions d-flex justify-content-center">
                                             <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.answeredQ +" questions"} /> 

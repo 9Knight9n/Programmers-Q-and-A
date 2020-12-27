@@ -37,7 +37,6 @@ const StyledBadge = withStyles((theme) => ({
         border: '1px solid currentColor',
         content: '',
   
-  
       },
     },
     '@keyframes ripple': {
@@ -305,7 +304,6 @@ class AnswerChatBox  extends Component {
         // this.setState({ submit: -2 });
         // this.loadChatrooms()
     };
-
 
 
     render() { 

@@ -85,6 +85,7 @@ def ShowUserProfile(request):
         data = serializer.data
         filename = 'media/profile/image/' + str(user.id) + '.txt'
         data['user_profile_image'] = open(filename, 'rb').read()
+        print(data)
         return Response(data)
     return Response({'message' : 'User not found'})
 

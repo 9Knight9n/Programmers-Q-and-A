@@ -66,7 +66,7 @@ def show_Users(request):
     chatroom_user = Chatroom_User.objects.filter(chatroom=chatroom[0])
     data = []
     for i in range(len(chatroom_user)):
-        data.append({'id': chatroom_user[i].user.id, 'name': chatroom_user[i].user.username, 'number_of_chatroom' : chatroom_user[i].user.numberOfChatrooms})
+        data.append({'id': chatroom_user[i].user.id, 'name': chatroom_user[i].user.username})
     return Response(data, status=status.HTTP_200_OK)
 
 

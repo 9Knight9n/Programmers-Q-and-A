@@ -127,7 +127,9 @@ class AnswersPage extends Component {
                     <div className="answers  ">
                         {this.state.answers.map(answer => 
                             <div className="mt-5" key={answer.id}>
-                                <AnswerChatBox loadAnswers={this.loadData}
+                                <AnswerChatBox 
+                                loadAnswers={this.loadData}
+                                Cid={this.state.ChatroomID}
                                 Qid={this.state.QuestionID} 
                                 QsenderId={this.state.userid}
                                 answerId={answer.id} 

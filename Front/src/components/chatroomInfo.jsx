@@ -76,11 +76,13 @@ class ChatroomInfo extends Component {
     showEditor = () => {
     this.setState({ editorVisible: true });
     };
+    
     hideEditor = (submit) => {
       this.setState({ editorVisible: false });
       if(submit)
         this.handleSubmitQuestion()
     };
+
     updateContent = (value) => {
     this.setState({editorContent:value})
     };
