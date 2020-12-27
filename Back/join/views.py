@@ -12,7 +12,8 @@ from .serializer import JoinSerializer
 @permission_classes([])
 def Join(request):
     data = dict(request.POST)
-    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
+    chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])chatroom[0].numberOfUser += 1
+    chatroom[0
     user = User.objects.filter(id=data['id'][0])
     if list(user) == [] or list(chatroom) == []:
         return Response({'message': 'User or chatroom not found'})
@@ -21,8 +22,7 @@ def Join(request):
         return Response({'message': 'User has joined'})
     chatroom_user = Chatroom_User.objects.create(user=user[0], chatroom=chatroom[0])
     chatroom_user.save()
-    chatroom[0].numberOfUser += 1
-    chatroom[0].save()
+    ].save()
     return Response({'message': 'New chatroom_User created'}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
