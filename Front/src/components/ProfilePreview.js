@@ -50,6 +50,16 @@ class ProfilePreview extends Component {
         }
         this.loadData();
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.showProfilePreview !== this.props.showProfilePreview) {
+            this.loadData()
+            // this.setState({
+            //     showProfilePreview: this.props.showProfilePreview,
+            // })
+        }
+      }
+
     loadData = async () => {
         // this.setState({loading:true})
         console.log('entred loadData....')
