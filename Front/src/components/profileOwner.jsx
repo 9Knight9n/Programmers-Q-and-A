@@ -11,6 +11,50 @@ import saveIcon from '../img/save.png';
 import cancelIcon from '../img/cancel.png';
  
 import SelectAvatar from './selectAvatar';
+import Badge from '@material-ui/core/Badge';
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '',
+        isOnline: true,
+  
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }))(Badge);
+  
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
 
 class ProfileOwner extends Component {
     constructor(props) {
@@ -31,13 +75,25 @@ class ProfileOwner extends Component {
             linkError: false,
             chatroomNameMsg: "Choose a name for your chatroom",
             nameError: false,
+            isOnline:true,
+            isJoined: this.props.isJoined,
+            users: []
         }; 
 
     }
 
     componentDidMount = async () => {
         this.loadData();
+        this.loadUserData();
     }
+
+    componentDidUpdate(prevProps) {
+        console.log("something changed")
+        if (prevProps.isJoined !== this.props.isJoined) {
+          this.setState({isJoined: this.props.isJoined})
+        console.log("Updated")
+        }
+      }
 
     loadData = async () => {
         // this.setState({loading:true})
@@ -205,7 +261,64 @@ class ProfileOwner extends Component {
         let name = target.name;
         this.setState({
           [name]: value,
+         
         });
+      }
+
+      loadUserData = async () =>{
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/show_Users/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                this.state.Cid,
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data) {
+            console.log(data) 
+            this.setState({
+                users: data
+            })
+        }else{
+          console.log("Error to load data")  
+        }
+      }
+
+      handleLeave = async () =>{
+        console.log("enter enter enter")
+        let config ={
+            url:"http://127.0.0.1:8000/api/Left/",
+            needToken:false,
+            type:"post",
+            formKey:[
+                "chatroomId",
+                "id"
+            ],
+            formValue:[
+                this.state.Cid,
+                Cookies.get('id'),
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        if (data.message === "chatroom_User deleted") {
+            console.log("user left");
+            // this.props.isJoined: false
+            this.setState({
+                isJoined: false,
+            });
+            this.props.updateJoinState(false)
+        }else{
+            console.log(data)
+        }
       }
     
     render() { 
@@ -214,7 +327,7 @@ class ProfileOwner extends Component {
             <div className="chProfileOwner chProfileOwner-main-box" style={{overflowY:"hidden"}}>
                
                 <div className="chProfileOwner-exitImg">
-                        <img onClick={this.props.hideModal} src={exitImg} />
+                        <img onClick={this.props.hideChatroomProfile} src={exitImg} />
                 </div>
 
                 <div class="d-flex h-100">
@@ -232,6 +345,7 @@ class ProfileOwner extends Component {
 
                                     <div className="chProfileOwner-chNameBox">
                                         <div className="d-flex flex-row">
+                                            <label className="chNameLable" for="chProfileOwner-chLink">Context link : </label> 
                                             <div className="chProfileOwner-chNameEditImg">{this.state.isOwner && !this.state.OwnerIsEditingName ? 
                                                 <img onClick={() => this.handleEditClick(1) } alt="editIcon" data-tip="Edit" src={editIcon} /> : 
                                                 this.state.OwnerIsEditingName?
@@ -241,7 +355,6 @@ class ProfileOwner extends Component {
                                                 </div> : '' }
                                             </div>
                                         </div>
-                                        <div className="chProfileOwner-clearFix"></div>
                                         <div className="chProfileOwner-chName mr-3">
                                             {this.state.isOwner && this.state.OwnerIsEditingName ? <input  onChange={this.handleInputChange} onClick={() => this.handleEditClick(7)} name="chatroomName" type="text" value={this.state.chatroomName}></input> : <label>{this.state.chatroomName}</label>}
                                             {this.state.nameError? <span className="error">{this.state.chatroomNameMsg}</span> : ''}
@@ -293,15 +406,15 @@ class ProfileOwner extends Component {
                                     </div>
                                 </div>
                                 <div className="chProfileOwner-des">
-                                    {this.state.isOwner && this.state.OwnerIsEditingDes ? <input onChange={this.handleInputChange} name="chatroomDes" type="text" value={this.state.chatroomDes}></input> : <p>{this.state.chatroomDes}</p>}
+                                    {this.state.isOwner && this.state.OwnerIsEditingDes ? <textarea onChange={this.handleInputChange} name="chatroomDes" type="text" value={this.state.chatroomDes}></textarea> : <p>{this.state.chatroomDes}</p>}
                                 </div>
                             </div>
 
-                            {/* {this.state.isOwner?
-                                <div className="chProfileOwner-deleteButton mt-auto">
-                                    <button>Delete Chatroom</button>
+                            {this.state.isJoined?
+                                <div className="chProfileOwner-leaveButton mt-auto">
+                                    <button onClick={this.handleLeave}>Leave Chatroom</button>
                                 </div> : ''
-                            } */}
+                            }
                         </div>
                     {/* <div className="w-100 h-100">
                         <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
@@ -324,66 +437,30 @@ class ProfileOwner extends Component {
                         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
                         <div className="jumbotron list-content ml-auto ">
                             <div href="#" className="chProfileOwner-list-group-item title w-100 ">
-                                    Your friend zone
+                                   Members
                             </div>
                             <ul className="list-group">
-                           
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail" src="https://bootdey.com/img/Content/User_for_snippets.png"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                    Juan guillermo cuadrado
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                jo aderestand 
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                jo aderestand 
-                                </label>
-                                
-                               
-                            </li>
-                            <li href="#" className="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Sara Bencallin 
-                                </label>
-                               
-                               
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Emili  
-                                </label>
-                                
-                                <div class="break"></div>
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_1.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                Amorina 
-                                </label>
-                               
-                                <div class="break"></div>
-                            </li>
-                            <li href="#" class="list-group-item text-left d-flex flex-row w-100">
-                                <img class="img-thumbnail"  src="https://bootdey.com/img/Content/user_2.jpg"/>
-                                <label class="name w-75 ml-3 mt-auto mb-auto">
-                                    Weide 
-                                </label>
-                                
-                                <div class="break"></div>
-                            </li>
+                                {this.state.users.map(u => 
+                                        <li className ="d-flex justify-content-start" key={u.id} >
+                                            {this.state.isOnline?
+                                                <StyledBadge
+                                                overlap="circle"
+                                                anchorOrigin={{
+                                                vertical: 'bottom',
+                                                horizontal: 'right',
+                                                }}
+                                                variant="dot"
+                                                >
+                                                    <Avatar alt="Avatar" src={profileImg} />
+                                                </StyledBadge> :    
+                                                    <img className="img-thumbnail" src={profileImg} />
+                                            }
+                                            
+                                            <label className="name w-75 ml-3 mt-auto mb-auto">
+                                                {u.name}
+                                            </label>
+                                        </li>
+                                    )}
                             </ul>
                         </div>
                     </div>    

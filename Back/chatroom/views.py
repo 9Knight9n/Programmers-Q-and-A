@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from registeration.models import User
 from .models import Chatroom
-from submittext.models import Chatroom_User
+from join.models import Chatroom_User
 from .serializers import ShowUChatroomProfileSerializer
 
 

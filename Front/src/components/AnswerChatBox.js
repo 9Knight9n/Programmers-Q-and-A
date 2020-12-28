@@ -16,7 +16,51 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import Texteditor from './texteditor';
 import LoadingPage from './loading';
 import ProfilePreview from './ProfilePreview';
+import Badge from '@material-ui/core/Badge';
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '',
+  
+  
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }))(Badge);
+  
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
 
 
 class AnswerChatBox  extends Component {
@@ -39,6 +83,7 @@ class AnswerChatBox  extends Component {
             isOwner: this.props.userid === parseInt(sessionStorage.getItem('id')),
             editorContent:null,
             editorVisible:false,
+            isOnline: true,
         }
 
         this.handleVote = this.handleVote.bind(this);
@@ -266,7 +311,7 @@ class AnswerChatBox  extends Component {
     render() { 
         return ( 
             
-                <div id="answer" style={{ width:this.props.width+"vw",}} className="d-flex flex-column">
+                <div id="answer" style={{ width:this.props.width+"vw",}} className="answer-chatbox d-flex flex-column">
                     <ProfilePreview userid={this.props.userid} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
                     {this.state.loading?<LoadingPage/>: ""}
                     <Texteditor 
@@ -277,7 +322,27 @@ class AnswerChatBox  extends Component {
                         />
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
-                            <img style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                            <div className="d-flex pl-2 align-top w-80 ml-3" className="profileAvatarBox">
+                                <div style={{cursor:"pointer"}} className="d-flex align-items-center mr-2 profileAvatar" onClick={this.showProfilePreview}>
+                                  {this.state.isOnline?
+                                  
+                                    <StyledBadge
+                                    
+                                        overlap="circle"
+                                        anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'right',
+                                        }}
+                                        variant="dot"
+                                    >
+                                        <Avatar className="profileImg" alt="Avatar" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                                    </StyledBadge> :    
+                                    <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
+                                    }
+                                </div>
+                               
+                            </div>
+
                             <label style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown className="dropDownMain">

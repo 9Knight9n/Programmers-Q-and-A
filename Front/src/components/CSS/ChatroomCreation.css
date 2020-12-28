@@ -510,3 +510,8 @@ select:focus button:focus {
   font-size: small;
   color: #8a7f7f;
 }
+
+.abed-css .css-g1d714-ValueContainer {
+  overflow-y: auto !important;
+  height: 5vh !important;
+}

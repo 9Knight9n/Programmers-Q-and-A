@@ -50,6 +50,7 @@
 }
 #Question #header #profile #profile-img {
   width: 7vh;
+  height: 7vh;
   border-radius: 60%;
   /* border: 2px solid #e74c3c; */
   /* margin: 0% 15%; */
@@ -97,4 +98,8 @@
   border-radius: 0px;
   border: none;
   background-color: #5c6bc0;
+}
+
+#profile p {
+  margin-top: -2%;
 }

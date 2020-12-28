@@ -10,3 +10,4 @@ class InterestsInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['description', 'interests']
+

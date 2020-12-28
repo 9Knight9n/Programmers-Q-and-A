@@ -12,6 +12,7 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 
+
 const options = [
     { value: 'java', label: 'java' },
     { value: 'php', label: 'php' },
@@ -104,7 +105,7 @@ class ProfilePreview extends Component {
         return ( 
             <div id="profilePreview">
             {this.props.showProfilePreview?
-              <div onClick={() => this.props.hideProfilePreview()} className="modal">
+            <div onClick={() => this.props.hideProfilePreview()} className="modal">
                 <section onClick={this.modalClick} className="modal-main d-flex flex-column">
                     <div className="ProfilePreview ProfilePreview-main-box ">
                         <ReactTooltip place="right" effect="solid" type="dark"/>
@@ -146,9 +147,9 @@ class ProfilePreview extends Component {
                                 <div className="ProfilePreview-bioBox">
                                     <label for="ProfilePreview-bio">Bio :</label>
                                     <div className="ProfilePreview-bio">
-                                        <p>
+                                        <span style={{whiteSpace: "pre-line"}}>
                                             {this.state.userBio}
-                                        </p>
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="ProfilePreview-activity">
