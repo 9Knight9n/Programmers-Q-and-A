@@ -19,62 +19,7 @@ class GeneralChatroom extends Component {
             loading:false,
             inputRef:React.createRef(),
             chats:[],
-            // chats:[
-            //     {
-            //         user:12,
-            //         message_id:100,
-            //         username:'sajad',
-            //         text:<a>Hello there!</a>,
-            //         time:new Date().toLocaleString(),
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:200,
-            //         username:'sadegh',
-            //         text:<a>Hi! </a>,
-            //         time:new Date().toLocaleString(),
-            //         replyTo:100
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:300,
-            //         username:'sajad',
-            //         text:<a>I have problem with socket, some error saying socket closed before connection established,any suggestions? </a>,
-            //         time:new Date().toLocaleString(),
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:400,
-            //         username:'sadegh',
-            //         text:<a>what are you using to call connect function? componentdidmount ?</a>,
-            //         time:new Date().toLocaleString(),
-            //         replyTo:300
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:500,
-            //         username:'sajad',
-            //         text:"yes exactly whats the problem with that?",
-            //         time:new Date().toLocaleString(),
-            //         replyTo:400
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:600,
-            //         username:'sadegh',
-            //         text:"you shouldn't use componentdidmount for socket as it will be intrupted use componentwillmount, that should fix your problem!",
-            //         time:new Date().toLocaleString(),
-            //         replyTo:500
-            //     },
-            //     {
-            //         user:12,
-            //         message_id:700,
-            //         username:'Abed',
-            //         text:"you can call connect in constructor as well !",
-            //         time:new Date().toLocaleString(),
-            //         replyTo:500
-            //     },
-            // ],
+            inputHeight:37,
             ChatroomID:parseInt(this.props.match.params.chatroomid)
         };
         this.componentDidMount=this.componentDidMount.bind(this)
@@ -154,9 +99,11 @@ class GeneralChatroom extends Component {
 
     inputOnChange=(e)=>{
         let target = e.target;
-        let value = target.value;
-        this.setState({inputValue:value})
+        // let value = target.value;
         
+        this.setState({inputHeight:target.offsetHeight})
+        // this.forceUpdate()
+        console.log(target.offsetHeight)
     }
 
     sendMessage=async()=>{
@@ -168,7 +115,7 @@ class GeneralChatroom extends Component {
             'order_type' : 'create_message',
             'chatroom_id':this.state.ChatroomID,
             'token': token,
-            'message': this.state.inputValue,
+            'message': this.state.inputRef.input.value,
         })
         this.state.inputRef.clear();
         this.setState({inputRef:""})
@@ -190,7 +137,7 @@ class GeneralChatroom extends Component {
                                     Cid={this.state.ChatroomID}  />
                             </div>
                             <div className="mt-1 mb-1 ml-5 h-100">
-                                <div className="messages-box">
+                                <div className="messages-box" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
                                     <div className="mr-5 mb-2">
                                         {this.state.chats.map(chat =>
                                         <div key={chat.message_id} className="mb-3">
@@ -211,10 +158,10 @@ class GeneralChatroom extends Component {
                                 <Input
                                     ref={el => (this.state.inputRef = el)}
                                     onChange={this.inputOnChange}
-                                    minHeight={100}
+                                    // minHeight={50}
                                     placeholder="Type here..."
                                     multiline={true}
-                                    autoHeight={false}
+                                    autoHeight={true}
                                     rightButtons={
                                         <button
                                             className="p-2 rounded"
