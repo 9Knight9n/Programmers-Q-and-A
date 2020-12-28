@@ -23,6 +23,7 @@ export const renewToken= async ()=>{
     }
     if(!response.data)
       return handleError(response.error)
+    sessionStorage.setItem("access",response.data.access)
     return response.data.access
     
 }

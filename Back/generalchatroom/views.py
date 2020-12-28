@@ -31,7 +31,7 @@ def show_Message(request):
             'time': message[i].time.ctime(),
         }
         if message[i].parentMessage:
-            if message[i].id == None:
-                data['replyTo'] = message[i].parentMessage.id
+            # if message[i].id == None:
+            data['replyTo'] = message[i].parentMessage.id
         datalist.append(data)
     return Response(datalist, status=status.HTTP_200_OK)

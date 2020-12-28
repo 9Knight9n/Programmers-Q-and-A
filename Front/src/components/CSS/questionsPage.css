@@ -36,3 +36,6 @@
 .rce-input-textarea{
   min-height: 40px !important;
 }
+.replyToButton{
+  background-color: #a9b7ff !important;
+}

@@ -6,6 +6,8 @@ import {connect,listen,send} from './socket';
 import { Input } from 'react-chat-elements'
 import { isExpired } from "react-jwt";
 import {renewToken,request} from './requests'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
  
 
 
@@ -15,6 +17,8 @@ class GeneralChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            replying:null,
+            replyingTo:null,
             inputValue:"",
             loading:false,
             inputRef:React.createRef(),
@@ -111,14 +115,36 @@ class GeneralChatroom extends Component {
         if(isExpired(sessionStorage.getItem('id'))){
         token=await renewToken()
         }
-        send({
+        console.log({
             'order_type' : 'create_message',
             'chatroom_id':this.state.ChatroomID,
             'token': token,
             'message': this.state.inputRef.input.value,
+            'replyto':this.state.replying
         })
+        if (this.state.replying)
+            send({
+                'order_type' : 'create_message',
+                'chatroom_id':this.state.ChatroomID,
+                'token': token,
+                'message': this.state.inputRef.input.value,
+                'replyTo':this.state.replying
+            })
+        else
+            send({
+                'order_type' : 'create_message',
+                'chatroom_id':this.state.ChatroomID,
+                'token': token,
+                'message': this.state.inputRef.input.value,
+            })
         this.state.inputRef.clear();
-        this.setState({inputRef:""})
+        this.setState({inputRef:"",replying:null,replyingTo:null})
+    }
+
+
+    reply=(id,username)=>{
+        // console.log("replying")
+        this.setState({replying:id,replyingTo:username})
     }
 
 
@@ -142,9 +168,13 @@ class GeneralChatroom extends Component {
                                         {this.state.chats.map(chat =>
                                         <div key={chat.message_id} className="mb-3">
                                             <MessageBox
+                                            reply={this.reply}
+                                            message_id={chat.message_id}
                                             userid={chat.user}
                                             title={chat.username}
-                                            text={chat.text}
+                                            text={<span style={{whiteSpace: "pre-line"}}>
+                                                    {ReactHtmlParser(chat.text)}
+                                                </span>}
                                             dateString={chat.time}
                                             isReply={chat.replyTo}
                                             titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
@@ -170,6 +200,18 @@ class GeneralChatroom extends Component {
                                             style={{backgroundColor:'black',color:'white'}}>
                                                 Send
                                             </button>
+                                    }
+                                    leftButtons={this.state.replying?
+                                    <div className="black-text">
+                                        <button className="p-2 rounded replyToButton">
+                                            Replying to {this.state.replyingTo}
+                                        </button>
+                                        <button className="p-1" style={{backgroundColor:"transparent"}} onClick={()=>this.reply(null,null)}>
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
+                                    </div>:""
                                     }/>
                             </div>
                         </div>

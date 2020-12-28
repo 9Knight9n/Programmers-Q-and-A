@@ -11,11 +11,12 @@
     line-height: normal !important;
 }
 .rce-mbox-left-notch {
-    position: absolute;
-    left: -14px;
-    top: 0px;
-    width: 15px;
-    height: 15px;
+
+    fill: #4a4c9d;
+
+}
+.rce-mbox-right-notch {
+
     fill: #4a4c9d;
 
 }
@@ -62,10 +63,10 @@
 }
 
 .rce-mbox-forward-right {
-    display: flex;
-    opacity: 0;
-    visibility: hidden;
-    right: -50px;
+    background-color: #148983;
+}
+.rce-mbox-forward-left {
+    
     background-color: #148983;
 }
 .rce-mbox-time {
@@ -78,11 +79,11 @@
 }
 .rce-mbox-reply-left {
     background-color: #90bcea;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3px 0;
-    flex: 1 1;
+
+}
+.rce-mbox-reply-right {
+    background-color: #90bcea;
+
 }
 .rce-mbox-reply.rce-mbox-reply-border {
     border-left: 5px solid;
