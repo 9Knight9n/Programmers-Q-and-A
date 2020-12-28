@@ -47,7 +47,7 @@ class MessageBox extends React.Component {
 						id={this.state.id}
 						position={this.state.isOwner?"right":'left'}
 						type={'text'}
-						title={this.state.title}
+						title={!this.state.isOwner?this.state.title:""}
 						titleColor='#8717ae'
 						text={this.state.text}
 						dateString={this.state.dateString}

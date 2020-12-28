@@ -7,6 +7,9 @@ import { Input } from 'react-chat-elements'
 import { isExpired } from "react-jwt";
 import {renewToken,request} from './requests'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useDimensions from "react-cool-dimensions";
 
  
 
@@ -24,7 +27,8 @@ class GeneralChatroom extends Component {
             inputRef:React.createRef(),
             chats:[],
             inputHeight:37,
-            ChatroomID:parseInt(this.props.match.params.chatroomid)
+            ChatroomID:parseInt(this.props.match.params.chatroomid),
+
         };
         this.componentDidMount=this.componentDidMount.bind(this)
         // this.loadQuestions=this.loadQuestions.bind(this)
@@ -59,6 +63,8 @@ class GeneralChatroom extends Component {
                     button.click();  
                 } 
             }); 
+        const { ref, width, height, entry, unobserve, observe } = 
+        
 
         this.loadChats()
     }
@@ -111,17 +117,16 @@ class GeneralChatroom extends Component {
     }
 
     sendMessage=async()=>{
+        console.log(this.state.inputRef.input.value)
+        if (this.state.inputRef.input.value===""){
+            toast.dark("Message is empty!");
+            return 0
+        }
+        toast.dismiss()
         let token = sessionStorage.getItem
         if(isExpired(sessionStorage.getItem('id'))){
         token=await renewToken()
         }
-        console.log({
-            'order_type' : 'create_message',
-            'chatroom_id':this.state.ChatroomID,
-            'token': token,
-            'message': this.state.inputRef.input.value,
-            'replyto':this.state.replying
-        })
         if (this.state.replying)
             send({
                 'order_type' : 'create_message',
@@ -154,6 +159,20 @@ class GeneralChatroom extends Component {
             <React.Fragment>
                 {this.state.ChatroomID!==-1?
                 <React.Fragment>
+                    <div id="warning">
+                        <ToastContainer
+                            className="Toast"
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            />
+                        </div>
                     {this.state.loading?<LoadingPage/>: ""}
                     <div className="w-100 h-100 p-2">
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
@@ -195,24 +214,25 @@ class GeneralChatroom extends Component {
                                     rightButtons={
                                         <button
                                             className="p-2 rounded"
+                                            // {this.state.inputValue.length===0?disabled:""}
                                             onClick={this.sendMessage}
                                             id="generalChatroomSendButton"
                                             style={{backgroundColor:'black',color:'white'}}>
                                                 Send
-                                            </button>
+                                        </button>
                                     }
                                     leftButtons={this.state.replying?
-                                    <div className="black-text">
-                                        <button className="p-2 rounded replyToButton">
-                                            Replying to {this.state.replyingTo}
-                                        </button>
-                                        <button className="p-1" style={{backgroundColor:"transparent"}} onClick={()=>this.reply(null,null)}>
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                            </svg>
-                                        </button>
-                                    </div>:""
-                                    }/>
+                                        <div className="black-text">
+                                            <button className="p-2 rounded replyToButton">
+                                                Replying to {this.state.replyingTo}
+                                            </button>
+                                            <button className="p-1" style={{backgroundColor:"transparent"}} onClick={()=>this.reply(null,null)}>
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                                </svg>
+                                            </button>
+                                        </div>:""
+                                        }/>
                             </div>
                         </div>
                     </div>
