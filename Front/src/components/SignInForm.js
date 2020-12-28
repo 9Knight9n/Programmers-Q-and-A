@@ -40,7 +40,7 @@ class SignInForm extends Component{
   }
 
   componentDidMount(){
-    if(sessionStorage.getItem("targetURL"))
+    if(sessionStorage.getItem("targetURL") && sessionStorage.getItem("targetURL") !=="/")
     {
       toast.dark("you should login first");
     }
