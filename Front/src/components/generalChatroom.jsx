@@ -9,7 +9,7 @@ import {renewToken,request} from './requests'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useDimensions from "react-cool-dimensions";
+import ResizeObserver from 'rc-resize-observer';
 
  
 
@@ -107,14 +107,14 @@ class GeneralChatroom extends Component {
     }
 
 
-    inputOnChange=(e)=>{
-        let target = e.target;
-        // let value = target.value;
+    // inputOnChange=(e)=>{
+    //     let target = e.target;
+    //     // let value = target.value;
         
-        this.setState({inputHeight:target.offsetHeight})
-        // this.forceUpdate()
-        console.log(target.offsetHeight)
-    }
+    //     this.setState({inputHeight:target.offsetHeight})
+    //     // this.forceUpdate()
+    //     console.log(target.offsetHeight)
+    // }
 
     sendMessage=async()=>{
         console.log(this.state.inputRef.input.value)
@@ -203,10 +203,13 @@ class GeneralChatroom extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <ResizeObserver
+                                onResize={({ width, height }) => this.setState({inputHeight:height})}
+                            >
                             <div id="sendOnEnter">
                                 <Input
                                     ref={el => (this.state.inputRef = el)}
-                                    onChange={this.inputOnChange}
+                                    // onChange={this.inputOnChange}
                                     // minHeight={50}
                                     placeholder="Type here..."
                                     multiline={true}
@@ -234,6 +237,7 @@ class GeneralChatroom extends Component {
                                         </div>:""
                                         }/>
                             </div>
+                            </ResizeObserver>
                         </div>
                     </div>
                 </React.Fragment>:""}

@@ -16,6 +16,7 @@
     "js-copy-to-clipboard": "0.0.4",
     "npm": "^6.14.9",
     "password-validator": "^5.1.0",
+    "rc-resize-observer": "^1.0.0",
     "react": "^16.14.0",
     "react-avatar-edit": "^0.9.0",
     "react-bootstrap": "^1.4.0",
