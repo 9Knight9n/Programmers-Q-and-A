@@ -86,7 +86,10 @@ class LeftMenu extends Component {
         this.loadChatrooms()
     };
 
-
+    logOut=()=>{
+        sessionStorage.removeItem("id")
+        sessionStorage.setItem("targetURL","/")
+    }
 
     render() { 
         window.$username="username"
@@ -130,7 +133,7 @@ class LeftMenu extends Component {
                         </Link>
                         
                         <div className="w-100 d-flex flex-row">
-                            <Link className="leftMenu-buttons-logOut w-50  p-0" to="/login" onClick={()=>sessionStorage.removeItem("id")}>
+                            <Link className="leftMenu-buttons-logOut w-50  p-0" to="/login" onClick={this.logOut}>
                             {/* onClick={() => this.handleLogOutClick()} */}
                                 <button  className=" w-100 d-flex align-items-center justify-content-center">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-door-open-fill m-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
