@@ -131,7 +131,7 @@ class profileThree extends Component {
         const form = new FormData()
         form.set('id', sessionStorage.getItem("id"))
         // if(this.state.bio!=="")
-        form.set('description',this.state.bio)
+        form.set('description',this.state.bio?this.state.bio:"")
         form.set('interests',encodeList(options,this.state.selectedOptions))
         form.set('cvfile',this.state.selectedFile)
         const response =
