@@ -150,7 +150,7 @@ class ChatroomCreationOs extends Component {
      }
 
      handleChangeSelect1 = (selectedOs) => {
-        this.setState({ selectedOs: selectedOs.value });
+        this.setState({ selectedOs: selectedOs.value ,selectedSubOs:this.state.OS.find(os => os.label === selectedOs.value).subOs[0].value });
         this.setState({
             error1: false,//select
         });
@@ -199,7 +199,7 @@ class ChatroomCreationOs extends Component {
                         {this.state.selectedOs ?
                         <div className="subOs  black-text">
                         <Select
-                            value={this.state.OS.find(os => os.label === this.state.selectedOs).subOs.find(os => os.label === this.state.selectedSubOs)} 
+                            value={this.state.OS.find(os => os.label === this.state.selectedOs).subOs[0]} 
                             onChange={this.handleChangeSelect2}
                             styles={customStyles}
                             placeholder="Select a Distro ..."
