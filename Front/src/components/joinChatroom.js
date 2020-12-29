@@ -8,8 +8,6 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class joinChatroom extends Component {
     constructor(props) {
@@ -125,18 +123,6 @@ class joinChatroom extends Component {
                 {this.props.showJoinChatroom ?
                     <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ToastContainer
-                                className="Toast"
-                                position="top-center"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                />
                             <div className="joinChatroom-exitImg">
                                 <img onClick={() => this.props.hideJoinChatroom()} src={exitImg} />
                             </div>

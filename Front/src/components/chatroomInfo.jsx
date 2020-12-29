@@ -7,7 +7,8 @@ import MyAccount from './myAccount';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
- 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
@@ -75,7 +76,8 @@ class ChatroomInfo extends Component {
 
     handleCopy=(e)=>{
         // copyToClipboard('Text to copy');
-        console.log("Clicked")
+        // console.log("Clicked")
+        toast.info("Copied");
         this.setState({copied:true})
     }
 
@@ -146,7 +148,7 @@ class ChatroomInfo extends Component {
                 chatroomName: data.chatroomName,
                 Description: data.Description,
                 chatroom_profile_image: data.chatroom_profile_image,
-                chatroomLink: "http://localhost:3000/cr"+this.state.chatroomId,
+                chatroomLink: "http://localhost:3000/"+(this.state.isDiscussion?"discussion":"qanda")+this.state.chatroomId,
             });
         }
         // console.log(data.chatroom_profile_image)
@@ -229,6 +231,19 @@ class ChatroomInfo extends Component {
     render() { 
         return (  
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
+                <ReactTooltip place="right" effect="solid" type="dark"/>
+                <ToastContainer
+                                className="Toast"
+                                position="top-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                />
                 <JoinChatroom 
                   isJoined={this.state.isJoined}
                   Cid={this.state.chatroomId}
@@ -257,7 +272,7 @@ class ChatroomInfo extends Component {
                                         
                                         <img src={linkImg} className="h-100"
                                             data-tip={this.state.copied?"Copied":"Click to copy"} />
-                                        <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small>
+                                        {/* <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small> */}
                                     </div>
                                     
                                     
