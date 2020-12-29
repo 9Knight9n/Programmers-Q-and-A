@@ -82,7 +82,7 @@ class QuestionChatbox extends Component {
             editorVisible:false,
             editorContentAnswer:"",
             editing:false,
-            isOnline: true,
+            isOnline: false,
             isJoined: '',
             showJoinChatroom: false,
         };

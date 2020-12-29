@@ -82,7 +82,7 @@ class AnswerChatBox  extends Component {
             isOwner: this.props.userid === parseInt(Cookies.get('id')),
             editorContent:null,
             editorVisible:false,
-            isOnline: true,
+            isOnline: false,
         }
 
         this.handleVote = this.handleVote.bind(this);

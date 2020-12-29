@@ -75,7 +75,7 @@ class ProfileOwner extends Component {
             linkError: false,
             chatroomNameMsg: "Choose a name for your chatroom",
             nameError: false,
-            isOnline:true,
+            isOnline:false,
             isJoined: this.props.isJoined,
             users: []
         }; 
