@@ -305,6 +305,10 @@ class AnswerChatBox  extends Component {
         // this.loadChatrooms()
     };
 
+    loadOnlineUserState=()=>{
+        //request to load data from backend
+    }
+
 
     render() { 
         return ( 

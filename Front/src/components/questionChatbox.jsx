@@ -155,7 +155,7 @@ class QuestionChatbox extends Component {
     // }
 
 
-    loadData=()=>{
+    loadOnlineUserState=()=>{
             //request to load data from backend
     }
 
