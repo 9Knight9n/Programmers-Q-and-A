@@ -65,7 +65,8 @@ class ChatroomInfo extends Component {
       }
 
     updateJoinState = (joinState) =>{
-        this.props.changeJoinState(joinState)
+        if(this.state.isDiscussion)
+            this.props.changeJoinState(joinState)
         this.setState({
             isJoined: joinState,
         })

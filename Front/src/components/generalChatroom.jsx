@@ -238,7 +238,7 @@ class GeneralChatroom extends Component {
                                             // {this.state.inputValue.length===0?disabled:""}
                                             onClick={this.sendMessage}
                                             id="generalChatroomSendButton"
-                                            style={{backgroundColor:'black',color:'white'}}>
+                                            style={{backgroundColor:'#0062cc',color:'white'}}>
                                                 Send
                                         </button>
                                     }

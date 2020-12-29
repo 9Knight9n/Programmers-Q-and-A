@@ -112,7 +112,7 @@ class joinChatroom extends Component {
             })
             this.props.updateJoinState(true)
             this.props.hideJoinChatroom()
-            toast.dark("Welcom to the chatroom");
+            toast.info("Welcom to the chatroom");
         }else{
             console.log("user is already Joined")
         }
@@ -125,6 +125,18 @@ class joinChatroom extends Component {
                 {this.props.showJoinChatroom ?
                     <div onClick={() => this.props.hideJoinChatroom()} className="joinChatroom joinChatroom-main-box modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
+                            <ToastContainer
+                                className="Toast"
+                                position="top-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                />
                             <div className="joinChatroom-exitImg">
                                 <img onClick={() => this.props.hideJoinChatroom()} src={exitImg} />
                             </div>
