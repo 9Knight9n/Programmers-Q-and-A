@@ -8,6 +8,8 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class joinChatroom extends Component {
     constructor(props) {
@@ -110,7 +112,7 @@ class joinChatroom extends Component {
             })
             this.props.updateJoinState(true)
             this.props.hideJoinChatroom()
-            toast.info("Welcom to the chatroom");
+            toast.info("Welcom to "+this.props.chatroomName +" chatroom");
         }else{
             console.log("user is already Joined")
         }

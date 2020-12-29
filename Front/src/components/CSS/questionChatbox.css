@@ -27,20 +27,21 @@
 }
 #Question #middle .show-more-less {
 }
-#Question #header #options .dropdown-toggle::after {
+#options .dropdown-toggle::after {
   display: none;
 }
-#Question #header #options .btn {
+#options .btn {
   border: none !important;
   background-color: #39b7dd00 !important;
   border-radius: 0px;
   padding-right: 0px;
+  padding: 0px !important;
 }
-#Question #header #options .btn:hover {
+#options .btn:hover {
   color: cornflowerblue;
   border: none !important;
 }
-#Question #header #options .btn:focus {
+#options .btn:focus {
   box-shadow: none !important;
 }
 #Question #header #profile {

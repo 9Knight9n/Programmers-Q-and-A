@@ -104,3 +104,6 @@
     background-color: #ededed;
     border-color: rgb(39 23 174);
 }
+.w-fit-content{
+    width: fit-content !important;
+}

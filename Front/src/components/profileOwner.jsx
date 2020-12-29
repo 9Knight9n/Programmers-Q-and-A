@@ -9,11 +9,11 @@ import './CSS/profileOwner.css';
 import editIcon from '../img/edit2.png';
 import saveIcon from '../img/save.png';
 import cancelIcon from '../img/cancel.png';
- 
 import SelectAvatar from './selectAvatar';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { toast } from 'react-toastify';
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -286,6 +286,9 @@ class ProfileOwner extends Component {
             this.setState({
                 users: data
             })
+            for(let i = 0 ;i<this.state.users.length;i++){
+                getUserAvatar(this.state.users[i].id)
+            }
         }else{
           console.log("Error to load data")  
         }
@@ -316,6 +319,8 @@ class ProfileOwner extends Component {
                 isJoined: false,
             });
             this.props.updateJoinState(false)
+            toast.info("You Left "+this.state.chatroomName +" Chatroom!");
+            this.props.hideChatroomProfile();
         }else{
             console.log(data)
         }
@@ -451,9 +456,9 @@ class ProfileOwner extends Component {
                                                 }}
                                                 variant="dot"
                                                 >
-                                                    <Avatar alt="Avatar" src={profileImg} />
+                                                    <Avatar alt="Avatar" src={sessionStorage.getItem(u.id+":avatar")} />
                                                 </StyledBadge> :    
-                                                    <img className="img-thumbnail" src={profileImg} />
+                                                    <img className="img-thumbnail" src={sessionStorage.getItem(u.id+":avatar")} />
                                             }
                                             
                                             <label className="name w-75 ml-3 mt-auto mb-auto">

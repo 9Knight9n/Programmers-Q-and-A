@@ -9,6 +9,7 @@ import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
 import scrollToComponent from 'react-scroll-to-component';
 import { ScrollTo,scroll } from "react-scroll-to";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 class QuestionsPage extends Component {
@@ -107,6 +108,18 @@ class QuestionsPage extends Component {
                 <React.Fragment>
                     {this.state.loading?<LoadingPage/>: ""}
                     <div className="w-100 h-100 p-2">
+                        <ToastContainer
+                            className="Toast"
+                            position="top-center"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            />  
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
                             <div id="chatroom-info" className=" d-flex flex-row">
                                 <ChatroomInfo 

@@ -232,19 +232,8 @@ class ChatroomInfo extends Component {
         return (  
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
                 <ReactTooltip place="right" effect="solid" type="dark"/>
-                <ToastContainer
-                                className="Toast"
-                                position="top-center"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                />
                 <JoinChatroom 
+                    chatroomName={this.state.chatroomName}
                   isJoined={this.state.isJoined}
                   Cid={this.state.chatroomId}
                   hideJoinChatroom={this.hideJoinChatroom}

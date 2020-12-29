@@ -10,6 +10,8 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResizeObserver from 'rc-resize-observer';
+import { Dropdown } from 'react-bootstrap';
+
 
  
 
@@ -20,6 +22,7 @@ class GeneralChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isOwner:false,
             isJoin:true,
             replying:null,
             replyingTo:null,
@@ -35,7 +38,28 @@ class GeneralChatroom extends Component {
         // this.loadQuestions=this.loadQuestions.bind(this)
     }
     newMessage=(message)=>{
-        this.setState({chats:[...this.state.chats,message]})
+        // console.log(message)
+        if(message.order_type==="delete_message")
+        {
+            let temp  = this.state.chats.filter(function(item) {
+                return item.message_id !== message.message_id
+            })
+
+            this.setState({chats:temp})
+            // for (let i = 0;i<temp.length;i++)
+            // {
+            //     if (temp[i].message_id === message.message_id)
+            //     {
+            //         temp.remo
+            //     }
+            // }
+        }
+        else if (message.order_type==="create_message")
+        {
+            this.setState({chats:[...this.state.chats,message]})
+        }
+        console.log(message)
+        // this.setState({chats:[...this.state.chats,message]})
         // console.log("received info:",message.data)
         // console.log("old chats:",this.state.chats)
         // console.log("new chats:",this.state.chats)
@@ -50,8 +74,7 @@ class GeneralChatroom extends Component {
         {
             await connect("ws://127.0.0.1:8000/ws/api/generalchatroom/"+this.state.ChatroomID+"/");
             await listen("message",this.newMessage); 
-        }
-          
+        }  
       }
 
 
@@ -118,10 +141,35 @@ class GeneralChatroom extends Component {
             this.setState({chats:data})
             console.log("state set")
         }
+        this.loadData()
         this.setState({loading:false})
         // console.log(data)
     }
 
+    loadData = async () => {
+        // this.setState({loading:true})
+
+        let config = {
+            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                "chatroomId",
+            ],
+            formValue:[
+                this.state.ChatroomID
+            ]
+        };
+        let data = [];
+        data = await request(config);
+        if (data) {
+            this.setState({
+                isOwner: parseInt(sessionStorage.getItem("id")) === data.owner,
+            });
+        }
+        // console.log(data)
+        // this.setState({loading:false})
+    }
 
     // inputOnChange=(e)=>{
     //     let target = e.target;
@@ -133,7 +181,7 @@ class GeneralChatroom extends Component {
     // }
 
     sendMessage=async()=>{
-        console.log(this.state.inputRef.input.value)
+        // console.log(this.state.inputRef.input.value)
         if (this.state.inputRef.input.value===""){
             toast.dark("Message is empty!");
             return 0
@@ -162,6 +210,18 @@ class GeneralChatroom extends Component {
         this.setState({inputRef:"",replying:null,replyingTo:null})
     }
 
+    handleDelete=async(message_id)=>{
+        let token = sessionStorage.getItem
+        if(isExpired(sessionStorage.getItem('id'))){
+        token=await renewToken()
+        }
+        send({
+            'order_type' : 'delete_message',
+            'chatroom_id':this.state.ChatroomID,
+            'token': token,
+            'message_id': message_id,
+        })
+    }
 
     reply=(id,username)=>{
         // console.log("replying")
@@ -202,19 +262,36 @@ class GeneralChatroom extends Component {
                                 <div className="messages-box" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
                                     <div className="mr-5 mb-2">
                                         {this.state.chats.map(chat =>
-                                        <div key={chat.message_id} className="mb-3">
-                                            <MessageBox
-                                            reply={this.reply}
-                                            message_id={chat.message_id}
-                                            userid={chat.user}
-                                            title={chat.username}
-                                            text={<span style={{whiteSpace: "pre-line"}}>
-                                                    {ReactHtmlParser(chat.text)}
-                                                </span>}
-                                            dateString={chat.time}
-                                            isReply={chat.replyTo}
-                                            titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
-                                            messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                        <div key={chat.message_id} className="mb-3 d-flex flex-row w-100">
+                                            <div className={chat.user===parseInt(sessionStorage.getItem("id"))?"ml-auto d-flex flex-row-reverse":"d-flex flex-row"}>
+                                                <MessageBox
+                                                    reply={this.reply}
+                                                    message_id={chat.message_id}
+                                                    userid={chat.user}
+                                                    title={chat.username}
+                                                    text={<span style={{whiteSpace: "pre-line"}}>
+                                                            {ReactHtmlParser(chat.text)}
+                                                        </span>}
+                                                    dateString={chat.time}
+                                                    isReply={chat.replyTo}
+                                                    titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
+                                                    messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                                <div id="options" className={chat.user===parseInt(sessionStorage.getItem("id"))?"option-right":"option-left"}>
+                                                    <Dropdown>
+                                                        <Dropdown.Toggle className="" id="dropdown-basic">
+                                                            <svg width="15px" height="15px" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                                            </svg>
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu className="dropDown">
+                                                            <Dropdown.Item as="button" onClick={()=>this.reply(chat.message_id,chat.username)}>Reply</Dropdown.Item>
+                                                            {this.state.isOwner?<Dropdown.Item as="button" onClick={()=>this.handleDelete(chat.message_id)}>Delete</Dropdown.Item>:""}
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                         )}
                                     </div>

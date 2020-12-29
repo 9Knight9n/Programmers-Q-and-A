@@ -95,6 +95,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if list(message) == []:
                 data['message'] = 'message not found'
             else:
+                data['message_id']=message[0].id
                 message[0].delete()
                 data['message'] = 'message delete successfully'
                 
