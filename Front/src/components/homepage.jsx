@@ -103,7 +103,7 @@ class Homepage extends Component {
                         {/* <p>{this.state.activeChatroom}</p> */}
 
                         <Switch>
-                            <Route path="/qanda:chatroomid" component={(props)=><QuestionsPage {...props} loadChatrooms={this.loadChatrooms}/>}/>
+                            <Route path="/qanda:chatroomid" component={(props)=><QuestionsPage {...props} loadChatrooms={this.loadChatrooms} changeChatroom={this.changeChatroom}/>}/>
                             <Route path="/discussion:chatroomid" component={(props)=><GeneralChatroom {...props} loadChatrooms={this.loadChatrooms}/>}/>
                             <Route path="/search/:searchPhrase" component={SearchResultPage}/>
                         </Switch>

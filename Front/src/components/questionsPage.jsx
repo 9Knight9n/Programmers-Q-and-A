@@ -35,8 +35,10 @@ class QuestionsPage extends Component {
         // console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
         // this.props.chatroomClicked(this.state.ChatroomID)
+        // this.props.changeChatroom(parseInt(this.props.match.params.chatroomid))
         this.loadQuestions()
     }
+
 
 
 
@@ -45,6 +47,7 @@ class QuestionsPage extends Component {
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
             this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
             this.loadQuestions()
+            this.props.changeChatroom(parseInt(this.props.match.params.chatroomid))
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
       }
