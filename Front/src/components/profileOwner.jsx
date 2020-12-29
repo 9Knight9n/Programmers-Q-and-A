@@ -303,7 +303,7 @@ class ProfileOwner extends Component {
             ],
             formValue:[
                 this.state.Cid,
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
             ]
         }
         let data = []

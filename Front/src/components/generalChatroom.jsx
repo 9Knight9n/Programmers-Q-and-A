@@ -20,6 +20,7 @@ class GeneralChatroom extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isJoin:true,
             replying:null,
             replyingTo:null,
             inputValue:"",
@@ -80,6 +81,16 @@ class GeneralChatroom extends Component {
         }
       }
 
+    changeJoinState=(state)=>
+    {
+        this.setState({isJoin:state})
+        if(state)
+        {
+            this.setState({inputHeight:37})
+        }
+        else
+            this.setState({inputHeight:0,})
+    }
 
     loadChats=async()=>{
         if(this.props.match.params.chatroomid ==="-1")
@@ -182,8 +193,9 @@ class GeneralChatroom extends Component {
                     <div className="w-100 h-100 p-2">
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
                             <div id="chatroom-info" className=" d-flex flex-row">
-                                <ChatroomInfo 
-                                    loadQuestions={this.loadQuestions}
+                                <ChatroomInfo
+                                    changeJoinState={this.changeJoinState}
+                                    isDiscussion={true}
                                     Cid={this.state.ChatroomID}  />
                             </div>
                             <div className="mt-1 mb-1 ml-5 h-100">
@@ -208,6 +220,7 @@ class GeneralChatroom extends Component {
                                     </div>
                                 </div>
                             </div>
+                            {this.state.isJoin?
                             <ResizeObserver
                                 onResize={({ width, height }) => this.setState({inputHeight:height})}
                             >
@@ -242,7 +255,7 @@ class GeneralChatroom extends Component {
                                         </div>:""
                                         }/>
                             </div>
-                            </ResizeObserver>
+                            </ResizeObserver>:""}
                         </div>
                     </div>
                 </React.Fragment>:""}

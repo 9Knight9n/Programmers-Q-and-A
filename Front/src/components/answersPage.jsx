@@ -93,7 +93,7 @@ class AnswersPage extends Component {
             <ReactTooltip place="right" effect="solid" type="dark"/>
             <div className="d-flex right h-100 empty-125">
                     <div className="answerPage-backButton mt-auto w-100 d-flex flex-column">
-                        <Link to={sessionStorage.getItem("search")?"/search/"+sessionStorage.getItem("search"):'/cr'+this.state.ChatroomID}>
+                        <Link to={sessionStorage.getItem("search")?"/search/"+sessionStorage.getItem("search"):'/qanda'+this.state.ChatroomID}>
                             <button className="align-items-center d-flex ml-auto mr-auto flex-row">
                                 <div className="align-items-center d-flex ml-auto mr-auto flex-row">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="mr-1 bi bi-chevron-double-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +108,7 @@ class AnswersPage extends Component {
             </div>
             <div className="center w-75">
                 <div className="infoBox">
-                    <ChatroomInfo Cid={this.state.ChatroomID} />
+                    <ChatroomInfo Cid={this.state.ChatroomID} isDiscussion={false} />
                 </div>
                 <div className="abed-add-scroll-active">
                     <div className="question">

@@ -110,6 +110,7 @@ class QuestionsPage extends Component {
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
                             <div id="chatroom-info" className=" d-flex flex-row">
                                 <ChatroomInfo 
+                                    isDiscussion={false}
                                     loadQuestions={this.loadQuestions}
                                     Cid={this.state.ChatroomID}  />
                             </div>

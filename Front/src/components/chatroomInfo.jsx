@@ -30,6 +30,7 @@ const customStyles = {
 };
 class ChatroomInfo extends Component {
     state = {
+        isDiscussion:this.props.isDiscussion,
         showChatroomProfile: false,
         chatroomName: 'chatroom name',
         selectedTopic: 'Title',
@@ -41,7 +42,7 @@ class ChatroomInfo extends Component {
         chatroomId: this.props.Cid,
         showJoinChatroom: false,
         hideJoinChatroom:false,
-        userid: Cookies.get("id"),
+        userid: sessionStorage.getItem("id"),
         isJoined: '',
     }
 
@@ -57,10 +58,14 @@ class ChatroomInfo extends Component {
         if (prevProps.isJoined !== this.props.isJoined) {
             this.setState({isJoined:this.props.isJoined})  
         }
+        if (prevProps.isDiscussion !== this.props.isDiscussion) {
+            this.setState({isDiscussion:this.props.isDiscussion})  
+        }
 
       }
 
     updateJoinState = (joinState) =>{
+        this.props.changeJoinState(joinState)
         this.setState({
             isJoined: joinState,
         })
@@ -196,7 +201,7 @@ class ChatroomInfo extends Component {
                 "chatroomId",
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.props.Cid
             ]
         }
@@ -262,11 +267,17 @@ class ChatroomInfo extends Component {
                         </div>
                     </div>
                     <div className="chatroomInfo-button d-flex flex-row-reverse">
+                        {this.state.isDiscussion?(this.state.isJoined?"":
+                        <button style={{outline:"none"}} 
+                            onClick={this.handleJoinClick}   
+                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
+                            Join
+                        </button>):
                         <button style={{outline:"none"}} 
                             onClick={this.handleJoinClick}   
                             className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
                             Submit Question
-                        </button>
+                        </button>}
                     </div>
                 </div>
                 <div id="showChatroomProfile">

@@ -8,7 +8,6 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 import { Button } from 'react-bootstrap';
-import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -97,7 +96,7 @@ class joinChatroom extends Component {
                 "chatroomId",
             ],
             formValue:[
-                Cookies.get('id'),
+                sessionStorage.getItem('id'),
                 this.state.Cid,
             ]
         }
