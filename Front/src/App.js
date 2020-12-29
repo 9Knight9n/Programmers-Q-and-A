@@ -41,6 +41,10 @@ class App extends Component {
       else
         sessionStorage.removeItem("targetURL")
     }
+    else
+    {
+      sessionStorage.setItem("targetURL","/")
+    }
       
   }
 

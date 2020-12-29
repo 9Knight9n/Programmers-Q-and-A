@@ -39,6 +39,10 @@ class Homepage extends Component {
             // activeChatroom : sessionStorage.getItem("targetURL")?(sessionStorage.getItem("targetURL").includes('qanda')?parseInt(sessionStorage.getItem("targetURL").split('qanda')[1]):parseInt(sessionStorage.getItem("targetURL").split('discussion')[1])):(-1),
         }
     }
+
+    componentDidMount(){
+        sessionStorage.removeItem("targetURL")
+    }
     
     changeChatroom=(id)=>{
         this.setState({activeChatroom:id})

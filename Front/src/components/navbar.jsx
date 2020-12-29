@@ -31,7 +31,7 @@ class Navbar extends Component {
     render() { 
         return (
             <nav className="navbar navbar-dark bg-light justify-content-between">
-                <a className="navbar-brand">404!</a>
+                <Link className="navbar-brand" to="/">404!</Link>
                 <ul className="navbar-nav mr-auto">
                     <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="qanda"?" active":"")}>
                         <Link onClick={()=>this.props.changeNav("qanda")} className="nav-link" to={"/qanda"+this.state.activeChatroom}>Q&A</Link>

@@ -42,14 +42,17 @@ class QuestionsPage extends Component {
     componentDidUpdate(prevProps) {
         console.log("something changed")
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
-          this.setState({ChatroomID:this.props.match.params.chatroomid})
-        this.loadQuestions()
+            this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
+            this.loadQuestions()
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
       }
 
 
     async loadQuestions(){
+        // console.log(this.props.match.params.chatroomid)
+        if(this.props.match.params.chatroomid === "-1")
+            return false
         this.setState({loading:true})
         console.log("fetching Questions")
         let config ={
@@ -65,6 +68,7 @@ class QuestionsPage extends Component {
                 sessionStorage.getItem("id")
             ]
         }
+        console.log(config)
         let data = []
         // console.log("outside 0",data)
         data = await request(config)

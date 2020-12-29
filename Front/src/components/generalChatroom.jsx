@@ -45,8 +45,12 @@ class GeneralChatroom extends Component {
       }
 
     async componentWillMount(){
-        await connect("ws://127.0.0.1:8000/ws/api/generalchatroom/"+this.state.ChatroomID+"/");
-        await listen("message",this.newMessage);   
+        if(this.state.ChatroomID!==-1)
+        {
+            await connect("ws://127.0.0.1:8000/ws/api/generalchatroom/"+this.state.ChatroomID+"/");
+            await listen("message",this.newMessage); 
+        }
+          
       }
 
 
@@ -63,22 +67,23 @@ class GeneralChatroom extends Component {
                     button.click();  
                 } 
             }); 
-        const { ref, width, height, entry, unobserve, observe } = 
         
 
         this.loadChats()
     }
 
     componentDidUpdate(prevProps) {
-        console.log("something changed")
+        // console.log("something changed")
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
-          this.setState({ChatroomID:this.props.match.params.chatroomid})
+          this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
         this.loadChats()
         }
       }
 
 
     loadChats=async()=>{
+        if(this.props.match.params.chatroomid ==="-1")
+            return false
         this.setState({loading:true})
         console.log("fetching Questions")
         let config ={
