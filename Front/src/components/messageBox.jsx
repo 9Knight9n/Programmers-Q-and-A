@@ -7,10 +7,12 @@ import { Dropdown } from 'react-bootstrap';
 import 'react-chat-elements/dist/main.css';
 // MessageBox component
 import './CSS/messageBox.css';
+import ProfilePreview from './ProfilePreview';
 
 
 class MessageBox extends React.Component {
 	state={
+		showProfilePreview:false,
 		isOwner:this.props.userid===parseInt(sessionStorage.getItem("id")),
 		message_id:this.props.message_id,
 		userid:this.props.userid,
@@ -28,13 +30,27 @@ class MessageBox extends React.Component {
         this.setState({avatarSrc:sessionStorage.getItem(this.state.userid+":avatar")})
 	}
 
+	showProfilePreview = (userid) => {
+		// this.setState({ showProfilePreview: submit });
+		this.setState({ showProfilePreview: true ,});
+		// console.log(this.state.submit)
+	
+	};
+	
+	hideProfilePreview = () => {
+		this.setState({ showProfilePreview: false });
+		// this.setState({ submit: -2 });
+		// this.loadChatrooms()
+	};
+	
+
 	render() {
 		return (
 		
 		<React.Fragment>
-			
+			<ProfilePreview userid={this.state.userid} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
 			<div className={'w-fit-content d-flex w-100 flex-row'.concat(this.state.isOwner?"-reverse":"")}>
-				<div className=''>
+				<div className='' onClick={this.showProfilePreview} style={{cursor:"pointer"}}>
 					<Avatar
 						src={this.state.avatarSrc}
 						alt={'logo'}
