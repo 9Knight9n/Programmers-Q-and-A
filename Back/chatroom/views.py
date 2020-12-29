@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.response import Response
 from registeration.models import User
-from .models import Chatroom
+from .models import Chatroom 
 from join.models import Chatroom_User
 from .serializers import ShowUChatroomProfileSerializer
 
@@ -20,6 +20,8 @@ def createchatroom(request):
             Link=data['Link'][0],
             selected=data['selected'][0]
         )
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user.save()
         if "Description" in request.data.keys() :
             Description=data['Description'][0]
         chatroom.save()
@@ -48,6 +50,8 @@ def createchatroom(request):
             selected=data['selected'][0],
             selectedSub=data['selectedSub'][0]
         )
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user.save()
         if "Description" in request.data.keys() :
             Description=data['Description'][0]
         chatroom.save()
@@ -74,6 +78,8 @@ def createchatroom(request):
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0]
         )
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user.save()
         if "Description" in request.data.keys() :
             Description=data['Description'][0]
         chatroom.save()
@@ -100,13 +106,14 @@ def createchatroom(request):
 
 @api_view(['POST'])
 def show_chatrooms(request):
-    chatrooms = Chatroom.objects.all()
+    user = User.objects.filter(id=request.data["user_id"])
+    chatroom_user = Chatroom_User.objects.filter(user=user[0])
     data = []
-    for i in range(len(chatrooms)):
+    for i in range(len(chatroom_user)):
         # data.append(ChatroomSerializer(chatrooms[i]))
-        data.append({'id':chatrooms[i].id,'name':chatrooms[i].chatroomName})
-        print(chatrooms[i].chatroomAvatar)
-        image = open( str(chatrooms[i].chatroomAvatar), 'r').read()
+        data.append({'id':chatroom_user[i].chatroom.id,'name':chatroom_user[i].chatroom.chatroomName})
+        print(chatroom_user[i].chatroom.chatroomAvatar)
+        image = open( str(chatroom_user[i].chatroom.chatroomAvatar), 'r').read()
         data[i]['Base64'] = image
     return Response(data , status=status.HTTP_200_OK)
 

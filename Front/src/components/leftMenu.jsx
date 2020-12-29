@@ -50,10 +50,10 @@ class LeftMenu extends Component {
             needToken:true,
             type:"post",
             formKey:[
-                
+                'user_id'
             ],
             formValue:[
-                
+                sessionStorage.getItem("id")
             ]
         }
         let data = []

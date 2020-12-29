@@ -105,7 +105,7 @@ class Search extends Component {
                             
                             {this.state.suggestions.map(sug =>
                             <Link 
-                                to={"/cr"+sug.chatroom_id} 
+                                to={"/qanda"+sug.chatroom_id} 
                                 id="suggestion" 
                                 key={sug.chatroom_id} 
                                 className="m-2 d-flex pl-3"
