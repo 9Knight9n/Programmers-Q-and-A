@@ -112,7 +112,9 @@ class joinChatroom extends Component {
             })
             this.props.updateJoinState(true)
             this.props.hideJoinChatroom()
-            toast.info("Welcom to "+this.props.chatroomName +" chatroom");
+            if(this.props.loadChatrooms)
+                this.props.loadChatrooms(1,this.props.chatroomName);
+            
         }else{
             console.log("user is already Joined")
         }

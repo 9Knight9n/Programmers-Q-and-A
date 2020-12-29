@@ -108,7 +108,7 @@ class AnswersPage extends Component {
             </div>
             <div className="center w-75">
                 <div className="infoBox">
-                    <ChatroomInfo Cid={this.state.ChatroomID} isDiscussion={false} />
+                    <ChatroomInfo loadChatrooms={this.props.loadChatrooms} Cid={this.state.ChatroomID} isDiscussion={false} />
                 </div>
                 <div className="abed-add-scroll-active">
                     <div className="question">

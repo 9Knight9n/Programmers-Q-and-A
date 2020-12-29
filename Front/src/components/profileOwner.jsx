@@ -319,7 +319,8 @@ class ProfileOwner extends Component {
                 isJoined: false,
             });
             this.props.updateJoinState(false)
-            toast.info("You Left "+this.state.chatroomName +" Chatroom!");
+            if(this.props.loadChatrooms)
+                this.props.loadChatrooms(2,this.state.chatroomName)
             this.props.hideChatroomProfile();
         }else{
             console.log(data)

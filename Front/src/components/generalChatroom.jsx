@@ -254,6 +254,7 @@ class GeneralChatroom extends Component {
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
                             <div id="chatroom-info" className=" d-flex flex-row">
                                 <ChatroomInfo
+                                    loadChatrooms={this.props.loadChatrooms}
                                     changeJoinState={this.changeJoinState}
                                     isDiscussion={true}
                                     Cid={this.state.ChatroomID}  />

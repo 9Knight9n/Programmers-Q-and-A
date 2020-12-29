@@ -123,6 +123,7 @@ class QuestionsPage extends Component {
                         <div id="question-page" className="d-flex flex-column h-100 w-100">
                             <div id="chatroom-info" className=" d-flex flex-row">
                                 <ChatroomInfo 
+                                    loadChatrooms={this.props.loadChatrooms}
                                     isDiscussion={false}
                                     loadQuestions={this.loadQuestions}
                                     Cid={this.state.ChatroomID}  />
@@ -134,6 +135,7 @@ class QuestionsPage extends Component {
                                         <div key={question.id} className="mb-3"
                                             ref={refToDiv => this.state.ref[question.id] = refToDiv}>
                                             <QuestionChatbox
+                                                loadChatrooms={this.props.loadChatrooms}
                                                 loadQuestions={this.loadQuestions}
                                                 sameProblemCount={question.vote}
                                                 sameProblem={question.sameProblem}

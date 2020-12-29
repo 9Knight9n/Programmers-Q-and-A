@@ -6,12 +6,12 @@ import React, { Component } from 'react';
 import {Link, Redirect} from "react-router-dom";
 import NewChatroom from './newChatroom';
 import './CSS/leftMenu.css';
-import {request} from './requests';
+
 
 class LeftMenu extends Component {
     state = {  
         show: false,
-        chatrooms:[],
+        chatrooms:this.props.chatrooms,
         activeChatroom:this.props.activeChatroom,
         activeNav:this.props.activeNav,
     }
@@ -26,7 +26,7 @@ class LeftMenu extends Component {
             
         // else
         //     this.setState({preAddress:"discussion"})
-        this.loadChatrooms()
+        // this.loadChatrooms()
         // for (let i = 0;i<this.state.chatrooms.length;i++)
         //     if (this.state.chatrooms[i].id === this.state.activeChatroom)
         //         document.getElementById("goToSelectedChatroom"+this.state.activeChatroom).click()
@@ -41,32 +41,13 @@ class LeftMenu extends Component {
         {
             this.setState({activeNav:this.props.activeNav})
         }
-    }
-
-    loadChatrooms=async()=>{
-
-        let config ={
-            url:"http://127.0.0.1:8000/api/loadchatroom/",
-            needToken:true,
-            type:"post",
-            formKey:[
-                'user_id'
-            ],
-            formValue:[
-                sessionStorage.getItem("id")
-            ]
+        if(preprops.chatrooms !== this.props.chatrooms)
+        {
+            this.setState({chatrooms:this.props.chatrooms})
         }
-        let data = []
-        // console.log("outside 0",data)
-        data = await request(config)
-        console.log(data)
-        if(data)
-            this.setState({chatrooms:data})
-
-
-
-
     }
+
+    
 
     // handleLogOutClick = () =>{
     //     window.$username = "";

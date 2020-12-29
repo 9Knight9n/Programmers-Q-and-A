@@ -7,8 +7,6 @@ import MyAccount from './myAccount';
 import defaultProfileImg from '../img/default-profile-picture.jpg';
 import linkImg from '../img/link.png';
 import './CSS/chatroomInfo.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import CopyToClipboard from "reactjs-copy-to-clipboard";
 import ReactTooltip from 'react-tooltip';
 import {request} from './requests';
@@ -16,6 +14,7 @@ import Texteditor from './texteditor';
 import ProfileOwner from './profileOwner';
 import JoinChatroom from './joinChatroom';
 import Modal from 'react-modal';
+import {  toast } from 'react-toastify';
 
 const customStyles = {
     content : {
@@ -233,6 +232,7 @@ class ChatroomInfo extends Component {
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 <JoinChatroom 
+                loadChatrooms={this.props.loadChatrooms}
                     chatroomName={this.state.chatroomName}
                   isJoined={this.state.isJoined}
                   Cid={this.state.chatroomId}
@@ -289,7 +289,7 @@ class ChatroomInfo extends Component {
                     {this.state.showChatroomProfile?
                     <div onClick={() => this.hideChatroomProfile()} className="modal">
                         <section onClick={this.modalClick} className="modal-main d-flex flex-column">
-                            <ProfileOwner updateJoinState={this.updateJoinState} isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
+                            <ProfileOwner loadChatrooms={this.props.loadChatrooms} updateJoinState={this.updateJoinState} isJoined={this.state.isJoined} Cid={this.state.chatroomId} hideChatroomProfile={this.hideChatroomProfile}/>
                         </section>
                     </div>
                     :""}

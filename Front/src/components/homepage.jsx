@@ -24,6 +24,9 @@ import {
   } from "react-router-dom";
 import GeneralChatroom from './generalChatroom';
 import {getActiveChannel,getActiveNav} from './util';
+import {request} from './requests';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -32,6 +35,7 @@ class Homepage extends Component {
     constructor(props){
         super(props);
         this.state={
+            chatrooms:[],
             activeChatroom:getActiveChannel(),
             activeNav:getActiveNav()
             // targetURL : sessionStorage.getItem("targetURL"),
@@ -42,6 +46,7 @@ class Homepage extends Component {
 
     componentDidMount(){
         sessionStorage.removeItem("targetURL")
+        this.loadChatrooms();
     }
     
     changeChatroom=(id)=>{
@@ -51,13 +56,45 @@ class Homepage extends Component {
         this.setState({activeNav:nav})
     }
 
+    loadChatrooms=async(join,chatroomName)=>{
+
+        let config ={
+            url:"http://127.0.0.1:8000/api/loadchatroom/",
+            needToken:true,
+            type:"post",
+            formKey:[
+                'user_id'
+            ],
+            formValue:[
+                sessionStorage.getItem("id")
+            ]
+        }
+        let data = []
+        // console.log("outside 0",data)
+        data = await request(config)
+        console.log(data)
+        if(data)
+            this.setState({chatrooms:data})
+        
+        if(join===1)
+        {
+            toast.info("Welcom to "+chatroomName +" chatroom");
+        }
+        else if(join===2)
+        {
+            toast.info("You Left "+chatroomName +" Chatroom!");
+        }
+
+    }
+
+
 
     render() { 
         return (
             <div className="bg">
                 {/* <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/> */}
                 <div className="LeftColumn">
-                    <LeftMenu activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
+                    <LeftMenu chatrooms={this.state.chatrooms} activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
                 </div>
                 <div className="RightColumn">
                     <Navbar activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeNav={this.changeNav} />
@@ -66,8 +103,8 @@ class Homepage extends Component {
                         {/* <p>{this.state.activeChatroom}</p> */}
 
                         <Switch>
-                            <Route path="/qanda:chatroomid" component={QuestionsPage}/>
-                            <Route path="/discussion:chatroomid" component={GeneralChatroom}/>
+                            <Route path="/qanda:chatroomid" component={(props)=><QuestionsPage {...props} loadChatrooms={this.loadChatrooms}/>}/>
+                            <Route path="/discussion:chatroomid" component={(props)=><GeneralChatroom {...props} loadChatrooms={this.loadChatrooms}/>}/>
                             <Route path="/search/:searchPhrase" component={SearchResultPage}/>
                         </Switch>
                         
