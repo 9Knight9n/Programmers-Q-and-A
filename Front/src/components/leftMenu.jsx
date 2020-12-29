@@ -64,7 +64,7 @@ class LeftMenu extends Component {
     hideModal = () => {
         this.setState({ show: false });
         this.setState({ submit: -2 });
-        this.loadChatrooms()
+        this.props.loadChatrooms()
     };
 
     logOut=()=>{

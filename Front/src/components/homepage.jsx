@@ -94,7 +94,7 @@ class Homepage extends Component {
             <div className="bg">
                 {/* <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/> */}
                 <div className="LeftColumn">
-                    <LeftMenu chatrooms={this.state.chatrooms} activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
+                    <LeftMenu chatrooms={this.state.chatrooms} loadChatrooms={this.loadChatrooms} activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
                 </div>
                 <div className="RightColumn">
                     <Navbar activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeNav={this.changeNav} />

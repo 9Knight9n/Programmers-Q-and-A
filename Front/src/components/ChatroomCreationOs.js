@@ -8,7 +8,7 @@ import Select from 'react-select';
 const customStyles = {
     menuList:(provided, state) => ({
         ...provided,
-        height:"200px",
+        // height:"200px",
         zIndex:"5"
     })
 } 
