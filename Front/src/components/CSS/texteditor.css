@@ -53,3 +53,11 @@
 .jodit_theme_dark .jodit-toolbar-button__button:hover:not([disabled]) {
   background-color: #1c4177;
 }
+
+.editor-exitImg {
+  width: 2%;
+  position: absolute;
+  margin-left: 99%;
+  margin-top: -1%;
+  cursor: pointer;
+}

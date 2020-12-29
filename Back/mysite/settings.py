@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'chatroom.apps.ChatroomConfig',
     'channels',
     'generalchatroom.apps.GeneralchatroomConfig',
+    'join',
 ]
 
 MIDDLEWARE = [

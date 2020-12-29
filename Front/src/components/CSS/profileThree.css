@@ -132,3 +132,11 @@
   font-size: small;
   color: #8a7f7f;
 }
+
+.parisa-css .css-g1d714-ValueContainer {
+  overflow-y: auto !important;
+  height: 5vh !important;
+}
+
+.parisa-css .profileBio {
+}

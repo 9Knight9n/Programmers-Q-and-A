@@ -12,6 +12,7 @@ import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
 
+
 const options = [
     { value: 'java', label: 'java' },
     { value: 'php', label: 'php' },
@@ -37,7 +38,7 @@ class ProfilePreview extends Component {
             userIntrests: [],
             askedQ: '',
             answeredQ: '',
-            numOfChatroom: '',
+            numberOfChatrooms: '',
             profileAvatar: '',
         }; 
 
@@ -49,6 +50,16 @@ class ProfilePreview extends Component {
         }
         this.loadData();
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.showProfilePreview !== this.props.showProfilePreview) {
+            this.loadData()
+            // this.setState({
+            //     showProfilePreview: this.props.showProfilePreview,
+            // })
+        }
+      }
+
     loadData = async () => {
         // this.setState({loading:true})
         console.log('entred loadData....')
@@ -74,7 +85,7 @@ class ProfilePreview extends Component {
                 userBio: data.description,
                 askedQ: data.askedQuestions,
                 answeredQ: data.answeredQuestions,
-                numOfChatroom: data.numberOfChatrooms,
+                numberOfChatrooms: data.numberOfChatrooms,
                 profileAvatar: data.user_profile_image
                 // userIntrests: decodeList(options, "111111111")
             });
@@ -104,7 +115,7 @@ class ProfilePreview extends Component {
         return ( 
             <div id="profilePreview">
             {this.props.showProfilePreview?
-              <div onClick={() => this.props.hideProfilePreview()} className="modal">
+            <div onClick={() => this.props.hideProfilePreview()} className="modal">
                 <section onClick={this.modalClick} className="modal-main d-flex flex-column">
                     <div className="ProfilePreview ProfilePreview-main-box ">
                         <ReactTooltip place="right" effect="solid" type="dark"/>
@@ -146,9 +157,9 @@ class ProfilePreview extends Component {
                                 <div className="ProfilePreview-bioBox">
                                     <label for="ProfilePreview-bio">Bio :</label>
                                     <div className="ProfilePreview-bio">
-                                        <p>
+                                        <span style={{whiteSpace: "pre-line"}}>
                                             {this.state.userBio}
-                                        </p>
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="ProfilePreview-activity">
@@ -158,8 +169,8 @@ class ProfilePreview extends Component {
                                             <p>{this.numberFormatter(this.state.askedQ)}</p>
                                         </div>
                                         <div className="ProfilePreview-joined-chatrooms d-flex justify-content-center">
-                                            <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numOfChatroom +" chatrooms"} /> 
-                                            <p>{this.numberFormatter(this.state.numOfChatroom)}</p>
+                                            <img src={groupChat} data-tip={this.state.userName+ " joined " + this.state.numberOfChatrooms +" chatrooms"} /> 
+                                            <p>{this.numberFormatter(this.state.numberOfChatrooms)}</p>
                                             </div>
                                         <div className="ProfilePreview-answered-questions d-flex justify-content-center">
                                             <img src={answeredQImg} data-tip={this.state.userName + " answered " + this.state.answeredQ +" questions"} /> 

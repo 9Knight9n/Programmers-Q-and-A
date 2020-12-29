@@ -54,7 +54,7 @@
   overflow: auto;
   padding: 1%;
   display: inline-block !important;
-  background-color: #bdbfcc;
+  background-color: #979ec8;
   border-radius: 10px;
   margin-top: 5%;
 }
@@ -118,11 +118,20 @@
 
 .ProfilePreview-bio {
   width: 100%;
-  min-height: 10vh;
+  height: 15vh;
+  overflow: auto;
   /* border-bottom: 1px solid #5c6bc0 !important; */
   /* background-color: #c0bed4; */
   padding: 3%;
+  background-color: #979ec8;
+  border-radius: 10px;
+  margin-top: 2%;
   /* background-color: #181852; */
+}
+.ProfilePreview-bio span {
+  width: 100%;
+  color: black !important;
+  height: 15vh;
 }
 
 .ProfilePreview-activity {
