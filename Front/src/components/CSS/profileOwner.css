@@ -14,6 +14,8 @@
 .chProfileOwner a {
   color: #7a7aff73 !important;
   font-size: medium !important;
+  margin-left: -3%;
+
 } 
 
 .chProfileOwner a:hover {
@@ -28,6 +30,8 @@
 .chProfileOwner label {
   font-size: large !important;
   color: #9d9dd1;
+  margin-top: 9%;
+ 
 }
 
 .chProfileOwner-profile {
@@ -108,7 +112,7 @@
 
 .chProfileOwner-chName-chTitle-chLink {
   width: 100%;
-  margin-left: 10%;
+  margin-left: -2%;
   margin-top: 5%;
   padding: 0%;
 }
@@ -360,6 +364,19 @@ div.container {
   padding: 10%;
   background-color: #394264;
 }
-.list-group {
-  border-radius: 0%;
+
+  .list-group {
+    border-radius: 0%;
+    margin-top: 0%;
+    background-color: #394264;
+}
+.img-thumbnail {
+  padding: 0rem;
+  background-color: #fff0;
+  border: 0px solid #dee2e600;
+  border-radius: 2rem;
+  max-width: 22%;
+  height: auto;
+  margin-left: 3%;
+  margin-top: 4%;
 }
