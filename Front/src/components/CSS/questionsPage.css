@@ -25,11 +25,17 @@
   overflow-y: auto;
 }
 .messages-box {
-  height: calc(83vh - 94px);
+  /* height: calc(83vh - 123px); */
   /* height: 100%; */
   /* flex-grow: 1; */
   overflow-y: auto;
 }
 .fill-remaining{
   flex-grow: 1;
+}
+.rce-input-textarea{
+  min-height: 40px !important;
+}
+.replyToButton{
+  background-color: #a9b7ff !important;
 }

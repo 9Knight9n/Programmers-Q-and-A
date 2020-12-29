@@ -65,7 +65,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             text=event['message'],
             time = datetime.datetime.now()
         )
-        message.save()
+        # message.save()
         serializer = MessageSerializer(message)
         data = serializer.data
         data["time"] = message.time.ctime()
@@ -74,8 +74,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data['order_type'] = 'create_message'
         data['message_id'] = message.id
         data['username'] = user[0].username
-        if message.parentMessage != None:
-            data['replyTo'] = message.parentMessage
+        if 'replyTo' in event.keys() :
+            replyMessage = Message.objects.filter(id=event['replyTo'])
+            message.parentMessage = replyMessage[0]
+            data['replyTo'] = replyMessage[0].id
+        message.save()
+        # if message.parentMessage != None:
+        #     data['replyTo'] = message.parentMessage
         return data
 
     @database_sync_to_async

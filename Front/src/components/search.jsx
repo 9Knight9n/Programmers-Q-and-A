@@ -81,17 +81,6 @@ class Search extends Component {
     render() { 
         return (  
             <React.Fragment>
-                <ToastContainer
-                    position="top-left"
-                    autoClose={false}
-                    hideProgressBar={true}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
                 <Link id="goToSearchResultPage" to={{pathname:"/search/"+this.state.searchInput,state:{tab:1}}}/>
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto mr-4 d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>

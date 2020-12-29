@@ -23,80 +23,54 @@ import {
     useHistory 
   } from "react-router-dom";
 import GeneralChatroom from './generalChatroom';
+import {getActiveChannel,getActiveNav} from './util';
 
 
 
 class Homepage extends Component {
 //chatrooms id must be non negetive
-    state = {
-        activeChatroom : sessionStorage.getItem("targetURL")?sessionStorage.getItem("targetURL").split('cr')[1]:-1,
-        refToLeftMenu:React.createRef(),
-    }
-
-    componentDidMount=()=>{
-        if(sessionStorage.getItem("targetURL"))
-        {
-            if(this.state.activeChatroom)
-            {
-                sessionStorage.removeItem("targetURL")
-                document.getElementById("selectChatroom").click()
-            }
-            
+    constructor(props){
+        super(props);
+        this.state={
+            activeChatroom:getActiveChannel(),
+            activeNav:getActiveNav()
+            // targetURL : sessionStorage.getItem("targetURL"),
+            // activeNav : sessionStorage.getItem("targetURL")?(toString(sessionStorage.getItem("targetURL")).includes('discussion')?2:1):(1),
+            // activeChatroom : sessionStorage.getItem("targetURL")?(sessionStorage.getItem("targetURL").includes('qanda')?parseInt(sessionStorage.getItem("targetURL").split('qanda')[1]):parseInt(sessionStorage.getItem("targetURL").split('discussion')[1])):(-1),
         }
-            
-
     }
     
-
-
-    chatroomClicked = (id) =>{
+    changeChatroom=(id)=>{
         this.setState({activeChatroom:id})
-        console.log("called--------------------")
-        // let chatrooms = [...this.state.chatrooms];
-        // for (let i = 0; i < chatrooms.length; i++)
-        //     if (chatrooms[i].id===id)
-        //     {
-        //         chatrooms[i].isActive = true;
-        //         let activeChatroom = <Chatroom chatID={chatrooms[i].id}/>
-        //         this.setState({activeChatroom:activeChatroom});
-        //     }
-        //     else
-        //         chatrooms[i].isActive = false;
-        // this.setState({chatrooms}); 
-        // console.log("__________________________________________________________")     
-        // console.log("chatroom ",id," selected")
-        // this.forceUpdate()
-        // document.getElementById("selectChatroom").HTML(<QuestionsPage ChatroomID={id} />)
     }
-
+    changeNav=(nav)=>{
+        this.setState({activeNav:nav})
+    }
 
 
     render() { 
         return (
             <div className="bg">
-                <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/>
+                {/* <Link id="selectChatroom" to={"/cr"+this.state.activeChatroom}/> */}
                 <div className="LeftColumn">
-                    <LeftMenu chatrooms={this.state.chatrooms} selectedTab={this.state.activeChatroom} selectTab={this.chatroomClicked}/>
+                    <LeftMenu activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
                 </div>
                 <div className="RightColumn">
-                    <Navbar />
+                    <Navbar activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeNav={this.changeNav} />
                     <div style={{height:"91vh"}}>
                         {/* <button onClick={()=>this.state.refToLeftMenu.current.selectTab(5)}></button> */}
                         {/* <p>{this.state.activeChatroom}</p> */}
 
                         <Switch>
-                            <Route path="/cr:chatroomid" component={(props) => <QuestionsPage {...props} selectTab={this.chatroomClicked}/>}/>
-                            <Route path="/gcr:chatroomid" component={GeneralChatroom}/>
+                            <Route path="/qanda:chatroomid" component={QuestionsPage}/>
+                            <Route path="/discussion:chatroomid" component={GeneralChatroom}/>
                             <Route path="/search/:searchPhrase" component={SearchResultPage}/>
                         </Switch>
                         
                         
                         
                     </div>
-                    
-                </div>
-                    
-                    
+                </div>  
             </div>
         );
     }

@@ -10,6 +10,8 @@ import './CSS/messageBox.css';
 
 class MessageBox extends React.Component {
 	state={
+		isOwner:this.props.userid===parseInt(sessionStorage.getItem("id")),
+		message_id:this.props.message_id,
 		userid:this.props.userid,
 		avatarSrc:this.props.avatarSrc,
 		title:this.props.title,
@@ -30,7 +32,7 @@ class MessageBox extends React.Component {
 		
 		<React.Fragment>
 			
-			<div className='d-flex flex-row w-100'>
+			<div className={'d-flex w-100 flex-row'.concat(this.state.isOwner?"-reverse":"")}>
 				<div className=''>
 					<Avatar
 						src={this.state.avatarSrc}
@@ -43,13 +45,13 @@ class MessageBox extends React.Component {
 				<div className='w-100'>
 					<MB
 						id={this.state.id}
-						position={'left'}
+						position={this.state.isOwner?"right":'left'}
 						type={'text'}
-						title={this.state.title}
+						title={!this.state.isOwner?this.state.title:""}
 						titleColor='#8717ae'
 						text={this.state.text}
 						dateString={this.state.dateString}
-						onReplyClick={()=>console.log('reply')}
+						onReplyClick={()=>this.props.reply(this.state.message_id,this.state.title)}
 						// onClick
 						onReplyMessageClick={() => console.log('reply clicked!')}
 						replyButton={true}

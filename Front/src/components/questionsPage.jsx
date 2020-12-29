@@ -12,87 +12,7 @@ import { ScrollTo,scroll } from "react-scroll-to";
 
 
 class QuestionsPage extends Component {
-    // state = {
-    //     questions:[
-    //         {
-    //             id:1,
-    //             sameProblemCount:5,
-    //             senderId:1,
-    //             title:"this is first Question",
-    //             context:<div>
-    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
-    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
-    //                                                 <a href="https://www.google.bg/" title="Google" 
-    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
-    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            
-    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
-    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
-    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
-    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    //                     </div>,
-    //             sentDate:new Date().toLocaleString()
-    //         },
-    //         {
-    //             id:2,
-    //             sameProblemCount:5,
-    //             senderId:1,
-    //             title:"this is second Question",
-    //             context:<div>
-    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
-    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
-    //                                                 <a href="https://www.google.bg/" title="Google" 
-    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
-    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            
-    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
-    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
-    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
-    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    //                     </div>,
-    //             sentDate:new Date().toLocaleString()
-    //         },
-    //         {
-    //             id:3,
-    //             sameProblemCount:5,
-    //             senderId:1,
-    //             title:"this is third Question",
-    //             context:<div>
-    //                         Lorem ipsum dolor sit amet, consectetur <a href="https://www.yahoo.com/" 
-    //                                                 target="_blank" rel="noopener noreferrer">yahoo.com
-    //                                                 </a> adipiscing elit, sed do eiusmod tempor incididunt 
-    //                                                 <a href="https://www.google.bg/" title="Google" 
-    //                                                     rel="nofollow" target="_blank" rel="noopener noreferrer"> www.google.bg
-    //                                                 </a> ut labore et dolore magna amet, consectetur adipiscing elit, 
-    //                                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-    //                                                 minim veniam, quis nostrud exercitation ullamco laboris nisi
-    //                                                 ut aliquip ex Lorem ipsum dolor sit amet, consectetur
-    //                                                 adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            
-    //                                                 et dolore magna aliqua. Ut enim ad minim veniam, quis
-    //                                                 nostrud exercitation ullamco laboris nisi ut aliquip ex
-    //                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    //                                                 do eiusmod tempor incididunt ut labore et dolore magna
-    //                                                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    //                     </div>,
-    //             sentDate:new Date().toLocaleString()
-    //         }
-
-    //     ]
-        
-    // }
+    
 
     constructor(props) {
         super(props);
@@ -108,9 +28,10 @@ class QuestionsPage extends Component {
 
 
     componentDidMount(){
+        // console.log("********************",this.state.ChatroomID)
         sessionStorage.removeItem("search")
         // this.setState({ChatroomID:parseInt(this.props.match.params.chatroomid)})
-        console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
+        // console.log("chatroomid is:",parseInt(this.props.match.params.chatroomid))
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
         // this.props.chatroomClicked(this.state.ChatroomID)
         this.loadQuestions()
@@ -122,7 +43,6 @@ class QuestionsPage extends Component {
         console.log("something changed")
         if (prevProps.match.params.chatroomid !== this.props.match.params.chatroomid) {
           this.setState({ChatroomID:this.props.match.params.chatroomid})
-          this.props.selectTab(this.props.match.params.chatroomid)
         this.loadQuestions()
         // console.log("chatroom changed from ",prevProps.Cid ," to ",this.props.Cid)
         }
@@ -178,39 +98,42 @@ class QuestionsPage extends Component {
     render() { 
         return (
             <React.Fragment>
-                {this.state.loading?<LoadingPage/>: ""}
-                <div className="w-100 h-100 p-2">
-                    <div id="question-page" className="d-flex flex-column h-100 w-100">
-                        <div id="chatroom-info" className=" d-flex flex-row">
-                            <ChatroomInfo 
-                                loadQuestions={this.loadQuestions}
-                                Cid={this.state.ChatroomID}  />
-                        </div>
-                        <div className="mt-1 mb-1 ml-3 h-100">
-                            <div className="questions-box">
-                                <div className="mr-5 mb-2">
-                                    {this.state.questions.map(question =>
-                                    <div key={question.id} className="mb-3"
-                                        ref={refToDiv => this.state.ref[question.id] = refToDiv}>
-                                        <QuestionChatbox
-                                            loadQuestions={this.loadQuestions}
-                                            sameProblemCount={question.vote}
-                                            sameProblem={question.sameProblem}
-                                            senderId={question.userid}
-                                            senderUsername={question.user}
-                                            context={question.text}
-                                            sentDate={question.time}
-                                            showMoreButton={true}
-                                            isAnswered={question.isAnswered}
-                                            Qid={question.id}
-                                            Cid={this.state.ChatroomID}/>
+                {this.state.ChatroomID!==-1?
+                <React.Fragment>
+                    {this.state.loading?<LoadingPage/>: ""}
+                    <div className="w-100 h-100 p-2">
+                        <div id="question-page" className="d-flex flex-column h-100 w-100">
+                            <div id="chatroom-info" className=" d-flex flex-row">
+                                <ChatroomInfo 
+                                    loadQuestions={this.loadQuestions}
+                                    Cid={this.state.ChatroomID}  />
+                            </div>
+                            <div className="mt-1 mb-1 ml-3 h-100">
+                                <div className="questions-box">
+                                    <div className="mr-5 mb-2">
+                                        {this.state.questions.map(question =>
+                                        <div key={question.id} className="mb-3"
+                                            ref={refToDiv => this.state.ref[question.id] = refToDiv}>
+                                            <QuestionChatbox
+                                                loadQuestions={this.loadQuestions}
+                                                sameProblemCount={question.vote}
+                                                sameProblem={question.sameProblem}
+                                                senderId={question.userid}
+                                                senderUsername={question.user}
+                                                context={question.text}
+                                                sentDate={question.time}
+                                                showMoreButton={true}
+                                                isAnswered={question.isAnswered}
+                                                Qid={question.id}
+                                                Cid={this.state.ChatroomID}/>
+                                        </div>
+                                        )}
                                     </div>
-                                    )}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </React.Fragment>:""}
                 
             </React.Fragment>
         );

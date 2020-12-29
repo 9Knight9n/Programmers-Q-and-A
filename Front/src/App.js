@@ -28,13 +28,18 @@ class App extends Component {
   }
 
   componentDidMount=()=>{
-    
-    if(!sessionStorage.getItem("avatar"))
+    if(window.location.pathname.toLowerCase() !=="/login" && window.location.pathname.toLowerCase() !=="/signup")
     {
-      console.log(window.location.pathname)
-      sessionStorage.setItem("targetURL",window.location.pathname)
-      document.getElementById("loginfirst").click()
-      
+      // console.log(window.location.pathname.toLowerCase()," !== ","/nan")
+       
+      // console.log("target:",sessionStorage.getItem("targetURL"),":",window.location.pathname)
+      if(!sessionStorage.getItem("id"))
+      {
+        sessionStorage.setItem("targetURL",window.location.pathname)
+        document.getElementById("GoToLoginPage").click()
+      }
+      else
+        sessionStorage.removeItem("targetURL")
     }
       
   }
@@ -49,7 +54,8 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <Link id="loginfirst" to="/login"/>
+        <Link id="GoToLoginPage" to="/login"/>
+        {/* <Link id="GoToHomePage" to="/"/> */}
         <Switch>
           <Route path="/login">
             <SignInForm />
@@ -57,17 +63,11 @@ class App extends Component {
           <Route path="/signup">
             <SignUpForm />
           </Route>
-          <Route path="/messageBox">
-            <MessageBox />
+          <Route path="/setting">
+            <Setting />
           </Route>
           <Route path="/answerPage">
             <AnswerPage />
-          </Route>
-          <Route path="/questionPage">
-            <QuestionsPage />
-          </Route> 
-          <Route path="/setting">
-            <Setting />
           </Route>
           <Route path="/">
             <Homepage />

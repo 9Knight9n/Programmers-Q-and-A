@@ -11,3 +11,6 @@
     background-color: #545f91fc;
     border-radius: 20px;
 }
+.nav-item {
+    width: fit-content !important;
+}
