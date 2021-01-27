@@ -11,6 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResizeObserver from 'rc-resize-observer';
 import { Dropdown } from 'react-bootstrap';
+import * as Scroll from 'react-scroll';
+import { Link as SLink, Element as SElement, Events as SEvents, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
  
@@ -56,7 +58,30 @@ class GeneralChatroom extends Component {
         }
         else if (message.order_type==="create_message")
         {
-            this.setState({chats:[...this.state.chats,message]})
+            
+            // scroll.scrollToTop();
+            // scroll.scrollToTop( {
+            //     duration: 1500,
+            //     delay: 100,
+            //     smooth: true,
+            //     containerId: 'scroll-container-discussion',
+            //     offset: 50});
+            let scrollContainer = document.getElementById("scroll-container-discussion");
+            // get scroll position in px
+            if (Math.floor(scrollContainer.scrollHeight - scrollContainer.scrollTop) <= scrollContainer.clientHeight)
+            {
+                this.setState({chats:[...this.state.chats,message]})
+                scroll.scrollToBottom( {
+                duration: 750,
+                delay: 100,
+                smooth: true,
+                containerId: 'scroll-container-discussion',
+                offset: 50});
+            }
+            else
+            {
+                this.setState({chats:[...this.state.chats,message]})
+            }
         }
         console.log(message)
         // this.setState({chats:[...this.state.chats,message]})
@@ -76,6 +101,7 @@ class GeneralChatroom extends Component {
             await listen("message",this.newMessage); 
         }  
       }
+
 
 
     componentDidMount(){
@@ -228,6 +254,19 @@ class GeneralChatroom extends Component {
         this.setState({replying:id,replyingTo:username})
     }
 
+    onReplyMessageClick=(id)=>{
+        // console.log(this.state.chats.find(chat => chat.message_id === id))
+        scroller.scrollTo("chat".concat(this.state.chats.find(chat => chat.message_id === id).replyTo)
+                , {
+                duration: 750,
+                delay: 100,
+                smooth: true,
+                containerId: 'scroll-container-discussion',
+                // offset: 50, // Scrolls to element + 50 pixels down the page
+              }
+            )
+    }
+
 
 
     render() { 
@@ -260,16 +299,22 @@ class GeneralChatroom extends Component {
                                     Cid={this.state.ChatroomID}  />
                             </div>
                             <div className="mt-1 mb-1 ml-5 h-100">
-                                <div className="messages-box" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
-                                    <div className="mr-5 mb-2">
+                                <div id="scroll-container-discussion" className="messages-box" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
+                                    <div className="mr-5 mb-2" 
+                                        // style={{
+                                        //     height: '100%',
+                                        //     overflow: 'scroll',
+                                        //   }}
+                                          >
                                         {this.state.chats.map(chat =>
-                                        <div key={chat.message_id} className="mb-3 d-flex flex-row w-100">
+                                        <SElement name={"chat".concat(chat.message_id)} key={chat.message_id} className="mb-3 d-flex flex-row w-100">
                                             <div className={chat.user===parseInt(sessionStorage.getItem("id"))?"ml-auto d-flex flex-row-reverse":"d-flex flex-row"}>
                                                 <MessageBox
                                                     reply={this.reply}
                                                     message_id={chat.message_id}
                                                     userid={chat.user}
                                                     title={chat.username}
+                                                    onReplyMessageClick={this.onReplyMessageClick}
                                                     text={<span style={{whiteSpace: "pre-line"}}>
                                                             {ReactHtmlParser(chat.text)}
                                                         </span>}
@@ -292,8 +337,7 @@ class GeneralChatroom extends Component {
                                                     </Dropdown>
                                                 </div>
                                             </div>
-                                            
-                                        </div>
+                                        </SElement>
                                         )}
                                     </div>
                                 </div>
