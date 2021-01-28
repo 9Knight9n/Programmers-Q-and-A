@@ -13,6 +13,7 @@ import ResizeObserver from 'rc-resize-observer';
 import { Dropdown } from 'react-bootstrap';
 import * as Scroll from 'react-scroll';
 import { Link as SLink, Element as SElement, Events as SEvents, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { wait } from '@testing-library/react';
 
 
  
@@ -193,6 +194,14 @@ class GeneralChatroom extends Component {
                 isOwner: parseInt(sessionStorage.getItem("id")) === data.owner,
             });
         }
+        // let objDiv = document.getElementById("scroll-container-discussion");
+        // objDiv.scrollTop = objDiv.scrollHeight;
+        scroll.scrollToBottom( {
+            duration: 1500,
+            delay: 100,
+            smooth: true,
+            containerId: 'scroll-container-discussion',
+            offset: 50});
         // console.log(data)
         // this.setState({loading:false})
     }
