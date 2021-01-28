@@ -4,7 +4,7 @@
 #search div#bar{
     overflow-x: hidden;
     overflow-y: hidden;
-    width: 30px;
+    width: 0px;
     /* transition: display 1s; */
     /* display: none; */
     /* -webkit-transition: width 1s ease-in-out;
@@ -115,8 +115,14 @@
 }
 .result-chatroom{
     height: 50px;
-    background-color:#03506f !important;
+    background-color:#03506f ;
     border-radius: 7px;
+    transition: font-size 0.15s;
+}
+
+.result-chatroom:hover{
+    background-color:#06668b !important;
+    font-size: larger;
 }
 
 #search-filter .modal{
