@@ -141,8 +141,8 @@ class joinChatroom extends Component {
                                         </p>
                                     </div>
                                     <div className="joinChatroom-buttons d-flex flex-row mt-auto">
-                                        <button onClick={this.handleJoin} className="joinButton">Join</button>
-                                        <button onClick={() => this.props.hideJoinChatroom()} className="notNowButton">Not now</button>
+                                        <button onClick={this.handleJoin} className="notNowButton">Not now</button>
+                                        <button onClick={() => this.props.hideJoinChatroom()} className="joinButton">Join</button>
                                     </div>
                                 </div>
                             </div>

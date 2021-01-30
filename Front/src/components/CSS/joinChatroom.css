@@ -69,11 +69,13 @@
   outline: none;
 }
 
-.joinChatroom-elements .joinButton {
+.joinChatroom .joinButton {
+  background-color: #888eb7;
+  border-left: 2px solid black !important;
 }
 
-.joinChatroom-elements .notNowButton {
-  border-left: 2px solid black !important;
+.joinChatroom .notNowButton {
+  background-color: #777986;
 }
 
 #joinChatroom .modal {
@@ -89,8 +91,8 @@
 #joinChatroom .modal .modal-main {
   position: fixed;
   background: #33415c;
-  width: 30vw !important;
-  height: 30vh !important;
+  width: 27vw !important;
+  height: 20vh !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
