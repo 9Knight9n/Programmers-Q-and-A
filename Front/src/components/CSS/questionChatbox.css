@@ -31,6 +31,12 @@
 #options .dropdown-toggle::after {
   display: none;
 }
+/* #options .dropdown-item{
+  background-color: teal;
+} */
+#options .dropdown-menu{
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 1) !important;
+}
 #options .btn {
   border: none !important;
   background-color: #39b7dd00 !important;

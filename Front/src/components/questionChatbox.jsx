@@ -348,9 +348,13 @@ hideProfilePreview = () => {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu className="dropDown">
+                                        <hr/><hr/><hr/>
+                                        <Dropdown.Item as="button">Option</Dropdown.Item>
+                                        <hr/><hr/><hr/>
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.startEditing}>Edit</Dropdown.Item>:""}
+                                        <hr/><hr/><hr/>
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.handleDelete}>Delete</Dropdown.Item>:""}
-                                        <Dropdown.Item as="button">option 3</Dropdown.Item>
+                                        <hr/><hr/><hr/>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
