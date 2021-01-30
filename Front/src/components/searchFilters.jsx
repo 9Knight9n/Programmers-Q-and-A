@@ -154,7 +154,7 @@ class SearchFilter extends Component {
                                         }
                                     )} 
                                         type="button" className="btn btn-primary">
-                                        Apply filters
+                                        Apply
                                     </button>
                                 </div>
                             </div>
