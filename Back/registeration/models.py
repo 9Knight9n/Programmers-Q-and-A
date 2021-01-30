@@ -48,10 +48,6 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    #def find_user(email, password):
-    #    data = User.objects.filter(email=email)
-    #    print(data)
-
 class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',

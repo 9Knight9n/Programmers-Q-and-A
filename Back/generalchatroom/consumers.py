@@ -35,7 +35,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json['type'] = 'chat_message'
         decodedPayload = jwt.decode(text_data_json['token'],None,None)
         text_data_json['user_id'] = decodedPayload['user_id']
-        # print(decodedPayload)
         data = {}
         if text_data_json['order_type'] == 'create_message':
             data = await self.create_message(event=text_data_json)
@@ -50,13 +49,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from room group
     async def chat_message(self, event):
-        print(event)
         #message = event['text']
         # Send message to WebSocket
         await self.send(text_data=json.dumps(event))
     @database_sync_to_async
     def create_message(self , event):
-        print(event)
         chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
         user = User.objects.filter(id=event['user_id'])
         message = Message.objects.create(
@@ -103,6 +100,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
             data['message'] = 'user is not owner'
         data['type'] = 'chat_message'
         data['order_type'] = 'delete_message'
-        print(data)
         return data
     

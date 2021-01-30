@@ -86,9 +86,7 @@ def edit_interests(request):
 @api_view(['POST' , ])
 def show_profile_picture(request):
     data = dict(request.POST)
-    # print("############",data['id'],"##################")
     if data['id'][0]=='no id':
-        # print("###########################################################")
         filename = 'media/profile/image/default.txt'
         data = open(filename, 'rb').read()
         return Response ({'Base64' : data})
