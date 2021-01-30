@@ -15,7 +15,7 @@
   width: 7%;
 }
 #Question #middle {
-  background-color: #717eba38;
+  background-color: #2c3567eb ;
   /* border: 2px; */
   border-radius: 6px;
   /* border-left: solid 2px white; */
@@ -26,6 +26,7 @@
   width: 2%;
 }
 #Question #middle .show-more-less {
+  
 }
 #options .dropdown-toggle::after {
   display: none;
@@ -70,7 +71,7 @@
 #Question button {
   outline: none !important;
   border: none !important;
-  border-radius: 0px !important;
+  /* border-radius: 0px !important; */
 }
 
 #Question .date {
@@ -103,4 +104,11 @@
 
 #profile p {
   margin-top: -2%;
+}
+.ShowMore_ShowMore__13kyk{
+  background-color: #2c3567eb !important;
+}
+.ShowMore_DefaultButton__3Yb8V{
+  border-radius: 20px !important;
+  background-color: #3f51b5;
 }

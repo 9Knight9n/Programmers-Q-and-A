@@ -73,6 +73,9 @@ class App extends Component {
           <Route path="/answerPage">
             <AnswerPage />
           </Route>
+          <Route path="/test">
+            <Test />
+          </Route>
           <Route path="/">
             <Homepage />
           </Route>
