@@ -416,7 +416,7 @@ hideProfilePreview = () => {
                                         style={{lineHeight:'1.5'}}
                                         // styleButtonDiv={{position=}}
                                         >
-                                        {<div className="m-2">{ReactHtmlParser(this.state.context)}</div>}
+                                        {<div className="m-2 codeBlock">{ReactHtmlParser(this.state.context)}</div>}
                                     </ShowMore>
                                     // (this.state.showMoreExpanded?
                                     // <div>

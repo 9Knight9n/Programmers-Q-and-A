@@ -49,6 +49,7 @@ class Texteditor  extends Component {
   // setRef = jodit => this.jodit = jodit;
   
   config = {
+    "autofocus": true,
     "askBeforePasteHTML": false,
     "askBeforePasteFromWord": false,
   // "defaultActionOnPaste": "insert_only_text",
