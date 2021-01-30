@@ -232,8 +232,8 @@ class ChatroomInfo extends Component {
             <div className="chatroomInfo w-100 chatroomInfo-infoBox">
                 <ReactTooltip place="right" effect="solid" type="dark"/>
                 <JoinChatroom 
-                loadChatrooms={this.props.loadChatrooms}
-                    chatroomName={this.state.chatroomName}
+                  loadChatrooms={this.props.loadChatrooms}
+                  chatroomName={this.state.chatroomName}
                   isJoined={this.state.isJoined}
                   Cid={this.state.chatroomId}
                   hideJoinChatroom={this.hideJoinChatroom}

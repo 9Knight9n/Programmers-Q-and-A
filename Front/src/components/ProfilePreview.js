@@ -106,8 +106,8 @@ class ProfilePreview extends Component {
       }
 
     numberFormatter(num) {
-        return Math.abs(num) > 999 && Math.abs(num) < 1000000? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' :
-        Math.abs(num) > 9999 ?  Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'm' :
+        return Math.abs(num) > 999 && Math.abs(num) < 1000000? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'K' :
+        Math.abs(num) > 9999 ?  Math.sign(num)*((Math.abs(num)/1000000).toFixed(1)) + 'M' :
         Math.sign(num)*Math.abs(num)
     }
 
