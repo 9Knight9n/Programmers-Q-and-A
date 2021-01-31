@@ -149,21 +149,26 @@ class ChatroomCreationOs extends Component {
 
      }
 
-     handleChangeSelect1 = (selectedOs) => {
-        this.setState({ selectedOs: selectedOs.value ,selectedSubOs:this.state.OS.find(os => os.label === selectedOs.value).subOs[0].value });
+    handleChangeSelect1 = (selectedOs) => {
+        // if (sessionStorage.getItem("selected")) {
+        //     this.setState({
+        //         selectedOs: sessionStorage.getItem("selected"),
+        //         selectedSubOs:sessionStorage.getItem("selectedSub"),
+        //         osDescription:sessionStorage.getItem("Description")
+        //     })
+        // }
+        this.setState({ selectedOs: selectedOs.value ,selectedSubOs:""});
         this.setState({
             error1: false,//select
         });
-        console.log(this.state.OS.find(os => os.label === "Windows") , " hey" , this.state.selectedOs);
-      }
+    }
 
-       handleChangeSelect2 = (selectedSubOs) => {
-         this.setState({ selectedSubOs: selectedSubOs.value });
-         this.setState({
-             error2: false,//select
-         });
-       }
-      
+    handleChangeSelect2 = (selectedSubOs) => {
+        this.setState({ selectedSubOs: selectedSubOs.value });
+        this.setState({
+            error2: false,//select
+        });
+    }      
     render() { 
         return ( 
             <div className="abed-css main-box">
@@ -176,7 +181,7 @@ class ChatroomCreationOs extends Component {
                                 )}
                             </select> */}
                             <Select
-                            value={this.state.OS.find(os => os.label === this.state.selectedOs)} 
+                            // value={this.state.selectedOs} 
                             onChange={this.handleChangeSelect1}
                             styles={customStyles}
                             placeholder="Select an Os ..."
@@ -199,8 +204,8 @@ class ChatroomCreationOs extends Component {
                         {this.state.selectedOs ?
                         <div className="subOs  black-text">
                         <Select
-                            value={this.state.OS.find(os => os.label === this.state.selectedOs).subOs[0]} 
-                            onChange={this.handleChangeSelect2}
+                            // value={this.state.selectedOs} 
+                            onChange={value => this.handleChangeSelect2(value)}
                             styles={customStyles}
                             placeholder="Select a Distro ..."
                             name="selectedSubOs"
