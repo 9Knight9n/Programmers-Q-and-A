@@ -9,7 +9,7 @@ class Util:
     def sendEmail(data):
         #plaintext = get_template('room.txt')
         context = {"new" : "hello world"}
-        msg_html = render_to_string("chat/room.html", context)
+        msg_html = render_to_string("chat/index.html", context)
         msg = EmailMessage(subject=data["email_subject"], body=msg_html, to=[data["to_email"]])
         msg.content_subtype = "html"  # Main content is now text/html
         return msg.send()

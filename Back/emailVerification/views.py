@@ -23,7 +23,7 @@ def verifyEmail(request):
 
     email_body = "this is verify email"
 
-    emailData = {'email_body' : email_body , "to_email": data["email"],  "email_subject" : "verify your email 404!"}
+    emailData = {'email_body' : email_body , "to_email": data["email"],  "email_subject" : "404!"}
 
     Util.sendEmail(emailData)
 
