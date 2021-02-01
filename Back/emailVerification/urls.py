@@ -3,5 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("verifyEmail/", views.verifyEmail, name="verifyEmail"),
+    path("sendVerifyEmail/", views.sendVerifyEmail, name="sendVerifyEmail"),
+    path("emailVerification/", views.emailVerification, name="emailVerification"),
 ]
