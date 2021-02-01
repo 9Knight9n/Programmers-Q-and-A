@@ -14,7 +14,7 @@ import SignInForm from './components/SignInForm';
 import Homepage from './components/homepage';
 import Setting from './components/setting';
 import MessageBox from './components/messageBox';
-import EmailVerification from './components/emailVerification';
+import EmailVerification from './components/email_vf';
 import AnswerPage from './components/answersPage'
 import QuestionsPage from './components/questionsPage'
 import Test from './components/test';
@@ -65,7 +65,7 @@ class App extends Component {
             <EmailVerification />
           </Route>
           <Route path="/login">
-            <SignInForm />
+            <EmailVerification />
           </Route>
           <Route path="/signup">
             <SignUpForm />
