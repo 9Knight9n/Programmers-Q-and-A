@@ -363,16 +363,7 @@ class AnswerChatBox  extends Component {
 
                         <div id="body" className="d-flex flex-row w-100">
                             <div id="left" className="d-flex flex-column bd-highlight">
-                                <div className="trueAnswer">
-                                    {this.state.isQOwner && !this.state.trueAnswer? 
-                                    <img data-tip="Click if this answer is true" src={blueCheckMark} onClick={this.handleTrueAnswer}/> :
-                                    this.state.trueAnswer && this.state.isQOwner?
-                                    <img data-tip="This answer is true" src={greenCheckMark} onClick={this.handleTrueAnswer}/> : ""}
-                                    {!this.state.isQOwner && this.state.trueAnswer?
-                                    <img data-tip="This answer is true" src={greenCheckMark} /> : "" }
-                                    
-                                </div>
-                                <div className="vote d-flex flex-column bd-highlight">
+                                <div className="vote d-flex flex-column bd-highlight mb-3">
                                     <div className="positiveVoteImg" onClick={() => this.handleVote(true)} >
                                         {this.state.PactiveVote?
                                         <svg width="2em" height="2em" viewBox="0 0 16 16" className="positiveVoteImg bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -395,6 +386,25 @@ class AnswerChatBox  extends Component {
                                         <path fill-rule="evenodd" d="M3.204 5L8 10.481 12.796 5H3.204zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
                                         </svg>}
                                     </div>
+
+                                    <div className="trueAnswer d-flex justify-content-center mt-2">
+                                    {this.state.isQOwner && !this.state.trueAnswer? 
+                                    <svg onClick={this.handleTrueAnswer} data-tip="Click if this answer is true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                    </svg> :
+                                    this.state.trueAnswer && this.state.isQOwner?
+                                    <svg onClick={this.handleTrueAnswer} data-tip="This answer is true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg>
+
+                                     : ""}
+                                    {!this.state.isQOwner && this.state.trueAnswer?
+                                    <svg className="trueAnswerNotOwner" data-tip="This answer is true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg> : "" }
+                                    
+                                </div>
                                 </div>
                             </div>
 
