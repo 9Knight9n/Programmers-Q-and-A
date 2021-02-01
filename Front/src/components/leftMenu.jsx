@@ -99,7 +99,7 @@ class LeftMenu extends Component {
                     <div className="d-flex flex-column nav-pills chatrooms-box">
                         {this.state.chatrooms.map(chatroom => 
                         <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
-                            className={"nav-link w-100".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
+                            className={"nav-link w-100 ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
                             onClick={()=> this.props.changeChatroom(chatroom.id)} 
                             to={"/"+this.state.activeNav+chatroom.id} >
                             <div className="d-flex flex-row w-100">
