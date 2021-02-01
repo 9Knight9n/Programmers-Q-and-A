@@ -1,5 +1,6 @@
 .nav-pills .nav-link {
   border-radius: 0px;
+  width: 100%;
 }
 
 .leftMenu-buttons button {
@@ -103,4 +104,10 @@ a {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(8, 120, 128, 0.432);
+}
+.chatrooms-box{
+  height: calc(91vh - 10vh);
+  overflow-y: scroll;
+  width: 100%;
+  overflow-x: hidden;
 }
