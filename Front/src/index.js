@@ -9,6 +9,10 @@ import * as serviceWorker from './serviceWorker';
 
 // import SignInToSignUp from './pages/SignInToSignUp';
 
+
+//allow react dev tools work
+window.React = React;
+
 ReactDOM.render(
   <React.StrictMode>
     
