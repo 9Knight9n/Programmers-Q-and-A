@@ -275,12 +275,12 @@ class ChatroomInfo extends Component {
                         {this.state.isDiscussion?(this.state.isJoined?"":
                         <button style={{outline:"none"}} 
                             onClick={this.handleJoinClick}   
-                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
+                            className="float-right btn-pro mr-2 chatroomInfo-joinButton">
                             Join
                         </button>):
                         <button style={{outline:"none"}} 
                             onClick={this.handleJoinClick}   
-                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
+                            className="float-right btn-pro mr-2 chatroomInfo-submiteQuestionButton">
                             Submit Question
                         </button>}
                     </div>
