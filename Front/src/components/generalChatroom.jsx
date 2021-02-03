@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CSS/generalChatroom.css'
 import ChatroomInfo from './chatroomInfo.jsx';
 import LoadingPage from './loading';
 import MessageBox from './messageBox';
@@ -12,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResizeObserver from 'rc-resize-observer';
 import { Dropdown } from 'react-bootstrap';
 import UsersList from './usersList.js';
-import './CSS/generalChatroom.css'
+
 
 
  
@@ -269,18 +270,21 @@ class GeneralChatroom extends Component {
                                                 {this.state.chats.map(chat =>
                                                 <div key={chat.message_id} className="mb-3 d-flex flex-row w-100">
                                                     <div className={chat.user===parseInt(sessionStorage.getItem("id"))?"ml-auto d-flex flex-row-reverse":"d-flex flex-row"}>
-                                                        <MessageBox
-                                                            reply={this.reply}
-                                                            message_id={chat.message_id}
-                                                            userid={chat.user}
-                                                            title={chat.username}
-                                                            text={<span style={{whiteSpace: "pre-line"}}>
-                                                                    {ReactHtmlParser(chat.text)}
-                                                                </span>}
-                                                            dateString={chat.time}
-                                                            isReply={chat.replyTo}
-                                                            titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
-                                                            messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                                        <div className="messageBoxGn">
+                                                            <MessageBox
+                                                                reply={this.reply}
+                                                                message_id={chat.message_id}
+                                                                userid={chat.user}
+                                                                title={chat.username}
+                                                                text={<span style={{whiteSpace: "pre-line"}}>
+                                                                        {ReactHtmlParser(chat.text)}
+                                                                    </span>}
+                                                                dateString={chat.time}
+                                                                isReply={chat.replyTo}
+                                                                titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
+                                                                messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}
+                                                                />
+                                                        </div>
                                                         <div id="options" className={chat.user===parseInt(sessionStorage.getItem("id"))?"option-right":"option-left"}>
                                                             <Dropdown>
                                                                 <Dropdown.Toggle className="" id="dropdown-basic">

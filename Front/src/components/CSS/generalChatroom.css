@@ -1,0 +1,14 @@
+.option-right {
+  visibility: hidden;
+}
+
+.option-left {
+  visibility: hidden;
+}
+
+.messageBoxGn:hover + .option-right {
+  visibility: visible !important;
+}
+.messageBoxGn:hover + .option-left {
+  visibility: visible !important;
+}
