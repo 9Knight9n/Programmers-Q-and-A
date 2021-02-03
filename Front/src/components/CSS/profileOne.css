@@ -19,17 +19,32 @@
 .parisa-css .INPUT-FORM1 {
   margin-top: 0% !important;
 }
+.parisa-css .INPUT-FORM2{
+  margin-top: 0% !important;
+  border-radius: 8px;
+  
+}
 
 .parisa-css .INPUT-FORM1 {
   display: flex;
   flex-direction: column;
+  height: 94%;
 }
 .parisa-css input {
   border-radius: 8px;
+  
 }
 
 .profile-savebutton {
   border: none;
+  margin-top: 10%;
+}
+.profile-Verificationbutton{
+  border: none;
+  margin-left: 10%;
+  width: 100%;
+  margin-top: 0% !important;
+  border-radius: 8px;
 }
 
 .parisa-css .INPUT-FORM1,
