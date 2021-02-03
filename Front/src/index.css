@@ -55,6 +55,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.black-text{
+.black-text * {
 	color: black !important;
 }
+.w-80{
+	width: 80% !important;
+}
+.w-20{
+	width: 20% !important;
+}
+.w-10{
+	width: 10% !important;
+}
+.w-90{
+	width: 90% !important;
+}
+.h-90{
+	height: 93% !important;
+}
+.h-10{
+	height: 7% !important;
+}
+.add-scroll-active {
+	overflow-y: auto;
+	height: calc(96vh - 55px);
+  }
+  /* Thumb */
+  ::-webkit-scrollbar-thumb {
+	background: rgb(119, 145, 221);
+	border-radius: 30px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: transparent;
+  }
+  /* Hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: rgb(69, 93, 163);
+  }
+
+ .ReactModal__Overlay {
+    background-color: #232323b5 !important;
+ }
+  

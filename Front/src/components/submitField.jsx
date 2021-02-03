@@ -11,7 +11,7 @@ class SubmitField extends Component {
     }
 
     modalClick = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         return false;
     }
@@ -63,7 +63,7 @@ class SubmitField extends Component {
                                 <div className="col-lg-6 d-flex justify-content-start">
                                     <button type="button" className="btn btn-secondary"
                                         onClick={() => this.props.hideModal()}>
-                                        Cancle
+                                        Cancel
                             </button>
                                 </div>
                                 <div className="col-lg-6 d-flex justify-content-end">

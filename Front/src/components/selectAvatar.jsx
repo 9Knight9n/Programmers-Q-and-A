@@ -65,7 +65,7 @@ class SelectAvatar extends Component {
                                 onCrop={this.onCrop}
                                 onClose={this.onClose}
                                 onFileLoad={() => this.setState({editing:true})}
-                            />
+                                />
                                 {/* <input type="file" 
                                     id="selectedFile" 
                                     style={{display:"none"}} 
@@ -85,7 +85,7 @@ class SelectAvatar extends Component {
                         :""}
                         
                         {this.state.editing? 
-                        <button onClick={this.onSave} className="m-1 save-button btn btn-primary">
+                        <button onClick={this.onSave} className="d-flex align-items-center justify-content-center m-1 save-button btn btn-primary">
                             Save
                         </button>:""}
                     </div>

@@ -1,20 +1,45 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './CSS/navbar.css';
+import Search from './search';
+import {getActiveChannel,getActiveNav} from './util';
 
 class Navbar extends Component {
-    state = {  }
+    state = {
+        activeChatroom:getActiveChannel(),
+        activeNav:getActiveNav()
+    }
+    componentDidUpdate(preProps){
+
+        this.setState({
+            activeChatroom:this.props.activeChatroom,
+            activeNav:this.props.activeNav,
+        })
+    }
+    
+    componentDidUpdate(preprops){
+        if(preprops.activeNav !== this.props.activeNav)
+        {
+            this.setState({activeNav:this.props.activeNav})
+        }
+        if(preprops.activeChatroom !== this.props.activeChatroom)
+        {
+            this.setState({activeChatroom:this.props.activeChatroom})
+        }
+    }
+
     render() { 
         return (
             <nav className="navbar navbar-dark bg-light justify-content-between">
-                <a className="navbar-brand">404!</a>
+                <Link className="navbar-brand" to="/">404!</Link>
                 <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active ml-4 pl-3 pr-3">
-                        <a className="nav-link " href="#">Q&A<span className="sr-only">(current)</span></a>
+                    <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="qanda"?" active":"")}>
+                        <Link onClick={()=>this.props.changeNav("qanda")} className="nav-link" to={"/qanda"+this.state.activeChatroom}>Q&A</Link>
                     </li>
-                    <li className="nav-item ml-4 pl-3 pr-3">
-                        <a className="nav-link" href="#">Discussion</a>
+                    <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="discussion"?" active":"")}>
+                        <Link onClick={()=>this.props.changeNav("discussion")} className="nav-link" to={"/discussion"+this.state.activeChatroom}>Discussion</Link>
                     </li>
-                    <li className="nav-item ml-4 pl-3 pr-3 dropdown">
+                    {/* <li className="nav-item ml-4 pl-3 pr-3 dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
                         </a>
@@ -24,17 +49,9 @@ class Navbar extends Component {
                             <div className="dropdown-divider"></div>
                             <a className="dropdown-item" href="#">Something else here</a>
                       </div>
-                    </li>
+                    </li> */}
                 </ul>
-                <form className="form-inline">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-success d-flex flex-row" type="submit">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" className="text-white bi bi-search align-self-center" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                                <path fillRule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                            </svg>
-                        </button>
-                </form>
+                <Search></Search>
             </nav>
         );
     }

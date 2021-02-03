@@ -4,11 +4,16 @@ import ProfileOne from './profileOne';
 import ProfileTwo from './profileTwo';
 import ProfileThree from './profileThree';
 import './CSS/myAccount.css';
+ 
+import { isExpired } from "react-jwt";
+import {renewToken} from './requests';
+import axios from 'axios';
+
 
 class MyAccount extends Component {
     constructor(props) {
         super(props)
-        const src = require('../img/default-profile-picture.jpg');
+        const src = sessionStorage.getItem("avatar")
         this.state = {
             tabs:[
                 {
@@ -50,12 +55,31 @@ class MyAccount extends Component {
         console.log(preview)
       }
     
-      onSave(){
+      async onSave(){
         let src = this.state.preview
         console.log("save button pressed")
         console.log("current preview:",src)
         this.setState({avatarChanged:true,src})
-        console.log("changed src:",this.state.src)
+        if(isExpired(sessionStorage.getItem("access")))
+        {
+            console.log("renewing")
+            token=await renewToken()
+        }
+        let token = sessionStorage.getItem("access")
+        token = "Bearer "+token;
+        const form = new FormData()
+        form.set("id",sessionStorage.getItem("id"))
+        form.set("Base64",this.state.preview)
+        const response3 =
+        await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': token
+        },
+        })
+
+        sessionStorage.setItem("avatar",this.state.preview)
+
+        console.log( this.state.src)
       }
 
       tabSelected=(id)=>{
@@ -66,7 +90,7 @@ class MyAccount extends Component {
         return ( 
             <React.Fragment>
                 <nav className="">
-                    <ul class="nav nav-tabs">
+                    <ul className="nav nav-tabs">
                         <div className="w-25 avatar-size p-2">
                             <SelectAvatar src={this.state.src}
                                 onCrop={this.onCrop}
@@ -74,14 +98,13 @@ class MyAccount extends Component {
                                 onSave={this.onSave} side="20" />
                         </div>
                         <div className="w-75 d-flex flex-column justify-content-center">
-                        <p className="h1">Username</p>
-                        <p>User@email.com</p>
+                            <p className="h1">{sessionStorage.getItem("username")}</p>
+                            <p>{sessionStorage.getItem("email")}</p>
                         </div>
                         {this.state.tabs.map(tab =>
-                            <li class="mt-3 pl-1 pr-1 nav-item d-flex align-items-end">
-                                <a key={tab.id}
-                                    onClick={()=>this.tabSelected(tab.id)}
-                                    class={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"")} href="#">
+                            <li key={tab.id} className="pl-1 pr-1 nav-item d-flex align-items-end">
+                                <a onClick={()=>this.tabSelected(tab.id)}
+                                    className={"mb-0 w-100 nav-link d-flex justify-content-center".concat(this.state.selectedTab===tab.id?" active":"").concat(tab.id===2?" disabled":"")} href="#">
                                     {tab.label}
                                 </a>
                             </li>

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
+// import './index.css';
 import App from './App';
+import Test from './components/test'
 import * as serviceWorker from './serviceWorker';
 // import SignInForm from './pages/SignInForm';
 
