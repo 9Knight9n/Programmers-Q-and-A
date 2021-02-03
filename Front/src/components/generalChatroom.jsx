@@ -263,24 +263,26 @@ class GeneralChatroom extends Component {
                                         Cid={this.state.ChatroomID}  />
                                 </div>
                                 <div className="mt-1 mb-1 ml-5 h-100">
-                                    <div className="w-100 d-flex flex-row">
-                                        <div className="messages-box w-75" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
-                                            <div className="mr-5 mb-2">
+                                    {/* <div className="w-100 d-flex flex-row"> */}
+                                        <div className="messages-box w-100" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
+                                            <div  id="generalChatroomOptionsHover" className="mr-5 mb-2">
                                                 {this.state.chats.map(chat =>
                                                 <div key={chat.message_id} className="mb-3 d-flex flex-row w-100">
                                                     <div className={chat.user===parseInt(sessionStorage.getItem("id"))?"ml-auto d-flex flex-row-reverse":"d-flex flex-row"}>
-                                                        <MessageBox
-                                                            reply={this.reply}
-                                                            message_id={chat.message_id}
-                                                            userid={chat.user}
-                                                            title={chat.username}
-                                                            text={<span style={{whiteSpace: "pre-line"}}>
-                                                                    {ReactHtmlParser(chat.text)}
-                                                                </span>}
-                                                            dateString={chat.time}
-                                                            isReply={chat.replyTo}
-                                                            titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
-                                                            messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                                        <div className="messageBoxHandleHover">
+                                                            <MessageBox
+                                                                reply={this.reply}
+                                                                message_id={chat.message_id}
+                                                                userid={chat.user}
+                                                                title={chat.username}
+                                                                text={<span style={{whiteSpace: "pre-line"}}>
+                                                                        {ReactHtmlParser(chat.text)}
+                                                                    </span>}
+                                                                dateString={chat.time}
+                                                                isReply={chat.replyTo}
+                                                                titleRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).username:null}
+                                                                messageRep={chat.replyTo?this.state.chats.find(reply => reply.message_id === chat.replyTo).text:null}/>
+                                                        </div>
                                                         <div id="options" className={chat.user===parseInt(sessionStorage.getItem("id"))?"option-right":"option-left"}>
                                                             <Dropdown>
                                                                 <Dropdown.Toggle className="" id="dropdown-basic">
@@ -301,10 +303,10 @@ class GeneralChatroom extends Component {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className=" w-25 p-0">
+                                        {/* <div className=" w-25 p-0">
                                         <UsersList Cid={this.state.ChatroomID} />
-                                        </div>
-                                    </div>
+                                        </div> */}
+                                    {/* </div> */}
                                 </div>
                                 {this.state.isJoin?
                                 <ResizeObserver

@@ -1,0 +1,13 @@
+.option-right {
+  visibility: hidden;
+}
+.option-left {
+  visibility: hidden;
+}
+
+#generalChatroomOptionsHover :hover .option-left {
+  visibility: visible;
+}
+#generalChatroomOptionsHover :hover .option-right {
+  visibility: visible;
+}
