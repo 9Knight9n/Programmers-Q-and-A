@@ -129,7 +129,7 @@ class SignUpForm extends Component{
       },
     })
 
-
+    console.log("tokennnn:   ", token)
     sessionStorage.setItem("avatar",response3.data.Base64)
    
       document.getElementById("GoHomepageFromSignup").click()

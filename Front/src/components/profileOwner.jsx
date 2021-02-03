@@ -14,47 +14,8 @@ import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { toast } from 'react-toastify';
+import UsersList from './usersList';  
 
-const StyledBadge = withStyles((theme) => ({
-    badge: {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '',
-        isOnline: true,
-  
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }))(Badge);
-  
-  
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
 
 class ProfileOwner extends Component {
     constructor(props) {
@@ -422,54 +383,29 @@ class ProfileOwner extends Component {
                                 </div> : ''
                             }
                         </div>
-                    {/* <div className="w-100 h-100">
-                        <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
-                            <div className="INPUT-FORM1">
-                                <p>Name :</p>
-                                <input name="lastName" value={this.state.lastName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Last name"/><br></br>
-                                <p>Description :</p>
-                                <input name="Description" value={this.state.Description}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Description"/>
-                                {this.state.DescriptionError? <p className="pro-error">Description Must Be Full!</p> : <br/>}
-                                <button className="btn btn-primary" onClick={this.handleSubmit}>Save Changes</button>
-                                {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
-                                <button className="btn btn-primary" onClick={this.handleSubmit}>Delete Chatroom</button>
-                                {this.state.succeed? <p className="pro-success">Delete successfully!</p> : <br/>}  
+                        {/* <div className="w-100 h-100">
+                            <div className="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
+                                <div className="INPUT-FORM1">
+                                    <p>Name :</p>
+                                    <input name="lastName" value={this.state.lastName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Last name"/><br></br>
+                                    <p>Description :</p>
+                                    <input name="Description" value={this.state.Description}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Description"/>
+                                    {this.state.DescriptionError? <p className="pro-error">Description Must Be Full!</p> : <br/>}
+                                    <button className="btn btn-primary" onClick={this.handleSubmit}>Save Changes</button>
+                                    {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
+                                    <button className="btn btn-primary" onClick={this.handleSubmit}>Delete Chatroom</button>
+                                    {this.state.succeed? <p className="pro-success">Delete successfully!</p> : <br/>}  
+                                </div>
                             </div>
-                        </div>
-                    </div> */}
+                        </div> */}
 
 
                         <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"/>
                         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
-                        <div className="jumbotron list-content ml-auto ">
-                            <div href="#" className="chProfileOwner-list-group-item title w-100 ">
-                                   Members
-                            </div>
-                            <ul className="list-group">
-                                {this.state.users.map(u => 
-                                        <li className ="d-flex justify-content-start" key={u.id} >
-                                            {this.state.isOnline?
-                                                <StyledBadge
-                                                overlap="circle"
-                                                anchorOrigin={{
-                                                vertical: 'bottom',
-                                                horizontal: 'right',
-                                                }}
-                                                variant="dot"
-                                                >
-                                                    <Avatar alt="Avatar" src={sessionStorage.getItem(u.id+":avatar")} />
-                                                </StyledBadge> :    
-                                                    <img className="img-thumbnail" src={sessionStorage.getItem(u.id+":avatar")} />
-                                            }
-                                            
-                                            <label className="name w-75 ml-3 mt-auto mb-auto">
-                                                {u.name}
-                                            </label>
-                                        </li>
-                                    )}
-                            </ul>
+                        <div>
+                            <UsersList Cid={this.state.Cid} />
                         </div>
-                    </div>    
+                    </div>
                     <ReactTooltip place="right" effect="solid" type="dark"/>          
             </div>          
         );

@@ -1,0 +1,70 @@
+.list-group {
+  max-height: 63.3vh;
+  overflow: auto;
+}
+
+.user-list {
+  height: 90%;
+  border-left: 2px solid #4164a2fc;
+}
+
+.jumbotron {
+  padding: 0px !important;
+}
+
+.name {
+  color: black !important;
+}
+
+.jumbotron {
+  padding: 0rem;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0rem !important;
+  border-radius: 0% !important;
+}
+
+/*abed*/
+
+.user :hover {
+  background-color: red;
+}
+
+.chProfileOwner-list-group-item {
+  height: 10% !important;
+  padding: 0% !important;
+  background-color: #a5b1e2;
+  border-left: 2px solid #4164a2fc;
+  border-bottom: 2px solid #4164a2fc;
+}
+
+.chProfileOwner-list-group-item h2 {
+  color: #5b597b;
+  font-size: 19px;
+}
+
+.list-group :hover {
+  cursor: pointer;
+  background-color: #545f91fc;
+}
+
+.list-group {
+  border-radius: 0%;
+  margin-top: 0%;
+  background-color: #5c6aa2;
+}
+.img-thumbnail {
+  padding: 0rem;
+  background-color: #fff0;
+  border: 0px solid #dee2e600;
+  border-radius: 2rem;
+  max-width: 22%;
+  height: auto;
+  margin-left: 3%;
+  margin-top: 4%;
+}
+
+.MuiBadge-root {
+  margin-left: 3%;
+  margin-top: 4%;
+}
