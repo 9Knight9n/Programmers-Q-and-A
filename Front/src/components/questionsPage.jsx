@@ -10,7 +10,7 @@ import LoadingPage from './loading';
 import scrollToComponent from 'react-scroll-to-component';
 import { ScrollTo,scroll } from "react-scroll-to";
 import { ToastContainer, toast } from 'react-toastify';
-
+import {BottomScrollListener} from 'react-bottom-scroll-listener';
 
 class QuestionsPage extends Component {
     
@@ -27,7 +27,6 @@ class QuestionsPage extends Component {
         this.loadQuestions=this.loadQuestions.bind(this)
     }
 
-
     componentDidMount(){
         // console.log("********************",this.state.ChatroomID)
         sessionStorage.removeItem("search")
@@ -36,10 +35,24 @@ class QuestionsPage extends Component {
         // console.log("Question page created with chatroom id ",this.props.ChatroomID)
         // this.props.chatroomClicked(this.state.ChatroomID)
         // this.props.changeChatroom(parseInt(this.props.match.params.chatroomid))
-        this.loadQuestions()
+        this.loadQuestions(0)
     }
 
+    scrollIsBottom(event) {
+        let target = event.target
+        if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+            return true;
+        }
+    }
 
+    handleScroll = (e) => {
+        let element = e.target;
+        if (this.scrollIsBottom) {
+            this.loadQuestions(-1)
+        }else{
+            this.loadQuestions(1)
+        }
+     }
 
 
     componentDidUpdate(prevProps) {
@@ -53,8 +66,9 @@ class QuestionsPage extends Component {
       }
 
 
-    async loadQuestions(){
+    async loadQuestions(scrollState){
         // console.log(this.props.match.params.chatroomid)
+        console.log("scroll: ",scrollState)
         if(this.props.match.params.chatroomid === "-1")
             return false
         this.setState({loading:true})
@@ -65,11 +79,13 @@ class QuestionsPage extends Component {
             type:"post",
             formKey:[
                 "ChatroomID",
-                "user_id"
+                "user_id",
+                "scrollState"
             ],
             formValue:[
                 this.props.match.params.chatroomid,
-                sessionStorage.getItem("id")
+                sessionStorage.getItem("id"),
+                scrollState
             ]
         }
         console.log(config)
@@ -132,7 +148,9 @@ class QuestionsPage extends Component {
                                     Cid={this.state.ChatroomID}  />
                             </div>
                             <div className="mt-1 mb-1 ml-3 h-100">
-                                <div className="questions-box">
+                            <BottomScrollListener onBottom={() => console.log("Scroll handled")}>
+                                {(scrollRef) =>
+                                <div className="questions-box" ref={scrollRef}>
                                     <div className="mr-5 mb-2">
                                         {this.state.questions.map(question =>
                                         <div key={question.id} className="mb-3"
@@ -153,7 +171,8 @@ class QuestionsPage extends Component {
                                         </div>
                                         )}
                                     </div>
-                                </div>
+                                </div>}
+                            </BottomScrollListener>
                             </div>
                         </div>
                     </div>

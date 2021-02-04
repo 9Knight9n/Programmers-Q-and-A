@@ -7,6 +7,10 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
+.modal-body {
+  padding: 0px !important;
+  margin: 1rem;
+}
 
 #editor .modal .modal-main {
   position: fixed;
@@ -57,7 +61,7 @@
 .editor-exitImg {
   width: 2%;
   position: absolute;
-  margin-left: 99%;
-  margin-top: -1%;
+  margin-left: 98.5%;
+  margin-top: 0%;
   cursor: pointer;
 }

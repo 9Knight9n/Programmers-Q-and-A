@@ -39,6 +39,7 @@ class ChatroomCreationFirst extends Component {
         return ( 
                 <div className="main-box">
                     <div className="elements">
+                        
                         <div className="contextKinds">
                             <label for="contextKinds"><h1>Choose a context for your chatroom:</h1></label>
                             <div className="contextLogo">
@@ -71,6 +72,7 @@ class ChatroomCreationFirst extends Component {
                         <Link to="/" onClick={this.hideModal} >
                             <button class="backButtonFirst" type="button" >Back</button>
                         </Link>
+                        
                     </div>
                 </div>
                 
