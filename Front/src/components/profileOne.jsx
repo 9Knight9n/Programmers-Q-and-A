@@ -136,21 +136,26 @@ class ProfileOne extends Component {
                     <div class="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
                     
                         <div className="INPUT-FORM1"> 
-                            <p>First Name :</p>
+                            <p>First Name :</p><br></br>
                             <input name="firstName" value={this.state.firstName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter First name"/><br></br>
-                            <p>Last Name :</p>
+                            <p>Last Name :</p><br></br>
                             <input name="lastName" value={this.state.lastName}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Last name"/><br></br>
-                            <p>Username :</p>
+                            <p>Username :</p><br></br>
                             <input name="username" value={this.state.username}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Username"/>
-                            {this.state.usernameError? <p className="pro-error">Username is not available</p> : <br/>}
-                            <p>Email :</p>
-                            <input name="emailProfile" value={this.state.emailProfile}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Email"/>
-                            {this.state.emailError? <p className="pro-error">Email is not valid or already registered!</p> : <br/>}
+                            {this.state.usernameError? <p className="pro-error">Username is not available</p> : <br/>}   
+                            <p>Email :</p><br></br>
+                            <div className="INPUT-FORM2 d-flex flex-row"> 
+                                
+                                <input name="emailProfile" value={this.state.emailProfile}  onChange={this.handleChange} type="text" className="input p-2" placeholder="Enter Email"/>
+                                <button className="profile-Verificationbutton btn btn-primary" onClick={this.handleSubmit}>Verification</button>
+                                {this.state.emailError? <p className="pro-error">Email is not valid or already registered!</p> : <br/>}
+                                {this.state.succeed? <p className="pro-success">Email Verification!</p> : <br/>}
+                                
+                            </div>
                             <button className="profile-savebutton btn btn-primary" onClick={this.handleSubmit}>Save</button>
                             {this.state.succeed? <p className="pro-success">Saved successfully!</p> : <br/>}
+                       
                         </div>
-                            
-                            
                             
                     </div>
                 

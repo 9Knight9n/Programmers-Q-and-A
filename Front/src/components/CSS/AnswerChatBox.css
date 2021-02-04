@@ -120,14 +120,12 @@ button {
   margin-left: 0.5%;
   min-height: 45px;
 }
-.trueAnswer button {
-  width: 90%;
-  height: 3vh;
+.trueAnswer svg {
+  cursor: pointer;
 }
 
-.trueAnswer img {
-  background-color: transparent;
-  cursor: pointer;
+.trueAnswer .trueAnswerNotOwner {
+  cursor: none;
 }
 
 .dropDown {

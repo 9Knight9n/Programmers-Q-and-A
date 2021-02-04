@@ -23,6 +23,7 @@
 
 .profile-saveButton {
   border: none;
+  margin-left: 26%;
 }
 
 .parisa-css .fileUploadInput label {
@@ -94,7 +95,7 @@
 }
 
 .parisa-css .bioField textarea {
-  background-color: #bab9f7;
+  background-color: #ffffff;
   margin-top: 0%;
   line-height: 31px;
   font-family: Arial, Helvetica, Sans-serif;
@@ -107,7 +108,7 @@
 }
 
 .bioBox button {
-  margin-left: 24%;
+  margin-left: 20%;
   margin-top: 4%;
   width: 50%;
 }

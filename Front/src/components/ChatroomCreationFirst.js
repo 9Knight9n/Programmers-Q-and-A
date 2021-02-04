@@ -23,6 +23,11 @@ class ChatroomCreationFirst extends Component {
 
         hideModal() {
             console.log("clicked");
+            sessionStorage.removeItem("selectedSub")
+            sessionStorage.removeItem("selected")
+            sessionStorage.removeItem("selectedTopic")
+            sessionStorage.removeItem("Description")
+            sessionStorage.removeItem("Link")
             this.props.hideModal();
         }
 

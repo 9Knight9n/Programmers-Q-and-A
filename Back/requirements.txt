@@ -10,8 +10,6 @@ channels==3.0.2
 channels-redis==3.2.0
 chardet==3.0.4
 click==7.1.2
-conda==4.8.3
-conda-package-handling==1.7.0
 constantly==15.1.0
 cryptography==2.9.2
 daphne==3.0.1
