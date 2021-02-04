@@ -98,7 +98,7 @@ class Search extends Component {
 
     loadSuggestions= async (input)=>{
         let config ={
-            url:"http://127.0.0.1:8000/api/SeggestionChatroomSreach/",
+            url:"http://404socialmedia.ir/api/SeggestionChatroomSreach/",
             needToken:true,
             type:"post",
             formKey:[

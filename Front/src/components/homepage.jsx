@@ -59,7 +59,7 @@ class Homepage extends Component {
     loadChatrooms=async(join,chatroomName)=>{
 
         let config ={
-            url:"http://127.0.0.1:8000/api/loadchatroom/",
+            url:"http://404socialmedia.ir/api/loadchatroom/",
             needToken:true,
             type:"post",
             formKey:[

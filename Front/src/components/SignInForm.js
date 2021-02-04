@@ -97,7 +97,7 @@ class SignInForm extends Component{
     form.set('password', this.state.password)
     console.log(form)
     const response =
-    await axios.post('http://localhost:8000/api/login/', form, {
+    await axios.post('http://404socialmedia.ir/api/login/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
@@ -112,7 +112,7 @@ class SignInForm extends Component{
       console.log(form.get("email"))
       console.log(form.get("password"))
       const response2 =
-      await axios.post('http://localhost:8000/api/token/', form, {
+      await axios.post('http://404socialmedia.ir/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
@@ -127,7 +127,7 @@ class SignInForm extends Component{
       console.log(token)
       form.set("id",sessionStorage.getItem("id"))
       const response3 =
-      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
+      await axios.post('http://404socialmedia.ir/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',
                   'Authorization': token
       },
@@ -142,7 +142,7 @@ class SignInForm extends Component{
 
     // var config = {
     //   method: 'get',
-    //   url: 'http://127.0.0.1:8000/api/show_profile_picture/',
+    //   url: 'http://404socialmedia.ir/api/show_profile_picture/',
     //   headers: { 
     //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjA1MzYyODQ5LCJqdGkiOiI5OTQ0MWMyMjk3NzY0YjQ3YjllMmQ0MTQ0M2IyYjJjOSIsInVzZXJfaWQiOjIwfQ.AmBRJeI1JnIB7uE8Rq2Rv2IUvUst1peai3i3Qqgu8NA', 
     //   },

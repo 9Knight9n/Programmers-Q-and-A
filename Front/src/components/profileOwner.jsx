@@ -60,7 +60,7 @@ class ProfileOwner extends Component {
         // this.setState({loading:true})
 
         let config = {
-            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
+            url:"http://404socialmedia.ir/api/ShowChatroomProfile/",
             needToken:true,
             type:"post",
             formKey:[
@@ -194,7 +194,7 @@ class ProfileOwner extends Component {
             if(input === this.state.preview)
                 sendElement = "chatroom_profile_image";
             let config = {
-                url:"http://127.0.0.1:8000/api/EditChatroomProfile/",
+                url:"http://404socialmedia.ir/api/EditChatroomProfile/",
                 needToken:false,
                 type:"post",
                 formKey:[
@@ -229,7 +229,7 @@ class ProfileOwner extends Component {
       loadUserData = async () =>{
         console.log("enter enter enter")
         let config ={
-            url:"http://127.0.0.1:8000/api/show_Users/",
+            url:"http://404socialmedia.ir/api/show_Users/",
             needToken:false,
             type:"post",
             formKey:[
@@ -258,7 +258,7 @@ class ProfileOwner extends Component {
       handleLeave = async () =>{
         console.log("enter enter enter")
         let config ={
-            url:"http://127.0.0.1:8000/api/Left/",
+            url:"http://404socialmedia.ir/api/Left/",
             needToken:false,
             type:"post",
             formKey:[

@@ -105,7 +105,7 @@ class AnswerChatBox  extends Component {
     handleEdit = async () =>{
         this.setState({loading:true})
         let config ={
-            url:"http://127.0.0.1:8000/api/EditAnswer/",
+            url:"http://404socialmedia.ir/api/EditAnswer/",
             needToken:true,
             type:"post",
             formKey:[
@@ -199,7 +199,7 @@ class AnswerChatBox  extends Component {
             }
 
             let config ={
-                url:"http://127.0.0.1:8000/api/VoteAnswer/",
+                url:"http://404socialmedia.ir/api/VoteAnswer/",
                 needToken:true,
                 type:"post",
                 formKey:[
@@ -232,7 +232,7 @@ class AnswerChatBox  extends Component {
         this.setState({loading:true})
         console.log(this.state.answerId)
         let config ={
-            url:"http://127.0.0.1:8000/api/DeleteAnswer/",
+            url:"http://404socialmedia.ir/api/DeleteAnswer/",
             needToken:true,
             type:"post",
             formKey:[
@@ -261,7 +261,7 @@ class AnswerChatBox  extends Component {
     handleTrueAnswer =async () => {
         this.setState({loading:true})
         let config ={
-            url:"http://127.0.0.1:8000/api/EditAnswer/",
+            url:"http://404socialmedia.ir/api/EditAnswer/",
             needToken:true,
             type:"post",
             formKey:[

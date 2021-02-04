@@ -64,7 +64,7 @@ class ProfilePreview extends Component {
         // this.setState({loading:true})
         console.log('entred loadData....')
         let config = {
-            url:"http://127.0.0.1:8000/api/ShowUserProfile/",
+            url:"http://404socialmedia.ir/api/ShowUserProfile/",
             needToken:true,
             type:"post",
             formKey:[

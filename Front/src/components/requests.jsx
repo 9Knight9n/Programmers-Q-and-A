@@ -12,7 +12,7 @@ export const renewToken= async ()=>{
     }
     const form = new FormData()
     form.set('refresh', sessionStorage.getItem("refresh"));
-    const response = await axios.post('http://localhost:8000/api/token/refresh/', form, {
+    const response = await axios.post('http://404socialmedia.ir/api/token/refresh/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })

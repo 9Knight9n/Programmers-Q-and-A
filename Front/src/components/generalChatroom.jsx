@@ -150,7 +150,7 @@ class GeneralChatroom extends Component {
         this.setState({loading:true})
         console.log("fetching Questions")
         let config ={
-            url:"http://127.0.0.1:8000/api/show_Message/",
+            url:"http://404socialmedia.ir/api/show_Message/",
             needToken:true,
             type:"post",
             formKey:[
@@ -179,7 +179,7 @@ class GeneralChatroom extends Component {
         // this.setState({loading:true})
 
         let config = {
-            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
+            url:"http://404socialmedia.ir/api/ShowChatroomProfile/",
             needToken:true,
             type:"post",
             formKey:[

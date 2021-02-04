@@ -94,7 +94,7 @@ class profileThree extends Component {
         const form = new FormData()
         form.set('id', sessionStorage.getItem("id"))
         const response =
-        await axios.post('http://127.0.0.1:8000/api/show_interests/', form, {
+        await axios.post('http://404socialmedia.ir/api/show_interests/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
                     'Authorization': token
         },
@@ -108,7 +108,7 @@ class profileThree extends Component {
 
         
         // const response1 =
-        // await axios.post('http://127.0.0.1:8000/api/show_cv_file/', form, {
+        // await axios.post('http://404socialmedia.ir/api/show_cv_file/', form, {
         // headers: { 'Content-Type': 'multipart/form-data',
         //             'Authorization': token
         // },
@@ -144,7 +144,7 @@ class profileThree extends Component {
         form.set('interests',encodeList(options,this.state.selectedOptions))
         form.set('cvfile',this.state.selectedFile)
         const response =
-        await axios.post('http://127.0.0.1:8000/api/editinterest/', form, {
+        await axios.post('http://404socialmedia.ir/api/editinterest/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
                     'Authorization': token
         },

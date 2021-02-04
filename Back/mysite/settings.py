@@ -68,7 +68,7 @@ MIDDLEWARE = [
 CORS_ALLOW_CREDENTIALS = False
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000',
+    'http://404socialmedia.ir',
 ]
 
 ROOT_URLCONF = 'mysite.urls'

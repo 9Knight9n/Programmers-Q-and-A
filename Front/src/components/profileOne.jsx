@@ -61,7 +61,7 @@ class ProfileOne extends Component {
         const form = new FormData()
         form.set('id', sessionStorage.getItem("id"))
         const response =
-        await axios.post('http://127.0.0.1:8000/api/showpersonalinfo/', form, {
+        await axios.post('http://404socialmedia.ir/api/showpersonalinfo/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
                     'Authorization': token
         },
@@ -99,7 +99,7 @@ class ProfileOne extends Component {
             form.set('username', this.state.username)
             form.set('email', this.state.emailProfile)
             const response =
-            await axios.post('http://127.0.0.1:8000/api/getpersonalinfo/', form, {
+            await axios.post('http://404socialmedia.ir/api/getpersonalinfo/', form, {
             headers: { 'Content-Type': 'multipart/form-data',
                         'Authorization': token
             },

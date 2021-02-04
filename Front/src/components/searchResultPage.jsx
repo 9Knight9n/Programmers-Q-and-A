@@ -47,7 +47,7 @@ class SearchResultPage extends Component {
     loadData=async(input,filters)=>{
         console.log("loading data")
         let config ={
-            url:"http://127.0.0.1:8000/api/GeneralSearch/",
+            url:"http://404socialmedia.ir/api/GeneralSearch/",
             needToken:true,
             type:"post",
             formKey:[

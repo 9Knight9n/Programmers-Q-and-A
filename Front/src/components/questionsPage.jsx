@@ -74,7 +74,7 @@ class QuestionsPage extends Component {
         this.setState({loading:true})
         console.log("fetching Questions")
         let config ={
-            url:"http://127.0.0.1:8000/api/ShowQuestion/",
+            url:"http://404socialmedia.ir/api/ShowQuestion/",
             needToken:true,
             type:"post",
             formKey:[
