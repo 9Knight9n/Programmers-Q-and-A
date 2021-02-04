@@ -41,10 +41,10 @@
 }
 
 .ProfilePreview-exitImg {
-  width: 4%;
+  width: 5%;
   position: absolute;
-  margin-left: 97.5%;
-  margin-top: -3%;
+  margin-left: 96%;
+  margin-top: 0%;
   cursor: pointer;
 }
 
