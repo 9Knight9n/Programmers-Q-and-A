@@ -19,11 +19,35 @@ class Search extends Component {
     }
 
     componentDidMount(){
-        let textBox = document.getElementById("search-input-field"); 
-        textBox.addEventListener('focusout', (event) => {
-            this.setState({focused:false,panelOpened:false})
-          });     
+        document.addEventListener("mousedown",this.handleClick,false)
+        
+        // let textBox = document.getElementById("search-input-field"); 
+        // textBox.addEventListener('focusout', (event) => {
+        //     // let focusedElement = document.activeElement;
+        //     // let search_panel = document.getElementById("search-panel");
+        //     // if (focusedElement !==search_panel)
+        //         this.setState({focused:false,panelOpened:false})
+        //   });
 
+        //   document.getElementById("main-div").click(function() {
+        //     console.log("hello");
+        //     });
+        //     let panel = document.getElementById("panel"); 
+        //     panel.click(function(event){
+        //         event.stopPropagation();
+        //     });
+
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("mousedown",this.handleClick,false)
+    }
+    
+    handleClick=(e)=>{
+        if(!this.state.node.contains(e.target))
+        {
+            this.setState({focused:false,panelOpened:false,searchInput:""})
+        }
     }
 
     componentDidUpdate(preprops){
@@ -105,6 +129,7 @@ class Search extends Component {
     render() { 
         return (  
             <React.Fragment>
+                <div ref={node =>this.state.node = node}>
                 <Link id="goToSearchResultPage" to={{pathname:"/search/"+this.state.searchInput,state:{tab:1}}}/>
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>
@@ -119,27 +144,29 @@ class Search extends Component {
                         </svg>
                     </button>
                     <div id='panel' className={"mt-5 mr-2 ".concat(this.state.panelOpened?" active":"")}>
-                        <div className={"m-3".concat(this.state.panelOpened?" ":" display-none")}>
+                        <div id='search-sub-panel1' className={"m-3".concat(this.state.panelOpened?" ":" display-none")}>
                             {this.state.searchInput.length<3?(this.state.minError?<p>Enter at least 3 letters!</p>:""):(this.state.suggestions.length>0?<p>Suggested Chatrooms :</p>:<p>can't suggest any Chatroom</p>)}
                         </div>
-                        <div className={"search-result".concat(this.state.suggestions.length>0 && this.state.searchInput !== ""?" active":"")}>
+                        <div id='search-sub-panel2' className={"search-result".concat(this.state.suggestions.length>0 && this.state.searchInput !== ""?" active":"")}>
+                            {
+                                this.state.panelOpened?
+                                this.state.suggestions.map(sug =>
+                                    <Link 
+                                        to={"/"+this.state.activeNav+sug.chatroom_id} 
+                                        id="suggestion" 
+                                        key={sug.chatroom_id} 
+                                        className="m-2 d-flex pl-3"
+                                        onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false,suggestions:[]})}>
+                                        <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
+                                    </Link>    
+                                    ):""
+                            }
                             
-                            
-                            {this.state.suggestions.map(sug =>
-                            <Link 
-                                to={"/"+this.state.activeNav+sug.chatroom_id} 
-                                id="suggestion" 
-                                key={sug.chatroom_id} 
-                                className="m-2 d-flex pl-3"
-                                onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false,suggestions:[]})}>
-                                <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
-                            </Link>    
-                            )}
                         </div>
                     </div>
                     
                 </div>
-
+                </div>
             </React.Fragment>
 
         );
