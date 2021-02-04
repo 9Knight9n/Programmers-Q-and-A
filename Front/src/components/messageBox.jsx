@@ -70,7 +70,7 @@ class MessageBox extends React.Component {
 						dateString={this.state.dateString}
 						// onReplyClick={()=>this.props.reply(this.state.message_id,this.state.title)}
 						// onClick
-						onReplyMessageClick={() => console.log('reply clicked!')}
+						onReplyMessageClick={() => this.props.onReplyMessageClick(this.state.message_id)}
 						// replyButton={true}
 						reply={this.state.isReply?{
 							title:this.state.titleRep,
