@@ -155,7 +155,7 @@ MEDIA_URL = 'media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    '/var/www/static/',
+    '/home/socialm2/public_html/static',
 ]
 
 REST_FRAMEWORK = {
