@@ -125,6 +125,10 @@ class Search extends Component {
         }
       }
 
+    quickSelect=(id)=>{
+        this.setState({searchInput:"",panelOpened:false,focused:false,suggestions:[]})
+        this.props.changeChatroom(id)
+    }
     
     render() { 
         return (  
@@ -156,7 +160,7 @@ class Search extends Component {
                                         id="suggestion" 
                                         key={sug.chatroom_id} 
                                         className="m-2 d-flex pl-3"
-                                        onClick={()=>this.setState({searchInput:"",panelOpened:false,focused:false,suggestions:[]})}>
+                                        onClick={()=>this.quickSelect(sug.chatroom_id)}>
                                         <p className="mt-auto mb-auto">{sug.chatroom_name}</p>
                                     </Link>    
                                     ):""

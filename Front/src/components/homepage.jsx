@@ -97,7 +97,7 @@ class Homepage extends Component {
                     <LeftMenu chatrooms={this.state.chatrooms} loadChatrooms={this.loadChatrooms} activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeChatroom={this.changeChatroom} />
                 </div>
                 <div className="RightColumn">
-                    <Navbar activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeNav={this.changeNav} />
+                    <Navbar activeChatroom={this.state.activeChatroom} activeNav={this.state.activeNav} changeNav={this.changeNav} changeChatroom={this.changeChatroom}/>
                     <div style={{height:"91vh"}}>
                         {/* <button onClick={()=>this.state.refToLeftMenu.current.selectTab(5)}></button> */}
                         {/* <p>{this.state.activeChatroom}</p> */}

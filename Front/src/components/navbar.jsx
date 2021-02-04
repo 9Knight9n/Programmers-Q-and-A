@@ -31,10 +31,10 @@ class Navbar extends Component {
     render() { 
         return (
             <nav className="navbar navbar-dark bg-light justify-content-between">
-                <Link className="navbar-brand" to="/">404!</Link>
+                <Link className="navbar-brand" to="/" onClick={()=>this.props.changeChatroom(-1)}>404!</Link>
                 <ul className="navbar-nav mr-auto">
                     <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="qanda"?" active":"")}>
-                        <Link onClick={()=>this.props.changeNav("qanda")} className="nav-link" to={"/qanda"+this.state.activeChatroom}>Q&A</Link>
+                        <Link onClick={()=>this.props.changeNav("qanda")} className="nav-link" to={this.state.activeChatroom===-1?"/":"/qanda"+this.state.activeChatroom}>Q&A</Link>
                     </li>
                     <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="discussion"?" active":"")}>
                         <Link onClick={()=>this.props.changeNav("discussion")} className="nav-link" to={this.state.activeChatroom===-1?"/":"/discussion"+this.state.activeChatroom}>Discussion</Link>
@@ -51,7 +51,7 @@ class Navbar extends Component {
                       </div>
                     </li> */}
                 </ul>
-                <Search activeNav={this.props.activeNav}/>
+                <Search activeNav={this.props.activeNav} changeChatroom={this.props.changeChatroom}/>
             </nav>
         );
     }
