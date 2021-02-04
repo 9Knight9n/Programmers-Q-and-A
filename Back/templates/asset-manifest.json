@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.01aaedda.chunk.css",
+    "main.js": "/static/js/main.c4c3f2cd.chunk.js",
+    "main.js.map": "/static/js/main.c4c3f2cd.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f777ce50.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f777ce50.js.map",
+    "static/css/2.47c59966.chunk.css": "/static/css/2.47c59966.chunk.css",
+    "static/js/2.c78c1cc9.chunk.js": "/static/js/2.c78c1cc9.chunk.js",
+    "static/js/2.c78c1cc9.chunk.js.map": "/static/js/2.c78c1cc9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a314724f95946f7f1cde6d934805cea7.js": "/precache-manifest.a314724f95946f7f1cde6d934805cea7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.47c59966.chunk.css.map": "/static/css/2.47c59966.chunk.css.map",
+    "static/css/main.01aaedda.chunk.css.map": "/static/css/main.01aaedda.chunk.css.map",
+    "static/js/2.c78c1cc9.chunk.js.LICENSE.txt": "/static/js/2.c78c1cc9.chunk.js.LICENSE.txt",
+    "static/media/answeredQuestion.png": "/static/media/answeredQuestion.1e6b3a82.png",
+    "static/media/askedQuestion.png": "/static/media/askedQuestion.ffa56f3e.png",
+    "static/media/backgr.jpg": "/static/media/backgr.44f97ead.jpg",
+    "static/media/answersPage.css": "/static/media/bg.cfd049d8.jpg",
+    "static/media/cancel.png": "/static/media/cancel.775bc248.png",
+    "static/media/default-profile-picture.jpg": "/static/media/default-profile-picture.39eb0bbf.jpg",
+    "static/media/down-arrow.png": "/static/media/down-arrow.223620c8.png",
+    "static/media/edit2.png": "/static/media/edit2.ffc2657a.png",
+    "static/media/exit.png": "/static/media/exit.162602bc.png",
+    "static/media/group.png": "/static/media/group.e13c1a6d.png",
+    "static/media/link.png": "/static/media/link.a575dba5.png",
+    "static/media/mobile-app.png": "/static/media/mobile-app.c662f230.png",
+    "static/media/operating-system.png": "/static/media/operating-system.fc2fc882.png",
+    "static/media/password.png": "/static/media/password.b8f23fd5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f777ce50.js",
+    "static/css/2.47c59966.chunk.css",
+    "static/js/2.c78c1cc9.chunk.js",
+    "static/css/main.01aaedda.chunk.css",
+    "static/js/main.c4c3f2cd.chunk.js"
+  ]
+}

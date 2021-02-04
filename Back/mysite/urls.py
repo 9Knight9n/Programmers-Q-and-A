@@ -3,6 +3,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_simplejwt import views as jwt_views
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,5 +16,6 @@ urlpatterns = [
     path('api/' , include("chatroom.urls")),
     path('api/', include('generalchatroom.urls')),
 	path('api/' , include("join.urls")),
+    path('' , views.index),
 ]
 urlpatterns = urlpatterns + static('media' , document_root='media')
