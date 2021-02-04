@@ -34,7 +34,7 @@ def ShowQuestion(request):
                 data['sameProblem']=user_question[0].voteState
             data['time']=i.time.ctime()
             if data['file']!=None:
-                data['file'] = 'http://127.0.0.1:8000' + data['file']
+                data['file'] = 'http://404socialmedia.ir' + data['file']
             if i.user == None:
                 data['user'] = 'User is not exist'
                 data['userid'] = 'no id'
@@ -64,7 +64,7 @@ def ShowAnswer(request):
             data['time']=i.time.ctime()
 
             if data['file']!=None:
-                data['file'] = 'http://127.0.0.1:8000' + data['file']
+                data['file'] = 'http://404socialmedia.ir' + data['file']
             if i.user == None:
                 data['user'] = 'User is not exist'
                 data['userid'] = 'no id'

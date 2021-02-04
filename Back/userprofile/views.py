@@ -59,7 +59,7 @@ def show_interests(request):
         data = serializer.data
         filename = user.cvfile
         if str(filename) != '':
-            data['downloadlink'] = 'http://127.0.0.1:8000/media/' + str(filename)
+            data['downloadlink'] = 'http://404socialmedia.ir/media/' + str(filename)
         else:
             data['downloadlink'] = 'Does not exist file'
         return Response(data)
