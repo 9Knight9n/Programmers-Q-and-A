@@ -149,9 +149,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_ROOT = '/home/socialm2/public_html/media'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media'
 STATIC_ROOT = '/home/socialm2/public_html/static'
 
 REST_FRAMEWORK = {
