@@ -20,7 +20,7 @@ class Search extends Component {
     componentDidMount(){
         let textBox = document.getElementById("search-input-field"); 
         textBox.addEventListener('focusout', (event) => {
-            this.setState({focused:false})
+            this.setState({focused:false,panelOpened:false})
           });     
 
     }
