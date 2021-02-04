@@ -37,7 +37,7 @@ class Navbar extends Component {
                         <Link onClick={()=>this.props.changeNav("qanda")} className="nav-link" to={"/qanda"+this.state.activeChatroom}>Q&A</Link>
                     </li>
                     <li className={"nav-item ml-4 pl-3 pr-3".concat(this.state.activeNav==="discussion"?" active":"")}>
-                        <Link onClick={()=>this.props.changeNav("discussion")} className="nav-link" to={"/discussion"+this.state.activeChatroom}>Discussion</Link>
+                        <Link onClick={()=>this.props.changeNav("discussion")} className="nav-link" to={this.state.activeChatroom===-1?"/":"/discussion"+this.state.activeChatroom}>Discussion</Link>
                     </li>
                     {/* <li className="nav-item ml-4 pl-3 pr-3 dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
