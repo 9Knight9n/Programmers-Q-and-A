@@ -233,7 +233,7 @@ class profileThree extends Component {
                                 {this.state.pageCount} of 175
                             </span>
                         </div>
-                        <button class="profile-saveButton btn btn-primary" onClick={this.handleSave}>Save</button>
+                        <button class="profile-saveBut btn btn-primary" onClick={this.handleSave}>Save</button>
                         {this.state.succeed? <p className="d-flex justify-content-center pro-success">Saved successfully!</p> : <br/>}
                     </div>
 

@@ -21,9 +21,11 @@
   z-index: 1;
 }
 
-.profile-saveButton {
+.profile-saveBut {
   border: none;
   margin-left: 26%;
+  width: 61%;
+
 }
 
 .parisa-css .fileUploadInput label {
