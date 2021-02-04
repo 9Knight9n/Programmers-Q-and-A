@@ -5,7 +5,13 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from "react-router-dom";
 import NewChatroom from './newChatroom';
+import EllipsisToolTip from "ellipsis-tooltip-react-chan";
 import './CSS/leftMenu.css';
+
+const ellipsisToolTipOptions = {
+    effect: "solid",
+    place: "top",
+  }
 
 
 class LeftMenu extends Component {
@@ -81,24 +87,30 @@ class LeftMenu extends Component {
                     <div className="d-flex pl-4 align-top" id="profile">
                         <div className="d-flex align-items-center mr-3"><img  id="profile-img" 
                             src={sessionStorage.getItem("avatar")} /></div>
-                        <h1 className="pt-1 h4 d-flex align-items-center pr-4">{sessionStorage.getItem("username")}</h1>
+                        <h1 className="pt-1 h4 d-flex align-items-center pr-4" style={{width:"calc(17vw - 40px)"}}>
+                            <EllipsisToolTip options={ellipsisToolTipOptions}>
+                                {sessionStorage.getItem("username")}
+                            </EllipsisToolTip>
+                        </h1>
                     </div>
 
 
 
-                    <div className="nav d-flex flex-column nav-pills fill">
-                        <div>
-                            {this.state.chatrooms.map(chatroom => 
-                            <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
-                                className={"nav-link ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
-                                onClick={()=> this.props.changeChatroom(chatroom.id)} 
-                                to={"/"+this.state.activeNav+chatroom.id} >
-                                <div className="d-flex flex-row ">
-                                    <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
-                                    <div className="d-flex align-items-center pr-5">{chatroom.name}</div>
+                    <div className="d-flex flex-column nav-pills chatrooms-box">
+                        {this.state.chatrooms.map(chatroom => 
+                        <Link id={"goToSelectedChatroom"+chatroom.id} key={chatroom.id} 
+                            className={"nav-link w-100 ".concat(this.state.activeChatroom===chatroom.id? "active":"")} 
+                            onClick={()=> this.props.changeChatroom(chatroom.id)} 
+                            to={"/"+this.state.activeNav+chatroom.id} >
+                            <div className="d-flex flex-row w-100">
+                                <img className="d-flex align-items-center mr-3" id="chatroom-img" src={chatroom.Base64} />
+                                <div className="d-flex align-items-center" style={{width:"calc(17vw - 40px)"}}>
+                                    <EllipsisToolTip options={ellipsisToolTipOptions}>
+                                        {chatroom.name}
+                                    </EllipsisToolTip>
                                 </div>
-                            </Link>)}
-                        </div>
+                            </div>
+                        </Link>)}
                     </div>
 
 

@@ -1,5 +1,12 @@
 .nav-pills .nav-link {
+  margin-bottom: 1%;
+  background-color: #4545e429;
   border-radius: 0px;
+  width: 100%;
+}
+.nav-pills .nav-link:hover {
+  background-color: rgba(73, 73, 133, 0.5);
+
 }
 
 .leftMenu-buttons button {
@@ -103,4 +110,13 @@ a {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(8, 120, 128, 0.432);
+}
+.chatrooms-box{
+  height: calc(91vh - 10vh);
+  overflow-y: auto;
+  width: 100%;
+  overflow-x: hidden;
+}
+.OuterDivStylesEllipsisToolTipChan{
+  line-height: 1.5;
 }
