@@ -151,7 +151,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/home/socialm2/public_html/media'
-MEDIA_URL = '/media'
+MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/socialm2/public_html/static'
 
 REST_FRAMEWORK = {
