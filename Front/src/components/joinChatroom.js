@@ -88,7 +88,7 @@ class joinChatroom extends Component {
       handleJoin = async () => {
         console.log("enter enter enter")
         let config ={
-            url:"http://404socialmedia.ir/api/Join/",
+            url:"http://127.0.0.1:8000/api/Join/",
             needToken:false,
             type:"post",
             formKey:[

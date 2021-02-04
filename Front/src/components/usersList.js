@@ -58,7 +58,7 @@ class UsersList extends Component {
     loadUserData = async () =>{
         console.log("enter enter enter")
         let config ={
-            url:"http://404socialmedia.ir/api/show_Users/",
+            url:"http://127.0.0.1:8000/api/show_Users/",
             needToken:false,
             type:"post",
             formKey:[

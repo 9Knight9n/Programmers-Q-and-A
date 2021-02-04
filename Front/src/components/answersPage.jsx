@@ -62,7 +62,7 @@ class AnswersPage extends Component {
         this.setState({loading:true})
         console.log("-------------------",this.state.QuestionID)
         let config = {
-            url:"http://404socialmedia.ir/api/ShowAnswer/",
+            url:"http://127.0.0.1:8000/api/ShowAnswer/",
             needToken:true,
             type:"post",
             formKey:[

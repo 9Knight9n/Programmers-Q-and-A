@@ -33,7 +33,7 @@ export const decodeList=(list,selected)=>{
 export const getUserAvatar= async (id)=>{
     // console.log("inside get user avatar")
     const config = {
-        url:"http://404socialmedia.ir/api/show_profile_picture/",
+        url:"http://127.0.0.1:8000/api/show_profile_picture/",
         needToken:true,
         type:"post",
         formKey:[

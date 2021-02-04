@@ -71,7 +71,7 @@ class MyAccount extends Component {
         form.set("id",sessionStorage.getItem("id"))
         form.set("Base64",this.state.preview)
         const response3 =
-        await axios.post('http://404socialmedia.ir/api/editprofilepicture/', form, {
+        await axios.post('http://127.0.0.1:8000/api/editprofilepicture/', form, {
         headers: { 'Content-Type': 'multipart/form-data',
                     'Authorization': token
         },

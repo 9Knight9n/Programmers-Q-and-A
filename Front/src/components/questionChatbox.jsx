@@ -113,7 +113,7 @@ class QuestionChatbox extends Component {
         // sessionStorage.setItem('id','6')
         this.setState({loading:true})
         let config ={
-            url:"http://404socialmedia.ir/api/EditQuestion/",
+            url:"http://127.0.0.1:8000/api/EditQuestion/",
             needToken:true,
             type:"post",
             formKey:[
@@ -148,7 +148,7 @@ class QuestionChatbox extends Component {
         this.setState({loading:true})
         console.log(this.state.QuestionID)
         let config ={
-            url:"http://404socialmedia.ir/api/AddAnswer/",
+            url:"http://127.0.0.1:8000/api/AddAnswer/",
             needToken:true,
             type:"post",
             formKey:[
@@ -184,7 +184,7 @@ class QuestionChatbox extends Component {
         this.setState({loading:true})
         //request to back to change same question status
         let config ={
-            url:"http://404socialmedia.ir/api/VoteQuestion/",
+            url:"http://127.0.0.1:8000/api/VoteQuestion/",
             needToken:true,
             type:"post",
             formKey:[
@@ -222,7 +222,7 @@ class QuestionChatbox extends Component {
     handleDelete = async()=>{
         this.setState({loading:true})
         let config ={
-            url:"http://404socialmedia.ir/api/DeleteQuestion/",
+            url:"http://127.0.0.1:8000/api/DeleteQuestion/",
             needToken:true,
             type:"post",
             formKey:[

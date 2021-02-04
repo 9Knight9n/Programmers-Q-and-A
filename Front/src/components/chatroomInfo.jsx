@@ -97,7 +97,7 @@ class ChatroomInfo extends Component {
 
     handleSubmitQuestion= async ()=>{
         let config ={
-            url:"http://404socialmedia.ir/api/AddQuestion/",
+            url:"http://127.0.0.1:8000/api/AddQuestion/",
             needToken:true,
             type:"post",
             formKey:[
@@ -129,7 +129,7 @@ class ChatroomInfo extends Component {
 
     loadData = async () => {
         let config = {
-            url:"http://404socialmedia.ir/api/ShowChatroomProfile/",
+            url:"http://127.0.0.1:8000/api/ShowChatroomProfile/",
             needToken:true,
             type:"post",
             formKey:[
@@ -195,7 +195,7 @@ class ChatroomInfo extends Component {
     loadJoinState = async () =>{
         console.log("enter enter enter")
         let config ={
-            url:"http://404socialmedia.ir/api/checkJoin/",
+            url:"http://127.0.0.1:8000/api/checkJoin/",
             needToken:false,
             type:"post",
             formKey:[

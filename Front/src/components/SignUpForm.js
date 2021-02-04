@@ -98,7 +98,7 @@ class SignUpForm extends Component{
     form.set('email', this.state.emailSignUp.toLowerCase());
     form.set('password', this.state.passwordSignUp)
     const response =
-    await axios.post('http://404socialmedia.ir/api/signup/', form, {
+    await axios.post('http://localhost:8000/api/signup/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
@@ -111,7 +111,7 @@ class SignUpForm extends Component{
       sessionStorage.setItem("username",response.data.user.username)
       sessionStorage.setItem("id",response.data.user.id)
       const response2 =
-      await axios.post('http://404socialmedia.ir/api/token/', form, {
+      await axios.post('http://localhost:8000/api/token/', form, {
       headers: { 'Content-Type': 'multipart/form-data'
       },
     })
@@ -123,7 +123,7 @@ class SignUpForm extends Component{
       token = "Bearer "+token;
       form.set("id",sessionStorage.getItem("id"))
       const response3 =
-      await axios.post('http://404socialmedia.ir/api/show_profile_picture/', form, {
+      await axios.post('http://127.0.0.1:8000/api/show_profile_picture/', form, {
       headers: { 'Content-Type': 'multipart/form-data',
                   'Authorization': token
       },
