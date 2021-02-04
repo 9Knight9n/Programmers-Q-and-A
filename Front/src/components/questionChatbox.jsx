@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ShowMoreText from 'react-show-more-text';
+import ShowMore from 'react-show-more-button/dist/module';
 import { Dropdown } from 'react-bootstrap';
 import LoadingPage from './loading';
 import './CSS/questionChatbox.css';
- 
 import { getUserAvatar } from './util';
 import ReactTooltip from 'react-tooltip';
 import Texteditor from './texteditor';
@@ -19,6 +19,7 @@ class QuestionChatbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showMoreExpanded:false,
             showProfilePreview:false,
             // showProfilePreviewUserid:null,
             show: false,
@@ -347,9 +348,13 @@ hideProfilePreview = () => {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu className="dropDown">
+                                        <hr/><hr/><hr/>
+                                        <Dropdown.Item as="button">Option</Dropdown.Item>
+                                        <hr/><hr/><hr/>
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.startEditing}>Edit</Dropdown.Item>:""}
+                                        <hr/><hr/><hr/>
                                         {this.state.isOwner?<Dropdown.Item as="button" onClick={this.handleDelete}>Delete</Dropdown.Item>:""}
-                                        <Dropdown.Item as="button">option 3</Dropdown.Item>
+                                        <hr/><hr/><hr/>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
@@ -402,21 +407,55 @@ hideProfilePreview = () => {
 
 
                             <div id="middle" className="mt-2 mb-1 d-flex flex-column">
-                                <div className="p-3">
+                                <div className="p-2">
                                 {this.props.showMoreButton?
-                                    <ShowMoreText
-                                    /* Default options */
-                                    lines={3}
-                                    more={<p className="ml-auto show-more-less mt-3 mb-2" >Show more</p>}
-                                    less={<p className="ml-auto show-more-less">Show less</p>}
-                                    className='content-css'
-                                    anchorClass='show-more-less d-flex flex-row'
-                                    onClick={this.executeOnClick}
-                                    expanded={false}>
-                                        {ReactHtmlParser(this.state.context)}
-                                        {/* {this.state.context} */}
-                                    </ShowMoreText>:
-                                    ReactHtmlParser(this.state.context)
+                                    <ShowMore maxHeight={160}
+                                        // backgroundColor="#ffffff00" 
+                                        defaultAnchor={false}
+                                        // button={<button>show more</button>}
+                                        style={{lineHeight:'1.5'}}
+                                        // styleButtonDiv={{position=}}
+                                        >
+                                        {<div className="m-2 codeBlock">{ReactHtmlParser(this.state.context)}</div>}
+                                    </ShowMore>
+                                    // (this.state.showMoreExpanded?
+                                    // <div>
+                                    // <div class="ShowMore_ShowMore__13kyk " style={{maxHeight: "75px",}}>
+                                    //     <div class="ShowMore_Anchor__Kgg-p"></div>
+                                    //     {ReactHtmlParser(this.state.context)}
+                                    //     <div class="ShowMore_Shadow__3DrEl" style={{height: "74px", display: "block"}}></div>
+                                        
+                                    // </div>
+                                    // <div class="ShowMore_ButtonDiv__3rvR3 " style={{opacity: "1", zIndex: "initial"}}>
+                                    //         <button onClick={()=>this.setState({showMoreExpanded:!this.state.showMoreExpanded})} class="ShowMore_DefaultButton__3Yb8V" style={{backgroundColor: "rgb(63, 81, 181)", borderRadius: "10px"}}>
+                                    //             Show More
+                                    //         </button>
+                                    //     </div>
+                                    // </div>:
+                                    // <div class="ShowMore_ShowMore__13kyk " style={{maxHeight: "none", overflow: "visible"}}>
+                                    //     <div class="ShowMore_Anchor__Kgg-p"></div>
+                                    //     {ReactHtmlParser(this.state.context)}
+                                    //     <div class="ShowMore_Shadow__3DrEl" style={{height:"74px", display: "block"}}></div>
+                                    //     <div class="ShowMore_ButtonDiv__3rvR3 " style={{"opacity": "1", zIndex: "initial", position: "relative"}}>
+                                    //         <button onClick={()=>this.setState({showMoreExpanded:!this.state.showMoreExpanded})} class="ShowMore_DefaultButton__3Yb8V" style={{backgroundColor: "rgb(63, 81, 181)", borderRadius: "10px"}}>
+                                    //             Show Less
+                                    //         </button>
+                                    //     </div>
+                                    // </div>
+                                    // )
+                                    // <ShowMoreText
+                                    // /* Default options */
+                                    // lines={3}
+                                    // more={<p className="ml-auto show-more-less mt-3 mb-2" >Show more</p>}
+                                    // less={<p className="ml-auto show-more-less">Show less</p>}
+                                    // className='content-css'
+                                    // anchorClass='show-more-less d-flex flex-row'
+                                    // onClick={this.executeOnClick}
+                                    // expanded={false}>
+                                    //     {ReactHtmlParser(this.state.context)}
+                                    //     {/* {this.state.context} */}
+                                    // </ShowMoreText>
+                                    :ReactHtmlParser(this.state.context)
                                 }
                                 </div>
                                 <small className="date ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>
