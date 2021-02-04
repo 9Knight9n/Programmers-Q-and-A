@@ -65,7 +65,7 @@ class App extends Component {
             <EmailVerification />
           </Route>
           <Route path="/login">
-            <EmailVerification />
+            <SignInForm />
           </Route>
           <Route path="/signup">
             <SignUpForm />
