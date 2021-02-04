@@ -276,14 +276,14 @@ class ChatroomInfo extends Component {
                          <div className="chatroomInfo-buttonJoin d-flex flex-row-reverse">
                             <button style={{outline:"none"}} 
                                 onClick={this.handleJoinClick}   
-                                className="zoom float-right btn-pro mr-2 chatroomInfo-joinButton">
+                                className="zoom float-right btn-pro mr-2 chatroomInfo-joinButton pl-2 pr-2">
                                 Join
                             </button>
                             </div>):
                          <div className="chatroomInfo-buttonSubmit d-flex flex-row-reverse">
                         <button style={{outline:"none"}} 
                             onClick={this.handleJoinClick}   
-                            className="zoom float-right btn-pro mr-2 chatroomInfo-submiteQuestionButton">
+                            className="zoom float-right btn-pro mr-2 chatroomInfo-submiteQuestionButton pl-2 pr-2">
                             Submit Question
                         </button> </div>}
                 </div>

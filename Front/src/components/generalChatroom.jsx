@@ -14,6 +14,7 @@ import { Dropdown } from 'react-bootstrap';
 import * as Scroll from 'react-scroll';
 import { Link as SLink, Element as SElement, Events as SEvents, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import { wait } from '@testing-library/react';
+import './CSS/generalChatroom.css';
 
 
  
@@ -196,10 +197,12 @@ class GeneralChatroom extends Component {
         }
         // let objDiv = document.getElementById("scroll-container-discussion");
         // objDiv.scrollTop = objDiv.scrollHeight;
+        // var elem = document.getElementById('scroll-container-discussion');
+        // elem.scrollTop = elem.scrollHeight;
         scroll.scrollToBottom( {
-            duration: 1500,
-            delay: 100,
-            smooth: true,
+            duration: 0,
+            delay: 0,
+            smooth: false,
             containerId: 'scroll-container-discussion',
             offset: 50});
         // console.log(data)
@@ -309,7 +312,7 @@ class GeneralChatroom extends Component {
                             </div>
                             <div className="mt-1 mb-1 ml-5 h-100">
                                 <div id="scroll-container-discussion" className="messages-box" style={{height: "calc(83vh - 58px - ".concat(this.state.inputHeight).concat("px)")}}>
-                                    <div className="mr-5 mb-2" 
+                                    <div className="mr-5 mb-2" id="generalChatroomOptionsHover" 
                                         // style={{
                                         //     height: '100%',
                                         //     overflow: 'scroll',

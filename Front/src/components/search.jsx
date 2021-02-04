@@ -15,6 +15,7 @@ class Search extends Component {
         // result:false,
         suggestions:[],
         informed:false,
+        activeNav:this.props.activeNav,
     }
 
     componentDidMount(){
@@ -23,6 +24,13 @@ class Search extends Component {
             this.setState({focused:false,panelOpened:false})
           });     
 
+    }
+
+    componentDidUpdate(preprops){
+        if(preprops.activeNav !== this.props.activeNav)
+        {
+            this.setState({activeNav:this.props.activeNav})
+        }
     }
 
 
@@ -119,7 +127,7 @@ class Search extends Component {
                             
                             {this.state.suggestions.map(sug =>
                             <Link 
-                                to={"/qanda"+sug.chatroom_id} 
+                                to={"/"+this.state.activeNav+sug.chatroom_id} 
                                 id="suggestion" 
                                 key={sug.chatroom_id} 
                                 className="m-2 d-flex pl-3"

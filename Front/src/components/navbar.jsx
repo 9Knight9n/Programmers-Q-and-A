@@ -51,7 +51,7 @@ class Navbar extends Component {
                       </div>
                     </li> */}
                 </ul>
-                <Search></Search>
+                <Search activeNav={this.props.activeNav}/>
             </nav>
         );
     }

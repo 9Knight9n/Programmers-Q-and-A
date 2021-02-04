@@ -40,7 +40,7 @@
 .joinChatroom-exitImg {
   width: 5%;
   position: absolute;
-  margin-left: 96%;
+  margin-left: 95%;
   margin-top: 0%;
   cursor: pointer;
 }
@@ -70,7 +70,7 @@
 }
 
 .joinChatroom .joinButton {
-  background-color: #888eb7;
+  background-color: #17999f;
   border-left: 2px solid black !important;
 }
 
