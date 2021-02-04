@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '+_z^+lqj1z1ykxx7!x%wrt!+a@_btlf+hgqy3mp_e=vj^s3jal'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['http://404socialmedia.ir/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -150,9 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/home/socialm2/public_html/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/socialm2/public_html/static'
+MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
+MEDIA_URL = 'media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
