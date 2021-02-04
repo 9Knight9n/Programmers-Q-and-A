@@ -15,5 +15,6 @@ urlpatterns = [
     path('api/' , include("chatroom.urls")),
     path('api/', include('generalchatroom.urls')),
 	path('api/' , include("join.urls")),
+    path('api/', include('emailVerification.urls')),
 ]
 urlpatterns = urlpatterns + static('media' , document_root='media')

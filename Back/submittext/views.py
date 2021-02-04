@@ -24,10 +24,7 @@ def ShowQuestion(request):
         for i in questions:
             serializer = QuestionSerializer(i)
             data = serializer.data
-            # print(usrequestUserer)
-            # print(i)
             user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
-            print(user_question)
             if list(user_question) == []:
                 data['sameProblem']=0
             else:
@@ -85,7 +82,6 @@ def ShowUserProfile(request):
         data = serializer.data
         filename = 'media/profile/image/' + str(user.id) + '.txt'
         data['user_profile_image'] = open(filename, 'rb').read()
-        print(data)
         return Response(data)
     return Response({'message' : 'User not found'})
 
@@ -127,7 +123,6 @@ def TimeFilter(index):
 @api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
-    print(request.data)
     time_list = []
     query = Q()
     if 'timePeriod' in request.data.keys():
@@ -224,13 +219,11 @@ def GeneralSearch(request):
 def SeggestionChatroomSreach(request):
     searchText = request.data["searchText"]
     searchTextlist = DetectStopWords(searchText)
-    print(searchText)
     chatroom_value_list = []
     number_of_chatroom = 0
     for chatroom in Chatroom.objects.all():
         x = min(len(searchText), len(chatroom.chatroomName))
         similarty_of_chatroom_name = nltk.edit_distance(searchText[:x], chatroom.chatroomName[:x])
-        print(similarty_of_chatroom_name)
         if similarty_of_chatroom_name < 3:
             chatroom_value_list.append([chatroom , 0])
             number_of_chatroom += 1
@@ -390,11 +383,9 @@ def DeleteAnswer(request):
     answer = Answer.objects.filter(id=request.data['id'] , user=user[0] , question=question[0])
     if list(answer) != []:
         answer.delete()
-        print("salas", user[0].answeredQuestions)
         if list(user) != []:
             user[0].answeredQuestions -= 1
             user[0].save()
-        print("salas", user[0].answeredQuestions)
         return Response({'message':'delete complete'})
     else:
         return Response({'message':'you can`t delete'})
