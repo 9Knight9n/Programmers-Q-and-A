@@ -134,7 +134,7 @@ class Search extends Component {
         return (  
             <React.Fragment>
                 <div ref={node =>this.state.node = node}>
-                <Link id="goToSearchResultPage" to={{pathname:"/search/"+this.state.searchInput,state:{tab:1}}}/>
+                <Link id="goToSearchResultPage" onClick={()=>this.props.changeChatroom(-1)} to={{pathname:"/search/"+this.state.searchInput,state:{tab:1}}}/>
                 <div id='search' className="d-flex flex-row">
                     <div id='bar' className={"ml-auto d-flex flex-row-reverse".concat(this.state.focused?" active ":"")}>
                         <input value={this.state.searchInput} onChange={this.handelInputChange} onKeyDown={this._handleKeyDown}

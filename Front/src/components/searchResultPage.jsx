@@ -151,7 +151,8 @@ class SearchResultPage extends Component {
                                             {this.state.chatrooms.map(chatroom => 
                                             <Link key={chatroom.ChatroomID} 
                                                 className=" m-4"
-                                                to={"/qanda"+chatroom.ChatroomID} >
+                                                to={"/"+this.props.activeNav+chatroom.ChatroomID}
+                                                onClick={()=>this.props.changeChatroom(chatroom.ChatroomID)} >
                                                 <div className="d-flex flex-row result-chatroom ">
                                                     <img className="d-flex mt-auto mb-auto mr-3 ml-3 " id="chatroom-img" src={chatroom.image} />
                                                     <div className="d-flex mt-auto mb-auto pr-5">{chatroom.name}</div>
