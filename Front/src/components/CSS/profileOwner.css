@@ -38,8 +38,8 @@
 .chProfileOwner-exitImg {
   width: 3%;
   position: absolute;
-  margin-left: 98.5%;
-  margin-top: -1.5%;
+  margin-left: 97%;
+  margin-top: 0%;
   cursor: pointer;
   z-index: 1;
 }
@@ -234,6 +234,7 @@
   color: #9d9dd1;
   margin: auto;
 }
+
 /* .chProfileOwner-user-activity img {
 	width: 100%;
   } */

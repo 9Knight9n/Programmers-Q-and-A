@@ -6,6 +6,7 @@ import { isExpired } from "react-jwt";
 import {renewToken} from './requests';
 import axios from 'axios';
 import {encodeList , decodeList} from './util';
+import LoadingPage from './loading';
 
 const options = [
                     { value: 'java', label: 'java' },
@@ -37,7 +38,8 @@ class profileThree extends Component {
             selectedOptions: [],
             bio:"",
             pageCount: 0,
-            charsPerPage: 1
+            charsPerPage: 1,
+            loading:false
           };
     
         this.handleSave = this.handleSave.bind(this);
@@ -78,7 +80,7 @@ class profileThree extends Component {
 
       async loadFields(){
 
-
+        this.setState({loading:true})
         let token = sessionStorage.getItem("access")
         if(isExpired(sessionStorage.getItem("access")))
         {
@@ -101,7 +103,7 @@ class profileThree extends Component {
         console.log(response)
         let list = decodeList(options,response.data.interests)
         console.log(list)
-        this.setState({bio:response.data.description,selectedOptions:list})
+        this.setState({bio:response.data.description,selectedOptions:list,loading:false})
 
 
         
@@ -124,6 +126,7 @@ class profileThree extends Component {
 
 
       async handleSave(){
+        this.setState({loading:true})
         let token = sessionStorage.getItem("access")
          if(isExpired(sessionStorage.getItem("access")))
         {
@@ -147,7 +150,7 @@ class profileThree extends Component {
         },
         })
         console.log(response)
-        this.setState({succeed:true})
+        this.setState({succeed:true,loading:false})
     }
 
 
@@ -186,6 +189,7 @@ class profileThree extends Component {
     render() { 
         return ( 
             <React.Fragment>
+                 {this.state.loading?<LoadingPage/>: ""}
                     <div className="parisa-css w-100 pt-5 mr-5 ml-5 d-flex flex-row">
                         <div className="w-50">
                             <h1 className="w-100 mb-2">Please select Subjects you are intrested in :</h1>

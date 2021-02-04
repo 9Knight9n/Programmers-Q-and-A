@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CSS/profileOne.css';
 import { isExpired } from "react-jwt";
 import {renewToken} from './requests';
- 
+import LoadingPage from './loading';
 import axios from 'axios';
 
 
@@ -18,8 +18,8 @@ class ProfileOne extends Component {
             firstName: "",
             lastName:"",
             username:"",
-            emailProfile:""
-
+            emailProfile:"",
+            loading:false
         };
     
         this.loadData = this.loadData.bind(this);
@@ -47,6 +47,7 @@ class ProfileOne extends Component {
 
     async loadData()
     {
+        this.setState({loading:true})
         let token = sessionStorage.getItem("access")
         if(isExpired(sessionStorage.getItem("access")))
         {
@@ -69,12 +70,14 @@ class ProfileOne extends Component {
         let fn = (response.data.first_name ? response.data.first_name : "")
         let ln = (response.data.last_name ? response.data.last_name : "")
         this.setState({firstName:fn,lastName:ln,username:response.data.username,emailProfile:response.data.email})
+        this.setState({loading:false})
 
     }
 
 
 
         async handleSubmit(){
+            this.setState({loading:true})
             if(this.state.username.startsWith("user-") && this.state.username!=="user-"+sessionStorage.getItem("id"))
                 return this.setState({usernameError:true,emailError:false,succeed:false})
             var validator = require("email-validator");
@@ -125,14 +128,14 @@ class ProfileOne extends Component {
                 sessionStorage.setItem("username",this.state.username)
                 
             }
+            this.setState({loading:false})
 
         }
 
     render() { 
         return ( 
             <React.Fragment>
-        
-
+                {this.state.loading?<LoadingPage/>: ""}
                     <div class="h-100 parisa-css content-form1 d-flex justify-content-center align-items-center">
                     
                         <div className="INPUT-FORM1"> 

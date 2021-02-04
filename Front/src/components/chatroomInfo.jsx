@@ -271,19 +271,21 @@ class ChatroomInfo extends Component {
                             <h3>{this.state.selectedTopic}</h3>
                         </div>
                     </div>
-                    <div className="chatroomInfo-button d-flex flex-row-reverse">
+                   
                         {this.state.isDiscussion?(this.state.isJoined?"":
+                         <div className="chatroomInfo-buttonJoin d-flex flex-row-reverse">
+                            <button style={{outline:"none"}} 
+                                onClick={this.handleJoinClick}   
+                                className="zoom float-right btn-pro mr-2 chatroomInfo-joinButton pl-2 pr-2">
+                                Join
+                            </button>
+                            </div>):
+                         <div className="chatroomInfo-buttonSubmit d-flex flex-row-reverse">
                         <button style={{outline:"none"}} 
                             onClick={this.handleJoinClick}   
-                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
-                            Join
-                        </button>):
-                        <button style={{outline:"none"}} 
-                            onClick={this.handleJoinClick}   
-                            className="float-right btn-pro mr-2 chatroomInfo-submiteAnswerButton">
+                            className="zoom float-right btn-pro mr-2 chatroomInfo-submiteQuestionButton pl-2 pr-2">
                             Submit Question
-                        </button>}
-                    </div>
+                        </button> </div>}
                 </div>
                 <div id="showChatroomProfile">
                     {this.state.showChatroomProfile?
