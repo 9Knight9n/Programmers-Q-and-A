@@ -23,9 +23,7 @@
 
 .profile-saveBut {
   border: none;
-  margin-left: 26%;
-  width: 61%;
-
+  width: 61% !important;
 }
 
 .parisa-css .fileUploadInput label {
@@ -141,5 +139,3 @@
   height: 5vh !important;
 }
 
-.parisa-css .profileBio {
-}
