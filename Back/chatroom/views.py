@@ -128,7 +128,7 @@ def ShowChatroomProfile(request):
         data = serializer.data
         filename = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         data['chatroom_profile_image'] = open(filename, 'rb').read()
-        data['chatroomLink'] = 'http://404socialmedia.ir/ShowChatroomByLink/chatroom' + str(chatroom.id) + '/'
+        data['chatroomLink'] = 'http://127.0.0.1:8000/ShowChatroomByLink/chatroom' + str(chatroom.id) + '/'
         data['topicLink'] = chatroom.Link
         if data['selectedTopic'] == "PL":
             data['selectedTopic'] = "Programing Language(" + chatroom.selected + ")" 
