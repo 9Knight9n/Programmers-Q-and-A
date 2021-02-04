@@ -150,9 +150,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = '/home/username/public_html/media'
+MEDIA_ROOT = '/home/socialm2/public_html/media'
 MEDIA_URL = 'media/'
-STATIC_ROOT = '/home/username/public_html/static'
+STATIC_ROOT = '/home/socialm2/public_html/static'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
