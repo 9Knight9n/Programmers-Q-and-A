@@ -93,7 +93,7 @@ class UsersList extends Component {
                 <div className="user-list rounded-0">
                     <ul className="list-group">
                         {this.state.users.map(u => 
-                                <li className ="d-flex justify-content-start" key={u.id} >
+                                <li className ="d-flex justify-content-start m-1 pb-2" key={u.id} >
                                         {this.state.isOnline?
                                         <StyledBadge
                                         overlap="circle"

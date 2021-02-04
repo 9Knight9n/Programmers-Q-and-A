@@ -1,10 +1,19 @@
 .list-group {
   max-height: 58vh;
+  border-radius: 0%;
+  margin-top: 0%;
+  background-color: #ffffff00 !important;
 }
 
 .user-list {
   overflow: auto;
   height: 90%;
+  background-color: #5c6aa2;
+}
+
+.user-list li{
+  background-color: #47517c;
+  border-radius: 7px !important;
 }
 
 .jumbotron {
@@ -47,11 +56,7 @@
   background-color: #545f91fc;
 }
 
-.list-group {
-  border-radius: 0%;
-  margin-top: 0%;
-  background-color: #5c6aa2;
-}
+
 .img-thumbnail {
   padding: 0rem;
   background-color: #fff0;
