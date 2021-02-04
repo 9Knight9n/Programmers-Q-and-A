@@ -5,13 +5,16 @@
   margin-right: 1%;
 }
 
+.zoom:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 .chatroomInfo button {
   outline: none !important;
   border: none !important;
   border-radius: 0px !important;
-}
-
-.chatroomInfo-userInfo {
 }
 
 .chatroomInfo-buttonSubmit {
@@ -21,6 +24,11 @@
   /* width: 97%; */
   height: 10vh;
 }
+
+.chatroomInfo-buttonSubmit button {
+  box-shadow: -3px -3px #aab1ddb8;
+}
+
 .chatroomInfo-buttonJoin {
   position: absolute;
   top: 91%;
@@ -29,6 +37,9 @@
   height: 10vh;
 }
 
+.chatroomInfo-buttonJoin button {
+  box-shadow: -3px -3px #aab1ddb8;
+}
 .chatroomInfo-infoElements {
   padding-top: 1%;
   height: 11vh;
@@ -79,13 +90,13 @@
 .chatroomInfo-submiteQuestionButton {
   height: 60%;
   width: 8vw;
-  background-color: #5c6bc0;
+  background-color: #9ea7dd;
 }
 
 .chatroomInfo-joinButton {
   height: 60%;
   width: 8vw;
-  background-color: #5c6bc0;
+  background-color: #9ea7dd;
 }
 
 .chatroomInfo-avatar-name-contexet-link {
