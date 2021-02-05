@@ -50,13 +50,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from room group
     async def chat_message(self, event):
-        print(event)
+        # print(event)
         #message = event['text']
         # Send message to WebSocket
         await self.send(text_data=json.dumps(event))
     @database_sync_to_async
     def create_message(self , event):
-        print(event)
+        # print(event)
         chatroom = Chatroom.objects.filter(id=event['chatroom_id'])
         user = User.objects.filter(id=event['user_id'])
         message = Message.objects.create(
@@ -103,6 +103,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             data['message'] = 'user is not owner'
         data['type'] = 'chat_message'
         data['order_type'] = 'delete_message'
-        print(data)
+        # print(data)
         return data
     

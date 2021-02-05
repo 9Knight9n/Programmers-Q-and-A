@@ -27,7 +27,7 @@ def ShowQuestion(request):
             # print(usrequestUserer)
             # print(i)
             user_question = User_Question.objects.filter(user=requestUser[0] , question=i)
-            print(user_question)
+            # print(user_question)
             if list(user_question) == []:
                 data['sameProblem']=0
             else:
@@ -85,7 +85,7 @@ def ShowUserProfile(request):
         data = serializer.data
         filename = 'media/profile/image/' + str(user.id) + '.txt'
         data['user_profile_image'] = open(filename, 'rb').read()
-        print(data)
+        # print(data)
         return Response(data)
     return Response({'message' : 'User not found'})
 
@@ -127,7 +127,7 @@ def TimeFilter(index):
 @api_view(['POST' , ])
 def GeneralSearch(request):
     # advance filter
-    print(request.data)
+    # print(request.data)
     time_list = []
     query = Q()
     if 'timePeriod' in request.data.keys():
@@ -224,13 +224,13 @@ def GeneralSearch(request):
 def SeggestionChatroomSreach(request):
     searchText = request.data["searchText"]
     searchTextlist = DetectStopWords(searchText)
-    print(searchText)
+    # print(searchText)
     chatroom_value_list = []
     number_of_chatroom = 0
     for chatroom in Chatroom.objects.all():
         x = min(len(searchText), len(chatroom.chatroomName))
         similarty_of_chatroom_name = nltk.edit_distance(searchText[:x], chatroom.chatroomName[:x])
-        print(similarty_of_chatroom_name)
+        # print(similarty_of_chatroom_name)
         if similarty_of_chatroom_name < 3:
             chatroom_value_list.append([chatroom , 0])
             number_of_chatroom += 1
@@ -374,15 +374,15 @@ def EditAnswer(request):
             if request.data['isAccepted'] == 'true':
                 answerOwner.answeredQuestions += 1 
                 question.isAnswered = True
-                print(1,question.isAnswered)
+                # print(1,question.isAnswered)
                 data['isAccepted'] = True
             else: 
                 answer = Answer.objects.filter(question=question,isAccepted=True)
-                print(2,answer)
+                # print(2,answer)
                 if len(answer) < 2:
                     answerOwner.answeredQuestions -= 1 
                     question.isAnswered = False
-                print(3,question.isAnswered)
+                # print(3,question.isAnswered)
                 data['isAccepted'] = False
             answer[0].isAccepted = data['isAccepted']
         if 'file' in request.FILES.keys():
@@ -390,7 +390,7 @@ def EditAnswer(request):
         answer[0].save()
         question.save()
         answerOwner.save()
-        print(4,question.isAnswered)
+        # print(4,question.isAnswered)
         return Response({'message':'edit complete'})
     else:
         return Response({'message':'you can`t edit'})

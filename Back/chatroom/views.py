@@ -40,7 +40,7 @@ def createchatroom(request):
         
         chatroom.chatroomAvatar = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         chatroom.save()
-        print(chatroom.chatroomAvatar)
+        # print(chatroom.chatroomAvatar)
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
     if Topic == "OS":
         chatroom = Chatroom.objects.create(
@@ -112,7 +112,7 @@ def show_chatrooms(request):
     for i in range(len(chatroom_user)):
         # data.append(ChatroomSerializer(chatrooms[i]))
         data.append({'id':chatroom_user[i].chatroom.id,'name':chatroom_user[i].chatroom.chatroomName})
-        print(chatroom_user[i].chatroom.chatroomAvatar)
+        # print(chatroom_user[i].chatroom.chatroomAvatar)
         image = open( str(chatroom_user[i].chatroom.chatroomAvatar), 'r').read()
         data[i]['Base64'] = image
     return Response(data , status=status.HTTP_200_OK)
@@ -144,7 +144,7 @@ def ShowChatroomProfile(request):
 @permission_classes([])
 def EditChatroomProfile(request):
     chatroom = Chatroom.objects.filter(id=request.data['chatroomId'])
-    print("////////////////////////////////////////////////hi" , request.data.keys())
+    # print("////////////////////////////////////////////////hi" , request.data.keys())
     if list(chatroom) != []:
         chatroom = chatroom[0]
         serializer = ShowUChatroomProfileSerializer(chatroom)
@@ -158,10 +158,10 @@ def EditChatroomProfile(request):
 
         if 'topicLink' in request.data.keys() and chatroom.selectedTopic != 'OS':
             chatroom.Link = request.data['topicLink']
-        print("////////////////////////////////////////////////bye" , request.data.keys())
+        # print("////////////////////////////////////////////////bye" , request.data.keys())
         if 'chatroom_profile_image' in request.data.keys():
             filepath = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
-            print("//////////////////////////////////////////////////////////////////:::::" , filepath)
+            # print("//////////////////////////////////////////////////////////////////:::::" , filepath)
             file = open(filepath, 'w')
             file.write(request.POST['chatroom_profile_image'])
             file.close()
