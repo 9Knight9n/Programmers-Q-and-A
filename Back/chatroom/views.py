@@ -11,17 +11,17 @@ from .serializers import ShowUChatroomProfileSerializer
 def createchatroom(request):
     data = dict(request.POST)
     print(data)
-    user = User.objects.filter(id=data['owner'][0])
+    user = User.objects.get(id=data['owner'][0])
     Topic = data["selectedTopic"][0]
     if Topic == "PL":
         chatroom = Chatroom.objects.create(
-            owner=user[0],
+            owner=user,
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0],
             selected=data['selected'][0]
         )
-        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user)
         chatroom_user.save()
         if "Description" in request.data.keys() :
             chatroom.Description=data['Description'][0]
@@ -41,17 +41,19 @@ def createchatroom(request):
         
         chatroom.chatroomAvatar = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         chatroom.save()
+        user.numberOfChatrooms += 1
+        user.save()
         # print(chatroom.chatroomAvatar)
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
     if Topic == "OS":
         chatroom = Chatroom.objects.create(
-            owner=user[0],
+            owner=user,
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
             selected=data['selected'][0],
             selectedSub=data['selectedSub'][0]
         )
-        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user)
         chatroom_user.save()
         if "Description" in request.data.keys() :
             chatroom.Description=data['Description'][0]
@@ -71,15 +73,17 @@ def createchatroom(request):
         
         chatroom.chatroomAvatar = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         chatroom.save()
+        user.numberOfChatrooms += 1
+        user.save()
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
     if Topic == "App":
         chatroom = Chatroom.objects.create(
-            owner=user[0],
+            owner=user,
             selectedTopic=data['selectedTopic'][0],
             chatroomName=data['chatroomName'][0],
             Link=data['Link'][0]
         )
-        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
+        chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user)
         chatroom_user.save()
         if "Description" in request.data.keys() :
             chatroom.Description=data['Description'][0]
@@ -99,8 +103,8 @@ def createchatroom(request):
         
         chatroom.chatroomAvatar = 'media/chatroom/image/' + str(chatroom.id) + '.txt'
         chatroom.save()
-        user[0].numberOfChatrooms += 1
-        user[0].save()
+        user.numberOfChatrooms += 1
+        user.save()
         # chatroom_user = Chatroom_User.objects.create(user=user[0] , chatroom=chatroom)
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
 

@@ -363,9 +363,13 @@ def ShowvoteQuestion(request):
 @api_view(['POST'])
 def EditAnswer(request):
     data = dict(request.POST)
+    print(data)
     question = Question.objects.get(id=data['question'][0])
     user = User.objects.filter(id=data['user_id'][0])
-    answer = Answer.objects.filter(id=data['id'][0] , user=user[0] , question=question)
+    answer = Answer.objects.filter(id=data['id'][0] )
+    print(question)
+    print(user)
+    print(answer)
     if list(answer) != []:
         if 'text' in data.keys():
             answer[0].text = data['text'][0]
@@ -374,15 +378,15 @@ def EditAnswer(request):
             if request.data['isAccepted'] == 'true':
                 answerOwner.answeredQuestions += 1 
                 question.isAnswered = True
-                # print(1,question.isAnswered)
+                print(1,question.isAnswered)
                 data['isAccepted'] = True
             else: 
                 answer = Answer.objects.filter(question=question,isAccepted=True)
-                # print(2,answer)
+                print(2,answer)
                 if len(answer) < 2:
                     answerOwner.answeredQuestions -= 1 
                     question.isAnswered = False
-                # print(3,question.isAnswered)
+                print(3,question.isAnswered)
                 data['isAccepted'] = False
             answer[0].isAccepted = data['isAccepted']
         if 'file' in request.FILES.keys():
@@ -390,7 +394,7 @@ def EditAnswer(request):
         answer[0].save()
         question.save()
         answerOwner.save()
-        # print(4,question.isAnswered)
+        print(4,question.isAnswered)
         return Response({'message':'edit complete'})
     else:
         return Response({'message':'you can`t edit'})
