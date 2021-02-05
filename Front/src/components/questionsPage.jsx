@@ -97,7 +97,7 @@ class QuestionsPage extends Component {
         if (data)
         {
             this.setState({questions:data})
-            console.log("state set")
+            console.log(data)
         }
         this.setState({loading:false})
         // console.log(data)

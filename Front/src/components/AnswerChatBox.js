@@ -321,27 +321,13 @@ class AnswerChatBox  extends Component {
                         <ReactTooltip place="right" effect="solid" type="dark"/>
                         <div id="header" className="d-flex flex-row ">
                             <div className="d-flex pl-2 align-top w-80 ml-3" className="profileAvatarBox">
-                                <div style={{cursor:"pointer"}} className="d-flex align-items-center mr-2 profileAvatar" onClick={this.showProfilePreview}>
-                                  {this.state.isOnline?
-                                  
-                                    <StyledBadge
-                                    
-                                        overlap="circle"
-                                        anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'right',
-                                        }}
-                                        variant="dot"
-                                    >
-                                        <Avatar className="profileImg" alt="Avatar" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
-                                    </StyledBadge> :    
-                                    <img className="profileImg" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
-                                    }
+                                <div style={{cursor:"pointer"}} className="d-flex align-items-center mr-2 profileAvatar" onClick={this.showProfilePreview}>  
+                                    <img className="profileImg mr-1" src={sessionStorage.getItem(this.props.userid + ":avatar")} />
                                 </div>
                                
                             </div>
 
-                            <label style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileUsername" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
+                            <label style={{cursor:"pointer"}} onClick={this.showProfilePreview} className="profileUsername pl-3" for="profileImg">{this.props.userName === "User is not exist" ? "Deleted account" : this.props.userName}</label>
                             <div id="options" className="options ml-auto">
                                 <Dropdown className="dropDownMain">
                                     <Dropdown.Toggle className="mr-2" id="dropdown-basic">
