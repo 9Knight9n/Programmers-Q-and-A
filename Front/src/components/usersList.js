@@ -49,6 +49,7 @@ class UsersList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            dataloaded:false,
             isOnline: false,
             users: []
         }
@@ -63,7 +64,7 @@ class UsersList extends Component {
     }
 
     loadUserData = async () =>{
-        console.log("enter enter enter")
+        // console.log("enter enter enter")
         let config ={
             url:"http://127.0.0.1:8000/api/show_Users/",
             needToken:false,
@@ -84,8 +85,9 @@ class UsersList extends Component {
                 users: data
             })
             for(let i = 0 ;i<this.state.users.length;i++){
-                getUserAvatar(this.state.users[i].id)
+                await getUserAvatar(this.state.users[i].id)
             }
+            this.setState({dataloaded:true})
         }else{
           console.log("Error to load data")  
         }
@@ -97,33 +99,34 @@ class UsersList extends Component {
                 <div href="#" className="chProfileOwner-list-group-item title w-100 d-flex justify-content-center">
                     <h2 className="mt-3">Members</h2>
                 </div>
+                {this.state.dataloaded?
                 <div className="user-list rounded-0">
-                    <ul className="list-group">
-                        {this.state.users.map(u => 
-                                <li className ="d-flex justify-content-start m-1 pb-2" key={u.id} >
-                                        {this.state.isOnline?
-                                        <StyledBadge
-                                        overlap="circle"
-                                        anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'right',
-                                        }}
-                                        variant="dot"
-                                        >
-                                            <Avatar alt="Avatar" src={sessionStorage.getItem(u.id+":avatar")} />
-                                        </StyledBadge> :    
-                                            <img className="img-thumbnail" src={sessionStorage.getItem(u.id+":avatar")} />
-                                        }
-                                    
-                                    <label style={{maxWidth:"60%"}} className="name w-75 ml-3 mt-auto mb-auto">
-                                        <EllipsisToolTip options={ellipsisToolTipOptions}>
-                                        {u.name}
-                                        </EllipsisToolTip>
-                                    </label>
-                                </li>
-                            )}
-                    </ul>
-                </div>
+                <ul className="list-group">
+                    {this.state.users.map(u => 
+                            <li className ="d-flex justify-content-start m-1 pb-2" key={u.id} >
+                                    {this.state.isOnline?
+                                    <StyledBadge
+                                    overlap="circle"
+                                    anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'right',
+                                    }}
+                                    variant="dot"
+                                    >
+                                        <Avatar alt="Avatar" src={sessionStorage.getItem(u.id+":avatar")} />
+                                    </StyledBadge> :    
+                                        <img className="img-thumbnail" src={sessionStorage.getItem(u.id+":avatar")} />
+                                    }
+                                
+                                <label style={{maxWidth:"60%"}} className="name w-75 ml-3 mt-auto mb-auto">
+                                    <EllipsisToolTip options={ellipsisToolTipOptions}>
+                                    {u.name}
+                                    </EllipsisToolTip>
+                                </label>
+                            </li>
+                        )}
+                </ul>
+            </div>:""}
                 {/* <div id="showUserProfile">
                 {this.state.showUserProfile?
                      <ProfilePreview userid={this.state.senderId} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
