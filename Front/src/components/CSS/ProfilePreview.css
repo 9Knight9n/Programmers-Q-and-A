@@ -96,12 +96,10 @@
 }
 
 .ProfilePreview-first_name-last_name-email-userName {
-  margin-left: 10%;
+  margin-left: 2%;
   margin-top: 5%;
 }
 
-.ProfilePreview-first_name-last_name-username {
-}
 
 .ProfilePreview-first_name-last_name h1 {
   font-size: x-large !important;

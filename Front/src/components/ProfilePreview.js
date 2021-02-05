@@ -11,6 +11,13 @@ import groupChat from '../img/group.png';
 import ReactTooltip from 'react-tooltip';
 import {decodeList} from './util';
 import NumberFormat from 'react-number-format';
+import EllipsisToolTip from "ellipsis-tooltip-react-chan";
+
+
+const ellipsisToolTipOptions = {
+    effect: "solid",
+    place: "top",
+  }
 
 
 const options = [
@@ -129,19 +136,19 @@ class ProfilePreview extends Component {
                         <div className="ProfilePreview-elements mb-3">
                             <div  className="ProfilePreview-profile">
                                 <div className="ProfilePreview-headerProfile row d-flex justify-content-center">
-                                    <div className="ProfilePreview-profileImg col">
-                                        <img src={this.state.profileAvatar} />
+                                    <div className="ProfilePreview-profileImg col" style={{width:"40%"}}>
+                                        <img src={this.state.profileAvatar} style={{width:"100%"}}/>
                                     </div>
                                     <div className="ProfilePreview-first_name-last_name-email-userName col">
                                         <div className="ProfilePreview-first_name-last_name-username">
                                             <div className="ProfilePreview-first_name-last_name">
-                                                <h1>{this.state.first_name} {this.state.last_name}</h1>
+                                                <h1 style={{maxWidth:"90%"}}><EllipsisToolTip options={ellipsisToolTipOptions}>{this.state.first_name} {this.state.last_name}</EllipsisToolTip></h1>
                                             </div>
                                             <div className="ProfilePreview-clearFix"></div>
                                             <div className="ProfilePreview-email-userName d-flex">
                                                 {/* <p>email : {this.state.userEmail}</p> */}
-                                                <label for="ProfilePreview-userName-P">username : </label>
-                                                <p className="ProfilePreview-userName-P ml-1">{this.state.userName}</p>
+                                                <label className="mt-1" for="ProfilePreview-userName-P">username : </label>
+                                                <p style={{maxWidth:"70%"}} className="ProfilePreview-userName-P ml-1"><EllipsisToolTip options={ellipsisToolTipOptions}>{this.state.userName}</EllipsisToolTip></p>
                                             </div>
                                         </div>
                                         <div className="ProfilePreview-intrestsBox">

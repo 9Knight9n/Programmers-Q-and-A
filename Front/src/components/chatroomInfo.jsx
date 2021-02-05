@@ -15,6 +15,11 @@ import ProfileOwner from './profileOwner';
 import JoinChatroom from './joinChatroom';
 import Modal from 'react-modal';
 import {  toast } from 'react-toastify';
+import EllipsisToolTip from "ellipsis-tooltip-react-chan";
+const ellipsisToolTipOptions = {
+    effect: "solid",
+    place: "top",
+  }
 
 const customStyles = {
     content : {
@@ -255,12 +260,12 @@ class ChatroomInfo extends Component {
                         </div>
                         <div className="chatroomInfo-userInfo">
                             <div className="d-flex flex-row">
-                                <h2 style={{cursor:"pointer"}} onClick={this.showChatroomProfile} className="">{this.state.chatroomName}</h2>
+                            <h2 style={{cursor:"pointer",maxWidth:"50vw"}} onClick={this.showChatroomProfile} className=""><EllipsisToolTip options={ellipsisToolTipOptions}>{this.state.chatroomName}</EllipsisToolTip></h2>
                                 <CopyToClipboard text={this.state.chatroomLink} onCopy={() => this.handleCopy()}>
                                     <div className=" d-flex flex-row">
                                         
                                         <img src={linkImg} className="h-100"
-                                            data-tip={this.state.copied?"Copied":"Click to copy"} />
+                                            data-tip="Click to copy" />
                                         {/* <small className="ml-3 h-100">{this.state.copied?"Copied":""}</small> */}
                                     </div>
                                     

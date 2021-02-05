@@ -5,7 +5,14 @@ import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
-import './CSS/usersList.css'
+import './CSS/usersList.css';
+import EllipsisToolTip from "ellipsis-tooltip-react-chan";
+
+
+const ellipsisToolTipOptions = {
+    effect: "solid",
+    place: "top",
+  }
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -108,8 +115,10 @@ class UsersList extends Component {
                                             <img className="img-thumbnail" src={sessionStorage.getItem(u.id+":avatar")} />
                                         }
                                     
-                                    <label className="name w-75 ml-3 mt-auto mb-auto">
+                                    <label style={{maxWidth:"60%"}} className="name w-75 ml-3 mt-auto mb-auto">
+                                        <EllipsisToolTip options={ellipsisToolTipOptions}>
                                         {u.name}
+                                        </EllipsisToolTip>
                                     </label>
                                 </li>
                             )}
