@@ -28,9 +28,9 @@ class ChatroomCreationPl extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedPl: sessionStorage.getItem("selected"),
-            plDescription: sessionStorage.getItem("description"),
-            plLink: sessionStorage.getItem("link"),
+            selectedPl: options.find(os => os.label ===sessionStorage.getItem("selected")),
+            plDescription: sessionStorage.getItem("Description"),
+            plLink: sessionStorage.getItem("Link"),
             error1: false,
             error2: false,
             pageCount:0,
@@ -40,6 +40,14 @@ class ChatroomCreationPl extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     
+    clear=()=>{
+        sessionStorage.removeItem("selected" );
+        sessionStorage.removeItem("Link" );
+        sessionStorage.removeItem("Description");
+        sessionStorage.removeItem("selectedTopic")
+        sessionStorage.removeItem("chatroomName")
+        sessionStorage.removeItem("selectedSub")
+    }
     handleClick() {
         console.log(this.state.selectedPl)
         if (!this.state.selectedPl && !this.state.error1) {
@@ -53,7 +61,7 @@ class ChatroomCreationPl extends Component {
             });
         }
         if (this.state.selectedPl && this.state.plLink) {
-            sessionStorage.setItem("selected" , this.state.selectedPl);
+            sessionStorage.setItem("selected" , this.state.selectedPl.label);
             sessionStorage.setItem("Link" , this.state.plLink);
             sessionStorage.setItem("Description" , this.state.plDescription);
         }
@@ -123,7 +131,7 @@ class ChatroomCreationPl extends Component {
                         </span>
                     </div>
                     <Link to="/chatroomCreationFirst">
-                        <button className="backButtonPl" type="button">Back</button>
+                        <button onClick={this.clear} className="backButtonPl" type="button">Back</button>
                     </Link>
                     <Link to={this.state.selectedPl && this.state.plLink ? "/chatroomCreationLast": "/chatroomCreationPl"} onClick={this.handleClick}>
                         <button className="nextButtonPl" type="button">Next</button>

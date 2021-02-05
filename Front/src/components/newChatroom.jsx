@@ -16,11 +16,7 @@ class NewChatroom extends Component {
 
     hideModal = () => {
         this.props.hideModal();
-        sessionStorage.removeItem("selectedSub")
-        sessionStorage.removeItem("selected")
-        sessionStorage.removeItem("selectedTopic")
-        sessionStorage.removeItem("Description")
-        sessionStorage.removeItem("Link")
+        this.clear()
     }
 
     modalClick = (e) => {
@@ -29,10 +25,19 @@ class NewChatroom extends Component {
         return false;
     }
 
+    clear=()=>{
+        sessionStorage.removeItem("selected" );
+        sessionStorage.removeItem("Link" );
+        sessionStorage.removeItem("Description");
+        sessionStorage.removeItem("selectedTopic")
+        sessionStorage.removeItem("chatroomName")
+        sessionStorage.removeItem("selectedSub")
+    }
+
     render() { 
         return ( 
             <React.Fragment>
-                <div onClick={() => this.props.hideModal()} className={this.props.show ? "modal display-block" : "modal display-none"}>
+                <div onClick={() => this.hideModal()} className={this.props.show ? "modal display-block" : "modal display-none"}>
                     <section onClick={this.modalClick} className="modal-main2">
                         <div className="w-100 h-100 abed-css d-flex justify-content-center">
                         <Link to="/" onClick={this.hideModal}>

@@ -10,6 +10,7 @@ from .serializers import ShowUChatroomProfileSerializer
 @api_view(['POST'])
 def createchatroom(request):
     data = dict(request.POST)
+    print(data)
     user = User.objects.filter(id=data['owner'][0])
     Topic = data["selectedTopic"][0]
     if Topic == "PL":
@@ -23,7 +24,7 @@ def createchatroom(request):
         chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
         chatroom_user.save()
         if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+            chatroom.Description=data['Description'][0]
         chatroom.save()
         if "Base64" in request.data.keys() :
             base64=data['Base64'][0] 
@@ -53,7 +54,7 @@ def createchatroom(request):
         chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
         chatroom_user.save()
         if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+            chatroom.Description=data['Description'][0]
         chatroom.save()
         if "Base64" in request.data.keys() :
             base64=data['Base64'][0] 
@@ -81,7 +82,7 @@ def createchatroom(request):
         chatroom_user = Chatroom_User.objects.create(chatroom=chatroom,user=user[0])
         chatroom_user.save()
         if "Description" in request.data.keys() :
-            Description=data['Description'][0]
+            chatroom.Description=data['Description'][0]
         chatroom.save()
         if "Base64" in request.data.keys() :
             base64=data['Base64'][0] 
@@ -100,7 +101,7 @@ def createchatroom(request):
         chatroom.save()
         user[0].numberOfChatrooms += 1
         user[0].save()
-        chatroom_user = Chatroom_User.objects.create(user=user[0] , chatroom=chatroom)
+        # chatroom_user = Chatroom_User.objects.create(user=user[0] , chatroom=chatroom)
         return Response({'message': 'New chatroom created'}, status=status.HTTP_201_CREATED)
 
 
@@ -109,12 +110,14 @@ def show_chatrooms(request):
     user = User.objects.filter(id=request.data["user_id"])
     chatroom_user = Chatroom_User.objects.filter(user=user[0])
     data = []
+    print(chatroom_user)
     for i in range(len(chatroom_user)):
         # data.append(ChatroomSerializer(chatrooms[i]))
         data.append({'id':chatroom_user[i].chatroom.id,'name':chatroom_user[i].chatroom.chatroomName})
         # print(chatroom_user[i].chatroom.chatroomAvatar)
         image = open( str(chatroom_user[i].chatroom.chatroomAvatar), 'r').read()
         data[i]['Base64'] = image
+    # print(data)
     return Response(data , status=status.HTTP_200_OK)
 
 
@@ -133,7 +136,7 @@ def ShowChatroomProfile(request):
         if data['selectedTopic'] == "PL":
             data['selectedTopic'] = "Programing Language(" + chatroom.selected + ")" 
         elif data['selectedTopic'] == "App":
-            data['selectedTopic'] = "Application(" + chatroom.selected + ")"
+            data['selectedTopic'] = "Application"
         elif data['selectedTopic'] == "OS":
             data['selectedTopic'] = "Operating System(" + chatroom.selected + ")"
         return Response(data)

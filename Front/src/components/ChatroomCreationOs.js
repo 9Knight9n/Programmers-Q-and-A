@@ -106,6 +106,14 @@ class ChatroomCreationOs extends Component {
             sessionStorage.setItem("Description" , this.state.osDescription);
         }
     }
+    clear=()=>{
+        sessionStorage.removeItem("selected" );
+        sessionStorage.removeItem("Link" );
+        sessionStorage.removeItem("Description");
+        sessionStorage.removeItem("selectedTopic")
+        sessionStorage.removeItem("chatroomName")
+        sessionStorage.removeItem("selectedSub")
+    }
 
      handleChange(e) {
         let target = e.target;
@@ -238,7 +246,7 @@ class ChatroomCreationOs extends Component {
                         </span>
                     </div>
                         <Link to="/chatroomCreationFirst">
-                            <button className="backButtonOs" type="button">Back</button>
+                            <button onClick={this.clear} className="backButtonOs" type="button">Back</button>
                         </Link>
                         <Link to={this.state.selectedOs && this.state.selectedSubOs ? "/chatroomCreationLast": "/chatroomCreationOs"} onClick={this.handleClick}>
                             <button className="nextButtonOs" type="button">Next</button>

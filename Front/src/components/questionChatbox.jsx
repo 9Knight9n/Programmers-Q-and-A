@@ -455,7 +455,15 @@ hideProfilePreview = () => {
                                     //     {ReactHtmlParser(this.state.context)}
                                     //     {/* {this.state.context} */}
                                     // </ShowMoreText>
-                                    :ReactHtmlParser(this.state.context)
+                                    :<ShowMore maxHeight={800}
+                                    // backgroundColor="#ffffff00" 
+                                    defaultAnchor={false}
+                                    // button={<button>show more</button>}
+                                    style={{lineHeight:'1.5'}}
+                                    // styleButtonDiv={{position=}}
+                                    >
+                                    {<div className="m-2 codeBlock">{ReactHtmlParser(this.state.context)}</div>}
+                                </ShowMore>
                                 }
                                 </div>
                                 <small className="date ml-auto mb-2 mr-2 mt-auto">Submitted on : {this.state.sentDate}</small>

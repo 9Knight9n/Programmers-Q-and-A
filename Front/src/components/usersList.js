@@ -7,6 +7,7 @@ import { getUserAvatar } from './util';
 import {request} from './requests.jsx';
 import './CSS/usersList.css';
 import EllipsisToolTip from "ellipsis-tooltip-react-chan";
+import ProfilePreview from './ProfilePreview';
 
 
 const ellipsisToolTipOptions = {
@@ -49,6 +50,8 @@ class UsersList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            selectedUser:null,
+            showProfilePreview:false,
             dataloaded:false,
             isOnline: false,
             users: []
@@ -93,9 +96,23 @@ class UsersList extends Component {
         }
       }
 
+      showProfilePreview = (userid) => {
+        // this.setState({ showProfilePreview: submit });
+        this.setState({ showProfilePreview: true ,selectedUser:userid});
+        // console.log(this.state.submit)
+    
+    };
+    
+    hideProfilePreview = () => {
+        this.setState({ showProfilePreview: false });
+        // this.setState({ submit: -2 });
+        // this.loadChatrooms()
+    };
+
     render() { 
         return ( 
             <div className="jumbotron h-100 list-content ml-auto ">
+                <ProfilePreview userid={this.state.selectedUser} hideProfilePreview={this.hideProfilePreview} showProfilePreview={this.state.showProfilePreview} />
                 <div href="#" className="chProfileOwner-list-group-item title w-100 d-flex justify-content-center">
                     <h2 className="mt-3">Members</h2>
                 </div>
@@ -103,7 +120,7 @@ class UsersList extends Component {
                 <div className="user-list rounded-0">
                 <ul className="list-group">
                     {this.state.users.map(u => 
-                            <li className ="d-flex justify-content-start m-1 pb-2" key={u.id} >
+                            <li onClick={()=>this.showProfilePreview(u.id)} className ="d-flex justify-content-start m-1 pb-2" key={u.id} >
                                     {this.state.isOnline?
                                     <StyledBadge
                                     overlap="circle"

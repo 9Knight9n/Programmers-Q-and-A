@@ -93,22 +93,23 @@ class ChatroomCreationLast extends Component {
         }
 
         if (sessionStorage.getItem("selectedTopic") === "PL") {
-          let selected = sessionStorage.getItem("selected")
           form.set('selectedTopic', sessionStorage.getItem("selectedTopic"))
           form.set('chatroomName', sessionStorage.getItem("chatroomName"))
           form.set('owner', sessionStorage.getItem("id"))
           form.set('selected', sessionStorage.getItem("selected") )
           form.set('Link', sessionStorage.getItem("Link"))
-          form.set('Description', sessionStorage.getItem("selected"))
+          form.set('Description', sessionStorage.getItem("Description"))
         }
 
         if (sessionStorage.getItem("selectedTopic") === "App") {
+          console.log("inside app")
           form.set('selectedTopic', sessionStorage.getItem("selectedTopic"))
           form.set('chatroomName', sessionStorage.getItem("chatroomName"))
           form.set('owner', sessionStorage.getItem("id"))
           form.set('Link', sessionStorage.getItem("Link"))
           form.set('Description', sessionStorage.getItem("Description"))
         }
+        console.log("=======>",form.get("Description"))
 
         const response =
         await axios.post('http://127.0.0.1:8000/api/createchatroom/', form, {

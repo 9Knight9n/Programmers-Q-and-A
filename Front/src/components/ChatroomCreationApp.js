@@ -58,6 +58,15 @@ class ChatroomCreationApp extends Component {
         this.props.hideModal();
     }
 
+    clear=()=>{
+        sessionStorage.removeItem("selected" );
+        sessionStorage.removeItem("Link" );
+        sessionStorage.removeItem("Description");
+        sessionStorage.removeItem("selectedTopic")
+        sessionStorage.removeItem("chatroomName")
+        sessionStorage.removeItem("selectedSub")
+    }
+
     render() { 
         return ( 
             <div className="main-box">
@@ -79,7 +88,7 @@ class ChatroomCreationApp extends Component {
                         </div>
                     </div>
                     <Link to="/chatroomCreationFirst">
-                        <button className="backButtonApp" type="button">
+                        <button onClick={this.clear} className="backButtonApp" type="button">
                             Back
                         </button>
                     </Link>

@@ -59,6 +59,12 @@ class ProfilePreview extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        if (prevProps.userid !== this.props.userid) {
+            this.loadData()
+            // this.setState({
+            //     showProfilePreview: this.props.showProfilePreview,
+            // })
+        }
         if (prevProps.showProfilePreview !== this.props.showProfilePreview) {
             this.loadData()
             // this.setState({
@@ -68,6 +74,8 @@ class ProfilePreview extends Component {
       }
 
     loadData = async () => {
+        if (!this.props.userid)
+        return
         // this.setState({loading:true})
         console.log('entred loadData....')
         let config = {
@@ -78,7 +86,7 @@ class ProfilePreview extends Component {
                 "user_id",
             ],
             formValue:[
-                this.state.userId
+                this.props.userid
             ]
         };
         let data = [];

@@ -8,6 +8,9 @@
   color: blue;
 }
 
+.select__single-value{
+  line-height: 1.5;
+}
 .abed-css button {
   color: white;
   background-color: #3f51b5;
@@ -22,6 +25,7 @@ input textarea {
 }
 
 .abed-css textarea {
+  width: 90%;
   resize: none;
   color: black;
 }

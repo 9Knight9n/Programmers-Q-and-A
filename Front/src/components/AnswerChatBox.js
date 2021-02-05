@@ -19,6 +19,7 @@ import ProfilePreview from './ProfilePreview';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import ShowMore from 'react-show-more-button/dist/module';
 
 
 const StyledBadge = withStyles((theme) => ({
@@ -397,7 +398,15 @@ class AnswerChatBox  extends Component {
 
 
                             <div id="middle" className="">
-                                { ReactHtmlParser(this.state.answer) }
+                            <ShowMore maxHeight={800}
+                                    // backgroundColor="#ffffff00" 
+                                    defaultAnchor={false}
+                                    // button={<button>show more</button>}
+                                    style={{lineHeight:'1.5'}}
+                                    // styleButtonDiv={{position=}}
+                                    >
+                                    {<div className="m-2 codeBlock">{ReactHtmlParser(this.state.answer)}</div>}
+                                </ShowMore>
                                 
                             </div>
 
